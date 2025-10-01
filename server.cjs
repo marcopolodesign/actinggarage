@@ -23,6 +23,20 @@ app.post('/api/submit-form', async (req, res) => {
   try {
     const { email, name, phone, age, interests, source } = req.body;
 
+    // Check if Mailchimp configuration is available
+    if (!MAILCHIMP_API_KEY || !MAILCHIMP_LIST_ID) {
+      console.error('Mailchimp configuration missing:', {
+        hasApiKey: !!MAILCHIMP_API_KEY,
+        hasListId: !!MAILCHIMP_LIST_ID,
+        server: MAILCHIMP_SERVER
+      });
+      return res.status(500).json({
+        success: false,
+        message: 'Mailchimp configuration not found. Please check environment variables.',
+        error: 'Missing MAILCHIMP_API_KEY or MAILCHIMP_LIST_ID'
+      });
+    }
+
     // Validate required fields
     if (!email || !name || !phone || !interests) {
       return res.status(400).json({
@@ -84,7 +98,17 @@ app.post('/api/submit-form', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Mailchimp API error:', error.response?.data || error.message);
+    console.error('Mailchimp API error:', {
+      message: error.message,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      data: error.response?.data,
+      config: {
+        url: error.config?.url,
+        method: error.config?.method,
+        headers: error.config?.headers
+      }
+    });
 
     // Handle existing member error
     if (error.response?.status === 400 && error.response?.data?.title === 'Member Exists') {
@@ -153,6 +177,17 @@ app.post('/api/submit-form', async (req, res) => {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running!' });
+});
+
+// Debug endpoint to check configuration
+app.get('/api/config', (req, res) => {
+  res.json({
+    status: 'Configuration check',
+    hasApiKey: !!MAILCHIMP_API_KEY,
+    hasListId: !!MAILCHIMP_LIST_ID,
+    server: MAILCHIMP_SERVER,
+    mailchimpUrl: MAILCHIMP_URL
+  });
 });
 
 app.listen(PORT, () => {
