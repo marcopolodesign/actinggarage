@@ -1,5 +1,29 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400;500&display=swap');
+/* Import Custom Fonts */
+@font-face {
+  font-family: 'Druk';
+  src: url('../tag-fonts/Druk-Bold.woff2') format('woff2'),
+       url('../tag-fonts/Druk-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ITC Garamond';
+  src: url('../tag-fonts/ITCGaramondStd-BkNarrow.woff2') format('woff2'),
+       url('../tag-fonts/ITCGaramondStd-BkNarrow.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MDIO';
+  src: url('../tag-fonts/MDIO-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 * {
   margin: 0;
@@ -8,7 +32,7 @@
 }
 
 body {
-  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -16,12 +40,14 @@ body {
 
 .app {
   min-height: 100vh;
+  min-width: 100vw;
   background: #f6f5eb;
 }
 
 .container {
   display: flex;
   min-height: 100vh;
+  min-width: 100vw;
 }
 
 /* Left Column - Form Section */
@@ -39,9 +65,9 @@ body {
 }
 
 .greeting {
-  font-family: 'Anton', 'Impact', 'Arial Black', sans-serif;
+  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
   font-size: 48px;
-  font-weight: 500;
+  font-weight: bold;
   color: #1a1a1a;
   text-transform: uppercase;
   letter-spacing: -0.5px;
@@ -74,6 +100,7 @@ body {
 
 .form-group label {
   display: block;
+  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
   font-size: 14px;
   font-weight: bold;
   color: #1a1a1a;
@@ -98,7 +125,7 @@ body {
 .form-textarea:focus {
   outline: none;
   border-color: #000;
-  background: #fff;
+  background: transparent;
 }
 
 .form-textarea {
@@ -118,6 +145,7 @@ body {
   border-radius: 8px;
   background: #f4b03e;
   color: #1a1a1a;
+  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
@@ -143,6 +171,7 @@ body {
   border-radius: 8px;
   background: #f4b03e;
   color: #1a1a1a;
+  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
@@ -208,9 +237,9 @@ body {
 }
 
 .brand-title {
-  font-family: 'Anton', 'Impact', 'Arial Black', sans-serif;
+  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
   font-size: 72px;
-  font-weight: 500;
+  font-weight: bold;
   color: #f4b03e;
   text-transform: uppercase;
   letter-spacing: -0.5px;
@@ -242,9 +271,9 @@ body {
 }
 
 .success-content h1 {
-  font-family: 'Anton', 'Impact', 'Arial Black', sans-serif;
+  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
   font-size: 48px;
-  font-weight: 500;
+  font-weight: bold;
   color: #1a1a1a;
   text-transform: uppercase;
   letter-spacing: -0.5px;
