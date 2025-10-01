@@ -11,10 +11,7 @@
     "vercel-build": "npm run build"
   },
   "dependencies": {
-    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "axios": "^1.12.2",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
