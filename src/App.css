@@ -66,7 +66,7 @@ body {
 
 .greeting {
   font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
-  font-size: 48px;
+  font-size: 72px;
   font-weight: bold;
   color: #1a1a1a;
   text-transform: uppercase;
@@ -76,6 +76,7 @@ body {
 }
 
 .subtitle {
+  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
   font-size: 18px;
   color: #1a1a1a;
   line-height: 1.4;
@@ -115,6 +116,7 @@ body {
   padding: 15px 20px;
   border: 2px solid #1a1a1a;
   border-radius: 8px;
+  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
   font-size: 16px;
   background: #f4b03e;
   color: #1a1a1a;
@@ -224,6 +226,7 @@ body {
   z-index: 2;
   text-align: right;
   color: #fff;
+  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -307,7 +310,7 @@ body {
   }
   
   .greeting {
-    font-size: 36px;
+    font-size: 56px;
   }
   
   .brand-title {
@@ -335,7 +338,7 @@ body {
   }
   
   .greeting {
-    font-size: 28px;
+    font-size: 42px;
   }
   
   .brand-title {
