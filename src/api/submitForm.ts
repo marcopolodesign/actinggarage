@@ -1,78 +1,31 @@
-// Direct Mailchimp integration
+// Frontend API integration - calls Vercel serverless function
 import axios from 'axios';
 import type { FormSubmission } from './types';
 
-// Mailchimp configuration - these will be used directly from environment
-const MAILCHIMP_SERVER = 'us3'; // You can make this configurable if needed
-const MAILCHIMP_LIST_ID = '0318e55dfd'; // From your Vercel environment
-
-// Mailchimp API endpoint
-const MAILCHIMP_URL = `https://${MAILCHIMP_SERVER}.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST_ID}/members`;
-
-console.log('MAILCHIMP_URL', MAILCHIMP_URL);
-console.log('MAILCHIMP_LIST_ID', MAILCHIMP_LIST_ID);
-console.log('MAILCHIMP_SERVER', MAILCHIMP_SERVER);
-// console.log('MAILCHIMP_API_KEY', MAILCHIMP_API_KEY); // API key hidden for security
-
-
-// Test - deployment trigger
-
+// Vercel API endpoint
+const API_URL = '/api/submit-form';
 
 export const submitForm = async (formData: FormSubmission) => {
   try {
-    console.log('Submitting form directly to Mailchimp:', formData);
+    console.log('Submitting form via Vercel API:', formData);
 
-    // Prepare merge fields
-    const mergeFields = {
-      FNAME: formData.name.split(' ')[0] || '',
-      LNAME: formData.name.split(' ').slice(1).join(' ') || '',
-      PHONE: formData.phone,
-      AGE: formData.age,
-      SOURCE: formData.source || 'email_campaign',
-      MMERGE5: formData.interests,
-    };
-
-    // Prepare request data
-    const requestData = {
-      email_address: formData.email,
-      status: 'subscribed',
-      merge_fields: mergeFields,
-      tags: ['form_submission', 'interest_' + formData.interests.replace('-', '_')],
-    };
-
-    console.log('Mailchimp request data:', requestData);
-
-    // Make request directly to Mailchimp API
-    const response = await axios.post(MAILCHIMP_URL, requestData, {
+    // Call our Vercel serverless function
+    const response = await axios.post(API_URL, formData, {
       headers: {
-        'Authorization': `Basic ${btoa(`anystring:${import.meta.env.VITE_MAILCHIMP_API_KEY}`)}`,
         'Content-Type': 'application/json',
       },
     });
 
-    console.log('Mailchimp response:', response.data);
+    console.log('API response:', response.data);
 
-    return {
-      success: true,
-      message: 'Form submitted successfully',
-      contactId: response.data.id
-    };
+    return response.data;
 
   } catch (error: any) {
-    console.error('Mailchimp API error:', error);
-    
-    // Handle existing member error
-    if (error.response?.status === 400 && error.response?.data?.title === 'Member Exists') {
-      return {
-        success: true,
-        message: 'Contact already exists and was updated',
-        contactId: 'existing_member'
-      };
-    }
+    console.error('API error:', error);
     
     return {
       success: false,
-      message: error.response?.data?.detail || error.message || 'Failed to submit form',
+      message: error.response?.data?.message || error.message || 'Failed to submit form',
       error: error.response?.data || error
     };
   }
