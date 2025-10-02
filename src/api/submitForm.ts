@@ -15,6 +15,8 @@ console.log('MAILCHIMP_SERVER', MAILCHIMP_SERVER);
 // console.log('MAILCHIMP_API_KEY', MAILCHIMP_API_KEY); // API key hidden for security
 
 
+// Test - deployment trigger
+
 
 export const submitForm = async (formData: FormSubmission) => {
   try {
