@@ -12,7 +12,7 @@ const MAILCHIMP_URL = `https://${MAILCHIMP_SERVER}.api.mailchimp.com/3.0/lists/$
 console.log('MAILCHIMP_URL', MAILCHIMP_URL);
 console.log('MAILCHIMP_LIST_ID', MAILCHIMP_LIST_ID);
 console.log('MAILCHIMP_SERVER', MAILCHIMP_SERVER);
-console.log('MAILCHIMP_API_KEY', MAILCHIMP_API_KEY);
+// console.log('MAILCHIMP_API_KEY', MAILCHIMP_API_KEY);
 
 
 
