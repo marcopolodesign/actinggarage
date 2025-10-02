@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -74,7 +74,7 @@ export default async function handler(req, res) {
     // Make request to Mailchimp API
     const response = await axios.post(MAILCHIMP_URL, requestData, {
       headers: {
-        'Authorization': `Basic ${Buffer.from(`anystring:${MAILCHIMP_API_KEY}`).toString('base64')}`,
+        'Authorization': `Basic ${btoa(`anystring:${MAILCHIMP_API_KEY}`)}`,
         'Content-Type': 'application/json',
       },
     });
