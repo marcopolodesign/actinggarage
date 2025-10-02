@@ -32,9 +32,9 @@ export default async function handler(req, res) {
     }
 
     // Mailchimp configuration
-    const MAILCHIMP_API_KEY = process.env.MAILCHIMP_API_KEY;
-    const MAILCHIMP_SERVER = process.env.MAILCHIMP_SERVER || 'us3';
-    const MAILCHIMP_LIST_ID = process.env.MAILCHIMP_LIST_ID;
+    const MAILCHIMP_API_KEY = process.env.VITE_MAILCHIMP_API_KEY;
+    const MAILCHIMP_SERVER = 'us3';
+    const MAILCHIMP_LIST_ID = '0318e55dfd';
 
     if (!MAILCHIMP_API_KEY || !MAILCHIMP_LIST_ID) {
       console.error('Mailchimp configuration missing:', {
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
       return res.status(500).json({
         success: false,
         message: 'Mailchimp configuration not found',
-        error: 'Missing MAILCHIMP_API_KEY or MAILCHIMP_LIST_ID'
+        error: 'Missing VITE_MAILCHIMP_API_KEY'
       });
     }
 
