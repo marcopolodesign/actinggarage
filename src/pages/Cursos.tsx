@@ -193,8 +193,16 @@ const Cursos: React.FC = () => {
     // Apply opacity based on whether it's the closest
     coursesRef.current.forEach((course, index) => {
       if (course) {
-        const opacity = index === closestIndex ? 1 : 0.5;
+        const opacity = index === closestIndex ? 1 : 0.3;
         course.style.opacity = opacity.toString();
+      }
+    });
+    
+    // Apply same opacity to animated lines
+    linesRef.current.forEach((line, index) => {
+      if (line) {
+        const opacity = index === closestIndex ? 1 : 0.3;
+        line.style.opacity = opacity.toString();
       }
     });
   };
