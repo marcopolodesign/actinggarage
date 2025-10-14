@@ -240,7 +240,7 @@ const CursosHome = () => {
                     <div className='flex flex-col gap-4'>
                     <div key={index} className="flex items-center">
                       <h3 
-                        className="font-druk text-lg uppercase"
+                        className="text-lg uppercase"
                         style={{ color: curso.textColor }}
                       >
                         {course}

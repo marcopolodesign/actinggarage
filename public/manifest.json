@@ -1,0 +1,29 @@
+{
+  "name": "The Acting Garage - Escuela de Interpretación",
+  "short_name": "TAG",
+  "description": "Formaciones profesionales en interpretación para cine y teatro",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FFBE00",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/tag.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/tag.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "entertainment"],
+  "lang": "es",
+  "dir": "ltr",
+  "scope": "/"
+}
+
