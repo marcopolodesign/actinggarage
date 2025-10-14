@@ -46,6 +46,32 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Mobile navigation items
+  const mobileNavItems = [
+    { 
+      label: 'Inicio', 
+      to: '/', 
+      type: 'link' as const,
+      onClick: () => setIsMobileMenuOpen(false)
+    },
+    { 
+      label: 'About', 
+      type: 'button' as const,
+      onClick: handleAboutClick
+    },
+    { 
+      label: 'Cursos', 
+      to: '/cursos', 
+      type: 'link' as const,
+      onClick: () => setIsMobileMenuOpen(false)
+    },
+    { 
+      label: 'Contacto', 
+      type: 'button' as const,
+      onClick: handleContactClick
+    }
+  ];
+
   if (!isVisible && showOnScroll) return null;
 
   return (
@@ -123,32 +149,32 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
         }`}
       >
         <nav className="flex flex-col items-center justify-center min-h-screen space-y-12">
-          <Link 
-            to="/"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300"
-          >
-            Inicio
-          </Link>
-          <button
-            onClick={handleAboutClick}
-            className="text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300"
-          >
-            About
-          </button>
-          <Link 
-            to="/cursos"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300"
-          >
-            Cursos
-          </Link>
-          <button
-            onClick={handleContactClick}
-            className="text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300"
-          >
-            Contacto
-          </button>
+          {mobileNavItems.map((item, index) => {
+            const baseClassName = "text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300";
+            
+            if (item.type === 'link' && item.to) {
+              return (
+                <Link 
+                  key={index}
+                  to={item.to}
+                  onClick={item.onClick}
+                  className={baseClassName}
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+            
+            return (
+              <button
+                key={index}
+                onClick={item.onClick}
+                className={baseClassName}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </nav>
       </div>
     </>
