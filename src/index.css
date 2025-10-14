@@ -8,6 +8,17 @@ svg {
   transform: translateZ(0);
 }
 
+/* Font antialiasing for Safari */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Druk Bold */
 @font-face {
   font-family: 'Druk';
