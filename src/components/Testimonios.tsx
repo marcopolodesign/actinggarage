@@ -120,7 +120,7 @@ const Testimonios: React.FC = () => {
   ];
 
   return (
-    <div className="p-8 m-8 bg-[#222222] rounded-2xl" style={{ backgroundColor: '#1a1a1a' }}>
+    <div className="md:p-8 p-4 md:m-8 m-4 bg-[#222222] rounded-2xl" style={{ backgroundColor: '#1a1a1a' }}>
       {/* Title */}
       <div className="mb-16">
         <AnimatedText

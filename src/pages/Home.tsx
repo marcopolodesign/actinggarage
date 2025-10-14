@@ -171,13 +171,13 @@ const Home: React.FC = () => {
           <a 
             href="#contact" 
             onClick={handleContactClick}
-            className="inline-block md:px-12 md:py-6 px-6 py-3 bg-yellow-400 text-black font-bold text-lg uppercase transition-all duration-300 hover:bg-white hover:-translate-y-0.5 text-center"
+            className="inline-block md:px-12 md:py-6 px-6 py-3 bg-yellow-400 text-black font-bold text-lg uppercase transition-all duration-300 hover:bg-white hover:-translate-y-0.5 text-center tracking-tight md:tracking-normal"
           >
             ARRANCAR TU TRANSFORMACIÓN
           </a>
           <Link 
             to="/cursos"
-            className="inline-block md:px-12 md:py-6 px-6 py-3 border-2 border-yellow-400 text-yellow-400 font-bold text-lg uppercase transition-all duration-300 hover:bg-yellow-400 hover:text-black hover:-translate-y-0.5 text-center"
+            className="inline-block md:px-12 md:py-6 px-6 py-3 border-2 border-yellow-400 text-yellow-400 font-bold text-lg uppercase transition-all duration-300 hover:bg-yellow-400 hover:text-black hover:-translate-y-0.5 text-center tracking-tight md:tracking-normal"
           >
             VER CURSOS
           </Link>

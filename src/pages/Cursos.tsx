@@ -299,13 +299,13 @@ const Cursos: React.FC = () => {
         <div className="flex gap-8 items-center">
           <span 
             ref={cursosTextRef}
-            className="font-druk text-6xl md:text-8xl lg:text-[250px] text-white transition-transform duration-300 ease-out"
+            className="font-druk text-8xl md:text-8xl lg:text-[250px] text-white transition-transform duration-300 ease-out"
           >
             Cursos
           </span>
           <span 
             ref={tagTextRef}
-            className="font-druk text-6xl md:text-8xl lg:text-[250px] text-white transition-transform duration-300 ease-out"
+            className="font-druk text-8xl md:text-8xl lg:text-[250px] text-white transition-transform duration-300 ease-out"
           >
             TAG
           </span>

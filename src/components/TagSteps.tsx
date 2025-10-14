@@ -145,14 +145,14 @@ const TagSteps: React.FC = () => {
             />
             
             <h2 
-              className="-mt-6 text-xl uppercase mb-8"
+              className="-mt-6 uppercase mb-8 md:text-lg text-base md:max-w-2xl leading-relaxed md:mb-24 tracking-tightest md:tracking-normal"
               style={{ color: '#FFFFFF' }}
             >
               {step.tagline}
             </h2>
             
             <p 
-              className="text-lg leading-relaxed max-w-2xl font-helvetica"
+              className="max-w-2xl font-helvetica md:text-lg text-base md:max-w-2xl leading-relaxed md:mb-24 mb-6 tracking-tightest md:tracking-normal"
               style={{ color: '#FFFFFF' }}
             >
               {step.description}

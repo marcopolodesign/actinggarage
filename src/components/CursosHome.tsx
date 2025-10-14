@@ -210,7 +210,7 @@ const CursosHome = () => {
                 {curso.mainTagline}
               </h2>
               <p 
-                className="text-lg md:max-w-2xl leading-relaxed md:mb-24 mb-6"
+                className="md:text-lg text-base md:max-w-2xl leading-relaxed md:mb-24 mb-6 tracking-tightest md:tracking-normal"
                 style={{ color: curso.textColor }}
               >
                 {curso.description}
@@ -219,7 +219,7 @@ const CursosHome = () => {
             
             {/* Right Side - Button */}
             <button 
-              className="px-8 py-4 border uppercase font-semibold text-sm transition-all duration-300 rounded-full whitespace-nowrap"
+              className="md:px-8 px-4 md:py-4 py-2 border uppercase font-semibold text-sm transition-all duration-300 rounded-full whitespace-nowrap tracking-tightest md:tracking-normal"
               style={{ 
                 borderColor: curso.buttonBorderColor || curso.textColor,
                 backgroundColor: 'transparent',
@@ -240,13 +240,13 @@ const CursosHome = () => {
                     <div className='flex flex-col gap-4'>
                     <div key={index} className="flex items-center">
                       <h3 
-                        className="text-lg uppercase"
+                        className="md:text-lg text-base uppercase tracking-tightest md:tracking-normal"
                         style={{ color: curso.textColor }}
                       >
                         {course}
                       </h3>
                       <span 
-                        className="ml-4 text-lg"
+                        className="ml-4 md:text-lg text-base tracking-tightest md:tracking-normal"
                         style={{ color: curso.textColor }}
                       >
                         +
