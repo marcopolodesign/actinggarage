@@ -1,68 +1,108 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+@import "tailwindcss";
+
+/* Druk Bold */
+@font-face {
+  font-family: 'Druk';
+  src: url('/fonts/Druk-Bold.woff2') format('woff2'),
+       url('/fonts/Druk-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Druk Medium */
+@font-face {
+  font-family: 'Druk';
+  src: url('/fonts/Druk-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ITC Garamond Std Book Narrow */
+@font-face {
+  font-family: 'ITC Garamond Std';
+  src: url('/fonts/ITCGaramondStd-BkNarrow.woff2') format('woff2'),
+       url('/fonts/ITCGaramondStd-BkNarrow.woff') format('woff');
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-display: swap;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+/* MDIO Regular */
+@font-face {
+  font-family: 'MDIO';
+  src: url('/fonts/MDIO-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Font utility classes */
+.font-druk {
+  font-family: 'Druk', 'Arial Black', sans-serif !important;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.font-garamond {
+  font-family: 'ITC Garamond Std', Georgia, serif !important;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.font-mdio {
+  font-family: 'MDIO', sans-serif !important;
+}
+
+/* Tag yellow background fallback */
+.bg-tag-yellow {
+  background-color: #FFBE00 !important;
+}
+
+/* Custom gradient utilities */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  a:hover {
-    color: #747bff;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Noise effect utility */
+.noise-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.noise-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='3' seed='3089' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  z-index: 1;
+}
+
+/* Noise effect with custom color overlay */
+.noise-effect-yellow::before {
+  background-color: rgba(255, 190, 0, 0.1);
+}
+
+.noise-effect-brown::before {
+  background-color: rgba(73, 28, 0, 0.1);
 }

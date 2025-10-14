@@ -1,6 +1,6 @@
 /* Import Custom Fonts */
 @font-face {
-  font-family: 'Druk';
+  font-family: 'Druk-Bold';
   src: url('../tag-fonts/Druk-Bold.woff2') format('woff2'),
        url('../tag-fonts/Druk-Bold.woff') format('woff');
   font-weight: bold;
@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: 'ITC Garamond';
+  font-family: 'ITCGaramondStd-BkNarrow';
   src: url('../tag-fonts/ITCGaramondStd-BkNarrow.woff2') format('woff2'),
        url('../tag-fonts/ITCGaramondStd-BkNarrow.woff') format('woff');
   font-weight: normal;
@@ -18,334 +18,176 @@
 }
 
 @font-face {
-  font-family: 'MDIO';
+  font-family: 'MDIO-Regular';
   src: url('../tag-fonts/MDIO-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
-  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
+  font-family: 'MDIO-Regular', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
+/* App Container */
 .app {
   min-height: 100vh;
-  min-width: 100vw;
-  background: #f6f5eb;
+  background-color: #000;
+  color: #FFBE00;
 }
 
-.container {
-  display: flex;
+/* Home Page */
+.home-page {
   min-height: 100vh;
-  min-width: 100vw;
-}
-
-/* Left Column - Form Section */
-.form-section {
-  flex: 1;
-  background: #f4b03e;
-  padding: 60px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
-.form-header {
-  margin-bottom: 40px;
-}
-
-.greeting {
-  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
-  font-size: 72px;
-  font-weight: bold;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  margin-bottom: 15px;
-  line-height: 1.1;
-}
-
-.subtitle {
-  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
-  font-size: 18px;
-  color: #1a1a1a;
-  line-height: 1.4;
-}
-
-.form {
-  max-width: 500px;
-}
-
-.form-group {
-  margin-bottom: 25px;
-}
-
-.form-row {
-  display: flex;
-  gap: 20px;
-}
-
-.form-row .form-group {
-  flex: 1;
-}
-
-.form-group label {
-  display: block;
-  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
-}
-
-.form-input,
-.form-textarea {
-  width: 100%;
-  padding: 15px 20px;
-  border: 2px solid #1a1a1a;
-  border-radius: 8px;
-  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
-  font-size: 16px;
-  background: #f4b03e;
-  color: #1a1a1a;
-  transition: all 0.3s ease;
-}
-
-.form-input:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: #000;
-  background: transparent;
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.interests-container {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.interest-button {
-  padding: 12px 24px;
-  border: 2px solid #1a1a1a;
-  border-radius: 8px;
-  background: #f4b03e;
-  color: #1a1a1a;
-  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  letter-spacing: 0.5px;
-}
-
-.interest-button:hover {
-  background: #1a1a1a;
-  color: #f4b03e;
-}
-
-.interest-button.selected {
-  background: #1a1a1a;
-  color: #f4b03e;
-}
-
-.submit-button {
-  width: 100%;
-  padding: 18px 30px;
-  border: 2px solid #1a1a1a;
-  border-radius: 8px;
-  background: #f4b03e;
-  color: #1a1a1a;
-  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  letter-spacing: 1px;
-  margin-top: 20px;
-}
-
-.submit-button:hover:not(:disabled) {
-  background: #1a1a1a;
-  color: #f4b03e;
-}
-
-.submit-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Right Column - Branding Section */
+/* Branding Section - Full Width */
 .branding-section {
   flex: 1;
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(45, 45, 45, 0.8) 100%), url('/tag.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
+  background-color: #000;
+  color: #FFBE00;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 60px 40px;
-  overflow: hidden;
-}
-
-.branding-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(244, 176, 62, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 30%, rgba(244, 176, 62, 0.2) 0%, transparent 50%);
-  pointer-events: none;
+  padding: 2rem;
+  position: relative;
+  min-height: 100vh;
 }
 
 .contact-info {
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
   text-align: right;
+  font-family: 'MDIO-Regular', Arial, sans-serif;
+  font-size: 0.9rem;
   color: #fff;
-  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  z-index: 10;
 }
 
 .contact-info p {
-  margin-bottom: 8px;
+  margin: 0 0 0.5rem 0;
 }
 
 .brand-content {
-  position: relative;
-  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
   text-align: center;
-  margin-top: auto;
+  position: relative;
+  z-index: 5;
 }
 
-.brand-title {
-  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
-  font-size: 72px;
-  font-weight: bold;
-  color: #f4b03e;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  line-height: 0.9;
-  margin-bottom: 20px;
+.brand-logo {
+  font-family: 'Druk-Bold', Arial, sans-serif;
+  font-size: 4rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+  color: #FFBE00;
 }
 
 .brand-subtitle {
-  font-size: 20px;
+  font-family: 'ITCGaramondStd-BkNarrow', Georgia, serif;
+  font-size: 1.5rem;
+  margin: 0 0 3rem 0;
   color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 300;
 }
 
-/* Success Page */
-.success-container {
-  min-height: 100vh;
-  background: #f4b03e;
+/* CTA Section */
+.cta-section {
   display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   align-items: center;
-  justify-content: center;
-  padding: 40px;
+  margin-top: 2rem;
 }
 
-.success-content {
+.cta-button {
+  display: inline-block;
+  padding: 1.5rem 3rem;
+  font-family: 'Druk-Bold', Arial, sans-serif;
+  font-size: 1.1rem;
+  text-decoration: none;
   text-align: center;
-  max-width: 600px;
+  transition: all 0.3s ease;
+  border: 2px solid;
+  min-width: 250px;
 }
 
-.success-content h1 {
-  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
-  font-size: 48px;
-  font-weight: bold;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  margin-bottom: 20px;
+.cta-button.primary {
+  background: #FFBE00;
+  color: #000;
+  border-color: #FFBE00;
 }
 
-.success-content p {
-  font-size: 18px;
-  color: #1a1a1a;
-  line-height: 1.6;
+.cta-button.primary:hover {
+  background: #fff;
+  border-color: #fff;
+  transform: translateY(-2px);
 }
 
-/* Mobile Responsiveness */
+.cta-button.secondary {
+  background: transparent;
+  color: #FFBE00;
+  border-color: #FFBE00;
+}
+
+.cta-button.secondary:hover {
+  background: #FFBE00;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  
-  .form-section {
-    padding: 40px 20px;
-    order: 1;
-  }
-  
   .branding-section {
-    padding: 40px 20px;
-    order: 2;
-    min-height: 50vh;
+    padding: 1.5rem;
   }
   
-  .greeting {
-    font-size: 56px;
+  .brand-logo {
+    font-size: 3rem;
   }
   
-  .brand-title {
-    font-size: 48px;
+  .brand-subtitle {
+    font-size: 1.2rem;
   }
   
-  .form-row {
-    flex-direction: column;
-    gap: 0;
+  .cta-button {
+    min-width: 200px;
+    padding: 1.2rem 2rem;
   }
   
-  .interests-container {
-    flex-direction: column;
-  }
-  
-  .interest-button {
-    text-align: center;
+  .contact-info {
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
-  .form-section,
-  .branding-section {
-    padding: 30px 15px;
+  .brand-logo {
+    font-size: 2.5rem;
   }
   
-  .greeting {
-    font-size: 42px;
+  .brand-subtitle {
+    font-size: 1rem;
   }
   
-  .brand-title {
-    font-size: 36px;
+  .cta-button {
+    min-width: 180px;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
   }
   
-  .contact-info {
-    font-size: 14px;
+  .cta-section {
+    gap: 1rem;
   }
 }

@@ -20,6 +20,7 @@ export const submitForm = async (formData: FormSubmission) => {
 
     return response.data;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('API error:', error);
     
