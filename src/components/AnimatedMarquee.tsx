@@ -15,27 +15,34 @@ const AnimatedMarquee: React.FC<AnimatedMarqueeProps> = ({ text, className = "" 
       const marquee = marqueeRef.current;
       const container = containerRef.current;
       
-      // Get the width of the text content
+      // Set initial content
+      marquee.innerHTML = text;
+      
+      // Get the width of a single text element
       const textWidth = marquee.scrollWidth;
       const containerWidth = container.clientWidth;
       
-      // Calculate how many copies we need to fill the screen + some buffer
+      // Calculate how many copies we need for seamless loop
       const copiesNeeded = Math.ceil((containerWidth * 2) / textWidth) + 2;
       
-      // Create multiple copies of the text for seamless looping
+      // Create multiple copies of the text
       const textContent = text.repeat(copiesNeeded);
       marquee.innerHTML = textContent;
       
-      // Set up the animation
+      // Calculate total width and duration
       const totalWidth = textWidth * copiesNeeded;
-      const duration = totalWidth / 50; // Adjust speed by changing divisor (lower = faster)
+      const duration = 20; // Fixed duration for consistent speed
       
-      // Create infinite loop animation
+      // Set initial position (start from right)
+      gsap.set(marquee, { x: containerWidth });
+      
+      // Create infinite loop animation from right to left
       const tl = gsap.timeline({ repeat: -1, ease: "none" });
-      tl.fromTo(marquee, 
-        { x: containerWidth }, 
-        { x: -totalWidth + containerWidth, duration: duration }
-      );
+      tl.to(marquee, {
+        x: -totalWidth + containerWidth,
+        duration: duration,
+        ease: "none"
+      });
     }
   }, [text]);
 
