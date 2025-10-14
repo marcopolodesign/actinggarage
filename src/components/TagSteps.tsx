@@ -79,7 +79,7 @@ const TagSteps: React.FC = () => {
   const tagStepsData = [
     {
       id: 'descubrimiento',
-      image: '/src/assets/content/descubrimiento.jpg',
+      image: '/content/descubrimiento.jpg',
       title: 'Descubrimiento',
       tagline: 'TAG YOUR POTENTIAL',
       description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
@@ -87,7 +87,7 @@ const TagSteps: React.FC = () => {
     },
     {
       id: 'tecnica',
-      image: '/src/assets/content/tecnica.jpg',
+      image: '/content/tecnica.jpg',
       title: 'Técnica',
       tagline: 'TAG YOUR TALENT',
       description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
@@ -95,7 +95,7 @@ const TagSteps: React.FC = () => {
     },
     {
       id: 'transformacion',
-      image: '/src/assets/content/transformacion.jpg',
+      image: '/content/transformacion.jpg',
       title: 'Transformación',
       tagline: 'TAG YOUR ACT',
       description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
@@ -103,7 +103,7 @@ const TagSteps: React.FC = () => {
     },
     {
       id: 'proyeccion',
-      image: '/src/assets/content/proyeccion.jpg',
+      image: '/content/proyeccion.jpg',
       title: 'Proyección',
       tagline: 'TAG YOUR PERFORMANCE',
       description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
@@ -111,7 +111,7 @@ const TagSteps: React.FC = () => {
     },
     {
       id: 'comunidad',
-      image: '/src/assets/content/comunidad.jpg',
+      image: '/content/comunidad.jpg',
       title: 'Comunidad',
       tagline: 'LEAVE YOUR TAG',
       description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',

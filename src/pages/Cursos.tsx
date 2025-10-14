@@ -233,7 +233,7 @@ const Cursos: React.FC = () => {
         ref={backgroundRef}
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url(/src/assets/content/cursos-bg.jpg)',
+          backgroundImage: 'url(/content/cursos-bg.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

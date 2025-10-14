@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import Logo from '../assets/Logo';
-import videoBg from '../assets/content/tag-bg.mp4';
+// Video will be loaded from public folder
 import AnimatedMarquee from '../components/AnimatedMarquee';
 import CursosHome from '../components/CursosHome';
 import TagSteps from '../components/TagSteps';
@@ -133,7 +133,7 @@ const Home: React.FC = () => {
         loop 
         playsInline
       >
-        <source src={videoBg} type="video/mp4" />
+        <source src="/content/tag-bg.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       
