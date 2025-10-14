@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Mobile SVG fixes */
+svg {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
 /* Druk Bold */
 @font-face {
   font-family: 'Druk';

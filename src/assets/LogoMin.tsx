@@ -1,7 +1,18 @@
 import React from 'react';
 
 const LogoMin: React.FC<React.SVGProps<SVGSVGElement>> = () => (
-    <svg viewBox="0 0 143 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg 
+      viewBox="0 0 143 61" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+      width="143"
+      height="61"
+      style={{ 
+        display: 'block',
+        maxWidth: '100%',
+        height: 'auto'
+      }}
+    >
     <g clipPath="url(#clip0_271_245)">
     <path d="M72.0541 11.3922V33.8664H68.0378V24.3821H65.9239V33.8664H61.904V15.3501H59.4892V33.8664H55.4711V15.3501H52.6021V11.3922H65.9239V19.9719H68.0378V11.3922H72.0541Z" fill="#FFBE00"/>
     <path d="M81.597 11.394V15.3501H77.2178V20.2436H80.6613V24.2909H77.2178V29.8174H81.8086V33.8646H73.1997V11.394H81.597Z" fill="#FFBE00"/>
