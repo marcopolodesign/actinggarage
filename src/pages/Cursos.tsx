@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
+import Testimonios from '../components/Testimonios';
 
 const Cursos: React.FC = () => {
   const cursosTextRef = useRef<HTMLSpanElement>(null);
@@ -13,7 +14,7 @@ const Cursos: React.FC = () => {
   // Courses data
   const coursesData = [
     {
-      title: 'GARAGE PRO',
+      title: 'Garage Pro',
       description: 'Formación integral para actores y actrices que buscan profesionalizarse. Entrenamiento completo en interpretación, cámara, cuerpo, voz, movimiento, improvisación, lucha escénica, danza y otras disciplinas esenciales.',
       duracion: '3 años',
       diasSemana: '4',
@@ -23,7 +24,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Profesionalización actoral'
     },
     {
-      title: 'GARAGE THEATRE',
+      title: 'Garage Theatre',
       description: 'Curso de introducción al teatro. Formación práctica y divertida para quienes desean descubrir su potencial expresivo y conectar con su creatividad.',
       duracion: '3 años',
       diasSemana: '1',
@@ -33,7 +34,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Iniciación y desarrollo personal'
     },
     {
-      title: 'GARAGE CINEMA',
+      title: 'Garage Cinema',
       description: 'Curso de iniciación en la interpretación frente a cámara. Desde el primer día se trabaja con cámara y ejercicios prácticos para ganar naturalidad y técnica audiovisual.',
       duracion: '3 años',
       diasSemana: '1',
@@ -43,7 +44,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Iniciación actoral y práctica audiovisual'
     },
     {
-      title: 'GARAGE HYBRID',
+      title: 'Garage Hybrid',
       description: 'Formación combinada en teatro y cine. Para quienes quieren explorar la interpretación en todas sus vertientes y prepararse para castings o audiciones.',
       duracion: '3 años',
       diasSemana: '2',
@@ -53,7 +54,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Profesionalización y preparación para audiciones'
     },
     {
-      title: 'GARAGE HYBRID PLUS',
+      title: 'Garage Hybrid Plus',
       description: 'Formación integral para quienes buscan profesionalizarse sin la carga del PRO. Entrenamiento en interpretación, cámara, canto y creación.',
       duracion: '3 años',
       diasSemana: '2',
@@ -63,7 +64,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Profesionalización actoral adaptable'
     },
     {
-      title: 'GARAGE KIDS',
+      title: 'Garage Kids',
       description: 'Teatro para niños y niñas. Espacio lúdico donde se aprenden los valores del teatro mientras se desarrolla la creatividad y el trabajo en grupo.',
       duracion: 'Curso anual (renovable)',
       diasSemana: '1',
@@ -73,7 +74,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Aprendizaje, diversión y desarrollo expresivo'
     },
     {
-      title: 'GARAGE NEW GENERATION',
+      title: 'Garage New Generation',
       description: 'Teatro para adolescentes. Formación práctica para explorar la interpretación y fortalecer la confianza personal.',
       duracion: 'Curso anual (renovable)',
       diasSemana: '1',
@@ -83,7 +84,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Descubrimiento y desarrollo artístico'
     },
     {
-      title: 'GARAGE NEW GENERATION HYBRID',
+      title: 'Garage New Generation Hybrid',
       description: 'Formación en teatro y cine para jóvenes. Combina la práctica escénica y audiovisual para quienes quieren orientar sus estudios hacia el arte.',
       duracion: '3 años',
       diasSemana: '2',
@@ -93,7 +94,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Formación artística y preparación para el futuro profesional'
     },
     {
-      title: 'GARAGE EVOLUTION',
+      title: 'Garage Evolution',
       description: 'Entrenamiento avanzado para egresados TAG. Programas personalizados para seguir desarrollando técnica, creatividad y autoconocimiento actoral.',
       duracion: 'Continua / anual',
       diasSemana: 'Variable',
@@ -103,7 +104,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Perfeccionamiento actoral'
     },
     {
-      title: 'GARAGE CLASSIC',
+      title: 'Garage Classic',
       description: 'Teatro para mayores de 60. Propuesta de aprendizaje y disfrute a través del teatro, fomentando la memoria, expresión y motricidad.',
       duracion: 'Curso anual',
       diasSemana: '1',
@@ -113,7 +114,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Bienestar, diversión y desarrollo cognitivo'
     },
     {
-      title: 'GARAGE WORKSHOPS',
+      title: 'Garage Workshops',
       description: 'Talleres intensivos de fin de semana. Dictados por profesionales del sector para actores, actrices y estudiantes avanzados.',
       duracion: 'Fin de semana (2-3 días)',
       diasSemana: 'Variable',
@@ -180,7 +181,8 @@ const Cursos: React.FC = () => {
     coursesRef.current.forEach((course, index) => {
       if (course) {
         const rect = course.getBoundingClientRect();
-        const center = window.innerHeight / 2;
+        const isMobile = window.innerWidth < 768;
+        const center = isMobile ? window.innerHeight / 2.3 : window.innerHeight / 2;
         const distance = Math.abs(rect.top + rect.height / 2 - center);
         
         if (distance < minDistance) {
@@ -293,7 +295,7 @@ const Cursos: React.FC = () => {
       {/* Fixed Title at Top */}
       <div 
         ref={titleContainerRef}
-        className="fixed top-20 left-0 right-0 z-20 flex justify-center items-center pointer-events-none transition-all duration-300 ease-out"
+        className="fixed md:top-20 top-30 left-0 right-0 z-20 flex justify-center items-center pointer-events-none transition-all duration-300 ease-out"
         style={{ opacity: 1 }}
       >
         <div className="flex gap-8 items-center">
@@ -313,9 +315,9 @@ const Cursos: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen p-16 text-center">
+      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen md:p-16 p-8 text-center">
         {/* Spacer for fixed title */}
-        <div className="h-[200px]"></div>
+        <div className="md:h-[200px] h-[130px]"></div>
 
         {/* Description */}
         <div className="mb-16 max-w-4xl">
@@ -336,7 +338,7 @@ const Cursos: React.FC = () => {
                 className="flex items-center justify-between py-6 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => toggleCourse(index)}
               >
-                <h3 className="text-white text-2xl md:text-2xl font-semibold uppercase">
+                <h3 className="text-white text-2xl md:text-2xl font-semibold uppercase text-left">
                   {course.title}
                 </h3>
                 <span className="text-white text-2xl">
@@ -347,7 +349,7 @@ const Cursos: React.FC = () => {
               {/* Expanded Content */}
               {expandedCourse === index && (
                 <div className="text-left mb-8 animate-fadeIn">
-                  <h2 className="text-white md:text-8xl text-4xl font-druk mb-6">
+                  <h2 className="text-white md:text-8xl text-8xl font-druk mb-6">
                     {course.title}
                   </h2>
                   <p className="text-white text-lg leading-relaxed mb-8">
@@ -374,6 +376,9 @@ const Cursos: React.FC = () => {
           ))}
         </div>
       </div>
+      
+      {/* Testimonios Section */}
+      <Testimonios />
     </div>
     </>
   );

@@ -5,6 +5,7 @@ import { AboutFlyoutProvider } from './context/AboutFlyoutContext';
 import FormFlyout from './components/FormFlyout';
 import AboutFlyout from './components/AboutFlyout';
 import ScrollToTop from './components/ScrollToTop';
+import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import './App.css';
@@ -15,6 +16,7 @@ function App() {
       <FormFlyoutProvider>
         <AboutFlyoutProvider>
           <ScrollToTop />
+          <PageTransition />
           <div className="app">
             <Routes>
               <Route path="/" element={<Home />} />

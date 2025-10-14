@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { Link } from 'react-router-dom';
 
 // Component for animated text with character splitting
 const AnimatedText: React.FC<{ 
@@ -60,7 +61,7 @@ const AnimatedText: React.FC<{
       <span
         key={index}
         className="inline-block font-druk"
-        style={style}
+        style={{ ...style, transform: 'translateY(100%)', opacity: 0 }}
       >
         {char === ' ' ? '\u00A0' : char}
       </span>
@@ -218,7 +219,8 @@ const CursosHome = () => {
             </div>
             
             {/* Right Side - Button */}
-            <button 
+            <Link 
+              to="/cursos"
               className="md:px-8 px-4 md:py-4 py-2 border uppercase font-semibold text-sm transition-all duration-300 rounded-full whitespace-nowrap tracking-tightest md:tracking-normal"
               style={{ 
                 borderColor: curso.buttonBorderColor || curso.textColor,
@@ -227,7 +229,7 @@ const CursosHome = () => {
               }}
             >
               {curso.buttonText}
-            </button>
+            </Link>
           </div>
           
           {/* Bottom Section - Courses */}

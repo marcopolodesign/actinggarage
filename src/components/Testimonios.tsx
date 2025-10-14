@@ -60,7 +60,7 @@ const AnimatedText: React.FC<{
       <span
         key={index}
         className="inline-block font-druk"
-        style={style}
+        style={{ ...style, transform: 'translateY(100%)', opacity: 0 }}
       >
         {char === ' ' ? '\u00A0' : char}
       </span>

@@ -73,7 +73,7 @@ const AnimatedText: React.FC<{
       <span
         key={index}
         className="inline-block"
-        style={{ fontSize: '5.75rem', lineHeight: '1' }} // 3.75rem is 6xl in Tailwind (60px)
+        style={{ fontSize: '5.75rem', lineHeight: '1', transform: 'translateY(100%)', opacity: 0 }} // 3.75rem is 6xl in Tailwind (60px)
       >
         {char === ' ' ? '\u00A0' : char}
       </span>
