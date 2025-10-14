@@ -46,8 +46,8 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Mobile navigation items
-  const mobileNavItems = [
+  // Navigation items - shared for desktop and mobile
+  const navItems = [
     { 
       label: 'Inicio', 
       to: '/', 
@@ -90,31 +90,33 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/"
-              className="text-white text-sm uppercase font-semibold hover:text-tag-yellow transition-colors duration-300"
-            >
-              Inicio
-            </Link>
-            <button
-              onClick={handleAboutClick}
-              className="text-white text-sm uppercase font-semibold hover:text-tag-yellow transition-colors duration-300"
-            >
-              About
-            </button>
-            <Link 
-              to="/cursos"
-              className="text-white text-sm uppercase font-semibold hover:text-tag-yellow transition-colors duration-300"
-            >
-              Cursos
-            </Link>
-            <button
-              onClick={handleContactClick}
-              className="text-white text-sm uppercase font-semibold hover:text-tag-yellow transition-colors duration-300"
-            >
-              Contacto
-            </button>
+          <nav className="hidden md:flex items-center space-x-8 desktop-nav">
+            {navItems.map((item, index) => {
+              const desktopClassName = "text-white text-sm uppercase font-semibold hover:text-tag-yellow transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-[.45s] after:ease-[cubic-bezier(0.4,0,0,1)] after:pt-1";
+              
+              if (item.type === 'link' && item.to) {
+                return (
+                  <Link 
+                    key={index}
+                    to={item.to}
+                    onClick={item.onClick}
+                    className={desktopClassName}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              
+              return (
+                <button
+                  key={index}
+                  onClick={item.onClick}
+                  className={desktopClassName}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </nav>
 
           {/* Mobile Hamburger */}
@@ -149,8 +151,8 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
         }`}
       >
         <nav className="flex flex-col items-center justify-center min-h-screen space-y-12">
-          {mobileNavItems.map((item, index) => {
-            const baseClassName = "text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300 cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-[.45s] after:ease-[cubic-bezier(0.4,0,0,1)] after:pt-1";
+          {navItems.map((item, index) => {
+            const mobileClassName = "text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300 cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-[.45s] after:ease-[cubic-bezier(0.4,0,0,1)] after:pt-1";
             
             if (item.type === 'link' && item.to) {
               return (
@@ -158,7 +160,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
                   key={index}
                   to={item.to}
                   onClick={item.onClick}
-                  className={baseClassName}
+                  className={mobileClassName}
                 >
                   {item.label}
                 </Link>
@@ -169,7 +171,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
               <button
                 key={index}
                 onClick={item.onClick}
-                className={baseClassName}
+                className={mobileClassName}
               >
                 {item.label}
               </button>
