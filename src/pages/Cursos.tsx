@@ -138,7 +138,7 @@ const Cursos: React.FC = () => {
     
     // Animate title splitting - "Cursos" moves left, "TAG" moves right (FASTER)
     if (cursosTextRef.current && tagTextRef.current) {
-      const moveDistance = scrollProgress * 300; // FASTER: Increased from 200 to 300
+      const moveDistance = scrollProgress * 350; // FASTER: Increased from 200 to 300
       cursosTextRef.current.style.transform = `translateX(-${moveDistance}px)`;
       tagTextRef.current.style.transform = `translateX(${moveDistance}px)`;
     }
@@ -173,14 +173,27 @@ const Cursos: React.FC = () => {
     }
 
     // Animate courses opacity (NOT the title)
-    coursesRef.current.forEach((course) => {
+    // Find the course closest to center and give it full opacity, others get 0.5
+    let closestIndex = -1;
+    let minDistance = Infinity;
+    
+    coursesRef.current.forEach((course, index) => {
       if (course) {
         const rect = course.getBoundingClientRect();
         const center = window.innerHeight / 2;
-        const distance = Math.abs(rect.top - center);
-        const maxDistance = window.innerHeight / 2;
+        const distance = Math.abs(rect.top + rect.height / 2 - center);
         
-        const opacity = Math.max(0.3, 1 - (distance / maxDistance));
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      }
+    });
+    
+    // Apply opacity based on whether it's the closest
+    coursesRef.current.forEach((course, index) => {
+      if (course) {
+        const opacity = index === closestIndex ? 1 : 0.5;
         course.style.opacity = opacity.toString();
       }
     });
@@ -256,9 +269,9 @@ const Cursos: React.FC = () => {
       {/* Background Image */}
       <div 
         ref={backgroundRef}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 h-screen"
         style={{
-          backgroundImage: 'url(/content/cursos-bg.jpg)',
+          backgroundImage: 'url(/content/cursos-bgg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -307,7 +320,7 @@ const Cursos: React.FC = () => {
         </div>
 
         {/* Courses List */}
-        <div className="w-full max-w-4xl mt-24">
+        <div className="w-full max-w-2xl mt-24">
           {coursesData.map((course, index) => (
             <div key={index} className="mb-2">
               <div 
