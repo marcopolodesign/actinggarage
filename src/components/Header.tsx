@@ -92,7 +92,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 desktop-nav">
             {navItems.map((item, index) => {
-              const desktopClassName = "text-white text-sm uppercase font-semibold hover:text-tag-yellow transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-[.45s] after:ease-[cubic-bezier(0.4,0,0,1)] after:pt-1";
+              const desktopClassName = "text-white text-sm uppercase font-semibold hover:text-tag-yellow transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-[.45s] after:ease-[cubic-bezier(0.4,0,0,1)] after:translate-y-1";
               
               if (item.type === 'link' && item.to) {
                 return (
@@ -152,7 +152,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
       >
         <nav className="flex flex-col items-center justify-center min-h-screen space-y-12">
           {navItems.map((item, index) => {
-            const mobileClassName = "text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300 cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-[.45s] after:ease-[cubic-bezier(0.4,0,0,1)] after:pt-1";
+            const mobileClassName = "text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300 cursor-pointer relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-white after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-[.45s] after:ease-[cubic-bezier(0.4,0,0,1)] after:translate-y-1";
             
             if (item.type === 'link' && item.to) {
               return (
