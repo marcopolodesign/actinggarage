@@ -19,12 +19,15 @@ const AnimatedText: React.FC<{
   className?: string; 
   href?: string;
   onClick?: (e: React.MouseEvent) => void;
-}> = ({ text, className, href, onClick }) => {
+  onMouseEnter?: (e: React.MouseEvent<HTMLElement>) => void;
+  onMouseLeave?: (e: React.MouseEvent<HTMLElement>) => void;
+}> = ({ text, className, href, onClick, onMouseEnter, onMouseLeave }) => {
   const textRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!textRef.current || hasAnimated) return;
+    const currentTextRef = textRef.current;
+    if (!currentTextRef || hasAnimated) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,11 +61,11 @@ const AnimatedText: React.FC<{
       }
     );
 
-    observer.observe(textRef.current);
+    observer.observe(currentTextRef);
 
     return () => {
-      if (textRef.current) {
-        observer.unobserve(textRef.current);
+      if (currentTextRef) {
+        observer.unobserve(currentTextRef);
       }
     };
   }, [hasAnimated]);
@@ -81,7 +84,12 @@ const AnimatedText: React.FC<{
   };
 
   const linkContent = (
-    <div ref={textRef} className="overflow-hidden">
+    <div 
+      ref={textRef} 
+      className="overflow-hidden"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {renderCharacters()}
     </div>
   );
@@ -92,6 +100,8 @@ const AnimatedText: React.FC<{
         href={href}
         onClick={onClick}
         className={className}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         {linkContent}
       </a>
@@ -141,7 +151,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen relative overflow-hidden">
       {/* Video Background */}
       <video 
-        className="absolute inset-0 w-full h-full object-contain object-top object-left z-0"
+        className="absolute inset-0 w-full h-full object-contain object-top z-0"
         autoPlay 
         muted 
         loop 
@@ -160,24 +170,34 @@ const Home: React.FC = () => {
       </div>
       
       {/* Content Overlay */}
-      <div className="relative z-10 flex flex-col justify-between min-h-screen p-8 text-yellow-400">
+      <div className="relative z-10 flex flex-col justify-between min-h-screen p-8" style={{ color: '#FFBE00' }}>
         {/* Top Section */}
         <div className="flex flex-col items-center">
           <Logo />
         </div>
         
         {/* Center Section - CTA */}
-        <div className="flex flex-col md:flex-row gap-3 justify-center gap-8">
+        <div className="flex flex-col md:flex-row justify-center gap-8">
           <a 
             href="#contact" 
             onClick={handleContactClick}
-            className="inline-block md:px-12 md:py-6 px-6 py-3 bg-yellow-400 text-black font-bold text-lg uppercase transition-all duration-300 hover:bg-white hover:-translate-y-0.5 text-center tracking-tight md:tracking-normal"
+            className="inline-block md:px-12 md:py-6 px-6 py-3 text-black font-bold text-lg uppercase transition-all duration-300 hover:bg-white hover:-translate-y-0.5 text-center tracking-tight md:tracking-normal"
+            style={{ backgroundColor: '#FFBE00' }}
           >
             ARRANCAR TU TRANSFORMACIÓN
           </a>
           <Link 
             to="/cursos"
-            className="inline-block md:px-12 md:py-6 px-6 py-3 border-2 border-yellow-400 text-yellow-400 font-bold text-lg uppercase transition-all duration-300 hover:bg-yellow-400 hover:text-black hover:-translate-y-0.5 text-center tracking-tight md:tracking-normal"
+            className="inline-block md:px-12 md:py-6 px-6 py-3 border-2 font-bold text-lg uppercase transition-all duration-300 hover:-translate-y-0.5 text-center tracking-tight md:tracking-normal"
+            style={{ borderColor: '#FFBE00', color: '#FFBE00' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#FFBE00';
+              e.currentTarget.style.color = 'black';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = '#FFBE00';
+            }}
           >
             VER CURSOS
           </Link>
@@ -189,13 +209,17 @@ const Home: React.FC = () => {
             text="contact"
             href="#contact"
             onClick={handleContactClick}
-            className="text-white text-6xl  hover:text-yellow-400 transition-colors duration-300 font-druk"
+            className="text-white text-6xl transition-colors duration-300 font-druk"
+            onMouseEnter={(e: React.MouseEvent<HTMLElement>) => e.currentTarget.style.color = '#FFBE00'}
+            onMouseLeave={(e: React.MouseEvent<HTMLElement>) => e.currentTarget.style.color = 'white'}
           />
           <AnimatedText
             text="about"
             href="#about"
             onClick={handleAboutClick}
-            className="text-white text-8xl  hover:text-yellow-400 transition-colors duration-300 font-druk"
+            className="text-white text-8xl transition-colors duration-300 font-druk"
+            onMouseEnter={(e: React.MouseEvent<HTMLElement>) => e.currentTarget.style.color = '#FFBE00'}
+            onMouseLeave={(e: React.MouseEvent<HTMLElement>) => e.currentTarget.style.color = 'white'}
           />
         </div>
       </div>

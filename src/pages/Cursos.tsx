@@ -15,111 +15,111 @@ const Cursos: React.FC = () => {
   const coursesData = [
     {
       title: 'Garage Pro',
-      description: 'Formación integral para actores y actrices que buscan profesionalizarse. Entrenamiento completo en interpretación, cámara, cuerpo, voz, movimiento, improvisación, lucha escénica, danza y otras disciplinas esenciales.',
+      description: 'Formacion integral para actores y actrices que buscan profesionalizarse. Entrenamiento completo en interpretacion, camara, cuerpo, voz, movimiento, improvisacion, lucha escenica, danza y otras disciplinas esenciales.',
       duracion: '3 años',
       diasSemana: '4',
       cargaHoraria: '16 horas',
-      edades: 'Desde 17 años',
+      edades: 'Desde 17 anos',
       modalidad: 'Teatro + Cine (integral)',
-      objetivo: 'Profesionalización actoral'
+      objetivo: 'Profesionalizacion actoral'
     },
     {
       title: 'Garage Theatre',
-      description: 'Curso de introducción al teatro. Formación práctica y divertida para quienes desean descubrir su potencial expresivo y conectar con su creatividad.',
+      description: 'Curso de introduccion al teatro. Formacion practica y divertida para quienes desean descubrir su potencial expresivo y conectar con su creatividad.',
       duracion: '3 años',
       diasSemana: '1',
       cargaHoraria: '2 horas',
       edades: '17 a 60 años',
       modalidad: 'Teatro',
-      objetivo: 'Iniciación y desarrollo personal'
+      objetivo: 'Iniciacion y desarrollo personal'
     },
     {
       title: 'Garage Cinema',
-      description: 'Curso de iniciación en la interpretación frente a cámara. Desde el primer día se trabaja con cámara y ejercicios prácticos para ganar naturalidad y técnica audiovisual.',
+      description: 'Curso de iniciacion en la interpretacion frente a camara. Desde el primer dia se trabaja con camara y ejercicios practicos para ganar naturalidad y tecnica audiovisual.',
       duracion: '3 años',
       diasSemana: '1',
       cargaHoraria: '2 horas',
       edades: '17 a 60 años',
       modalidad: 'Cine',
-      objetivo: 'Iniciación actoral y práctica audiovisual'
+      objetivo: 'Iniciacion actoral y practica audiovisual'
     },
     {
       title: 'Garage Hybrid',
-      description: 'Formación combinada en teatro y cine. Para quienes quieren explorar la interpretación en todas sus vertientes y prepararse para castings o audiciones.',
+      description: 'Formacion combinada en teatro y cine. Para quienes quieren explorar la interpretacion en todas sus vertientes y prepararse para castings o audiciones.',
       duracion: '3 años',
       diasSemana: '2',
       cargaHoraria: '4 horas',
       edades: '17 a 60 años',
       modalidad: 'Teatro + Cine',
-      objetivo: 'Profesionalización y preparación para audiciones'
+      objetivo: 'Profesionalizacion y preparacion para audiciones'
     },
     {
       title: 'Garage Hybrid Plus',
-      description: 'Formación integral para quienes buscan profesionalizarse sin la carga del PRO. Entrenamiento en interpretación, cámara, canto y creación.',
+      description: 'Formacion integral para quienes buscan profesionalizarse sin la carga del PRO. Entrenamiento en interpretacion, camara, canto y creacion.',
       duracion: '3 años',
       diasSemana: '2',
       cargaHoraria: '8 horas',
       edades: '17 a 45 años',
       modalidad: 'Teatro + Cine',
-      objetivo: 'Profesionalización actoral adaptable'
+      objetivo: 'Profesionalizacion actoral adaptable'
     },
     {
       title: 'Garage Kids',
-      description: 'Teatro para niños y niñas. Espacio lúdico donde se aprenden los valores del teatro mientras se desarrolla la creatividad y el trabajo en grupo.',
+      description: 'Teatro para ninos y ninas. Espacio ludico donde se aprenden los valores del teatro mientras se desarrolla la creatividad y el trabajo en grupo.',
       duracion: 'Curso anual (renovable)',
       diasSemana: '1',
       cargaHoraria: '2 horas',
-      edades: '8 a 12 años',
+      edades: '8 a 12 anos',
       modalidad: 'Teatro',
-      objetivo: 'Aprendizaje, diversión y desarrollo expresivo'
+      objetivo: 'Aprendizaje, diversion y desarrollo expresivo'
     },
     {
       title: 'Garage New Generation',
-      description: 'Teatro para adolescentes. Formación práctica para explorar la interpretación y fortalecer la confianza personal.',
+      description: 'Teatro para adolescentes. Formacion practica para explorar la interpretacion y fortalecer la confianza personal.',
       duracion: 'Curso anual (renovable)',
       diasSemana: '1',
       cargaHoraria: '2 horas',
-      edades: '13 a 17 años',
+      edades: '13 a 17 anos',
       modalidad: 'Teatro',
-      objetivo: 'Descubrimiento y desarrollo artístico'
+      objetivo: 'Descubrimiento y desarrollo artistico'
     },
     {
       title: 'Garage New Generation Hybrid',
-      description: 'Formación en teatro y cine para jóvenes. Combina la práctica escénica y audiovisual para quienes quieren orientar sus estudios hacia el arte.',
+      description: 'Formacion en teatro y cine para jovenes. Combina la practica escenica y audiovisual para quienes quieren orientar sus estudios hacia el arte.',
       duracion: '3 años',
       diasSemana: '2',
       cargaHoraria: '4 horas',
-      edades: '13 a 17 años',
+      edades: '13 a 17 anos',
       modalidad: 'Teatro + Cine',
-      objetivo: 'Formación artística y preparación para el futuro profesional'
+      objetivo: 'Formacion artistica y preparacion para el futuro profesional'
     },
     {
       title: 'Garage Evolution',
-      description: 'Entrenamiento avanzado para egresados TAG. Programas personalizados para seguir desarrollando técnica, creatividad y autoconocimiento actoral.',
+      description: 'Entrenamiento avanzado para egresados TAG. Programas personalizados para seguir desarrollando tecnica, creatividad y autoconocimiento actoral.',
       duracion: 'Continua / anual',
       diasSemana: 'Variable',
       cargaHoraria: 'Personalizada',
-      edades: 'Desde 17 años',
+      edades: 'Desde 17 anos',
       modalidad: 'Entrenamiento personalizado',
       objetivo: 'Perfeccionamiento actoral'
     },
     {
       title: 'Garage Classic',
-      description: 'Teatro para mayores de 60. Propuesta de aprendizaje y disfrute a través del teatro, fomentando la memoria, expresión y motricidad.',
+      description: 'Teatro para mayores de 60. Propuesta de aprendizaje y disfrute a traves del teatro, fomentando la memoria, expresion y motricidad.',
       duracion: 'Curso anual',
       diasSemana: '1',
       cargaHoraria: '2 horas',
       edades: '60+',
       modalidad: 'Teatro',
-      objetivo: 'Bienestar, diversión y desarrollo cognitivo'
+      objetivo: 'Bienestar, diversion y desarrollo cognitivo'
     },
     {
       title: 'Garage Workshops',
       description: 'Talleres intensivos de fin de semana. Dictados por profesionales del sector para actores, actrices y estudiantes avanzados.',
-      duracion: 'Fin de semana (2-3 días)',
+      duracion: 'Fin de semana (2-3 dias)',
       diasSemana: 'Variable',
       cargaHoraria: 'Intensiva',
-      edades: 'Desde 17 años',
+      edades: 'Desde 17 anos',
       modalidad: 'Taller intensivo',
       objetivo: 'Entrenamiento especializado y networking profesional'
     }

@@ -62,6 +62,103 @@ body {
   font-family: 'Druk', 'Arial Black', sans-serif !important;
 }
 
+/* EULA Banner Styles */
+.eula-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  border-top: 3px solid #FFBE00;
+  z-index: 10000;
+  padding: 12px 20px;
+}
+
+.eula-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.eula-banner-text {
+  font-family: 'MDIO', 'Arial', 'Helvetica', sans-serif;
+  font-size: 14px;
+  color: #FFBE00;
+  flex: 1;
+}
+
+.eula-banner-buttons {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.eula-banner-decline-btn,
+.eula-banner-accept-btn {
+  padding: 8px 16px;
+  border: 2px solid #FFBE00;
+  border-radius: 4px;
+  font-family: 'Druk', 'Impact', 'Arial Black', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  min-width: 80px;
+}
+
+.eula-banner-decline-btn {
+  background: #1a1a1a;
+  color: #FFBE00;
+}
+
+.eula-banner-decline-btn:hover {
+  background: #FFBE00;
+  color: #1a1a1a;
+}
+
+.eula-banner-accept-btn {
+  background: #FFBE00;
+  color: #1a1a1a;
+}
+
+.eula-banner-accept-btn:hover {
+  background: #1a1a1a;
+  color: #FFBE00;
+}
+
+/* Responsive EULA Banner */
+@media (max-width: 768px) {
+  .eula-banner {
+    padding: 10px 15px;
+  }
+  
+  .eula-banner-content {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .eula-banner-text {
+    font-size: 12px;
+  }
+  
+  .eula-banner-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .eula-banner-decline-btn,
+  .eula-banner-accept-btn {
+    flex: 1;
+    max-width: 120px;
+  }
+}
+
 .font-garamond {
   font-family: 'ITC Garamond Std', Georgia, serif !important;
 }

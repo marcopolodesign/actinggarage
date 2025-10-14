@@ -150,7 +150,7 @@ const CursosHome = () => {
       id: 'teatro',
       mainText: 'Teatro',
       mainTagline: 'TAG YOUR STAGE',
-      description: 'Exploras la profundidad del arte teatral, desarrollando técnicas de actuación que conectan con la audiencia de manera auténtica. Construyes personajes memorables y dominas el espacio escénico.',
+      description: 'Exploras la profundidad del arte teatral, desarrollando tecnicas de actuacion que conectan con la audiencia de manera autentica. Construyes personajes memorables y dominas el espacio escenico.',
       cursoName: 'GARAGE THEATER',
       buttonText: 'VER CURSOS',
       backgroundColor: '#FFBE00', // tag-yellow
@@ -164,7 +164,7 @@ const CursosHome = () => {
         id: 'teatro-cine',
         mainText: 'Teatro & Cine',
         mainTagline: 'TAG YOUR STAGE',
-        description: 'En TAG trabajamos la interpretación desde el teatro y el cine como dos lenguajes que se potencian entre sí. Aprendes a dominar la técnica, la cámara y el escenario con autenticidad, construyendo personajes con profundidad, presencia y emoción. Exploras la conexión entre ambos mundos para transformar la técnica en experiencia y la emoción en impacto.',
+        description: 'En TAG trabajamos la interpretacion desde el teatro y el cine como dos lenguajes que se potencian entre si. Aprendes a dominar la tecnica, la camara y el escenario con autenticidad, construyendo personajes con profundidad, presencia y emocion. Exploras la conexion entre ambos mundos para transformar la tecnica en experiencia y la emocion en impacto.',
         courses: [
           'GARAGE PRO',
           'GARAGE HYBRID',

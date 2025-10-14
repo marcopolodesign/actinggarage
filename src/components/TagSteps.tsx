@@ -82,7 +82,7 @@ const TagSteps: React.FC = () => {
       image: '/content/descubrimiento.jpg',
       title: 'Descubrimiento',
       tagline: 'TAG YOUR POTENTIAL',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
+      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
       backgroundColor: '#DB9A00'
     },
     {
@@ -90,7 +90,7 @@ const TagSteps: React.FC = () => {
       image: '/content/tecnica.jpg',
       title: 'Técnica',
       tagline: 'TAG YOUR TALENT',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
+      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
       backgroundColor: '#B67B00'
     },
     {
@@ -98,7 +98,7 @@ const TagSteps: React.FC = () => {
       image: '/content/transformacion.jpg',
       title: 'Transformación',
       tagline: 'TAG YOUR ACT',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
+      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
       backgroundColor: '#925B00'
     },
     {
@@ -106,7 +106,7 @@ const TagSteps: React.FC = () => {
       image: '/content/proyeccion.jpg',
       title: 'Proyección',
       tagline: 'TAG YOUR PERFORMANCE',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
+      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
       backgroundColor: '#6D3C00'
     },
     {
@@ -114,7 +114,7 @@ const TagSteps: React.FC = () => {
       image: '/content/comunidad.jpg',
       title: 'Comunidad',
       tagline: 'LEAVE YOUR TAG',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
+      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
       backgroundColor: '#491C00'
     }
   ];

@@ -70,16 +70,18 @@ const AboutFlyout: React.FC = () => {
         {/* Close Button */}
         <button
           onClick={closeFlyout}
-          className="absolute top-8 right-8 text-black text-2xl font-bold hover:opacity-70 transition-opacity"
+          className="absolute top-8 right-8 text-black hover:opacity-70 transition-opacity"
         >
-          ×
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </button>
         
         {/* Content */}
         <div className="p-12 pt-20">
           {/* About Title */}
           <div className="text-right mb-16">
-            <h1 className="font-druk text-black" style={{ fontSize: '6rem', lineHeight: '1' }}>about</h1>
+            <h1 className="font-druk text-black uppercase" style={{ fontSize: '6rem', lineHeight: '1' }}>about</h1>
           </div>
           
           {/* Main Heading */}

@@ -147,7 +147,7 @@ const FormFlyout: React.FC = () => {
                   <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
-              <h1 className="greeting">HOLA {formData.name.toUpperCase() || 'TÚ'}!</h1>
+              <h1 className="greeting">HOLA {formData.name.toUpperCase() || 'Tu'}!</h1>
               <p className="subtitle">Qué bueno que tengas ganas de sumarte a TAG!</p>
             </div>
 

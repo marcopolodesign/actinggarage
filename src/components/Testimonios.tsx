@@ -79,17 +79,17 @@ const Testimonios: React.FC = () => {
   const testimonialsData = [
     {
       id: 1,
-      quote: "TAG me cambió la vida. Aquí encontré mi voz como actor y desarrollé habilidades que nunca pensé que tenía.",
+      quote: "TAG me cambio la vida. Aqui encontre mi voz como actor y desarrolle habilidades que nunca pense que tenia.",
       author: "Miguel Álvarez"
     },
     {
       id: 2,
-      quote: "La metodología de TAG es única. Aprendes desde la técnica hasta la emoción, todo de manera integral.",
+      quote: "La metodologia de TAG es unica. Aprendes desde la tecnica hasta la emocion, todo de manera integral.",
       author: "Lucía Moreno"
     },
     {
       id: 3,
-      quote: "Los profesores son profesionales en activo que realmente saben del oficio. Una experiencia increíble.",
+      quote: "Los profesores son profesionales en activo que realmente saben del oficio. Una experiencia increible.",
       author: "Javier García"
     },
     {
@@ -99,7 +99,7 @@ const Testimonios: React.FC = () => {
     },
     {
       id: 5,
-      quote: "La formación en TAG me preparó para enfrentar cualquier reto en el mundo del cine y el teatro.",
+      quote: "La formacion en TAG me preparo para enfrentar cualquier reto en el mundo del cine y el teatro.",
       author: "Daniela Romero"
     },
     {
@@ -109,12 +109,12 @@ const Testimonios: React.FC = () => {
     },
     {
       id: 7,
-      quote: "TAG me dio las herramientas técnicas y la confianza necesaria para perseguir mis sueños.",
+      quote: "TAG me dio las herramientas tecnicas y la confianza necesaria para perseguir mis suenos.",
       author: "Alberto Hernández"
     },
     {
       id: 8,
-      quote: "Una experiencia transformadora que va más allá de aprender a actuar. Aquí encontré mi propósito.",
+      quote: "Una experiencia transformadora que va mas alla de aprender a actuar. Aqui encontre mi proposito.",
       author: "Patricia Castaño"
     }
   ];
