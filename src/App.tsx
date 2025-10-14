@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { FormFlyoutProvider } from './context/FormFlyoutContext';
 import { AboutFlyoutProvider } from './context/AboutFlyoutContext';
 import FormFlyout from './components/FormFlyout';
@@ -10,19 +11,21 @@ import './App.css';
 
 function App() {
   return (
-    <FormFlyoutProvider>
-      <AboutFlyoutProvider>
-        <ScrollToTop />
-        <div className="app">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cursos" element={<Cursos />} />
-          </Routes>
-          <FormFlyout />
-          <AboutFlyout />
-        </div>
-      </AboutFlyoutProvider>
-    </FormFlyoutProvider>
+    <HelmetProvider>
+      <FormFlyoutProvider>
+        <AboutFlyoutProvider>
+          <ScrollToTop />
+          <div className="app">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cursos" element={<Cursos />} />
+            </Routes>
+            <FormFlyout />
+            <AboutFlyout />
+          </div>
+        </AboutFlyoutProvider>
+      </FormFlyoutProvider>
+    </HelmetProvider>
   );
 }
 

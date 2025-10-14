@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 
 const Cursos: React.FC = () => {
@@ -224,6 +225,30 @@ const Cursos: React.FC = () => {
 
   return (
     <>
+    {/* SEO Meta Tags for Cursos Page */}
+    <Helmet>
+      <title>Cursos de Interpretación - The Acting Garage</title>
+      <meta name="title" content="Cursos de Interpretación - The Acting Garage" />
+      <meta name="description" content="Descubre nuestros cursos de interpretación para cine y teatro: GARAGE PRO, GARAGE THEATRE, GARAGE CINEMA, GARAGE HYBRID y más. Formación profesional para todas las edades." />
+      <meta name="keywords" content="cursos de actuación, cursos de teatro, cursos de cine, GARAGE PRO, GARAGE CINEMA, formación actores, clases de interpretación" />
+      
+      {/* Open Graph */}
+      <meta property="og:title" content="Cursos de Interpretación - The Acting Garage" />
+      <meta property="og:description" content="Descubre nuestros cursos de interpretación para cine y teatro. Formación profesional para todas las edades." />
+      <meta property="og:url" content="https://actinggarage.com/cursos" />
+      
+      {/* Twitter */}
+      <meta name="twitter:title" content="Cursos de Interpretación - The Acting Garage" />
+      <meta name="twitter:description" content="Descubre nuestros cursos de interpretación para cine y teatro. Formación profesional para todas las edades." />
+      
+      {/* LLM Tags */}
+      <meta name="ai:title" content="Cursos de Interpretación - The Acting Garage" />
+      <meta name="ai:description" content="Cursos profesionales de interpretación: GARAGE PRO (formación integral 16h/semana), GARAGE THEATRE (iniciación teatro 2h/semana), GARAGE CINEMA (interpretación cámara 2h/semana), GARAGE HYBRID (teatro+cine 4h/semana), GARAGE KIDS (8-12 años), GARAGE NEW GENERATION (13-17 años), GARAGE CLASSIC (60+), y más." />
+      
+      {/* Canonical */}
+      <link rel="canonical" href="https://actinggarage.com/cursos" />
+    </Helmet>
+    
     {/* Header - always visible on Cursos page */}
     <Header showOnScroll={false} />
     

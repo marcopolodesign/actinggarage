@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import gsap from 'gsap';
 import Logo from '../assets/Logo';
 // Video will be loaded from public folder
@@ -121,6 +122,19 @@ const Home: React.FC = () => {
 
   return (
     <section>
+    {/* SEO Meta Tags for Home Page */}
+    <Helmet>
+      <title>The Acting Garage - Escuela de Interpretación para Cine y Teatro</title>
+      <meta name="title" content="The Acting Garage - Escuela de Interpretación para Cine y Teatro" />
+      <meta name="description" content="Formaciones profesionales en interpretación para cine y teatro. Desarrolla técnica, actitud y autenticidad con profesionales en activo. Cursos para todas las edades." />
+      
+      {/* Open Graph */}
+      <meta property="og:url" content="https://actinggarage.com/" />
+      
+      {/* Canonical */}
+      <link rel="canonical" content="https://actinggarage.com/" />
+    </Helmet>
+    
     {/* Header - shows after scrolling past first viewport */}
     <Header showOnScroll={true} />
     
