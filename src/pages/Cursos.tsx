@@ -145,8 +145,8 @@ const Cursos: React.FC = () => {
 
     // Animate title fade out/blur on scroll
     if (titleContainerRef.current) {
-      const fadeThreshold = 300; // Start fading after 300px
-      const fadeProgress = Math.min(Math.max(scrollY - fadeThreshold, 0) / 200, 1);
+      const fadeThreshold = 100; // Start fading earlier after 100px
+      const fadeProgress = Math.min(Math.max(scrollY - fadeThreshold, 0) / 150, 1);
       
       // Fade out and blur when scrolling down past threshold
       const opacity = 1 - fadeProgress;
