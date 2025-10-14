@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import LogoMin from '../assets/LogoMin';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { useAboutFlyout } from '../context/AboutFlyoutContext';
@@ -13,6 +13,8 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { openFlyout } = useFormFlyout();
   const { openFlyout: openAboutFlyout } = useAboutFlyout();
+  const location = useLocation();
+  const isCursosPage = location.pathname === '/cursos';
 
   useEffect(() => {
     if (!showOnScroll) return;
@@ -53,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
         className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
           isVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
-        style={{ backgroundColor: '#000000' }}
+        style={{ backgroundColor: isCursosPage ? 'transparent' : '#000000' }}
       >
         <div className="flex items-center justify-between px-8 py-4">
           {/* Logo */}

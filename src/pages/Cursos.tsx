@@ -1,79 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
 import Header from '../components/Header';
-
-// Component for animated text with character splitting
-const AnimatedText: React.FC<{ 
-  text: string; 
-  className?: string;
-  style?: React.CSSProperties;
-}> = ({ text, className, style }) => {
-  const textRef = useRef<HTMLDivElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    if (!textRef.current || hasAnimated) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            const spans = entry.target.querySelectorAll('span');
-            
-            // Set initial state - each character starts hidden below
-            gsap.set(spans, { 
-              y: "100%",
-              autoAlpha: 0
-            });
-            
-            // Animate each character with stagger
-            gsap.to(spans, {
-              y: "0%",
-              autoAlpha: 1,
-              duration: 0.6,
-              ease: 'cubic-bezier(0.4, 0, 0, 1)',
-              stagger: 0.02
-            });
-
-            setHasAnimated(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Start animation slightly before fully visible
-      }
-    );
-
-    observer.observe(textRef.current);
-
-    return () => {
-      if (textRef.current) {
-        observer.unobserve(textRef.current);
-      }
-    };
-  }, [hasAnimated]);
-
-  // Split text into individual characters and wrap each in a span
-  const renderCharacters = () => {
-    return text.split('').map((char, index) => (
-      <span
-        key={index}
-        className="inline-block font-druk"
-        style={style}
-      >
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ));
-  };
-
-  return (
-    <div ref={textRef} className={`overflow-hidden ${className}`}>
-      {renderCharacters()}
-    </div>
-  );
-};
 
 const Cursos: React.FC = () => {
   const cursosTextRef = useRef<HTMLSpanElement>(null);
@@ -82,7 +8,6 @@ const Cursos: React.FC = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const coursesRef = useRef<(HTMLDivElement | null)[]>([]);
   const linesRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Courses data
   const coursesData = [
@@ -258,8 +183,6 @@ const Cursos: React.FC = () => {
         course.style.opacity = opacity.toString();
       }
     });
-
-    setLastScrollY(scrollY);
   };
 
   useEffect(() => {
