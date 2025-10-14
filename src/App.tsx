@@ -7,6 +7,7 @@ import AboutFlyout from './components/AboutFlyout';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
 import EulaDisclaimer from './components/EulaDisclaimer';
+import EmailFooter from './components/EmailFooter';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import './App.css';
@@ -26,6 +27,7 @@ function App() {
             </Routes>
             <FormFlyout />
             <AboutFlyout />
+            <EmailFooter />
           </div>
         </AboutFlyoutProvider>
       </FormFlyoutProvider>
