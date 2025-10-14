@@ -31,7 +31,7 @@ const AnimatedMarquee: React.FC<AnimatedMarqueeProps> = ({ text, className = "" 
       
       // Calculate total width and duration
       const totalWidth = textWidth * copiesNeeded;
-      const duration = 20; // Fixed duration for consistent speed
+      const duration = totalWidth / 50; // Adjust speed by changing divisor (lower = faster)
       
       // Set initial position (start from right)
       gsap.set(marquee, { x: containerWidth });
