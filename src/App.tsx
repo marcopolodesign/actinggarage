@@ -8,6 +8,7 @@ import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
 import EulaDisclaimer from './components/EulaDisclaimer';
 import EmailFooter from './components/EmailFooter';
+import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import './App.css';
@@ -20,6 +21,7 @@ function App() {
           <ScrollToTop />
           <PageTransition />
           <EulaDisclaimer />
+          <WhatsAppButton />
           <div className="app">
             <Routes>
               <Route path="/" element={<Home />} />
