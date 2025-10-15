@@ -131,7 +131,7 @@ const FormFlyout: React.FC = () => {
       className="flyout-overlay" 
       onClick={handleOverlayClick}
     >
-      <div ref={flyoutRef} className="flyout-container">
+      <div ref={flyoutRef} className="flyout-container bg-tag-yellow">
         {submitted ? (
           <div className="success-container">
             <div className="success-content">
@@ -184,7 +184,7 @@ const FormFlyout: React.FC = () => {
               {/* Phone and Age */}
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="phone">TELEFONO</label>
+                  <label htmlFor="phone">TELÉFONO</label>
                   <input
                     type="tel"
                     id="phone"

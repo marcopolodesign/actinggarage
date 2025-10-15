@@ -25,7 +25,7 @@ const AboutFlyout: React.FC = () => {
         });
         
         gsap.to(overlayRef.current, {
-          opacity: 1,
+          opacity: 0.5,
           duration: 0.3,
           ease: 'power2.out'
         });
@@ -102,7 +102,7 @@ const AboutFlyout: React.FC = () => {
           {/* Description */}
           <div className="text-left max-w-4xl mx-auto">
             <div className="text-xl text-black uppercase leading-relaxed space-y-4">
-              <div>no solo es una escuela de interpretación, Aquí no solo actuas: <br></br><b>evolucionas, descubres tu voz auténtica, tus fortalezas preparandote para cualquier audición y para la vida</b></div>
+              <div>no solo es una escuela de interpretación, Aquí no solo actúas: <br></br><b>evolucionas, descubres tu voz auténtica, tus fortalezas preparándote para cualquier audición y para la vida</b></div>
             </div>
           </div>
         </div>

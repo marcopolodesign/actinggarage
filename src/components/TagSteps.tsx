@@ -82,7 +82,7 @@ const TagSteps: React.FC = () => {
       image: '/content/descubrimiento.jpg',
       title: 'Descubrimiento',
       tagline: 'TAG YOUR POTENTIAL',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
+      description: 'Exploras quién eres como intérprete y persona. Reconoces tus fortalezas, tus miedos y esas zonas vulnerables que se convierten en materia prima para crear. Es el punto de partida donde la curiosidad y la autenticidad se encuentran.',
       backgroundColor: '#DB9A00'
     },
     {
@@ -90,7 +90,7 @@ const TagSteps: React.FC = () => {
       image: '/content/tecnica.jpg',
       title: 'Técnica',
       tagline: 'TAG YOUR TALENT',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
+      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
       backgroundColor: '#B67B00'
     },
     {
@@ -98,7 +98,7 @@ const TagSteps: React.FC = () => {
       image: '/content/transformacion.jpg',
       title: 'Transformación',
       tagline: 'TAG YOUR ACT',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
+      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
       backgroundColor: '#925B00'
     },
     {
@@ -106,7 +106,7 @@ const TagSteps: React.FC = () => {
       image: '/content/proyeccion.jpg',
       title: 'Proyección',
       tagline: 'TAG YOUR PERFORMANCE',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
+      description: 'Llevas todo lo aprendido a la acción. Desarrollas la confianza para habitar la cámara o el escenario con solidez, preparado para audiciones, rodajes y funciones — y también para afrontar los desafíos fuera de ellos.',
       backgroundColor: '#6D3C00'
     },
     {
@@ -114,13 +114,14 @@ const TagSteps: React.FC = () => {
       image: '/content/comunidad.jpg',
       title: 'Comunidad',
       tagline: 'LEAVE YOUR TAG',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la tecnica solo cobra sentido cuando se conecta con la actitud. Aqui aprendes a habitar la camara, el escenario y cada personaje con presencia, intencion y verdad.',
+      description: 'No caminas solo. Formas parte de una red de intérpretes que comparten la misma pasión y propósito. Una comunidad que inspira, sostiene y celebra cada paso del proceso creativo, dentro y fuera del aula.',
       backgroundColor: '#491C00'
-    }
+    }, 
+    
   ];
 
   return (
-    <div className="md:p-8 p-4 gap-8 flex flex-col">
+    <div className="md:px-8 px-4 gap-8 flex flex-col">
       {tagStepsData.map((step) => (
         <div 
           key={step.id}
@@ -137,7 +138,7 @@ const TagSteps: React.FC = () => {
           </div>
           
           {/* Right Section - Text Content */}
-          <div className="md:w-3/5 flex flex-col justify-center md:p-16 p-8 relative z-10">
+          <div className="md:w-3/5 flex flex-col justify-center md:p-8 p-4 relative z-10">
             <AnimatedText
               text={step.title}
               className="text-7xl md:text-8xl mb-6"
@@ -145,14 +146,14 @@ const TagSteps: React.FC = () => {
             />
             
             <h2 
-              className="-mt-6 uppercase mb-8 md:text-lg text-base md:max-w-2xl leading-relaxed md:mb-24 tracking-tightest md:tracking-normal"
+              className="-mt-6 uppercase mb-8 md:text-lg text-base md:max-w-2xl leading-relaxed md:mb-12 tracking-tightest md:tracking-normal"
               style={{ color: '#FFFFFF' }}
             >
               {step.tagline}
             </h2>
             
             <p 
-              className="max-w-2xl font-helvetica md:text-lg text-base md:max-w-2xl leading-relaxed md:mb-24 mb-6 tracking-tightest md:tracking-normal"
+              className="max-w-2xl font-helvetica md:text-md text-base md:max-w-2xl leading-relaxed md:mb-12 mb-6 tracking-tightest md:tracking-normal"
               style={{ color: '#FFFFFF' }}
             >
               {step.description}

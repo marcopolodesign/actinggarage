@@ -33,7 +33,7 @@ const EulaDisclaimer: React.FC = () => {
           className="text-tag-yellow text-xs md:text-sm text-center md:text-left flex-1"
           style={{ color: '#FFBE00', fontFamily: 'MDIO, Arial, Helvetica, sans-serif' }}
         >
-          Al continuar navegando, aceptas nuestros terminos y condiciones de uso.
+          Al continuar navegando, aceptas nuestros términos y condiciones de uso.
         </span>
         <div className="flex gap-3 flex-shrink-0 w-full md:w-auto justify-center">
           <button 

@@ -12,7 +12,7 @@ http://localhost:5173/?email=test@example.com&name=Juan%20Perez&phone=+346821234
 
 ### **Individual Test URLs:**
 
-#### **1. Theater Interest:**
+#### **1. Theatre Interest:**
 ```
 http://localhost:5173/?email=maria@example.com&name=Maria%20Garcia&phone=+34682111111&age=28&interests=teatro
 ```
@@ -22,7 +22,7 @@ http://localhost:5173/?email=maria@example.com&name=Maria%20Garcia&phone=+346821
 http://localhost:5173/?email=pedro@example.com&name=Pedro%20Lopez&phone=+34682222222&age=32&interests=cine
 ```
 
-#### **3. Both Theater & Cinema:**
+#### **3. Both Theatre & Cinema:**
 ```
 http://localhost:5173/?email=ana@example.com&name=Ana%20Martinez&phone=+34682333333&age=26&interests=teatro-cine
 ```
