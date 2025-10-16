@@ -108,7 +108,7 @@ const Cursos: React.FC = () => {
       description: 'Teatro para mayores de 60. Propuesta de aprendizaje y disfrute a través del teatro, fomentando la memoria, expresión y motricidad.',
       duracion: 'Curso anual',
       diasSemana: '1',
-      cargaHoraria: '2 horas',
+      cargaHoraria: '1 hora y media',
       edades: '60+',
       modalidad: 'Teatro',
       objetivo: 'Bienestar, diversión y desarrollo cognitivo'

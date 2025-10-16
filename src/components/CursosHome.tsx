@@ -497,7 +497,7 @@ const CursosHome = () => {
                             <div className="space-y-2" style={{ color: curso.textColor }}>
                               <p><strong>Duración total:</strong> {courseDetails.duracion}</p>
                               <p><strong>Días por semana:</strong> {courseDetails.diasSemana}</p>
-                              <p><strong>Carga horaria semanal:</strong> {courseDetails.cargaHoraria}</p>
+                              <p><strong>Horas de clase semanales:</strong> {courseDetails.cargaHoraria}</p>
                               <p><strong>Edades:</strong> {courseDetails.edades}</p>
                               <p><strong>Modalidad:</strong> {courseDetails.modalidad}</p>
                               <p><strong>Objetivo:</strong> {courseDetails.objetivo}</p>

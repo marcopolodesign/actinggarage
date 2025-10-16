@@ -98,7 +98,7 @@ const TagSteps: React.FC = () => {
       image: '/content/transformacion.jpg',
       title: 'Transformación',
       tagline: 'TAG YOUR ACT',
-      description: 'Dominas las bases del cine y del teatro con profesionales en activo, entendiendo que la técnica solo cobra sentido cuando se conecta con la actitud. Aquí aprendes a habitar la cámara, el escenario y cada personaje con presencia, intención y verdad.',
+      description: 'Te enfrentas a lo que te limita, potencias tu voz propia y te atreves a ir más allá en cada escena. A través del trabajo constante y la exploración emocional, la actuación se convierte en una herramienta de crecimiento personal y artístico.',
       backgroundColor: '#925B00'
     },
     {
