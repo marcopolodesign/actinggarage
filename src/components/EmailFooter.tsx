@@ -109,9 +109,39 @@ const EmailFooter: React.FC = () => {
 
               <div className="pb-5 text-center">
                 <p className="m-0 font-sans text-xs text-[#e8e4da] leading-normal antialiased">
-                  933 398 307<br />
-                  +34 682 56 01 87<br />
-                  hola@theactinggarage.com
+                  <a
+                    href="tel:933398307"
+                    className="hover:underline text-[#e8e4da]"
+                    style={{ wordBreak: 'break-word' }}
+                  >
+                    933 398 307
+                  </a>
+                  <br />
+                  <a
+                    href="tel:+34682560187"
+                    className="hover:underline text-[#e8e4da]"
+                    style={{ wordBreak: 'break-word' }}
+                  >
+                    +34 682 56 01 87
+                  </a>
+                  <br />
+                  <a
+                    href="mailto:hola@theactinggarage.com"
+                    className="hover:underline text-[#e8e4da]"
+                    style={{ wordBreak: 'break-word' }}
+                  >
+                    hola@theactinggarage.com
+                  </a>
+                  <br />
+                  <a
+                    href="https://www.google.com/maps/place/Carrer+de+Londres,+9,+L'Eixample,+08029+Barcelona,+Spain/data=!4m2!3m1!1s0x12a49878613bff27:0xc2d93dd84d4d7877?sa=X&ved=1t:242&ictx=111"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline text-[#e8e4da]"
+                    style={{ wordBreak: 'break-word' }}
+                  >
+                    Carrer de Londres, 9, Barcelona
+                  </a>
                 </p>
               </div>
 

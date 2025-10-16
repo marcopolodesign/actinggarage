@@ -105,6 +105,31 @@ const AboutFlyout: React.FC = () => {
               <div>no solo es una escuela de interpretación, Aquí no solo actúas: <br></br><b>evolucionas, descubres tu voz auténtica, tus fortalezas preparándote para cualquier audición y para la vida</b></div>
             </div>
           </div>
+
+          {/* Address Section */}
+          <div className="mt-16">
+            <div className="text-black">
+              <div className="font-druk text-2xl uppercase mb-6 text-center">
+                UBICACIÓN
+              </div>
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div className="text-lg">
+                  Carrer de Londres, 9<br />
+                  L'Eixample, 08029<br />
+                  Barcelona, Spain
+                </div>
+                <a
+                  href="https://www.google.com/maps/place/Carrer+de+Londres,+9,+L'Eixample,+08029+Barcelona,+Spain/data=!4m2!3m1!1s0x12a49878613bff27:0xc2d93dd84d4d7877?sa=X&ved=1t:242&ictx=111"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{color: '#FFBE00'}}
+                  className="bg-black text-tag-yellow px-8 py-3 font-druk text-lg uppercase tracking-wide hover:opacity-80 transition-opacity"
+                >
+                  Ver Mapa
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
