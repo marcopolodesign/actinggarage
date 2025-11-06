@@ -9,6 +9,7 @@ import PageTransition from './components/PageTransition';
 import EulaDisclaimer from './components/EulaDisclaimer';
 import EmailFooter from './components/EmailFooter';
 import WhatsAppButton from './components/WhatsAppButton';
+import GoogleAnalytics from './components/GoogleAnalytics';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import './App.css';
@@ -18,6 +19,7 @@ function App() {
     <HelmetProvider>
       <FormFlyoutProvider>
         <AboutFlyoutProvider>
+          <GoogleAnalytics />
           <ScrollToTop />
           <PageTransition />
           <EulaDisclaimer />
