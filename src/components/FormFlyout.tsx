@@ -93,6 +93,11 @@ const FormFlyout: React.FC = () => {
 
       if (result.success) {
         setSubmitted(true);
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', {
+            send_to: 'AW-17688095812/dXncCM7MhLsbEMTYq_JB',
+          });
+        }
         setTimeout(() => {
           setSubmitted(false);
           closeFlyout();
