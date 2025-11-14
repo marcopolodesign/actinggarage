@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email, name, phone, age, interests, source } = req.body;
+    const { email, name, phone, age, interests, source, utm_source, utm_medium, utm_campaign, utm_id } = req.body;
 
     // Validate required fields
     if (!email || !name || !phone || !interests) {
@@ -57,6 +57,10 @@ export default async function handler(req, res) {
       AGE: age,
       SOURCE: source || 'email_campaign',
       MMERGE5: interests,
+      // UTM parameters mapped to Mailchimp merge fields
+      ...(utm_source && { MMERGE11: utm_source }),
+      ...(utm_medium && { MMERGE12: utm_medium }),
+      ...(utm_campaign && { MMERGE13: utm_campaign }),
     };
 
     // Prepare request data
