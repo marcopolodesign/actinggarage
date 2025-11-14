@@ -25,12 +25,6 @@ const FormFlyout: React.FC = () => {
   const [userEmail, setUserEmail] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [utmParams, setUtmParams] = useState<{
-    utm_source?: string;
-    utm_medium?: string;
-    utm_campaign?: string;
-    utm_id?: string;
-  }>({});
 
   // Get URL parameters
   useEffect(() => {
@@ -40,12 +34,6 @@ const FormFlyout: React.FC = () => {
     const phone = urlParams.get('phone') || '';
     const age = urlParams.get('age') || '';
     const interests = urlParams.get('interests') || '';
-    
-    // Capture UTM parameters
-    const utm_source = urlParams.get('utm_source') || undefined;
-    const utm_medium = urlParams.get('utm_medium') || undefined;
-    const utm_campaign = urlParams.get('utm_campaign') || undefined;
-    const utm_id = urlParams.get('utm_id') || undefined;
     
     setUserEmail(email);
     if (name) {
@@ -60,14 +48,6 @@ const FormFlyout: React.FC = () => {
     if (interests) {
       setFormData(prev => ({ ...prev, interests }));
     }
-    
-    // Store UTM parameters
-    setUtmParams({
-      ...(utm_source && { utm_source }),
-      ...(utm_medium && { utm_medium }),
-      ...(utm_campaign && { utm_campaign }),
-      ...(utm_id && { utm_id }),
-    });
   }, []);
 
   // GSAP animations
