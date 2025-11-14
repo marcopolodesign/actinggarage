@@ -4,6 +4,7 @@ import { FormFlyoutProvider } from './context/FormFlyoutContext';
 import { AboutFlyoutProvider } from './context/AboutFlyoutContext';
 import FormFlyout from './components/FormFlyout';
 import AboutFlyout from './components/AboutFlyout';
+import AutoOpenForm from './components/AutoOpenForm';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
 import EulaDisclaimer from './components/EulaDisclaimer';
@@ -24,6 +25,7 @@ function App() {
           <PageTransition />
           <EulaDisclaimer />
           <WhatsAppButton />
+          <AutoOpenForm />
           <div className="app">
             <Routes>
               <Route path="/" element={<Home />} />

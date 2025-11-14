@@ -101,16 +101,40 @@ const FormFlyout: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Capture UTM parameters fresh at submission time
+    const urlParams = new URLSearchParams(window.location.search);
+    const utm_source = urlParams.get('utm_source') || '';
+    const utm_medium = urlParams.get('utm_medium') || '';
+    const utm_campaign = urlParams.get('utm_campaign') || '';
+    const utm_id = urlParams.get('utm_id') || '';
+    
+    // Determine source: if any UTM params exist, use 'email_campaign', otherwise 'organic'
+    const hasUtmParams = utm_source || utm_medium || utm_campaign || utm_id;
+    const source = hasUtmParams ? 'email_campaign' : 'organic';
+
+    const currentUtmParams = {
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_id,
+    };
+
     console.log('Form data:', formData);
     console.log('User email:', userEmail);
+    console.log('UTM params:', currentUtmParams);
+    console.log('Source:', source);
+
+    const submissionData = {
+      ...formData,
+      email: userEmail,
+      source,
+      ...currentUtmParams
+    };
+
+    console.log('Full submission data with UTMs:', submissionData);
 
     try {
-      const result = await submitForm({
-        ...formData,
-        email: userEmail,
-        source: 'email_campaign',
-        ...utmParams
-      });
+      const result = await submitForm(submissionData);
 
       if (result.success) {
         setSubmitted(true);

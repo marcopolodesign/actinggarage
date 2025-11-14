@@ -55,12 +55,12 @@ export default async function handler(req, res) {
       LNAME: name.split(' ').slice(1).join(' ') || '',
       PHONE: phone,
       AGE: age,
-      SOURCE: source || 'email_campaign',
+      SOURCE: source || 'organic',
       MMERGE5: interests,
-      // UTM parameters mapped to Mailchimp merge fields
-      ...(utm_source && { MMERGE11: utm_source }),
-      ...(utm_medium && { MMERGE12: utm_medium }),
-      ...(utm_campaign && { MMERGE13: utm_campaign }),
+      // UTM parameters mapped to Mailchimp merge fields (always include, even if blank)
+      MMERGE11: utm_source || '',
+      MMERGE12: utm_medium || '',
+      MMERGE13: utm_campaign || '',
     };
 
     // Prepare request data
