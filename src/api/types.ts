@@ -4,6 +4,8 @@ export interface FormSubmission {
   phone: string;
   age: string;
   interests: string;
+  gender?: string;
+  course?: string;
   source: string;
   utm_source?: string;
   utm_medium?: string;
@@ -22,6 +24,7 @@ export interface MemberData {
   'Gender': string;
   'Interests': string;
   'Age': string;
+  'Course': string;
   'Source': string;
   'UTM Source': string;
   'UTM Medium': string;

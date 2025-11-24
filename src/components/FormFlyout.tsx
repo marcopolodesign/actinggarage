@@ -9,7 +9,21 @@ interface FormData {
   phone: string;
   age: string;
   interests: string;
+  gender: string;
+  course: string;
 }
+
+const COURSES = [
+  'Garage Pro',
+  'Garage Theatre',
+  'Garage Cinema',
+  'Garage Hybrid',
+  'Garage Hybrid Plus',
+  'Garage New Generation Hybrid',
+  'Garage Evolution',
+  'Garage Classic',
+  'Garage Workshops'
+];
 
 const FormFlyout: React.FC = () => {
   const { isOpen, closeFlyout } = useFormFlyout();
@@ -20,7 +34,9 @@ const FormFlyout: React.FC = () => {
     name: '',
     phone: '',
     age: '',
-    interests: ''
+    interests: '',
+    gender: '',
+    course: ''
   });
   const [userEmail, setUserEmail] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,6 +50,8 @@ const FormFlyout: React.FC = () => {
     const phone = urlParams.get('phone') || '';
     const age = urlParams.get('age') || '';
     const interests = urlParams.get('interests') || '';
+    const gender = urlParams.get('gender') || '';
+    const course = urlParams.get('course') || '';
     
     setUserEmail(email);
     if (name) {
@@ -47,6 +65,12 @@ const FormFlyout: React.FC = () => {
     }
     if (interests) {
       setFormData(prev => ({ ...prev, interests }));
+    }
+    if (gender) {
+      setFormData(prev => ({ ...prev, gender }));
+    }
+    if (course) {
+      setFormData(prev => ({ ...prev, course }));
     }
   }, []);
 
@@ -84,33 +108,12 @@ const FormFlyout: React.FC = () => {
     // Capture UTM parameters fresh at submission time
     const urlParams = new URLSearchParams(window.location.search);
     const utm_source = urlParams.get('utm_source') || '';
-    const utm_medium = urlParams.get('utm_medium') || '';
+    const utm_medium = urlParams.get('utm_medium') || 'organic'; // Default to 'organic' if not present
     const utm_campaign = urlParams.get('utm_campaign') || '';
     const utm_id = urlParams.get('utm_id') || '';
     
-    // Determine source based on UTM parameters
-    let source = 'organic'; // Default to organic
-    
-    if (utm_source || utm_medium || utm_campaign || utm_id) {
-      // If utm_medium is 'email', it's an email campaign
-      if (utm_medium === 'email') {
-        source = 'email_campaign';
-      }
-      // If utm_medium is 'paid', it's a paid campaign (could be Google Ads, Facebook Ads, etc.)
-      else if (utm_medium === 'paid') {
-        // If utm_source is 'google', it's specifically Google Ads
-        if (utm_source === 'google') {
-          source = 'google_ads';
-        } else {
-          // Other paid sources (Facebook, Instagram, etc.)
-          source = 'paid';
-        }
-      }
-      // If we have UTM params but no specific match, default to email_campaign for backward compatibility
-      else {
-        source = 'email_campaign';
-      }
-    }
+    // Source is always 'website_form' for contact form submissions
+    const source = 'website_form';
 
     const currentUtmParams = {
       utm_source,
@@ -151,7 +154,9 @@ const FormFlyout: React.FC = () => {
             name: '',
             phone: '',
             age: '',
-            interests: ''
+            interests: '',
+            gender: '',
+            course: ''
           });
           setUserEmail('');
         }, 2000);
@@ -285,6 +290,40 @@ const FormFlyout: React.FC = () => {
                     TEATRO & CINE
                   </button>
                 </div>
+              </div>
+
+              {/* Gender */}
+              <div className="form-group">
+                <label htmlFor="gender">GÉNERO</label>
+                <select
+                  id="gender"
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleInputChange}
+                  className="form-input"
+                >
+                  <option value="">Seleccionar...</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="femenino">Femenino</option>
+                  <option value="no_especificado">No especificado</option>
+                </select>
+              </div>
+
+              {/* Course */}
+              <div className="form-group">
+                <label htmlFor="course">¿QUÉ CURSO TE INTERESA?</label>
+                <select
+                  id="course"
+                  name="course"
+                  value={formData.course}
+                  onChange={handleInputChange}
+                  className="form-input"
+                >
+                  <option value="">Seleccionar curso (opcional)...</option>
+                  {COURSES.map(course => (
+                    <option key={course} value={course}>{course}</option>
+                  ))}
+                </select>
               </div>
 
               {/* Submit Button */}

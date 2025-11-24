@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { getMembers } from '../api/getMembers';
 import type { MemberData } from '../api/types';
 
@@ -328,12 +328,64 @@ const Dashboard = () => {
     });
   }, [members, filterSource, filterInterest, filterCampaign, filterDatePreset, customDateStart, customDateEnd, searchQuery]);
 
-  // Paginate filtered members for table display
+  // Sort filtered members by date (newest first) and paginate
   const filteredMembers = useMemo(() => {
+    const sorted = [...allFilteredMembers].sort((a, b) => {
+      const dateA = a.OPTIN_TIME ? new Date(a.OPTIN_TIME).getTime() : 0;
+      const dateB = b.OPTIN_TIME ? new Date(b.OPTIN_TIME).getTime() : 0;
+      return dateB - dateA; // Newest first
+    });
     const startIndex = (tablePage - 1) * tableItemsPerPage;
     const endIndex = startIndex + tableItemsPerPage;
-    return allFilteredMembers.slice(startIndex, endIndex);
+    return sorted.slice(startIndex, endIndex);
   }, [allFilteredMembers, tablePage]);
+
+  // Calculate gender demographics
+  const genderData = useMemo(() => {
+    const genderCounts: Record<string, number> = {};
+    members.forEach(m => {
+      const gender = m.Gender || 'No especificado';
+      genderCounts[gender] = (genderCounts[gender] || 0) + 1;
+    });
+    return Object.entries(genderCounts).map(([name, value]) => ({
+      name: name === 'masculino' ? 'Masculino' : name === 'femenino' ? 'Femenino' : 'No especificado',
+      value
+    }));
+  }, [members]);
+
+  // Calculate age + gender combined data
+  const ageGenderData = useMemo(() => {
+    const ageGroups = ['17-25', '26-35', '36-45', '46-55', '56+'];
+    const genders = ['masculino', 'femenino', 'no_especificado'];
+    const data: Array<{ ageGroup: string; masculino: number; femenino: number; no_especificado: number }> = [];
+
+    ageGroups.forEach(ageGroup => {
+      const [min, max] = ageGroup === '56+' 
+        ? [56, 200] 
+        : ageGroup.split('-').map(Number);
+      
+      const groupData: { ageGroup: string; masculino: number; femenino: number; no_especificado: number } = {
+        ageGroup,
+        masculino: 0,
+        femenino: 0,
+        no_especificado: 0
+      };
+
+      members.forEach(m => {
+        const age = parseInt(m.Age);
+        if (!isNaN(age) && age >= min && (max === undefined || age <= max)) {
+          const gender = m.Gender || 'no_especificado';
+          if (gender === 'masculino') groupData.masculino++;
+          else if (gender === 'femenino') groupData.femenino++;
+          else groupData.no_especificado++;
+        }
+      });
+
+      data.push(groupData);
+    });
+
+    return data;
+  }, [members]);
 
   const totalPages = Math.ceil(allFilteredMembers.length / tableItemsPerPage);
 
@@ -564,6 +616,60 @@ const Dashboard = () => {
               </ResponsiveContainer>
             ) : (
               <p className="text-sm text-gray-500 text-center py-8">No data available</p>
+            )}
+          </div>
+        </div>
+
+        {/* Demographics Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {/* Gender Demographics */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h3 className="text-sm font-medium text-gray-500 mb-4">Demografía por Género</h3>
+            {genderData.length > 0 ? (
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={genderData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ name, percent }) => `${name}: ${((percent || 0) * 100).toFixed(0)}%`}
+                    outerRadius={100}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {genderData.map((entry, index) => {
+                      const colors = ['#3b82f6', '#ec4899', '#6b7280'];
+                      return <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />;
+                    })}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <p className="text-sm text-gray-500 text-center py-8">No hay datos de género disponibles</p>
+            )}
+          </div>
+
+          {/* Age + Gender Combined */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h3 className="text-sm font-medium text-gray-500 mb-4">Demografía por Edad y Género</h3>
+            {ageGenderData.length > 0 ? (
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={ageGenderData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="ageGroup" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="masculino" stackId="a" fill="#3b82f6" name="Masculino" />
+                  <Bar dataKey="femenino" stackId="a" fill="#ec4899" name="Femenino" />
+                  <Bar dataKey="no_especificado" stackId="a" fill="#6b7280" name="No especificado" />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <p className="text-sm text-gray-500 text-center py-8">No hay datos de edad y género disponibles</p>
             )}
           </div>
         </div>
