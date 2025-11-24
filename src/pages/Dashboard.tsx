@@ -25,15 +25,21 @@ const Dashboard = () => {
     const fetchMembers = async () => {
       try {
         setLoading(true);
+        setError(null);
         const response = await getMembers({ count: 1000 });
+        console.log('Dashboard API response:', response);
         if (response.success && response.members) {
           setMembers(response.members);
         } else {
-          setError(response.message || 'Failed to fetch members');
+          const errorMsg = response.message || 'Failed to fetch members';
+          const errorDetails = response.error ? JSON.stringify(response.error) : '';
+          setError(`${errorMsg}${errorDetails ? `: ${errorDetails}` : ''}`);
+          console.error('Dashboard API error:', response);
         }
-      } catch (err) {
-        setError('An error occurred while fetching data');
-        console.error(err);
+      } catch (err: any) {
+        const errorMsg = err?.response?.data?.message || err?.message || 'An error occurred while fetching data';
+        setError(errorMsg);
+        console.error('Dashboard fetch error:', err);
       } finally {
         setLoading(false);
       }
@@ -147,9 +153,19 @@ const Dashboard = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-600 text-lg">{error}</p>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="text-center max-w-2xl">
+          <p className="text-red-600 text-lg font-semibold mb-2">Error Loading Dashboard</p>
+          <p className="text-red-500 text-sm mb-4">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Retry
+          </button>
+          <p className="text-gray-500 text-xs mt-4">
+            Check browser console for more details
+          </p>
         </div>
       </div>
     );

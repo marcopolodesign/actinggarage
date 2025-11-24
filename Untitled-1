@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Acting Garage - Cursos Trimestrales</title>
+    
+ <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400;500&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+
+  <style type="text/css">
+    /* Typography improvements for better legibility */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    
+    /* Anton font with 500 weight for specific elements */
+    .anton-500 {
+      font-family: 'Anton', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+    }
+    
+    /* General typography improvements */
+    p, td, div {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    
+    /* Gmail-specific font fallbacks */
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      /* Gmail web client fallbacks */
+      h1, h3, h4, h5, .anton-text {
+        font-family: 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.5px !important;
+      }
+    }
+  </style>
+
+
+
+</head>
+<body style="margin: 0; padding: 0; font-family: Helvetica, sans-serif; background-color: #F6F5EB; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+    
+    <!-- Main Container -->
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #e8e4da;">
+        <tr>
+            <td align="center" style="padding: 40px 20px;">
+                
+                <!-- Content Wrapper -->
+                <table role="presentation" width="680" cellspacing="0" cellpadding="0" border="0" style="max-width: 680px; width: 100%;">
+                    
+                    <!-- Header Section -->
+                    <tr>
+                        <td style="padding: 0 20px 30px 20px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td>
+                                        <h1 style="margin: 0 0 15px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 42px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                            HOLA *|FNAME|*!
+                                        </h1>
+                                        <p style="margin: 0 0 20px 0; font-family: Helvetica, sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a;">
+                                            Nuestros cursos anuales ya están cerrados, pero... <strong>no queremos que te quedes sin ser parte de TAG.</strong>
+                                        </p>
+                                        <p style="margin: 0 0 20px 0; font-family: 'EB Garamond', Georgia, serif; font-size: 20px; font-style: italic; color: #1a1a1a;">
+                                            Abrimos cursos trimestrales para que te impregnes de la <strong>FORMACIÓN TAG</strong>
+                                        </p>
+                                        <p style="margin: 0 0 20px 0; font-family: 'EB Garamond', Georgia, serif; font-size: 16px; font-weight: bold; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.5;">
+                                            De enero a marzo:<br>
+                                            <strong>Garage Theater • Garage Cinema • Garage Acting in English • Garage Interprétation en Français</strong>
+                                        </p>
+                                        <p style="margin: 0 0 25px 0; font-family: Helvetica, sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a;">
+                                            Si nos dejas tus datos a través de este enlace, <strong>matrícula gratis.</strong><br>
+                                            Y también cursos para gente con formación previa. <strong>¡Pregúntanos!</strong>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- CTA Button 1 -->
+                    <tr>
+                        <td style="padding: 0 20px 50px 20px;" align="center">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td style="border-radius: 50px; background-color: #1a1a1a; padding: 18px 50px;">
+                                        <a href="https://tag-form-beige.vercel.app?email=*|EMAIL|*&name=*|FNAME|*&source=email_campaign&utm_source=mailchimp&utm_medium=email&utm_campaign=acting_garage_interest" style="font-family: 'IBM Plex Mono', 'Arial Black', sans-serif; font-size: 16px; color: #f4b03e; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block;">
+                                            TÉCNICA + ACTITUD + AUTOCONOCIMIENTO
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Hero Banner Section -->
+                    <tr>
+                        <td>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #1a1a1a; border-radius: 30px; overflow: hidden; margin-bottom: 50px;">
+                                <tr>
+                                    <td>
+                                    <div style="padding: 20px 30px;">
+              							<img alt="Logo" style="width: 100%; display: block; margin-bottom: 40px; " src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/5a26fc39-afdc-42b3-345c-d647c927d8f7.png"> 
+                                        </div>
+                                        <!-- Image Placeholder -->
+                                        <div style="margin: 0 0 0px 0; height: 350px; display: flex; align-items: center; justify-content: center;">
+                                            <a href="https://tag-form-beige.vercel.app?email=*|EMAIL|*&name=*|FNAME|*&source=email_campaign&utm_source=mailchimp&utm_medium=email&utm_campaign=acting_garage_interest" style="display: block; width: 100%;">
+                                                <img src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/b4338ec0-0660-64ae-883a-eacbc23d23d3.png" alt="The Acting Garage" style="width: 100%; display: block;">
+                                            </a>
+                                        </div>
+                                      
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Cursos Grid 2x2 -->
+                    <tr>
+                        <td style="padding: 0 20px 50px 20px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <!-- First Row -->
+                                <tr>
+                                    <!-- Garage Theater -->
+                                    <td width="50%" valign="top" style="padding-right: 10px; padding-bottom: 20px;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4b03e; border-radius: 20px; overflow: hidden;">
+                                            <tr>
+                                                <td style="padding: 30px 25px;">
+                                                    <h3 style="margin: 0 0 10px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 32px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                                        Teatro
+                                                    </h3>
+                                                    <p style="margin: 0 0 15px 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #1a1a1a; text-transform: uppercase; letter-spacing: 1px;">
+                                                        TAG YOUR STAGE
+                                                    </p>
+                                                    <p style="margin: 0 0 20px 0; font-family: Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                        Exploras la profundidad del arte teatral, desarrollando técnicas de actuación que conectan con el público de forma auténtica. Construyes personajes memorables y dominas el espacio escénico.
+                                                    </p>
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.5px;">
+                                                        GARAGE THEATER +
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <!-- Garage Cinema -->
+                                    <td width="50%" valign="top" style="padding-left: 10px; padding-bottom: 20px;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4b03e; border-radius: 20px; overflow: hidden;">
+                                            <tr>
+                                                <td style="padding: 30px 25px;">
+                                                    <h3 style="margin: 0 0 10px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 32px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                                        Cine
+                                                    </h3>
+                                                    <p style="margin: 0 0 15px 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #1a1a1a; text-transform: uppercase; letter-spacing: 1px;">
+                                                        TAG YOUR SCENE
+                                                    </p>
+                                                    <p style="margin: 0 0 20px 0; font-family: Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                        Desarrollas una narrativa cinematográfica distintiva, construyendo personajes y escenas complejas que trascienden la pantalla. Descubres el lenguaje de la cámara y lo conviertes en tu aliado para crear historias que se sientan reales.
+                                                    </p>
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.5px;">
+                                                        GARAGE CINEMA +
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- Second Row -->
+                                <tr>
+                                    <!-- Garage Acting in English -->
+                                    <td width="50%" valign="top" style="padding-right: 10px;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4b03e; border-radius: 20px; overflow: hidden;">
+                                            <tr>
+                                                <td style="padding: 30px 25px;">
+                                                    <h3 style="margin: 0 0 10px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 32px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                                        Acting in English
+                                                    </h3>
+                                                    <p style="margin: 0 0 15px 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #1a1a1a; text-transform: uppercase; letter-spacing: 1px;">
+                                                        TAG YOUR VOICE
+                                                    </p>
+                                                    <p style="margin: 0 0 20px 0; font-family: Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                        Perfeccionas tu actuación en inglés, desarrollando confianza y naturalidad en un segundo idioma. Trabajas con textos y escenas que amplían tus oportunidades profesionales internacionales.
+                                                    </p>
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.5px;">
+                                                        GARAGE ACTING IN ENGLISH +
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <!-- Garage Interprétation en Français -->
+                                    <td width="50%" valign="top" style="padding-left: 10px;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4b03e; border-radius: 20px; overflow: hidden;">
+                                            <tr>
+                                                <td style="padding: 30px 25px;">
+                                                    <h3 style="margin: 0 0 10px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 32px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                                        Interprétation en Français
+                                                    </h3>
+                                                    <p style="margin: 0 0 15px 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #1a1a1a; text-transform: uppercase; letter-spacing: 1px;">
+                                                        TAG YOUR EXPRESSION
+                                                    </p>
+                                                    <p style="margin: 0 0 20px 0; font-family: Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                        Desarrollas tu capacidad actoral en francés, explorando la riqueza expresiva del idioma. Trabajas con técnicas que te permiten actuar con autenticidad y fluidez en proyectos francófonos.
+                                                    </p>
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.5px;">
+                                                        GARAGE INTERPRÉTATION EN FRANÇAIS +
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- "SI" Section with Bullet Points -->
+                    <tr>
+                        <td style="padding: 0 20px 40px 20px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <!-- Logo Left -->
+                                    <td width="180" valign="top" style="padding-right: 30px;">
+                                        <div style="width: 150px; height: 200px; display: flex; align-items: center; justify-content: center;">
+                                            <img src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/1cefaa1f-e0dc-8e14-e39f-1263b641bb9f.png" alt="SI" style="width: 150px; height: auto; display: block;">
+                                        </div>
+                                    </td>
+                                    <!-- Bullet Points Right -->
+                                    <td valign="top">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                        → <strong>DESCUBRES PARTES DE TI</strong> QUE NI SABÍAS QUE EXISTÍAN
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                        → CONVIERTES TU <strong>VULNERABILIDAD EN FORTALEZA</strong>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                        → GANAS <strong>CONFIANZA REAL</strong>, NO FINGIDA
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                        → <strong>CONECTAS CON UNA COMUNIDAD</strong> QUE COMPARTE TU PASIÓN Y TE IMPULSAN A SER MEJOR
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                                                       → <strong>CRECES</strong> COMO *|IF:MMERGE7=female|*ACTRIZ*|ELSE:|*ACTOR*|END:IF|* Y COMO PERSONA
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Yellow Section -->
+                    <tr>
+                        <td style="padding: 0;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4b03e;">
+                                <tr>
+                                    <td style="padding: 50px 40px;" align="center">
+                                        <h3 style="margin: 0 0 10px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 42px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; line-height: 1.1; text-align: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                            TAG YOUR JOURNEY
+                                        </h3>
+                                        <h4 style="margin: 0 0 5px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 42px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; line-height: 1.1; text-align: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                            ACTUACIÓN SIN FILTROS.
+                                        </h4>
+                                        <h4 style="margin: 0 0 25px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 42px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; line-height: 1.1; text-align: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                            SIN MIEDOS NI LÍMITES.
+                                        </h4>
+                                        <p style="margin: 0; font-family: Helvetica, sans-serif; font-size: 13px; color: #1a1a1a; text-align: center; line-height: 1.6;">
+                                           <strong>
+  Cada *|IF:MMERGE7=female|*actriz*|ELSE:|*actor*|END:IF|* tiene algo único.
+</strong>
+Nuestro trabajo es ayudarte a <strong>descubrirlo y proyectarlo</strong><br>
+                                            con fuerza, acompañada por profesionales que ya vivieron esa transformación.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Bottom CTA Section -->
+                    <tr>
+                        <td style="padding: 0;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #1a1a1a; border-radius: 0 0 30px 30px;">
+                                <tr>
+                                    <td style="padding: 50px 40px;">
+                                        <!-- CTA Headline -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td style="padding-bottom: 30px;">
+                                                    <h5 style="margin: 0 0 10px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 32px; font-weight: 500; color: #f4b03e; text-transform: uppercase; letter-spacing: -0.5px; text-align:center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                                        ¿QUIERES DAR EL PRIMER PASO?
+                                                    </h5>
+                                                    <p style="margin: 0; font-family: Helvetica, sans-serif; font-size: 14px; color: #e8e4da; line-height: 1.5; text-align:center">
+                                                        Déjanos tu teléfono para conversar sobre tus objetivos, sueños<br>
+                                                        y miedos reales :)
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <!-- CTA Button -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto;">
+                                            <tr>
+                                                <td style="border-radius: 50px; background-color: #f4b03e; padding: 20px 80px;">
+                                                    <a href="https://tag-form-beige.vercel.app?email=*|EMAIL|*&name=*|FNAME|*&source=email_campaign&utm_source=mailchimp&utm_medium=email&utm_campaign=acting_garage_interest" style="font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: 500; color: #1a1a1a; text-decoration: none; text-transform: uppercase; letter-spacing: -0.5px; display: inline-block; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; text-align: center;">
+                                                        ME INTERESA!
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <!-- Founders Section -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top: 40px;">
+                                            <tr>
+                                                <td align="center" style="padding-bottom: 30px;">
+                                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; max-width: 400px;">
+                                                        <tr>
+                                                            <!-- Founder 1 -->
+                                                            <td align="center" style="width: 50%; padding: 0 10px;">
+                                                                <div style="text-align: center;">
+                                                                    <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px auto; border: 3px solid #f4b03e;">
+                                                                        <img src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/bbf2c804-6ae5-2cfa-97b4-a23ede914cf6.jpg" alt="Tony Corvillo" style="width: 120px; height: 120px; display: block; object-fit: cover;">
+                                                                    </div>
+                                                                    <h2 style="margin: 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: 500; color: #f4b03e; text-transform: uppercase; letter-spacing: -0.5px; text-align: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                                                        Tony Corvillo
+                                                                    </h2>
+                                                                </div>
+                                                            </td>
+                                                            <!-- Founder 2 -->
+                                                            <td align="center" style="width: 50%; padding: 0 10px;">
+                                                                <div style="text-align: center;">
+                                                                    <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px auto; border: 3px solid #f4b03e;">
+                                                                        <img src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/032d3a3c-f6ba-a826-ed37-339fbc96e935.jpg" alt="Andrés Vicente" style="width: 120px; height: 120px; display: block; object-fit: cover;">
+                                                                    </div>
+                                                                    <h2 style="margin: 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: 500; color: #f4b03e; text-transform: uppercase; letter-spacing: -0.5px; text-align: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                                                        Andrés Vicente
+                                                                    </h2>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <!-- Footer Info -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top: 20px;">
+                                            <tr>
+                                                <td style="padding-bottom: 20px;">
+                                                    <p style="margin: 0; font-family: Helvetica, sans-serif; font-size: 12px; color: #e8e4da; line-height: 1.5;">
+                                                        The Acting Garage — Barcelona<br>
+                                                        @theactingarage | theactingarage.com
+                                                    </p>
+                                                </td>
+                                                <td align="right" valign="top">
+                                                    <!-- Badge Placeholder -->
+                                                    <div style="height: 80px; border-radius: 50%; display: flex; align-items: flex-end; justify-content: flex-end;">
+                                                        <img src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/4c56683f-7143-90ec-7562-3987b221a970.png" alt="TAG Badge" style="width: 100px; height: 100px; display: block; border-radius: 50%;">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <p style="margin: 20px 0 0 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: 500; color: #f4b03e; text-transform: uppercase; letter-spacing: -0.5px; text-align: right; line-height: 1.2; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
+                                                        BUILT TO TRANSFORM<br>
+                                                        BOLD PERFORMANCES
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Mailchimp Footer -->
+                    <tr>
+                        <td style="padding: 30px 20px;" align="center">
+                            <p style="margin: 0; font-family: Arial, sans-serif; font-size: 11px; color: #666; text-align: center;">
+                                <a href="*|UNSUB|*" style="color: #666; text-decoration: underline;">Darse de baja</a> | 
+                                <a href="*|UPDATE_PROFILE|*" style="color: #666; text-decoration: underline;">Actualizar preferencias</a>
+                            </p>
+                            <p style="margin: 10px 0 0 0; font-family: Arial, sans-serif; font-size: 11px; color: #666; text-align: center;">
+                   
+                            </p>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>
+

@@ -22,7 +22,8 @@ export default async function handler(req, res) {
 
   try {
     // Mailchimp configuration
-    const MAILCHIMP_API_KEY = process.env.VITE_MAILCHIMP_API_KEY;
+    // Try both VITE_ prefix (for compatibility) and without (standard for serverless)
+    const MAILCHIMP_API_KEY = process.env.MAILCHIMP_API_KEY || process.env.VITE_MAILCHIMP_API_KEY;
     const MAILCHIMP_SERVER = 'us3';
     const MAILCHIMP_LIST_ID = '0318e55dfd';
 
@@ -30,7 +31,7 @@ export default async function handler(req, res) {
       return res.status(500).json({
         success: false,
         message: 'Mailchimp configuration not found',
-        error: 'Missing VITE_MAILCHIMP_API_KEY'
+        error: 'Missing MAILCHIMP_API_KEY or VITE_MAILCHIMP_API_KEY'
       });
     }
 
