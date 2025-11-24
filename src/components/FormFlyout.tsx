@@ -19,6 +19,8 @@ const COURSES = [
   'Garage Cinema',
   'Garage Hybrid',
   'Garage Hybrid Plus',
+  'Garage Kids',
+  'Garage New Generation',
   'Garage New Generation Hybrid',
   'Garage Evolution',
   'Garage Classic',
