@@ -128,6 +128,7 @@ const Dashboard = () => {
   const [filterDatePreset, setFilterDatePreset] = useState<string>('all');
   const [customDateStart, setCustomDateStart] = useState<string>('');
   const [customDateEnd, setCustomDateEnd] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalLeads, setModalLeads] = useState<MemberData[]>([]);
   const [modalTitle, setModalTitle] = useState('');
@@ -281,9 +282,28 @@ const Dashboard = () => {
         return false;
       }
       
+      // Search filter
+      if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase().trim();
+        const searchableText = [
+          m['Email Address'],
+          m['First Name'],
+          m['Last Name'],
+          `${m['First Name']} ${m['Last Name']}`,
+          m['Phone Number'],
+          m.Interests,
+          m.Source,
+          m['UTM Campaign'],
+          m['UTM Source'],
+          m['UTM Medium']
+        ].join(' ').toLowerCase();
+        
+        if (!searchableText.includes(query)) return false;
+      }
+      
       return true;
     });
-  }, [members, filterSource, filterInterest, filterCampaign, filterDatePreset, customDateStart, customDateEnd]);
+  }, [members, filterSource, filterInterest, filterCampaign, filterDatePreset, customDateStart, customDateEnd, searchQuery]);
 
   // Get filtered leads for insights
   const getFilteredLeads = (filterType: string) => {
@@ -543,6 +563,38 @@ const Dashboard = () => {
             <p className="text-sm text-gray-600">
               Showing <span className="font-semibold">{filteredMembers.length}</span> of <span className="font-semibold">{members.length}</span> leads
             </p>
+          </div>
+        </div>
+
+        {/* Search Bar */}
+        <div className="bg-white rounded-lg shadow p-4 mb-6">
+          <div className="flex items-center gap-4">
+            <div className="flex-1">
+              <label htmlFor="search" className="sr-only">Search leads</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  id="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search by email, name, phone, interests, source, or campaign..."
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800"
+              >
+                Clear
+              </button>
+            )}
           </div>
         </div>
 
