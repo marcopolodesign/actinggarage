@@ -49,7 +49,7 @@ const EmailFooter: React.FC = () => {
             {/* CTA Button */}
             <div className="flex justify-center mx-auto">
               <button 
-                onClick={openFlyout}
+                onClick={() => openFlyout()}
                 className="bg-tag-yellow font-druk text-2xl font-medium text-black no-underline uppercase tracking-tight inline-block antialiased text-center py-5 px-20 rounded-full border-none cursor-pointer hover:opacity-90 transition-opacity"
               >
                 ME INTERESA!
