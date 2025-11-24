@@ -60,7 +60,7 @@ const LeadsModal = ({ isOpen, onClose, title, leads }: ModalProps) => {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Birthday</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Interests</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Source</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Campaign</th>
@@ -82,7 +82,7 @@ const LeadsModal = ({ isOpen, onClose, title, leads }: ModalProps) => {
                           {member['First Name']} {member['Last Name']}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{member['Phone Number']}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{member.Age}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{member.Birthday || '-'}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 capitalize">{member.Interests}</td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
@@ -209,13 +209,10 @@ const Dashboard = () => {
       });
     });
 
-    // Calculate average age
-    const ages = members
-      .map(m => parseInt(m.Age))
-      .filter(age => !isNaN(age) && age > 0);
-    const averageAge = ages.length > 0 
-      ? Math.round(ages.reduce((a, b) => a + b, 0) / ages.length)
-      : 0;
+    // Calculate average age from birthday (MM/DD format)
+    // Note: Since we only have MM/DD, we can't calculate exact age
+    // This is a placeholder - age calculations removed
+    const averageAge = 0;
 
     // Find top campaign
     const campaignCounts: Record<string, number> = {};
@@ -354,37 +351,11 @@ const Dashboard = () => {
   }, [members]);
 
   // Calculate age + gender combined data
+  // Note: Since birthday is stored as MM/DD format, we can't calculate exact age
+  // This chart is disabled until we have full date information
   const ageGenderData = useMemo(() => {
-    const ageGroups = ['17-25', '26-35', '36-45', '46-55', '56+'];
-    const genders = ['masculino', 'femenino', 'no_especificado'];
-    const data: Array<{ ageGroup: string; masculino: number; femenino: number; no_especificado: number }> = [];
-
-    ageGroups.forEach(ageGroup => {
-      const [min, max] = ageGroup === '56+' 
-        ? [56, 200] 
-        : ageGroup.split('-').map(Number);
-      
-      const groupData: { ageGroup: string; masculino: number; femenino: number; no_especificado: number } = {
-        ageGroup,
-        masculino: 0,
-        femenino: 0,
-        no_especificado: 0
-      };
-
-      members.forEach(m => {
-        const age = parseInt(m.Age);
-        if (!isNaN(age) && age >= min && (max === undefined || age <= max)) {
-          const gender = m.Gender || 'no_especificado';
-          if (gender === 'masculino') groupData.masculino++;
-          else if (gender === 'femenino') groupData.femenino++;
-          else groupData.no_especificado++;
-        }
-      });
-
-      data.push(groupData);
-    });
-
-    return data;
+    // Return empty data since we can't calculate age from MM/DD format
+    return [];
   }, [members]);
 
   const totalPages = Math.ceil(allFilteredMembers.length / tableItemsPerPage);
@@ -556,8 +527,9 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-2">Average Age</h3>
-            <p className="text-3xl font-bold text-gray-900">{insights.averageAge}</p>
+            <h3 className="text-sm font-medium text-gray-500 mb-2">Total Members</h3>
+            <p className="text-3xl font-bold text-gray-900">{insights.totalLeads}</p>
+            <p className="text-xs text-gray-400 mt-2">Birthday data available</p>
           </div>
         </div>
 
@@ -638,7 +610,7 @@ const Dashboard = () => {
                     fill="#8884d8"
                     dataKey="value"
                   >
-                    {genderData.map((entry, index) => {
+                    {genderData.map((_, index) => {
                       const colors = ['#3b82f6', '#ec4899', '#6b7280'];
                       return <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />;
                     })}

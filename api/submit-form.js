@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email, name, phone, age, interests, gender, course, source, utm_source, utm_medium, utm_campaign, utm_id } = req.body;
+    const { email, name, phone, birthday, interests, gender, course, source, utm_source, utm_medium, utm_campaign, utm_id } = req.body;
 
     // Validate required fields
     if (!email || !name || !phone || !interests) {
@@ -54,7 +54,7 @@ export default async function handler(req, res) {
       FNAME: name.split(' ')[0] || '',
       LNAME: name.split(' ').slice(1).join(' ') || '',
       PHONE: phone,
-      AGE: age,
+      BIRTHDAY: birthday || '', // Format: MM/DD
       SOURCE: source || 'website_form',
       MMERGE5: interests,
       GENDER: gender || '',

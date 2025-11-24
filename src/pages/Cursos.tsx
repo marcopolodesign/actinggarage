@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
+import { useFormFlyout } from '../context/FormFlyoutContext';
 
 const Cursos: React.FC = () => {
   const cursosTextRef = useRef<HTMLSpanElement>(null);
@@ -126,9 +127,14 @@ const Cursos: React.FC = () => {
   ];
 
   const [expandedCourse, setExpandedCourse] = useState<number | null>(null);
+  const { openFlyout } = useFormFlyout();
 
   const toggleCourse = (index: number) => {
     setExpandedCourse(expandedCourse === index ? null : index);
+  };
+
+  const handleMoreInfo = (courseTitle: string) => {
+    openFlyout(courseTitle);
   };
 
   // Scroll-based animations
@@ -355,7 +361,7 @@ const Cursos: React.FC = () => {
                   <p className="text-white text-lg leading-relaxed mb-8">
                     {course.description}
                   </p>
-                  <div className="space-y-2 text-white">
+                  <div className="space-y-2 text-white mb-6">
                     <p><strong>Duración total:</strong> {course.duracion}</p>
                     <p><strong>Días por semana:</strong> {course.diasSemana}</p>
                     <p><strong>Carga horaria semanal:</strong> {course.cargaHoraria}</p>
@@ -363,6 +369,15 @@ const Cursos: React.FC = () => {
                     <p><strong>Modalidad:</strong> {course.modalidad}</p>
                     <p><strong>Objetivo:</strong> {course.objetivo}</p>
                   </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleMoreInfo(course.title);
+                    }}
+                    className="px-8 py-3 bg-tag-yellow text-black font-bold text-lg uppercase transition-all duration-300 hover:bg-white hover:-translate-y-0.5"
+                  >
+                    QUIERO MÁS INFORMACIÓN
+                  </button>
                 </div>
               )}
 
