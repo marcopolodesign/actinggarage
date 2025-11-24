@@ -610,7 +610,7 @@ const Dashboard = () => {
                     fill="#8884d8"
                     dataKey="value"
                   >
-                    {genderData.map((entry, index) => {
+                    {genderData.map((_, index) => {
                       const colors = ['#3b82f6', '#ec4899', '#6b7280'];
                       return <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />;
                     })}
