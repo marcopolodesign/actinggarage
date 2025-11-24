@@ -133,7 +133,6 @@ const Dashboard = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalLeads, setModalLeads] = useState<MemberData[]>([]);
   const [modalTitle, setModalTitle] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
   const [totalMembers, setTotalMembers] = useState(0);
   const [allMembersLoaded, setAllMembersLoaded] = useState(false);
   const [tablePage, setTablePage] = useState(1);
@@ -170,26 +169,8 @@ const Dashboard = () => {
     fetchMembers();
   }, []);
 
-  // Load more members when page changes
-  useEffect(() => {
-    if (currentPage > 1 && !allMembersLoaded) {
-      const fetchMoreMembers = async () => {
-        try {
-          const offset = (currentPage - 1) * membersPerPage;
-          const response = await getMembers({ count: membersPerPage, offset });
-          if (response.success && response.members) {
-            setMembers(prev => [...prev, ...response.members!]);
-            if (response.members.length < membersPerPage) {
-              setAllMembersLoaded(true);
-            }
-          }
-        } catch (err) {
-          console.error('Error loading more members:', err);
-        }
-      };
-      fetchMoreMembers();
-    }
-  }, [currentPage, allMembersLoaded]);
+  // Note: Pagination for loading more members can be added later if needed
+  // Currently loading 100 members initially is sufficient
 
   // Calculate insights
   const insights: Insights = useMemo(() => {
@@ -532,7 +513,7 @@ const Dashboard = () => {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) => `${name}: ${((percent || 0) * 100).toFixed(0)}%`}
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
