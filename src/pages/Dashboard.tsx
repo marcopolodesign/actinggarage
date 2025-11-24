@@ -87,10 +87,12 @@ const LeadsModal = ({ isOpen, onClose, title, leads }: ModalProps) => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                             member.Source === 'organic' 
-                              ? 'bg-green-100 text-green-800' 
-                              : 'bg-blue-100 text-blue-800'
+                              ? 'bg-green-100 text-green-800'
+                              : member.Source === 'paid' || member.Source === 'google_ads' || member.Source === 'email_campaign'
+                              ? 'bg-blue-100 text-blue-800'
+                              : 'bg-gray-100 text-gray-800'
                           }`}>
-                            {member.Source}
+                            {member.Source === 'email_campaign' ? 'Email Campaign' : member.Source}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{member['UTM Campaign'] || '-'}</td>
@@ -178,7 +180,12 @@ const Dashboard = () => {
     const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     const organicLeads = members.filter(m => m.Source === 'organic');
-    const paidLeads = members.filter(m => m.Source === 'email_campaign');
+    // Paid leads include: paid, google_ads, email_campaign (for backward compatibility)
+    const paidLeads = members.filter(m => 
+      m.Source === 'paid' || 
+      m.Source === 'google_ads' || 
+      m.Source === 'email_campaign'
+    );
 
     // Filter by week
     const organicThisWeek = organicLeads.filter(m => {
@@ -276,9 +283,13 @@ const Dashboard = () => {
     const dateRange = getDateRange();
     
     return members.filter(m => {
-      // Handle "paid" filter (email_campaign)
-      if (filterSource === 'paid' && m.Source !== 'email_campaign') return false;
-      if (filterSource !== 'all' && filterSource !== 'paid' && m.Source !== filterSource) return false;
+      // Handle "paid" filter (includes paid, google_ads, email_campaign)
+      if (filterSource === 'paid') {
+        const isPaid = m.Source === 'paid' || m.Source === 'google_ads' || m.Source === 'email_campaign';
+        if (!isPaid) return false;
+      } else if (filterSource !== 'all' && m.Source !== filterSource) {
+        return false;
+      }
       if (filterInterest !== 'all' && !m.Interests.includes(filterInterest)) return false;
       if (filterCampaign !== 'all') {
         if (filterCampaign === 'none' && m['UTM Campaign']) return false;
@@ -348,11 +359,19 @@ const Dashboard = () => {
         });
       case 'paid-this-week':
         // Show ALL paid leads when clicking the card, not just this week
-        return members.filter(m => m.Source === 'email_campaign');
+        return members.filter(m => 
+          m.Source === 'paid' || 
+          m.Source === 'google_ads' || 
+          m.Source === 'email_campaign'
+        );
       case 'organic-total':
         return members.filter(m => m.Source === 'organic');
       case 'paid-total':
-        return members.filter(m => m.Source === 'email_campaign');
+        return members.filter(m => 
+          m.Source === 'paid' || 
+          m.Source === 'google_ads' || 
+          m.Source === 'email_campaign'
+        );
       default:
         return [];
     }
@@ -361,8 +380,19 @@ const Dashboard = () => {
   // Calculate audience acquisition data for pie chart
   const audienceData = useMemo(() => {
     const organic = members.filter(m => m.Source === 'organic').length;
-    const paid = members.filter(m => m.Source === 'email_campaign').length;
-    const other = members.filter(m => m.Source && m.Source !== 'organic' && m.Source !== 'email_campaign').length;
+    // Group all paid sources together
+    const paid = members.filter(m => 
+      m.Source === 'paid' || 
+      m.Source === 'google_ads' || 
+      m.Source === 'email_campaign'
+    ).length;
+    const other = members.filter(m => 
+      m.Source && 
+      m.Source !== 'organic' && 
+      m.Source !== 'paid' && 
+      m.Source !== 'google_ads' && 
+      m.Source !== 'email_campaign'
+    ).length;
 
     return [
       { name: 'Organic', value: organic, color: '#10b981' },
@@ -381,8 +411,11 @@ const Dashboard = () => {
   // Get unique values for filters
   const uniqueSources = useMemo(() => {
     const sources = Array.from(new Set(members.map(m => m.Source))).filter(Boolean);
-    // Add "paid" option if email_campaign exists
-    if (sources.includes('email_campaign')) {
+    // Add "paid" option if any paid source exists
+    const hasPaidSources = sources.some(s => 
+      s === 'paid' || s === 'google_ads' || s === 'email_campaign'
+    );
+    if (hasPaidSources && !sources.includes('paid')) {
       return ['paid', ...sources];
     }
     return sources;
@@ -497,7 +530,10 @@ const Dashboard = () => {
             <p className="text-2xl font-bold text-gray-900">{insights.topCampaign}</p>
             <p className="text-sm text-gray-500 mt-2">
               {insights.topCampaign !== 'N/A' 
-                ? `${members.filter(m => m.Source === 'email_campaign' && m['UTM Campaign'] === insights.topCampaign).length} leads`
+                ? `${members.filter(m => 
+                    (m.Source === 'paid' || m.Source === 'google_ads' || m.Source === 'email_campaign') && 
+                    m['UTM Campaign'] === insights.topCampaign
+                  ).length} leads`
                 : 'No campaign data available'}
             </p>
           </div>
@@ -694,10 +730,12 @@ const Dashboard = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                         member.Source === 'organic' 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-blue-100 text-blue-800'
+                          ? 'bg-green-100 text-green-800'
+                          : member.Source === 'paid' || member.Source === 'google_ads' || member.Source === 'email_campaign'
+                          ? 'bg-blue-100 text-blue-800'
+                          : 'bg-gray-100 text-gray-800'
                       }`}>
-                        {member.Source}
+                        {member.Source === 'email_campaign' ? 'Email Campaign' : member.Source}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{member['UTM Campaign'] || '-'}</td>
