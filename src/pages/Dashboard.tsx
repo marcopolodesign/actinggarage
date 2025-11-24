@@ -125,6 +125,9 @@ const Dashboard = () => {
   const [filterSource, setFilterSource] = useState<string>('all');
   const [filterInterest, setFilterInterest] = useState<string>('all');
   const [filterCampaign, setFilterCampaign] = useState<string>('all');
+  const [filterDatePreset, setFilterDatePreset] = useState<string>('all');
+  const [customDateStart, setCustomDateStart] = useState<string>('');
+  const [customDateEnd, setCustomDateEnd] = useState<string>('');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalLeads, setModalLeads] = useState<MemberData[]>([]);
   const [modalTitle, setModalTitle] = useState('');
@@ -215,8 +218,50 @@ const Dashboard = () => {
     };
   }, [members]);
 
+  // Date filter helper
+  const getDateRange = () => {
+    const now = new Date();
+    now.setHours(23, 59, 59, 999); // End of today
+    
+    if (filterDatePreset === 'custom') {
+      if (!customDateStart || !customDateEnd) return null;
+      const start = new Date(customDateStart);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(customDateEnd);
+      end.setHours(23, 59, 59, 999);
+      return { start, end };
+    }
+
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+
+    switch (filterDatePreset) {
+      case 'today':
+        return { start, end: now };
+      case '2days':
+        start.setDate(start.getDate() - 1);
+        return { start, end: now };
+      case '5days':
+        start.setDate(start.getDate() - 4);
+        return { start, end: now };
+      case '7days':
+        start.setDate(start.getDate() - 6);
+        return { start, end: now };
+      case '14days':
+        start.setDate(start.getDate() - 13);
+        return { start, end: now };
+      case '30days':
+        start.setDate(start.getDate() - 29);
+        return { start, end: now };
+      default:
+        return null;
+    }
+  };
+
   // Filter members
   const filteredMembers = useMemo(() => {
+    const dateRange = getDateRange();
+    
     return members.filter(m => {
       // Handle "paid" filter (email_campaign)
       if (filterSource === 'paid' && m.Source !== 'email_campaign') return false;
@@ -226,9 +271,19 @@ const Dashboard = () => {
         if (filterCampaign === 'none' && m['UTM Campaign']) return false;
         if (filterCampaign !== 'none' && m['UTM Campaign'] !== filterCampaign) return false;
       }
+      
+      // Date filter
+      if (dateRange && m.OPTIN_TIME) {
+        const optinDate = new Date(m.OPTIN_TIME);
+        if (optinDate < dateRange.start || optinDate > dateRange.end) return false;
+      } else if (dateRange && !m.OPTIN_TIME) {
+        // If date filter is active but member has no opt-in time, exclude
+        return false;
+      }
+      
       return true;
     });
-  }, [members, filterSource, filterInterest, filterCampaign]);
+  }, [members, filterSource, filterInterest, filterCampaign, filterDatePreset, customDateStart, customDateEnd]);
 
   // Get filtered leads for insights
   const getFilteredLeads = (filterType: string) => {
@@ -396,7 +451,7 @@ const Dashboard = () => {
         {/* Filters */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Filters</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Source</label>
               <select
@@ -440,7 +495,50 @@ const Dashboard = () => {
                 ))}
               </select>
             </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
+              <select
+                value={filterDatePreset}
+                onChange={(e) => setFilterDatePreset(e.target.value)}
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              >
+                <option value="all">All Time</option>
+                <option value="today">Today</option>
+                <option value="2days">Last 2 Days</option>
+                <option value="5days">Last 5 Days</option>
+                <option value="7days">Last 7 Days</option>
+                <option value="14days">Last 14 Days</option>
+                <option value="30days">Last 30 Days</option>
+                <option value="custom">Custom Range</option>
+              </select>
+            </div>
           </div>
+
+          {/* Custom Date Range Inputs */}
+          {filterDatePreset === 'custom' && (
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                <input
+                  type="date"
+                  value={customDateStart}
+                  onChange={(e) => setCustomDateStart(e.target.value)}
+                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+                <input
+                  type="date"
+                  value={customDateEnd}
+                  onChange={(e) => setCustomDateEnd(e.target.value)}
+                  className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+          )}
+
           <div className="mt-4">
             <p className="text-sm text-gray-600">
               Showing <span className="font-semibold">{filteredMembers.length}</span> of <span className="font-semibold">{members.length}</span> leads
