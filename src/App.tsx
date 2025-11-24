@@ -13,6 +13,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
+import Dashboard from './pages/Dashboard';
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cursos" element={<Cursos />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
             <FormFlyout />
             <AboutFlyout />
