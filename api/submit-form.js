@@ -55,6 +55,7 @@ export default async function handler(req, res) {
       LNAME: name.split(' ').slice(1).join(' ') || '',
       PHONE: phone,
       BIRTHDAY: birthday || '', // Format: MM/DD
+      AGE: age || '', // Calculated age from birthday
       SOURCE: source || 'website_form',
       MMERGE5: interests,
       GENDER: gender || '',

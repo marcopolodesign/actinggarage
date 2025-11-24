@@ -138,8 +138,8 @@ const Dashboard = () => {
   const [totalMembers, setTotalMembers] = useState(0);
   const [allMembersLoaded, setAllMembersLoaded] = useState(false);
   const [tablePage, setTablePage] = useState(1);
-  const membersPerPage = 100;
-  const tableItemsPerPage = 50;
+  const membersPerPage = 30; // Load 30 newest members
+  const tableItemsPerPage = 10; // Show 10 per page
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -400,28 +400,26 @@ const Dashboard = () => {
     }
   };
 
-  // Calculate audience acquisition data for pie chart
+  // Calculate audience acquisition data for pie chart based on UTM Source
   const audienceData = useMemo(() => {
-    const organic = members.filter(m => m.Source === 'organic').length;
-    // Group all paid sources together
-    const paid = members.filter(m => 
-      m.Source === 'paid' || 
-      m.Source === 'google_ads' || 
-      m.Source === 'email_campaign'
-    ).length;
-    const other = members.filter(m => 
-      m.Source && 
-      m.Source !== 'organic' && 
-      m.Source !== 'paid' && 
-      m.Source !== 'google_ads' && 
-      m.Source !== 'email_campaign'
-    ).length;
+    const acquisitionCounts: Record<string, number> = {};
+    
+    members.forEach(m => {
+      // If no UTM Source, it's organic
+      const source = m['UTM Source'] || 'organic';
+      acquisitionCounts[source] = (acquisitionCounts[source] || 0) + 1;
+    });
 
-    return [
-      { name: 'Organic', value: organic, color: '#10b981' },
-      { name: 'Paid Campaigns', value: paid, color: '#3b82f6' },
-      { name: 'Other', value: other, color: '#6b7280' }
-    ].filter(item => item.value > 0);
+    // Convert to array for chart
+    const colors = ['#10b981', '#3b82f6', '#ec4899', '#f59e0b', '#8b5cf6', '#ef4444', '#6b7280'];
+    return Object.entries(acquisitionCounts)
+      .sort(([, a], [, b]) => b - a)
+      .map(([name, value], index) => ({
+        name: name === 'organic' ? 'Organic' : name,
+        value,
+        color: colors[index % colors.length]
+      }))
+      .filter(item => item.value > 0);
   }, [members]);
 
   const handleInsightClick = (filterType: string, title: string) => {
@@ -493,7 +491,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Mailchimp Dashboard</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">Leads que necesitan atención</h1>
 
         {/* Insights Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -564,7 +562,7 @@ const Dashboard = () => {
 
           {/* Audience Acquisition Pie Chart */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-4">Audience Acquisition</h3>
+            <h3 className="text-sm font-medium text-gray-500 mb-4">Adquisition pie chart (utm_source)</h3>
             {audienceData.length > 0 ? (
               <ResponsiveContainer width="100%" height={200}>
                 <PieChart>
@@ -596,7 +594,8 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Gender Demographics */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-4">Demografía por Género</h3>
+            <h3 className="text-sm font-medium text-gray-500 mb-1">Demografía por Género</h3>
+            <p className="text-xs text-gray-400 mb-4">Demographic pie chart (age + gender)</p>
             {genderData.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
