@@ -75,11 +75,11 @@ export default async function handler(req, res) {
         'Last Name': mergeFields.LNAME || '',
         'Address': '',
         'Phone Number': mergeFields.PHONE || '',
-        'Birthday': '',
+        'Birthday': mergeFields.BIRTHDAY || '',
         'Company': '',
         'Gender': mergeFields.GENDER || '',
         'Interests': interests,
-        'Age': mergeFields.AGE || '',
+        'Age': '', // Age removed, use Birthday instead
         'Course': mergeFields.MMERGE6 || '',
         'Source': mergeFields.SOURCE || 'website_form',
         'UTM Source': mergeFields.MMERGE11 || '',

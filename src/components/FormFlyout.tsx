@@ -7,7 +7,7 @@ import './FormFlyout.css';
 interface FormData {
   name: string;
   phone: string;
-  age: string;
+  birthday: string;
   interests: string;
   gender: string;
   course: string;
@@ -33,7 +33,7 @@ const FormFlyout: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
-    age: '',
+    birthday: '',
     interests: '',
     gender: '',
     course: ''
@@ -48,7 +48,7 @@ const FormFlyout: React.FC = () => {
     const email = urlParams.get('email') || '';
     const name = urlParams.get('name') || '';
     const phone = urlParams.get('phone') || '';
-    const age = urlParams.get('age') || '';
+    const birthday = urlParams.get('birthday') || '';
     const interests = urlParams.get('interests') || '';
     const gender = urlParams.get('gender') || '';
     const course = urlParams.get('course') || '';
@@ -60,8 +60,8 @@ const FormFlyout: React.FC = () => {
     if (phone) {
       setFormData(prev => ({ ...prev, phone }));
     }
-    if (age) {
-      setFormData(prev => ({ ...prev, age }));
+    if (birthday) {
+      setFormData(prev => ({ ...prev, birthday }));
     }
     if (interests) {
       setFormData(prev => ({ ...prev, interests }));
@@ -122,13 +122,24 @@ const FormFlyout: React.FC = () => {
       utm_id,
     };
 
+    // Format birthday from YYYY-MM-DD to MM/DD
+    let formattedBirthday = '';
+    if (formData.birthday) {
+      const date = new Date(formData.birthday);
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      formattedBirthday = `${month}/${day}`;
+    }
+
     console.log('Form data:', formData);
     console.log('User email:', userEmail);
     console.log('UTM params:', currentUtmParams);
     console.log('Source:', source);
+    console.log('Formatted birthday:', formattedBirthday);
 
     const submissionData = {
       ...formData,
+      birthday: formattedBirthday,
       email: userEmail,
       source,
       ...currentUtmParams
@@ -153,7 +164,7 @@ const FormFlyout: React.FC = () => {
           setFormData({
             name: '',
             phone: '',
-            age: '',
+            birthday: '',
             interests: '',
             gender: '',
             course: ''
@@ -236,32 +247,32 @@ const FormFlyout: React.FC = () => {
                 />
               </div>
 
-              {/* Phone and Age */}
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="phone">TELÉFONO</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className="form-input"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="age">EDAD</label>
-                  <input
-                    type="number"
-                    id="age"
-                    name="age"
-                    value={formData.age}
-                    onChange={handleInputChange}
-                    required
-                    className="form-input"
-                  />
-                </div>
+              {/* Phone */}
+              <div className="form-group">
+                <label htmlFor="phone">TELÉFONO</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  className="form-input"
+                />
+              </div>
+
+              {/* Birthday */}
+              <div className="form-group">
+                <label htmlFor="birthday">FECHA DE NACIMIENTO</label>
+                <input
+                  type="date"
+                  id="birthday"
+                  name="birthday"
+                  value={formData.birthday}
+                  onChange={handleInputChange}
+                  required
+                  className="form-input"
+                />
               </div>
 
               {/* Interests */}
