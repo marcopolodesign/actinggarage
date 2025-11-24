@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import LogoMin from '../assets/LogoMin';
 import { useFormFlyout } from '../context/FormFlyoutContext';
@@ -15,6 +15,27 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
   const { openFlyout: openAboutFlyout } = useAboutFlyout();
   const location = useLocation();
   const isCursosPage = location.pathname === '/cursos';
+
+  // Determine WhatsApp message based on UTM parameters
+  const whatsappMessage = useMemo(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const utm_source = urlParams.get('utm_source');
+    const utm_medium = urlParams.get('utm_medium');
+    const utm_campaign = urlParams.get('utm_campaign');
+    
+    // If any UTM parameters are present, it's a paid campaign
+    const hasUtmParams = utm_source || utm_medium || utm_campaign;
+    
+    if (hasUtmParams) {
+      // Paid message
+      return encodeURIComponent("Hola TAG! Quiero más info sobre sus cursos!");
+    } else {
+      // Organic message
+      return encodeURIComponent("Hola! Quiero más información sobre los cursos de la escuela");
+    }
+  }, [location.search]);
+
+  const whatsappUrl = `https://wa.me/34682560187?text=${whatsappMessage}`;
 
   useEffect(() => {
     if (!showOnScroll) return;
@@ -123,7 +144,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
             
             {/* WhatsApp Button */}
             <a 
-              href="https://wa.me/34682560187"
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-white text-sm uppercase hover:text-tag-yellow transition-colors duration-300"
@@ -206,7 +227,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
           
           {/* WhatsApp Button for Mobile */}
           <a 
-            href="https://wa.me/34682560187"
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-black text-4xl uppercase font-druk hover:opacity-70 transition-opacity duration-300"

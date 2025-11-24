@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 const WhatsAppButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,9 +15,30 @@ const WhatsAppButton: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Determine message based on UTM parameters
+  const whatsappMessage = useMemo(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utm_source = urlParams.get('utm_source');
+    const utm_medium = urlParams.get('utm_medium');
+    const utm_campaign = urlParams.get('utm_campaign');
+    
+    // If any UTM parameters are present, it's a paid campaign
+    const hasUtmParams = utm_source || utm_medium || utm_campaign;
+    
+    if (hasUtmParams) {
+      // Paid message
+      return encodeURIComponent("Hola TAG! Quiero más info sobre sus cursos!");
+    } else {
+      // Organic message
+      return encodeURIComponent("Hola! Quiero más información sobre los cursos de la escuela");
+    }
+  }, []);
+
+  const whatsappUrl = `https://wa.me/34682560187?text=${whatsappMessage}`;
+
   return (
     <a
-      href="https://wa.me/34682560187"
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       className={`fixed bottom-5 md:bottom-[30px] right-5 md:right-[30px] z-50 transition-all duration-300 ${
