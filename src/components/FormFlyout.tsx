@@ -93,7 +93,8 @@ const FormFlyout: React.FC = () => {
   }, [isOpen]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+    const { name, value } = target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
