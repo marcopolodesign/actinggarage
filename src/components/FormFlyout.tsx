@@ -88,9 +88,29 @@ const FormFlyout: React.FC = () => {
     const utm_campaign = urlParams.get('utm_campaign') || '';
     const utm_id = urlParams.get('utm_id') || '';
     
-    // Determine source: if any UTM params exist, use 'email_campaign', otherwise 'organic'
-    const hasUtmParams = utm_source || utm_medium || utm_campaign || utm_id;
-    const source = hasUtmParams ? 'email_campaign' : 'organic';
+    // Determine source based on UTM parameters
+    let source = 'organic'; // Default to organic
+    
+    if (utm_source || utm_medium || utm_campaign || utm_id) {
+      // If utm_medium is 'email', it's an email campaign
+      if (utm_medium === 'email') {
+        source = 'email_campaign';
+      }
+      // If utm_medium is 'paid', it's a paid campaign (could be Google Ads, Facebook Ads, etc.)
+      else if (utm_medium === 'paid') {
+        // If utm_source is 'google', it's specifically Google Ads
+        if (utm_source === 'google') {
+          source = 'google_ads';
+        } else {
+          // Other paid sources (Facebook, Instagram, etc.)
+          source = 'paid';
+        }
+      }
+      // If we have UTM params but no specific match, default to email_campaign for backward compatibility
+      else {
+        source = 'email_campaign';
+      }
+    }
 
     const currentUtmParams = {
       utm_source,
