@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { getMembers } from '../api/getMembers';
 import type { MemberData } from '../api/types';
 
@@ -132,16 +133,25 @@ const Dashboard = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalLeads, setModalLeads] = useState<MemberData[]>([]);
   const [modalTitle, setModalTitle] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalMembers, setTotalMembers] = useState(0);
+  const [allMembersLoaded, setAllMembersLoaded] = useState(false);
+  const [tablePage, setTablePage] = useState(1);
+  const membersPerPage = 100;
+  const tableItemsPerPage = 50;
 
   useEffect(() => {
     const fetchMembers = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await getMembers({ count: 1000 });
+        // Load first 100 members
+        const response = await getMembers({ count: membersPerPage, offset: 0 });
         console.log('Dashboard API response:', response);
         if (response.success && response.members) {
           setMembers(response.members);
+          setTotalMembers(response.total_items || response.members.length);
+          setAllMembersLoaded((response.total_items || 0) <= membersPerPage);
         } else {
           const errorMsg = response.message || 'Failed to fetch members';
           const errorDetails = response.error ? JSON.stringify(response.error) : '';
@@ -159,6 +169,27 @@ const Dashboard = () => {
 
     fetchMembers();
   }, []);
+
+  // Load more members when page changes
+  useEffect(() => {
+    if (currentPage > 1 && !allMembersLoaded) {
+      const fetchMoreMembers = async () => {
+        try {
+          const offset = (currentPage - 1) * membersPerPage;
+          const response = await getMembers({ count: membersPerPage, offset });
+          if (response.success && response.members) {
+            setMembers(prev => [...prev, ...response.members!]);
+            if (response.members.length < membersPerPage) {
+              setAllMembersLoaded(true);
+            }
+          }
+        } catch (err) {
+          console.error('Error loading more members:', err);
+        }
+      };
+      fetchMoreMembers();
+    }
+  }, [currentPage, allMembersLoaded]);
 
   // Calculate insights
   const insights: Insights = useMemo(() => {
@@ -260,7 +291,7 @@ const Dashboard = () => {
   };
 
   // Filter members
-  const filteredMembers = useMemo(() => {
+  const allFilteredMembers = useMemo(() => {
     const dateRange = getDateRange();
     
     return members.filter(m => {
@@ -305,6 +336,20 @@ const Dashboard = () => {
     });
   }, [members, filterSource, filterInterest, filterCampaign, filterDatePreset, customDateStart, customDateEnd, searchQuery]);
 
+  // Paginate filtered members for table display
+  const filteredMembers = useMemo(() => {
+    const startIndex = (tablePage - 1) * tableItemsPerPage;
+    const endIndex = startIndex + tableItemsPerPage;
+    return allFilteredMembers.slice(startIndex, endIndex);
+  }, [allFilteredMembers, tablePage]);
+
+  const totalPages = Math.ceil(allFilteredMembers.length / tableItemsPerPage);
+
+  // Reset table page when filters change
+  useEffect(() => {
+    setTablePage(1);
+  }, [filterSource, filterInterest, filterCampaign, filterDatePreset, customDateStart, customDateEnd, searchQuery]);
+
   // Get filtered leads for insights
   const getFilteredLeads = (filterType: string) => {
     const now = new Date();
@@ -321,12 +366,8 @@ const Dashboard = () => {
           return optinDate >= oneWeekAgo;
         });
       case 'paid-this-week':
-        return members.filter(m => {
-          if (m.Source !== 'email_campaign') return false;
-          if (!m.OPTIN_TIME) return false;
-          const optinDate = new Date(m.OPTIN_TIME);
-          return optinDate >= oneWeekAgo;
-        });
+        // Show ALL paid leads when clicking the card, not just this week
+        return members.filter(m => m.Source === 'email_campaign');
       case 'organic-total':
         return members.filter(m => m.Source === 'organic');
       case 'paid-total':
@@ -335,6 +376,19 @@ const Dashboard = () => {
         return [];
     }
   };
+
+  // Calculate audience acquisition data for pie chart
+  const audienceData = useMemo(() => {
+    const organic = members.filter(m => m.Source === 'organic').length;
+    const paid = members.filter(m => m.Source === 'email_campaign').length;
+    const other = members.filter(m => m.Source && m.Source !== 'organic' && m.Source !== 'email_campaign').length;
+
+    return [
+      { name: 'Organic', value: organic, color: '#10b981' },
+      { name: 'Paid Campaigns', value: paid, color: '#3b82f6' },
+      { name: 'Other', value: other, color: '#6b7280' }
+    ].filter(item => item.value > 0);
+  }, [members]);
 
   const handleInsightClick = (filterType: string, title: string) => {
     const filtered = getFilteredLeads(filterType);
@@ -427,12 +481,12 @@ const Dashboard = () => {
 
           <div 
             className="bg-white rounded-lg shadow p-6 cursor-pointer hover:shadow-lg transition-shadow"
-            onClick={() => handleInsightClick('paid-this-week', 'Paid Campaign Leads (This Week)')}
+            onClick={() => handleInsightClick('paid-total', 'All Paid Campaign Leads')}
           >
             <h3 className="text-sm font-medium text-gray-500 mb-2">Paid Campaign Leads (This Week)</h3>
             <p className="text-3xl font-bold text-blue-600">{insights.paidCampaignLeadsThisWeek}</p>
             <p className="text-sm text-gray-500 mt-1">Total: {insights.totalPaidLeads}</p>
-            <p className="text-xs text-gray-400 mt-2">Click to view details</p>
+            <p className="text-xs text-gray-400 mt-2">Click to view all paid leads</p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
@@ -442,7 +496,7 @@ const Dashboard = () => {
         </div>
 
         {/* Additional Insights */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-sm font-medium text-gray-500 mb-4">Leads by Interest</h3>
             <div className="space-y-2">
@@ -465,6 +519,35 @@ const Dashboard = () => {
                 ? `${members.filter(m => m.Source === 'email_campaign' && m['UTM Campaign'] === insights.topCampaign).length} leads`
                 : 'No campaign data available'}
             </p>
+          </div>
+
+          {/* Audience Acquisition Pie Chart */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h3 className="text-sm font-medium text-gray-500 mb-4">Audience Acquisition</h3>
+            {audienceData.length > 0 ? (
+              <ResponsiveContainer width="100%" height={200}>
+                <PieChart>
+                  <Pie
+                    data={audienceData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {audienceData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <p className="text-sm text-gray-500 text-center py-8">No data available</p>
+            )}
           </div>
         </div>
 
@@ -561,7 +644,10 @@ const Dashboard = () => {
 
           <div className="mt-4">
             <p className="text-sm text-gray-600">
-              Showing <span className="font-semibold">{filteredMembers.length}</span> of <span className="font-semibold">{members.length}</span> leads
+              Showing <span className="font-semibold">{allFilteredMembers.length}</span> of <span className="font-semibold">{members.length}</span> leads
+              {!allMembersLoaded && members.length >= membersPerPage && (
+                <span className="ml-2 text-gray-500">(Loaded: {members.length} of {totalMembers})</span>
+              )}
             </p>
           </div>
         </div>
@@ -642,6 +728,86 @@ const Dashboard = () => {
               </tbody>
             </table>
           </div>
+          
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+              <div className="flex-1 flex justify-between sm:hidden">
+                <button
+                  onClick={() => setTablePage(prev => Math.max(1, prev - 1))}
+                  disabled={tablePage === 1}
+                  className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={() => setTablePage(prev => Math.min(totalPages, prev + 1))}
+                  disabled={tablePage === totalPages}
+                  className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Next
+                </button>
+              </div>
+              <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-gray-700">
+                    Showing <span className="font-medium">{(tablePage - 1) * tableItemsPerPage + 1}</span> to{' '}
+                    <span className="font-medium">{Math.min(tablePage * tableItemsPerPage, allFilteredMembers.length)}</span> of{' '}
+                    <span className="font-medium">{allFilteredMembers.length}</span> results
+                  </p>
+                </div>
+                <div>
+                  <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                    <button
+                      onClick={() => setTablePage(prev => Math.max(1, prev - 1))}
+                      disabled={tablePage === 1}
+                      className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span className="sr-only">Previous</span>
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </button>
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      let pageNum;
+                      if (totalPages <= 5) {
+                        pageNum = i + 1;
+                      } else if (tablePage <= 3) {
+                        pageNum = i + 1;
+                      } else if (tablePage >= totalPages - 2) {
+                        pageNum = totalPages - 4 + i;
+                      } else {
+                        pageNum = tablePage - 2 + i;
+                      }
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => setTablePage(pageNum)}
+                          className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
+                            tablePage === pageNum
+                              ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                              : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+                    <button
+                      onClick={() => setTablePage(prev => Math.min(totalPages, prev + 1))}
+                      disabled={tablePage === totalPages}
+                      className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span className="sr-only">Next</span>
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </button>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
