@@ -125,13 +125,23 @@ const FormFlyout: React.FC = () => {
       utm_id,
     };
 
-    // Format birthday from YYYY-MM-DD to MM/DD
+    // Format birthday from YYYY-MM-DD to MM/DD and calculate age
     let formattedBirthday = '';
+    let calculatedAge = '';
     if (formData.birthday) {
       const date = new Date(formData.birthday);
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
       formattedBirthday = `${month}/${day}`;
+      
+      // Calculate age from birthday
+      const today = new Date();
+      let age = today.getFullYear() - date.getFullYear();
+      const monthDiff = today.getMonth() - date.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < date.getDate())) {
+        age--;
+      }
+      calculatedAge = age.toString();
     }
 
     console.log('Form data:', formData);
@@ -143,6 +153,7 @@ const FormFlyout: React.FC = () => {
     const submissionData = {
       ...formData,
       birthday: formattedBirthday,
+      age: calculatedAge, // Add calculated age
       email: userEmail,
       source,
       ...currentUtmParams

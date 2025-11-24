@@ -79,8 +79,8 @@ export default async function handler(req, res) {
         'Company': '',
         'Gender': mergeFields.GENDER || '',
         'Interests': interests,
-        'Age': '', // Age removed, use Birthday instead
-        'Course': mergeFields.MMERGE6 || '',
+        'Age': mergeFields.AGE || '',
+        'Course': mergeFields.MMERGE14 || '',
         'Source': mergeFields.SOURCE || 'website_form',
         'UTM Source': mergeFields.MMERGE11 || '',
         'UTM Medium': mergeFields.MMERGE12 || '',

@@ -3,6 +3,7 @@ export interface FormSubmission {
   name: string;
   phone: string;
   birthday: string;
+  age?: string;
   interests: string;
   gender?: string;
   course?: string;
