@@ -7,19 +7,42 @@
 #### Via Vercel Dashboard:
 1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
 2. Select your project (`TAG` or `actinggarage`)
-3. Click on **"Functions"** tab
-4. Click on **`api/submit-form`** function
-5. View logs for:
+3. Click on **"Deployments"** tab
+4. Click on the **latest deployment**
+5. Scroll down to **"Functions"** section
+6. You should see:
+   - `api/submit-form` - Form submission handler
+   - `api/get-members` - Dashboard data fetcher
+7. Click on **`api/submit-form`** to view:
+   - **Function logs**: All console.log outputs
    - **Failed submissions**: Look for `FORM SUBMISSION FAILED` or `FAILED SUBMISSION DETAILS`
    - **Success submissions**: Look for `Mailchimp response SUCCESS`
    - **Errors**: Check for HTTP 500 status codes
 
+**Note**: Functions only appear after they've been called at least once. If you don't see them:
+- Submit a test form first
+- Or check the **"Logs"** tab in the deployment for real-time logs
+
 #### Via Vercel CLI:
 ```bash
+# View all logs
 vercel logs --follow
-# Filter for form submissions:
+
+# Filter for form submissions
 vercel logs | grep "FORM SUBMISSION"
+
+# View logs for specific function
+vercel logs --follow | grep "submit-form"
+
+# View logs from last hour
+vercel logs --since 1h
 ```
+
+#### Alternative: Check Deployment Logs
+1. Go to **Deployments** tab
+2. Click on any deployment
+3. Click **"View Function Logs"** or scroll to **"Build Logs"**
+4. Look for function invocations and errors
 
 ### 2. **Mailchimp Verification**
 
