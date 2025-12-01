@@ -4,6 +4,12 @@ import { submitForm } from '../api/submitForm';
 import { gsap } from 'gsap';
 import './FormFlyout.css';
 
+declare global {
+  interface Window {
+    fbq: (...args: any[]) => void;
+  }
+}
+
 interface FormData {
   name: string;
   phone: string;
@@ -85,6 +91,14 @@ const FormFlyout: React.FC = () => {
       const tl = gsap.timeline();
       tl.to(overlayRef.current, { opacity: 1, duration: 0.3 })
         .to(flyoutRef.current, { x: '0%', duration: 0.4, ease: 'power2.out' }, '-=0.1');
+      
+      // Track form view/start event with Meta Pixel
+      if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
+        window.fbq('trackCustom', 'FormStart', {
+          content_name: 'Contact Form',
+          content_category: 'Lead Generation'
+        });
+      }
     } else {
       if (flyoutRef.current && overlayRef.current) {
         const tl = gsap.timeline();
@@ -166,11 +180,25 @@ const FormFlyout: React.FC = () => {
 
       if (result.success) {
         setSubmitted(true);
+        
+        // Track Google Ads conversion
         if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
           window.gtag('event', 'conversion', {
             send_to: 'AW-17688095812/dXncCM7MhLsbEMTYq_JB',
           });
         }
+        
+        // Track Meta Pixel Lead event
+        if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
+          window.fbq('track', 'Lead', {
+            content_name: 'Contact Form Submission',
+            content_category: 'Lead Generation',
+            content_ids: formData.course ? [formData.course] : undefined,
+            content_type: 'form',
+            status: true
+          });
+        }
+        
         setTimeout(() => {
           setSubmitted(false);
           closeFlyout();
