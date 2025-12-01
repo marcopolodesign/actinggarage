@@ -44,6 +44,9 @@ const MetaPixel: React.FC = () => {
     if (typeof window.fbq !== 'undefined') {
       window.fbq('init', PIXEL_ID);
       window.fbq('track', 'PageView');
+      console.log('Meta Pixel: Initialized with ID', PIXEL_ID);
+    } else {
+      console.warn('Meta Pixel: Failed to initialize - fbq not available');
     }
   }, []);
 

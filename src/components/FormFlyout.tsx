@@ -93,12 +93,22 @@ const FormFlyout: React.FC = () => {
         .to(flyoutRef.current, { x: '0%', duration: 0.4, ease: 'power2.out' }, '-=0.1');
       
       // Track form view/start event with Meta Pixel
-      if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
-        window.fbq('trackCustom', 'FormStart', {
-          content_name: 'Contact Form',
-          content_category: 'Lead Generation'
-        });
-      }
+      // Small delay to ensure pixel is fully initialized
+      setTimeout(() => {
+        if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
+          try {
+            window.fbq('trackCustom', 'FormStart', {
+              content_name: 'Contact Form',
+              content_category: 'Lead Generation'
+            });
+            console.log('Meta Pixel: FormStart event tracked');
+          } catch (error) {
+            console.error('Meta Pixel: Error tracking FormStart', error);
+          }
+        } else {
+          console.warn('Meta Pixel: fbq not available for FormStart tracking');
+        }
+      }, 100);
     } else {
       if (flyoutRef.current && overlayRef.current) {
         const tl = gsap.timeline();
@@ -190,13 +200,26 @@ const FormFlyout: React.FC = () => {
         
         // Track Meta Pixel Lead event
         if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
-          window.fbq('track', 'Lead', {
-            content_name: 'Contact Form Submission',
-            content_category: 'Lead Generation',
-            content_ids: formData.course ? [formData.course] : undefined,
-            content_type: 'form',
-            status: true
-          });
+          try {
+            const leadParams: any = {
+              content_name: 'Contact Form Submission',
+              content_category: 'Lead Generation',
+              content_type: 'form',
+              status: true
+            };
+            
+            // Only add content_ids if course is provided
+            if (formData.course) {
+              leadParams.content_ids = [formData.course];
+            }
+            
+            window.fbq('track', 'Lead', leadParams);
+            console.log('Meta Pixel: Lead event tracked', leadParams);
+          } catch (error) {
+            console.error('Meta Pixel: Error tracking Lead', error);
+          }
+        } else {
+          console.warn('Meta Pixel: fbq not available for Lead tracking');
         }
         
         setTimeout(() => {
