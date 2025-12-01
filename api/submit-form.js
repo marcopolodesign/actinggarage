@@ -76,7 +76,16 @@ export default async function handler(req, res) {
 
     const MAILCHIMP_URL = `https://${MAILCHIMP_SERVER}.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST_ID}/members`;
 
-    console.log('Submitting to Mailchimp:', requestData);
+    // Log submission attempt with timestamp
+    const submissionTimestamp = new Date().toISOString();
+    console.log(`[${submissionTimestamp}] Submitting to Mailchimp:`, {
+      email,
+      name,
+      source,
+      utm_source,
+      utm_medium,
+      utm_campaign
+    });
 
     // Make request to Mailchimp API
     const response = await axios.post(MAILCHIMP_URL, requestData, {
@@ -86,7 +95,11 @@ export default async function handler(req, res) {
       },
     });
 
-    console.log('Mailchimp response:', response.data);
+    console.log(`[${submissionTimestamp}] Mailchimp response SUCCESS:`, {
+      contactId: response.data.id,
+      email: response.data.email_address,
+      status: response.data.status
+    });
 
     res.json({
       success: true,
@@ -95,15 +108,24 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error('Mailchimp API error:', {
+    const errorTimestamp = new Date().toISOString();
+    const errorDetails = {
+      timestamp: errorTimestamp,
+      email: req.body?.email || 'unknown',
+      name: req.body?.name || 'unknown',
       message: error.message,
       status: error.response?.status,
       statusText: error.response?.statusText,
       data: error.response?.data,
-    });
+      stack: error.stack
+    };
 
-    // Handle existing member error
+    // Enhanced error logging for monitoring
+    console.error(`[${errorTimestamp}] FORM SUBMISSION FAILED:`, JSON.stringify(errorDetails, null, 2));
+
+    // Handle existing member error (this is actually a success case)
     if (error.response?.status === 400 && error.response?.data?.title === 'Member Exists') {
+      console.log(`[${errorTimestamp}] Member exists - updating existing contact:`, req.body?.email);
       return res.json({
         success: true,
         message: 'Contact already exists and was updated',
@@ -111,10 +133,18 @@ export default async function handler(req, res) {
       });
     }
 
+    // Log failed submission for tracking
+    console.error(`[${errorTimestamp}] FAILED SUBMISSION DETAILS:`, {
+      email: req.body?.email,
+      error: error.response?.data?.detail || error.message,
+      httpStatus: error.response?.status || 'N/A'
+    });
+
     res.status(500).json({
       success: false,
       message: error.response?.data?.detail || error.message || 'Failed to submit form',
-      error: error.response?.data || error.message
+      error: error.response?.data || error.message,
+      timestamp: errorTimestamp
     });
   }
 }

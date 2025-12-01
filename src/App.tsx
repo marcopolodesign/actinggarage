@@ -11,6 +11,7 @@ import EulaDisclaimer from './components/EulaDisclaimer';
 import EmailFooter from './components/EmailFooter';
 import WhatsAppButton from './components/WhatsAppButton';
 import GoogleAnalytics from './components/GoogleAnalytics';
+import MetaPixel from './components/MetaPixel';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import Dashboard from './pages/Dashboard';
@@ -22,6 +23,7 @@ function App() {
       <FormFlyoutProvider>
         <AboutFlyoutProvider>
           <GoogleAnalytics />
+          <MetaPixel />
           <ScrollToTop />
           <PageTransition />
           <EulaDisclaimer />
