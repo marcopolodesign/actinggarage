@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import Logo from '../assets/Logo';
 // Video will be loaded from public folder
 import AnimatedMarquee from '../components/AnimatedMarquee';
+import TrimestralCards from '../components/TrimestralCards';
 import CursosHome from '../components/CursosHome';
 import TagSteps from '../components/TagSteps';
 import Testimonios from '../components/Testimonios';
@@ -231,6 +232,9 @@ const Home: React.FC = () => {
         text="TAG YOUR SCENE • TAG YOUR STAGE • TAG YOUR POTENTIAL • TAG YOUR SCENE • TAG YOUR STAGE • TAG YOUR POTENTIAL • TAG YOUR SCENE • TAG YOUR STAGE • TAG YOUR POTENTIAL • "
       />
     </div>
+    
+     {/* Trimestral Courses Cards */}
+     <TrimestralCards />
     
      {/* Cursos Sections */}
      <CursosHome />

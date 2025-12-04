@@ -222,3 +222,13 @@ body {
 .noise-effect-brown::before {
   background-color: rgba(73, 28, 0, 0.1);
 }
+
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
