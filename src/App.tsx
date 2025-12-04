@@ -15,6 +15,7 @@ import MetaPixel from './components/MetaPixel';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import Dashboard from './pages/Dashboard';
+import LandingSales from './pages/LandingSales';
 import './App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/cursos" element={<Cursos />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/landing-sales" element={<LandingSales />} />
             </Routes>
             <FormFlyout />
             <AboutFlyout />
