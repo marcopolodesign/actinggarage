@@ -36,11 +36,21 @@ const WhatsAppButton: React.FC = () => {
 
   const whatsappUrl = `https://wa.me/34682560187?text=${whatsappMessage}`;
 
+  const handleClick = () => {
+    // Push custom GTM event
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        event: 'join_chat'
+      });
+    }
+  };
+
   return (
     <a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       className={`fixed bottom-5 md:bottom-[30px] right-5 md:right-[30px] z-50 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
       }`}
