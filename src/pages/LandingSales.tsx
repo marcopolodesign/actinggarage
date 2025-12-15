@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
-import TrimestralCourses from '../components/TrimestralCourses';
 
 const LandingSales: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -68,19 +67,15 @@ const LandingSales: React.FC = () => {
           </p>
 
           {/* Video Container */}
-          <div className="wistia_responsive_padding mb-8" style={{ padding: "52.71% 0 0 0", position: "relative" }}>
-            <div className="wistia_responsive_wrapper" style={{ height: "100%", left: 0, position: "absolute", top: 0, width: "100%" }}>
+          <div className="w-full mb-8" style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+            <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
               <iframe
-                src="https://fast.wistia.net/embed/iframe/nmjygel337?web_component=true&seo=true"
+                src="https://www.youtube.com/embed/ioPES8OreeY"
                 title="Cursos TAG - Enero 2025"
-                allow="autoplay; fullscreen"
-                allowTransparency={true}
-                frameBorder={0}
-                scrolling="no"
-                className="wistia_embed"
-                name="wistia_embed"
-                width="100%"
-                height="100%"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+                frameBorder="0"
               ></iframe>
             </div>
           </div>
@@ -95,9 +90,6 @@ const LandingSales: React.FC = () => {
           </button>
         </div>
       </div>
-
-      {/* Trimestral Courses Section */}
-      <TrimestralCourses />
 
       {/* Fixed Bottom CTA - Mobile */}
       {isMobile && (
