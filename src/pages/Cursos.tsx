@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
+import TrimestralCards from '../components/TrimestralCards';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 
 const Cursos: React.FC = () => {
@@ -334,6 +335,9 @@ const Cursos: React.FC = () => {
             Formaciones en interpretación para cine y teatro, diseñadas para desarrollar técnica, actitud y autenticidad. Aprende, crece y lleva tu interpretación al siguiente nivel.
           </p>
         </div>
+
+        {/* Trimestral Courses Cards */}
+        <TrimestralCards />
 
         {/* Courses List */}
         <div className="w-full max-w-2xl mt-24">

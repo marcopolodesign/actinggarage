@@ -18,40 +18,40 @@ const trimestralCourses: Course[] = [
     title: 'Trimestral Teatro I',
     tagline: 'Fundamentos Teatrales',
     description: 'Curso introductorio al teatro. Aprende los fundamentos de la actuación escénica, expresión corporal y vocal. Ideal para quienes quieren dar sus primeros pasos en el mundo del teatro.',
-    backgroundColor: '#FFBE00',
-    textColor: '#000000',
-    buttonTextColor: '#000000',
-    buttonBorderColor: '#000000'
+    backgroundColor: 'transparent',
+    textColor: '#FFFFFF',
+    buttonTextColor: '#FFFFFF',
+    buttonBorderColor: '#FFFFFF'
   },
   {
     id: 'teatro-ii',
     title: 'Trimestral Teatro II',
     tagline: 'Nivel Avanzado',
     description: 'Nivel avanzado de teatro. Profundiza en técnicas de interpretación, construcción de personajes y presencia escénica. Para quienes ya tienen experiencia en teatro.',
-    backgroundColor: '#FFBE00',
-    textColor: '#000000',
-    buttonTextColor: '#000000',
-    buttonBorderColor: '#000000'
+    backgroundColor: 'transparent',
+    textColor: '#FFFFFF',
+    buttonTextColor: '#FFFFFF',
+    buttonBorderColor: '#FFFFFF'
   },
   {
     id: 'camara-i',
     title: 'Trimestral Cámara I',
     tagline: 'Actuación para Cámara',
     description: 'Introducción a la actuación frente a cámara. Aprende técnicas específicas para cine y televisión, naturalidad y trabajo con planos. Perfecto para iniciarse en el mundo audiovisual.',
-    backgroundColor: '#FFBE00',
-    textColor: '#000000',
-    buttonTextColor: '#000000',
-    buttonBorderColor: '#000000'
+    backgroundColor: 'transparent',
+    textColor: '#FFFFFF',
+    buttonTextColor: '#FFFFFF',
+    buttonBorderColor: '#FFFFFF'
   },
   {
     id: 'camara-ii',
     title: 'Trimestral Cámara II',
     tagline: 'Profesionalización Audiovisual',
     description: 'Nivel avanzado de actuación para cámara. Trabajo intensivo en escenas complejas, monólogos y casting. Para actores con experiencia que buscan profesionalizarse.',
-    backgroundColor: '#FFBE00',
-    textColor: '#000000',
-    buttonTextColor: '#000000',
-    buttonBorderColor: '#000000'
+    backgroundColor: 'transparent',
+    textColor: '#FFFFFF',
+    buttonTextColor: '#FFFFFF',
+    buttonBorderColor: '#FFFFFF'
   }
 ];
 
@@ -174,43 +174,45 @@ const TrimestralCards: React.FC = () => {
 
   const handleWhatsAppClick = (courseTitle: string, e: React.MouseEvent) => {
     e.preventDefault();
-    const message = encodeURIComponent(`Hola! Me interesa obtener más información sobre el curso: ${courseTitle}`);
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasUtm = urlParams.has('utm_source') || urlParams.has('utm_medium') || urlParams.has('utm_campaign');
+    const message = hasUtm
+      ? encodeURIComponent(`Hola! Quisiera obtener más información sobre el curso: ${courseTitle}`)
+      : encodeURIComponent(`Hola! Me interesa obtener más información sobre el curso: ${courseTitle}`);
     const whatsappUrl = `https://wa.me/34682560187?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
 
   return (
-    <div className="w-full px-4 md:px-8 bg-black py-8 md:py-12">
+    <div className="w-full px-4 md:px-6 py-6 md:py-8">
       {/* Title */}
       <AnimatedText
         text="Nuevos cursos semestrales. Inicio enero 2025"
-        className="text-5xl font-druk mb-6 md:mb-8"
-        style={{ color: '#FFBE00' }}
+        className="text-2xl md:text-3xl font-druk mb-4 md:mb-6"
+        style={{ color: '#FFFFFF' }}
       />
       
-      {/* Horizontal Scroll Container - Desktop */}
-      <div className="hidden md:flex overflow-x-auto gap-4 pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      {/* Flex Wrap Container - Desktop */}
+      <div className="hidden md:flex flex-wrap gap-3">
         {trimestralCourses.map((course, index) => (
           <div
             key={course.id}
             ref={(el) => { cardRefs.current[index] = el; }}
-            className="relative flex flex-col justify-between p-6 md:p-8 rounded-2xl flex-shrink-0 h-full opacity-0"
+            className="relative flex flex-col justify-between p-4 md:p-5 rounded-xl opacity-0 border border-white flex-1 min-w-[calc(25%-0.75rem)]"
             style={{
-              backgroundColor: course.backgroundColor,
-              maxWidth: '40vw',
-              minWidth: '40vw'
+              backgroundColor: 'transparent'
             }}
           >
             {/* Top Section - Title and Tagline */}
-            <div className="flex flex-col mb-4">
+            <div className="flex flex-col mb-2">
               <h3
-                className="text-3xl font-druk mb-2"
+                className="text-xl font-druk mb-1"
                 style={{ color: course.textColor }}
               >
                 {course.title}
               </h3>
               <h4
-                className="text-base uppercase mb-4"
+                className="text-xs uppercase mb-2"
                 style={{ color: course.textColor }}
               >
                 {course.tagline}
@@ -219,25 +221,25 @@ const TrimestralCards: React.FC = () => {
 
             {/* Description */}
             <p
-              className="text-base leading-relaxed mb-6 font-garamond flex-grow"
+              className="text-sm leading-relaxed mb-4 font-garamond flex-grow"
               style={{ color: course.textColor }}
             >
               {course.description}
             </p>
 
             {/* Bottom Section - Button */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <button
                 onClick={(e) => handleWhatsAppClick(course.title, e)}
-                className="px-6 py-3 border uppercase font-semibold text-sm transition-all duration-300 rounded-full w-full"
+                className="px-4 py-2 border uppercase font-semibold text-xs transition-all duration-300 rounded-full w-full"
                 style={{
                   borderColor: course.buttonBorderColor,
                   backgroundColor: 'transparent',
                   color: course.buttonTextColor
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = course.buttonBorderColor === '#000000' ? '#000000' : course.buttonBorderColor;
-                  e.currentTarget.style.color = course.buttonBorderColor === '#000000' ? '#FFBE00' : '#000000';
+                  e.currentTarget.style.backgroundColor = '#FFFFFF';
+                  e.currentTarget.style.color = '#000000';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';
@@ -252,26 +254,26 @@ const TrimestralCards: React.FC = () => {
       </div>
 
       {/* Vertical Stack - Mobile */}
-      <div className="flex flex-col md:hidden gap-4">
+      <div className="flex flex-col md:hidden gap-3">
         {trimestralCourses.map((course, index) => (
           <div
             key={course.id}
             ref={(el) => { cardRefs.current[index + trimestralCourses.length] = el; }}
-            className="relative flex flex-col justify-between p-6 rounded-2xl w-full opacity-0"
+            className="relative flex flex-col justify-between p-4 rounded-xl w-full opacity-0 border border-white"
             style={{
-              backgroundColor: course.backgroundColor
+              backgroundColor: 'transparent'
             }}
           >
             {/* Top Section - Title and Tagline */}
-            <div className="flex flex-col mb-4">
+            <div className="flex flex-col mb-2">
               <h3
-                className="text-3xl font-druk mb-2"
+                className="text-xl font-druk mb-1"
                 style={{ color: course.textColor }}
               >
                 {course.title}
               </h3>
               <h4
-                className="text-base uppercase mb-4"
+                className="text-xs uppercase mb-2"
                 style={{ color: course.textColor }}
               >
                 {course.tagline}
@@ -280,25 +282,25 @@ const TrimestralCards: React.FC = () => {
 
             {/* Description */}
             <p
-              className="text-base leading-relaxed mb-6 font-garamond flex-grow"
+              className="text-sm leading-relaxed mb-4 font-garamond flex-grow"
               style={{ color: course.textColor }}
             >
               {course.description}
             </p>
 
             {/* Bottom Section - Button */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <button
                 onClick={(e) => handleWhatsAppClick(course.title, e)}
-                className="px-6 py-3 border uppercase font-semibold text-sm transition-all duration-300 rounded-full w-full"
+                className="px-4 py-2 border uppercase font-semibold text-xs transition-all duration-300 rounded-full w-full"
                 style={{
                   borderColor: course.buttonBorderColor,
                   backgroundColor: 'transparent',
                   color: course.buttonTextColor
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = course.buttonBorderColor === '#000000' ? '#000000' : course.buttonBorderColor;
-                  e.currentTarget.style.color = course.buttonBorderColor === '#000000' ? '#FFBE00' : '#000000';
+                  e.currentTarget.style.backgroundColor = '#FFFFFF';
+                  e.currentTarget.style.color = '#000000';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';

@@ -39,7 +39,11 @@ const LandingSales: React.FC = () => {
   }, [isMobile]);
 
   const handleCTAClick = () => {
-    const message = encodeURIComponent('Hola! Quiero más información sobre los cursos trimestrales y semestrales');
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasUtm = urlParams.has('utm_source') || urlParams.has('utm_medium') || urlParams.has('utm_campaign');
+    const message = hasUtm
+      ? encodeURIComponent('Hola! Quisiera obtener más información sobre los cursos trimestrales y semestrales')
+      : encodeURIComponent('Hola! Quiero más información sobre los cursos trimestrales y semestrales');
     window.open(`https://wa.me/34682560187?text=${message}`, '_blank');
   };
 
