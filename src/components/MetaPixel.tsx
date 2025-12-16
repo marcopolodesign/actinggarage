@@ -15,7 +15,8 @@ const MetaPixel: React.FC = () => {
   useEffect(() => {
     // Initialize Facebook Pixel
     if (typeof window.fbq === 'undefined') {
-      (function(f: any, b: any, e: string, v: string, n: any, t: any, s: any) {
+      (function(f: any, b: any, e: string, v: string) {
+        let n: any, t: any, s: any;
         if (f.fbq) return;
         n = f.fbq = function() {
           n.callMethod
