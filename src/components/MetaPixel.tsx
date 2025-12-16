@@ -10,12 +10,12 @@ declare global {
 
 const MetaPixel: React.FC = () => {
   const location = useLocation();
-  const PIXEL_ID = '737833792079548';
+  const PIXEL_ID = '834745809170874';
 
   useEffect(() => {
     // Initialize Facebook Pixel
     if (typeof window.fbq === 'undefined') {
-      (function(f: any, b: any, e: string, v: string, n?: any, t?: any, s?: any) {
+      (function(f: any, b: any, e: string, v: string, n: any, t: any, s: any) {
         if (f.fbq) return;
         n = f.fbq = function() {
           n.callMethod
@@ -44,9 +44,6 @@ const MetaPixel: React.FC = () => {
     if (typeof window.fbq !== 'undefined') {
       window.fbq('init', PIXEL_ID);
       window.fbq('track', 'PageView');
-      console.log('Meta Pixel: Initialized with ID', PIXEL_ID);
-    } else {
-      console.warn('Meta Pixel: Failed to initialize - fbq not available');
     }
   }, []);
 
