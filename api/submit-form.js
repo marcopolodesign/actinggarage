@@ -53,7 +53,15 @@ export default async function handler(req, res) {
     // =====================================================
     // SUPABASE SUBMISSION
     // =====================================================
-    if (SEND_TO_SUPABASE && supabase) {
+    if (SEND_TO_SUPABASE) {
+      if (!supabase) {
+        console.error(`[${submissionTimestamp}] Supabase NOT CONFIGURED - missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY`);
+        return res.status(500).json({
+          success: false,
+          message: 'Supabase not configured. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.',
+          timestamp: submissionTimestamp
+        });
+      }
       try {
         console.log(`[${submissionTimestamp}] Submitting to Supabase...`);
 
@@ -91,7 +99,7 @@ export default async function handler(req, res) {
         supabaseResult = { success: false, error: supabaseError.message };
       }
     } else {
-      console.log(`[${submissionTimestamp}] Supabase submission DISABLED or not configured`);
+      console.log(`[${submissionTimestamp}] Supabase submission DISABLED`);
     }
 
     // =====================================================
