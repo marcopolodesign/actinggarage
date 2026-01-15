@@ -1,33 +1,66 @@
-// Frontend API integration - calls Vercel serverless function
-import axios from 'axios';
+// Frontend API integration - calls Supabase directly from client
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import type { FormSubmission } from './types';
-
-// Vercel API endpoint
-const API_URL = '/api/submit-form';
 
 export const submitForm = async (formData: FormSubmission) => {
   try {
-    console.log('Submitting form via Vercel API:', formData);
+    console.log('Submitting form to Supabase:', formData);
 
-    // Call our Vercel serverless function
-    const response = await axios.post(API_URL, formData, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured()) {
+      console.error('Supabase not configured');
+      return {
+        success: false,
+        message: 'Supabase not configured. Please check environment variables.',
+      };
+    }
 
-    console.log('API response:', response.data);
+    // Insert directly into Supabase leads table
+    const { data, error } = await supabase
+      .from('leads')
+      .insert([{
+        email: formData.email,
+        name: formData.name,
+        phone: formData.phone,
+        birthday: formData.birthday || null,
+        age: formData.age || null,
+        interests: formData.interests,
+        gender: formData.gender || null,
+        course: formData.course || null,
+        source: formData.source || 'website_form',
+        status: 'nuevo',
+        utm_source: formData.utm_source || null,
+        utm_medium: formData.utm_medium || 'organic',
+        utm_campaign: formData.utm_campaign || null,
+        utm_id: formData.utm_id || null
+      }])
+      .select()
+      .single();
 
-    return response.data;
+    if (error) {
+      console.error('Supabase error:', error);
+      return {
+        success: false,
+        message: error.message || 'Failed to submit form',
+        error: error
+      };
+    }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    console.log('Supabase SUCCESS:', { id: data.id, email: formData.email });
+
+    return {
+      success: true,
+      message: 'Form submitted successfully',
+      id: data.id
+    };
+
   } catch (error: any) {
-    console.error('API error:', error);
-    
+    console.error('Form submission error:', error);
+
     return {
       success: false,
-      message: error.response?.data?.message || error.message || 'Failed to submit form',
-      error: error.response?.data || error
+      message: error.message || 'Failed to submit form',
+      error: error
     };
   }
 };
@@ -36,9 +69,9 @@ export const submitForm = async (formData: FormSubmission) => {
 export const submitFormDev = async (formData: FormSubmission) => {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1000));
-  
+
   console.log('Form submission (dev mode):', formData);
-  
+
   return {
     success: true,
     message: 'Form submitted successfully (dev mode)',

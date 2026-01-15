@@ -6,13 +6,14 @@ import { createClient } from '@supabase/supabase-js';
 // Set to true/false to enable/disable each integration
 // =====================================================
 const SEND_TO_SUPABASE = true;   // Save form data to Supabase database
-const SEND_TO_MAILCHIMP = true;  // Also send to Mailchimp (for email marketing)
+const SEND_TO_MAILCHIMP = false;  // Also send to Mailchimp (for email marketing)
 
 // Initialize Supabase client (if enabled)
-const supabaseUrl = process.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY;
-const supabase = supabaseUrl && supabaseAnonKey 
-  ? createClient(supabaseUrl, supabaseAnonKey) 
+// Try both VITE_ prefixed (for consistency) and non-prefixed env vars
+const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+const supabase = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey)
   : null;
 
 export default async function handler(req, res) {
@@ -53,10 +54,26 @@ export default async function handler(req, res) {
     // =====================================================
     // SUPABASE SUBMISSION
     // =====================================================
-    if (SEND_TO_SUPABASE && supabase) {
+    if (SEND_TO_SUPABASE) {
+      if (!supabase) {
+        console.error(`[${submissionTimestamp}] Supabase NOT CONFIGURED`, {
+          hasUrl: !!supabaseUrl,
+          hasKey: !!supabaseAnonKey,
+          urlPrefix: supabaseUrl ? supabaseUrl.substring(0, 30) : 'not set'
+        });
+        return res.status(500).json({
+          success: false,
+          message: 'Supabase not configured. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.',
+          debug: {
+            hasUrl: !!supabaseUrl,
+            hasKey: !!supabaseAnonKey
+          },
+          timestamp: submissionTimestamp
+        });
+      }
       try {
         console.log(`[${submissionTimestamp}] Submitting to Supabase...`);
-        
+
         const { data, error } = await supabase
           .from('leads')
           .insert([{
@@ -91,7 +108,7 @@ export default async function handler(req, res) {
         supabaseResult = { success: false, error: supabaseError.message };
       }
     } else {
-      console.log(`[${submissionTimestamp}] Supabase submission DISABLED or not configured`);
+      console.log(`[${submissionTimestamp}] Supabase submission DISABLED`);
     }
 
     // =====================================================
@@ -167,8 +184,8 @@ export default async function handler(req, res) {
     // RESPONSE
     // =====================================================
     // Consider success if at least one integration succeeded
-    const overallSuccess = 
-      (SEND_TO_SUPABASE && supabaseResult?.success) || 
+    const overallSuccess =
+      (SEND_TO_SUPABASE && supabaseResult?.success) ||
       (SEND_TO_MAILCHIMP && mailchimpResult?.success) ||
       (!SEND_TO_SUPABASE && !SEND_TO_MAILCHIMP); // No integrations enabled
 
