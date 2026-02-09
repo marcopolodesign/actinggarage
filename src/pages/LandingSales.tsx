@@ -51,9 +51,9 @@ const LandingSales: React.FC = () => {
     <section className="bg-black min-h-screen">
       {/* SEO Meta Tags */}
       <Helmet>
-        <title>Cursos Trimestrales y Semestrales - Enero 2025 | TAG</title>
-        <meta name="title" content="Cursos Trimestrales y Semestrales - Enero 2025 | TAG" />
-        <meta name="description" content="Inscríbete a nuestros cursos trimestrales y semestrales que inician en enero. Transforma tu carrera con TAG." />
+        <title>Cursos Trimestrales y Semestrales - Marzo 2026 | TAG</title>
+        <meta name="title" content="Cursos Trimestrales y Semestrales - Marzo 2026 | TAG" />
+        <meta name="description" content="Inscríbete a nuestros cursos trimestrales y semestrales que inician en marzo. Transforma tu carrera con TAG." />
       </Helmet>
 
       {/* Header */}
@@ -67,7 +67,7 @@ const LandingSales: React.FC = () => {
           </h1>
 
           <p className="text-lg sm:text-xl text-white mb-8 font-garamond max-w-2xl mx-auto">
-            Inicia enero con nuestra nueva oferta de cursos trimestrales y semestrales. Aprende a tu ritmo y transforma tu carrera profesional con metodologías probadas y contenido de alto valor.
+            Inicia marzo con nuestra nueva oferta de cursos trimestrales y semestrales. Aprende a tu ritmo y transforma tu carrera profesional con metodologías probadas y contenido de alto valor.
           </p>
 
           {/* Video Container */}
@@ -75,7 +75,7 @@ const LandingSales: React.FC = () => {
             <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
               <iframe
                 src="https://www.youtube.com/embed/ioPES8OreeY"
-                title="Cursos TAG - Enero 2025"
+                title="Cursos TAG - Marzo 2026"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}

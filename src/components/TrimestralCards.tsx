@@ -187,7 +187,7 @@ const TrimestralCards: React.FC = () => {
     <div className="w-full px-4 md:px-6 py-6 md:py-8">
       {/* Title */}
       <AnimatedText
-        text="Nuevos cursos semestrales. Inicio enero 2025"
+        text="Nuevos cursos semestrales. Inicio marzo 2026"
         className="text-2xl md:text-3xl font-druk mb-4 md:mb-6"
         style={{ color: '#FFFFFF' }}
       />
