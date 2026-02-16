@@ -149,35 +149,31 @@ const FormFlyout: React.FC = () => {
       utm_id,
     };
 
-    // Format birthday from YYYY-MM-DD to MM/DD and calculate age
-    let formattedBirthday = '';
+    // Calculate age on the fly from date of birth and send full date + age so DB has both
     let calculatedAge = '';
+    const birthdayForSubmit = formData.birthday || ''; // Keep YYYY-MM-DD for DB
     if (formData.birthday) {
       const date = new Date(formData.birthday);
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      formattedBirthday = `${month}/${day}`;
-      
-      // Calculate age from birthday
-      const today = new Date();
-      let age = today.getFullYear() - date.getFullYear();
-      const monthDiff = today.getMonth() - date.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < date.getDate())) {
-        age--;
+      if (!Number.isNaN(date.getTime())) {
+        const today = new Date();
+        let age = today.getFullYear() - date.getFullYear();
+        const monthDiff = today.getMonth() - date.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < date.getDate())) {
+          age--;
+        }
+        calculatedAge = String(age);
       }
-      calculatedAge = age.toString();
     }
 
     console.log('Form data:', formData);
     console.log('User email:', userEmail);
     console.log('UTM params:', currentUtmParams);
     console.log('Source:', source);
-    console.log('Formatted birthday:', formattedBirthday);
 
     const submissionData = {
       ...formData,
-      birthday: formattedBirthday,
-      age: calculatedAge, // Add calculated age
+      birthday: birthdayForSubmit, // Full date YYYY-MM-DD so lead (and prospect) have year for age
+      age: calculatedAge,
       email: userEmail,
       source,
       ...currentUtmParams

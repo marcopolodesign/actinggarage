@@ -1,5 +1,7 @@
 # 🚀 Vercel Deployment Guide
 
+> **📌 Review CATCH_UP first.** Always read [CATCH_UP.md](../CATCH_UP.md) (workspace root) for the latest changes and handoff context.
+
 ## 📋 **Prerequisites**
 
 1. **GitHub Account** (free)

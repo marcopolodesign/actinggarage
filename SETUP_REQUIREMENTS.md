@@ -1,5 +1,7 @@
 # TAG Application Setup Requirements
 
+> **📌 Review CATCH_UP first.** Always read [CATCH_UP.md](../CATCH_UP.md) (workspace root) for the latest changes and handoff context.
+
 ## ✅ **COMPLETED SETUP ITEMS**
 
 ### 1. **Node.js Version**

@@ -2,6 +2,8 @@
 
 A React + Vite application for collecting user interests and form submissions, integrated with Mailchimp.
 
+> **📌 Review CATCH_UP first.** Always read [CATCH_UP.md](../CATCH_UP.md) (workspace root) for the latest changes and handoff context.
+
 ## 🚀 Quick Start
 
 1. **Install dependencies:**
