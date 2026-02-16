@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { FormFlyoutProvider } from './context/FormFlyoutContext';
 import { AboutFlyoutProvider } from './context/AboutFlyoutContext';
@@ -16,7 +16,28 @@ import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import Dashboard from './pages/Dashboard';
 import LandingSales from './pages/LandingSales';
+import ContratoFirma from './pages/ContratoFirma';
 import './App.css';
+
+function AppContent() {
+  const location = useLocation();
+  const isContractPage = location.pathname.startsWith('/contrato');
+
+  return (
+    <div className="app">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cursos" element={<Cursos />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/landing-sales" element={<LandingSales />} />
+        <Route path="/contrato/:token" element={<ContratoFirma />} />
+      </Routes>
+      <FormFlyout />
+      <AboutFlyout />
+      {!isContractPage && <EmailFooter />}
+    </div>
+  );
+}
 
 function App() {
   return (
@@ -30,17 +51,7 @@ function App() {
           <EulaDisclaimer />
           <WhatsAppButton />
           <AutoOpenForm />
-          <div className="app">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/cursos" element={<Cursos />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/landing-sales" element={<LandingSales />} />
-            </Routes>
-            <FormFlyout />
-            <AboutFlyout />
-            <EmailFooter />
-          </div>
+          <AppContent />
         </AboutFlyoutProvider>
       </FormFlyoutProvider>
     </HelmetProvider>
