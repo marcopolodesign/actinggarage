@@ -25,6 +25,7 @@ function AppContent() {
 
   return (
     <div className="app">
+      {!isContractPage && <WhatsAppButton />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cursos" element={<Cursos />} />
@@ -49,7 +50,6 @@ function App() {
           <ScrollToTop />
           <PageTransition />
           <EulaDisclaimer />
-          <WhatsAppButton />
           <AutoOpenForm />
           <AppContent />
         </AboutFlyoutProvider>
