@@ -16,6 +16,8 @@ import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import Dashboard from './pages/Dashboard';
 import LandingSales from './pages/LandingSales';
+import LandingHybrid from './pages/LandingHybrid';
+import LandingHybridPlus from './pages/LandingHybridPlus';
 import ContratoFirma from './pages/ContratoFirma';
 import './App.css';
 
@@ -31,6 +33,8 @@ function AppContent() {
         <Route path="/cursos" element={<Cursos />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/landing-sales" element={<LandingSales />} />
+        <Route path="/landing-hybrid" element={<LandingHybrid />} />
+        <Route path="/landing-hybrid-plus" element={<LandingHybridPlus />} />
         <Route path="/contrato/:token" element={<ContratoFirma />} />
       </Routes>
       <FormFlyout />
