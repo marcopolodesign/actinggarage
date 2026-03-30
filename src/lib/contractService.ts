@@ -45,6 +45,7 @@ export interface ContractData {
   contract_version: number
   created_at: string
   signed_at: string | null
+  signature_data?: string | null
   signed_form_data?: SignedFormData | null
   course_name?: string | null
   course_schedule?: string | null

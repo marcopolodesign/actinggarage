@@ -319,38 +319,8 @@ export default function ContratoFirma() {
     )
   }
 
-  // ─── Already Signed ───
-  if (pageState === 'signed' && contract) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <div className="font-druk text-[#FFBE00] text-4xl tracking-wider mb-6">TAG</div>
-          <div className="w-16 h-[2px] bg-[#FFBE00]/30 mx-auto mb-8" />
-          <div className="w-16 h-16 rounded-full border-2 border-[#FFBE00]/40 flex items-center justify-center mx-auto mb-6">
-            <svg className="w-8 h-8 text-[#FFBE00]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-            </svg>
-          </div>
-          <h1 className="font-garamond text-white/90 text-2xl mb-3">
-            Contrato firmado
-          </h1>
-          <p className="font-mdio text-white/40 text-sm leading-relaxed mb-2">
-            {contract.student_name}
-          </p>
-          {contract.signed_at && (
-            <p className="font-mdio text-white/30 text-xs">
-              Firmado el {new Date(contract.signed_at).toLocaleDateString('es-AR', {
-                day: 'numeric', month: 'long', year: 'numeric'
-              })}
-            </p>
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  // ─── Success (just signed): show copy + print ───
-  if (pageState === 'success' && contract) {
+  // ─── Already Signed or Success: show full printable contract ───
+  if ((pageState === 'signed' || pageState === 'success') && contract) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] print:bg-white">
         <div className="max-w-2xl mx-auto px-6 py-8">
@@ -358,16 +328,18 @@ export default function ContratoFirma() {
             <div className="font-druk text-[#FFBE00] text-4xl tracking-wider mb-4">TAG</div>
             <div className="w-16 h-[2px] bg-[#FFBE00]/30 mx-auto mb-6" />
             <div className="w-20 h-20 rounded-full border-2 border-[#FFBE00] flex items-center justify-center mx-auto mb-4"
-                 style={{ animation: 'contractScaleIn 0.5s ease-out' }}>
+                 style={pageState === 'success' ? { animation: 'contractScaleIn 0.5s ease-out' } : undefined}>
               <svg className="w-10 h-10 text-[#FFBE00]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
             </div>
             <h1 className="font-garamond text-white/90 text-2xl mb-2">
-              Contrato firmado exitosamente
+              {pageState === 'success' ? 'Contrato firmado exitosamente' : 'Contrato firmado'}
             </h1>
             <p className="font-mdio text-white/40 text-sm leading-relaxed mb-4">
-              Gracias, {formData.student_name.trim() || contract.student_name}. Guarda o imprime tu copia abajo.
+              {pageState === 'success'
+                ? `Gracias, ${formData.student_name.trim() || contract.student_name}. Guarda o imprime tu copia abajo.`
+                : `${contract.student_name}. Aquí tienes tu copia del contrato.`}
             </p>
             <button
               type="button"
@@ -467,8 +439,8 @@ export default function ContratoFirma() {
             <div className="h-px bg-[#0a0a0a]/10 mb-6" />
             <div className="mb-6">
               <div className="font-mdio text-[#0a0a0a]/40 text-[10px] tracking-[0.15em] uppercase mb-2">Firma del Alumno</div>
-              {signedSignatureData && (
-                <img src={signedSignatureData} alt="Firma" className="max-w-xs h-20 object-contain object-left" />
+              {(signedSignatureData || contract.signature_data) && (
+                <img src={signedSignatureData || contract.signature_data!} alt="Firma" className="max-w-xs h-20 object-contain object-left" />
               )}
               {contract.signed_at && (
                 <p className="font-mdio text-[#0a0a0a]/30 text-xs mt-1">

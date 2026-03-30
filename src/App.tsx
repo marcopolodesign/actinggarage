@@ -18,6 +18,12 @@ import Dashboard from './pages/Dashboard';
 import LandingSales from './pages/LandingSales';
 import LandingHybrid from './pages/LandingHybrid';
 import LandingHybridPlus from './pages/LandingHybridPlus';
+import LandingMiniKids from './pages/LandingMiniKids';
+import LandingKids from './pages/LandingKids';
+import LandingNewGeneration from './pages/LandingNewGeneration';
+import LandingNewGenerationCamara from './pages/LandingNewGenerationCamara';
+import LandingNewGenerationHybrid from './pages/LandingNewGenerationHybrid';
+import LandingJovenes from './pages/LandingJovenes';
 import ContratoFirma from './pages/ContratoFirma';
 import './App.css';
 
@@ -35,6 +41,12 @@ function AppContent() {
         <Route path="/landing-sales" element={<LandingSales />} />
         <Route path="/landing-hybrid" element={<LandingHybrid />} />
         <Route path="/landing-hybrid-plus" element={<LandingHybridPlus />} />
+        <Route path="/landing-mini-kids" element={<LandingMiniKids />} />
+        <Route path="/landing-kids" element={<LandingKids />} />
+        <Route path="/landing-new-generation" element={<LandingNewGeneration />} />
+        <Route path="/landing-new-generation-camara" element={<LandingNewGenerationCamara />} />
+        <Route path="/landing-new-generation-hybrid" element={<LandingNewGenerationHybrid />} />
+        <Route path="/jovenes" element={<LandingJovenes />} />
         <Route path="/contrato/:token" element={<ContratoFirma />} />
       </Routes>
       <FormFlyout />
