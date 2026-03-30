@@ -66,12 +66,22 @@ const Cursos: React.FC = () => {
       objetivo: 'Profesionalización actoral adaptable'
     },
     {
+      title: 'Garage Mini Kids',
+      description: 'Teatro para los más pequeños y pequeñas. El teatro como herramienta de juego, descubrimiento y expresión libre. Un espacio para desarrollar confianza, creatividad y trabajo en equipo.',
+      duracion: 'Curso anual',
+      diasSemana: '1',
+      cargaHoraria: '1 hora y media',
+      edades: '6 a 8 años',
+      modalidad: 'Teatro',
+      objetivo: 'Juego, expresión libre y confianza'
+    },
+    {
       title: 'Garage Kids',
-      description: 'Teatro para niños y niñas. Espacio lúdico donde se aprenden los valores del teatro mientras se desarrolla la creatividad y el trabajo en grupo.',
+      description: 'Teatro para niños y niñas. Del juego a la técnica: un espacio donde se profundiza en la interpretación de forma más técnica sin perder el disfrute y la creatividad.',
       duracion: 'Curso anual (renovable)',
       diasSemana: '1',
       cargaHoraria: '2 horas',
-      edades: '8 a 12 años',
+      edades: '9 a 12 años',
       modalidad: 'Teatro',
       objetivo: 'Aprendizaje, diversión y desarrollo expresivo'
     },
@@ -84,6 +94,16 @@ const Cursos: React.FC = () => {
       edades: '13 a 17 años',
       modalidad: 'Teatro',
       objetivo: 'Descubrimiento y desarrollo artístico'
+    },
+    {
+      title: 'Garage New Generation Cámara',
+      description: 'Actuación ante cámara para jóvenes. Aprender a habitar el objetivo con verdad y sin miedo, con rodajes reales de monólogos y escenas en pareja disponibles para el alumnado.',
+      duracion: 'Curso anual',
+      diasSemana: '1',
+      cargaHoraria: '2 horas',
+      edades: '13 a 17 años',
+      modalidad: 'Cine',
+      objetivo: 'Actuación ante cámara y autoconocimiento audiovisual'
     },
     {
       title: 'Garage New Generation Hybrid',

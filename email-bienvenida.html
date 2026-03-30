@@ -80,7 +80,7 @@
                                 <tr>
                                     <td>
                                         <h1 style="margin: 0 0 15px 0; font-family: 'Anton', 'Impact', 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-size: 42px; font-weight: 500; color: #1a1a1a; text-transform: uppercase; letter-spacing: -0.5px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
-                                            BIENVENIDO *|FNAME|*
+                                            BIENVENIDO {{firstName}}
                                         </h1>
                                         <p style="margin: 0 0 25px 0; font-family: 'EB Garamond', Georgia, serif; font-size: 20px; font-style: italic; color: #1a1a1a; line-height: 1.6;">
                                             No vienes a aprender a actuar.<br>
@@ -162,7 +162,7 @@
                                         </h4>
                                         <p style="margin: 0; font-family: Helvetica, sans-serif; font-size: 13px; color: #1a1a1a; text-align: center; line-height: 1.6;">
                                            <strong>
-  Cada *|IF:MMERGE7=female|*actriz*|ELSE:|*actor*|END:IF|* tiene algo único.
+  Cada {{actorWord}} tiene algo único.
 </strong>
 Nuestro trabajo es ayudarte a <strong>descubrirlo y proyectarlo</strong><br>
                                             con fuerza, acompañada por profesionales que ya vivieron esa transformación.
@@ -244,12 +244,11 @@ Nuestro trabajo es ayudarte a <strong>descubrirlo y proyectarlo</strong><br>
                         </td>
                     </tr>
                     
-                    <!-- Mailchimp Footer -->
+                    <!-- Email Footer -->
                     <tr>
                         <td style="padding: 30px 20px;" align="center">
                             <p style="margin: 0; font-family: Arial, sans-serif; font-size: 11px; color: #666; text-align: center;">
-                                <a href="*|UNSUB|*" style="color: #666; text-decoration: underline;">Darse de baja</a> | 
-                                <a href="*|UPDATE_PROFILE|*" style="color: #666; text-decoration: underline;">Actualizar preferencias</a>
+                                <a href="{{unsubscribeUrl}}" style="color: #666; text-decoration: underline;">Darse de baja</a>
                             </p>
                             <p style="margin: 10px 0 0 0; font-family: Arial, sans-serif; font-size: 11px; color: #666; text-align: center;">
                    

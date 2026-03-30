@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contrato de ejemplo - TAG</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, sans-serif; background: #fafaf8; color: #0a0a0a; min-height: 100vh; }
+    .header { background: #0a0a0a; padding: 1.5rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { color: #FFBE00; font-size: 1.75rem; font-weight: 800; letter-spacing: 0.05em; }
+    .sub { color: rgba(255,255,255,0.3); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 2px; }
+    .line { height: 2px; background: #FFBE00; }
+    .main { max-width: 42rem; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .student { margin-bottom: 2rem; }
+    .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(10,10,10,0.35); margin-bottom: 0.25rem; }
+    .name { font-size: 1.25rem; }
+    .email { font-size: 0.75rem; color: rgba(10,10,10,0.4); margin-top: 0.25rem; }
+    hr { border: none; height: 1px; background: rgba(10,10,10,0.08); margin: 2rem 0; }
+    h1 { font-size: 1.125rem; text-transform: uppercase; letter-spacing: 0.03em; margin: 0 0 2rem; }
+    .body { font-size: 15px; line-height: 1.85; color: rgba(10,10,10,0.8); white-space: pre-wrap; }
+    .body p { margin: 0 0 1.25rem; }
+    .body p:last-child { margin-bottom: 0; }
+    .note { margin-top: 2rem; padding: 1rem; background: rgba(255,190,0,0.08); border-radius: 8px; font-size: 13px; color: #0a0a0a; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div>
+      <div class="logo">TAG</div>
+      <div class="sub">Escuela de Actuacion</div>
+    </div>
+    <div class="sub">Contrato</div>
+  </header>
+  <div class="line"></div>
+  <main class="main">
+    <div class="student">
+      <div class="label">Alumno</div>
+      <div class="name">[Nombre del alumno]</div>
+      <div class="email">[email@ejemplo.com]</div>
+    </div>
+    <hr />
+    <h1>Contrato de Inscripcion - TAG Escuela de Actuacion</h1>
+    <div class="body">
+      <p>TERMINOS Y CONDICIONES DE INSCRIPCION</p>
+      <p>Al firmar el presente documento, el/la alumno/a declara conocer y aceptar las siguientes condiciones:</p>
+      <p><strong>1. OBJETO DEL CONTRATO</strong><br>El presente contrato regula la inscripcion del alumno en los cursos y talleres ofrecidos por TAG Escuela de Actuacion (en adelante, "TAG").</p>
+      <p><strong>2. COMPROMISO DE PAGO</strong><br>El alumno se compromete a abonar la totalidad del arancel correspondiente al curso seleccionado, segun las condiciones de pago pactadas al momento de la inscripcion. El incumplimiento en los pagos podra derivar en la suspension de la participacion en las clases hasta su regularizacion.</p>
+      <p><strong>3. ASISTENCIA Y PUNTUALIDAD</strong><br>El alumno se compromete a asistir regularmente y con puntualidad a las clases programadas. La inasistencia reiterada e injustificada no exime del compromiso de pago asumido.</p>
+      <p><strong>4. BAJA O CANCELACION</strong><br>En caso de solicitar la baja del curso, el alumno debera comunicarlo por escrito con al menos 15 (quince) dias de anticipacion al inicio del siguiente periodo de facturacion. Los pagos ya realizados no seran reembolsados, salvo circunstancias excepcionales evaluadas por la direccion de TAG.</p>
+      <p><strong>5. PROPIEDAD INTELECTUAL</strong><br>Todo el material didactico, ejercicios, textos y contenido proporcionado durante los cursos es propiedad intelectual de TAG y/o sus docentes. Queda prohibida su reproduccion, distribucion o uso comercial sin autorizacion previa por escrito.</p>
+      <p><strong>6. USO DE IMAGEN Y GRABACIONES</strong><br>El alumno autoriza expresamente a TAG a capturar fotografias, videos y grabaciones de audio durante las clases, ensayos, muestras y eventos, y a utilizar dicho material con fines promocionales, institucionales y educativos en cualquier medio o plataforma.</p>
+      <p><strong>7. RESPONSABILIDAD SOBRE PERTENENCIAS</strong><br>TAG no se responsabiliza por objetos personales extraviados, danados o sustraidos en sus instalaciones. Se recomienda no traer objetos de valor.</p>
+      <p><strong>8. CONDUCTA Y CONVIVENCIA</strong><br>El alumno se compromete a mantener un comportamiento respetuoso hacia docentes, companeros y personal de TAG. Cualquier conducta que atente contra la convivencia armonica podra ser motivo de desvinculacion sin derecho a reembolso.</p>
+      <p><strong>9. MODIFICACIONES DE HORARIOS Y PROGRAMACION</strong><br>TAG se reserva el derecho de modificar horarios, dias de clase, docentes y contenidos programaticos por razones de fuerza mayor o necesidad operativa, comprometiendose a notificar con la mayor antelacion posible.</p>
+      <p><strong>10. ACEPTACION</strong><br>Al firmar este contrato, declaro haber leido, comprendido y aceptado todos los terminos y condiciones aqui expuestos, y me comprometo a cumplirlos durante la totalidad de mi participacion en los cursos de TAG.</p>
+    </div>
+    <div class="note">
+      <strong>Ejemplo estatico.</strong> La version real con firma esta en la app: <code>/contrato/:token</code>. Para verla necesitas un token valido: ejecuta la migracion 017 en tu Supabase (seed de contract_versions), crea un contrato desde TAG-admin (Estudiantes → alumno → Generar contrato) y abre el enlace que aparece.
+    </div>
+  </main>
+</body>
+</html>
