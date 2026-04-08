@@ -47,6 +47,7 @@ export default function ContratoFirma() {
   const [accepted, setAccepted] = useState(false)
   const [hasSignature, setHasSignature] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const submittingRef = useRef(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [signedSignatureData, setSignedSignatureData] = useState<string | null>(null)
   const [wellbeingNotes, setWellbeingNotes] = useState('')
@@ -228,6 +229,8 @@ export default function ContratoFirma() {
 
   const handleSubmit = async () => {
     if (!token || !contract || !signaturePadRef.current || signaturePadRef.current.isEmpty()) return
+    if (submittingRef.current) return
+    submittingRef.current = true
 
     setSubmitting(true)
     setErrorMsg('')
@@ -276,7 +279,9 @@ export default function ContratoFirma() {
       }
     } catch {
       setErrorMsg('Error de conexion. Por favor intenta nuevamente.')
+    } finally {
       setSubmitting(false)
+      submittingRef.current = false
     }
   }
 
