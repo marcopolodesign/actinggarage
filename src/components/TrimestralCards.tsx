@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { Link } from 'react-router-dom';
 
 interface Course {
   id: string;
   title: string;
   tagline: string;
   description: string;
+  href: string;
   backgroundColor: string;
   textColor: string;
   buttonTextColor: string;
@@ -14,45 +16,38 @@ interface Course {
 
 const trimestralCourses: Course[] = [
   {
-    id: 'teatro-i',
-    title: 'Trimestral Teatro I',
-    tagline: 'Fundamentos Teatrales',
-    description: 'Curso introductorio al teatro. Aprende los fundamentos de la actuación escénica, expresión corporal y vocal. Ideal para quienes quieren dar sus primeros pasos en el mundo del teatro.',
+    id: 'casal',
+    title: 'Garage Casal',
+    tagline: 'Verano 2026 · 7–13 años',
+    description: 'Casal de verano (22 jun–24 jul). Teatro + teatro musical por semanas, con función semanal grabada para familias.',
+    href: '/cursos/garage-casal',
     backgroundColor: 'transparent',
     textColor: '#FFFFFF',
     buttonTextColor: '#FFFFFF',
     buttonBorderColor: '#FFFFFF'
   },
   {
-    id: 'teatro-ii',
-    title: 'Trimestral Teatro II',
-    tagline: 'Nivel Avanzado',
-    description: 'Nivel avanzado de teatro. Profundiza en técnicas de interpretación, construcción de personajes y presencia escénica. Para quienes ya tienen experiencia en teatro.',
+    id: 'hybrid-julio',
+    title: 'Garage Hybrid Julio',
+    tagline: 'Verano 2026 · Adultos · Iniciación',
+    description: '4 semanas intensivas (6–30 jul). Teatro (L+M) y cámara (X+J) de 19–21h. 32h totales.',
+    href: '/cursos/garage-hybrid-julio',
     backgroundColor: 'transparent',
     textColor: '#FFFFFF',
     buttonTextColor: '#FFFFFF',
     buttonBorderColor: '#FFFFFF'
   },
   {
-    id: 'camara-i',
-    title: 'Trimestral Cámara I',
-    tagline: 'Actuación para Cámara',
-    description: 'Introducción a la actuación frente a cámara. Aprende técnicas específicas para cine y televisión, naturalidad y trabajo con planos. Perfecto para iniciarse en el mundo audiovisual.',
+    id: 'new-generation-julio',
+    title: 'New Generation Julio',
+    tagline: 'Verano 2026 · 13–17 años',
+    description: '4 semanas (29 jun–24 jul). 4h diarias (10–14h): teatro + cámara, con rodajes por semana.',
+    href: '/cursos/garage-new-generation-julio',
     backgroundColor: 'transparent',
     textColor: '#FFFFFF',
     buttonTextColor: '#FFFFFF',
     buttonBorderColor: '#FFFFFF'
   },
-  {
-    id: 'camara-ii',
-    title: 'Trimestral Cámara II',
-    tagline: 'Profesionalización Audiovisual',
-    description: 'Nivel avanzado de actuación para cámara. Trabajo intensivo en escenas complejas, monólogos y casting. Para actores con experiencia que buscan profesionalizarse.',
-    backgroundColor: 'transparent',
-    textColor: '#FFFFFF',
-    buttonTextColor: '#FFFFFF',
-    buttonBorderColor: '#FFFFFF'
-  }
 ];
 
 // Component for animated text with character splitting
@@ -172,22 +167,11 @@ const TrimestralCards: React.FC = () => {
     };
   }, [animatedCards]);
 
-  const handleWhatsAppClick = (courseTitle: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    const urlParams = new URLSearchParams(window.location.search);
-    const hasUtm = urlParams.has('utm_source') || urlParams.has('utm_medium') || urlParams.has('utm_campaign');
-    const message = hasUtm
-      ? encodeURIComponent(`Hola! Quisiera obtener más información sobre el curso: ${courseTitle}`)
-      : encodeURIComponent(`Hola! Me interesa obtener más información sobre el curso: ${courseTitle}`);
-    const whatsappUrl = `https://wa.me/34682560187?text=${message}`;
-    window.open(whatsappUrl, '_blank');
-  };
-
   return (
     <div className="w-full px-4 md:px-6 py-6 md:py-8">
       {/* Title */}
       <AnimatedText
-        text="Nuevos cursos semestrales. Inicio marzo 2026"
+        text="Verano 2026 — cursos intensivos"
         className="text-2xl md:text-3xl font-druk mb-4 md:mb-6"
         style={{ color: '#FFFFFF' }}
       />
@@ -229,25 +213,17 @@ const TrimestralCards: React.FC = () => {
 
             {/* Bottom Section - Button */}
             <div className="flex flex-col gap-2">
-              <button
-                onClick={(e) => handleWhatsAppClick(course.title, e)}
-                className="px-4 py-2 border uppercase font-semibold text-xs transition-all duration-300 rounded-full w-full"
+              <Link
+                to={course.href}
+                className="px-4 py-2 border uppercase font-semibold text-xs transition-all duration-300 rounded-full w-full text-center"
                 style={{
                   borderColor: course.buttonBorderColor,
                   backgroundColor: 'transparent',
                   color: course.buttonTextColor
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FFFFFF';
-                  e.currentTarget.style.color = '#000000';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = course.buttonTextColor;
-                }}
               >
-                Más información
-              </button>
+                Ver info
+              </Link>
             </div>
           </div>
         ))}
@@ -290,25 +266,17 @@ const TrimestralCards: React.FC = () => {
 
             {/* Bottom Section - Button */}
             <div className="flex flex-col gap-2">
-              <button
-                onClick={(e) => handleWhatsAppClick(course.title, e)}
-                className="px-4 py-2 border uppercase font-semibold text-xs transition-all duration-300 rounded-full w-full"
+              <Link
+                to={course.href}
+                className="px-4 py-2 border uppercase font-semibold text-xs transition-all duration-300 rounded-full w-full text-center"
                 style={{
                   borderColor: course.buttonBorderColor,
                   backgroundColor: 'transparent',
                   color: course.buttonTextColor
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FFFFFF';
-                  e.currentTarget.style.color = '#000000';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = course.buttonTextColor;
-                }}
               >
-                Más información
-              </button>
+                Ver info
+              </Link>
             </div>
           </div>
         ))}

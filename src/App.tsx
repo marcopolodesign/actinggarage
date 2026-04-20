@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { FormFlyoutProvider } from './context/FormFlyoutContext';
 import { AboutFlyoutProvider } from './context/AboutFlyoutContext';
@@ -14,15 +14,9 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 import MetaPixel from './components/MetaPixel';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
+import CourseLanding from './pages/CourseLanding';
 import Dashboard from './pages/Dashboard';
 import LandingSales from './pages/LandingSales';
-import LandingHybrid from './pages/LandingHybrid';
-import LandingHybridPlus from './pages/LandingHybridPlus';
-import LandingMiniKids from './pages/LandingMiniKids';
-import LandingKids from './pages/LandingKids';
-import LandingNewGeneration from './pages/LandingNewGeneration';
-import LandingNewGenerationCamara from './pages/LandingNewGenerationCamara';
-import LandingNewGenerationHybrid from './pages/LandingNewGenerationHybrid';
 import LandingJovenes from './pages/LandingJovenes';
 import ContratoFirma from './pages/ContratoFirma';
 import './App.css';
@@ -37,15 +31,17 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cursos" element={<Cursos />} />
+        <Route path="/cursos/:slug" element={<CourseLanding />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/landing-sales" element={<LandingSales />} />
-        <Route path="/landing-hybrid" element={<LandingHybrid />} />
-        <Route path="/landing-hybrid-plus" element={<LandingHybridPlus />} />
-        <Route path="/landing-mini-kids" element={<LandingMiniKids />} />
-        <Route path="/landing-kids" element={<LandingKids />} />
-        <Route path="/landing-new-generation" element={<LandingNewGeneration />} />
-        <Route path="/landing-new-generation-camara" element={<LandingNewGenerationCamara />} />
-        <Route path="/landing-new-generation-hybrid" element={<LandingNewGenerationHybrid />} />
+        {/* Backwards-compatible aliases (ads / bookmarks) */}
+        <Route path="/landing-hybrid" element={<CourseLandingRedirect to="/cursos/garage-hybrid" />} />
+        <Route path="/landing-hybrid-plus" element={<CourseLandingRedirect to="/cursos/garage-hybrid-plus" />} />
+        <Route path="/landing-mini-kids" element={<CourseLandingRedirect to="/cursos/garage-mini-kids" />} />
+        <Route path="/landing-kids" element={<CourseLandingRedirect to="/cursos/garage-kids" />} />
+        <Route path="/landing-new-generation" element={<CourseLandingRedirect to="/cursos/garage-new-generation" />} />
+        <Route path="/landing-new-generation-camara" element={<CourseLandingRedirect to="/cursos/garage-new-generation-cinema" />} />
+        <Route path="/landing-new-generation-hybrid" element={<CourseLandingRedirect to="/cursos/garage-new-generation-hybrid" />} />
         <Route path="/jovenes" element={<LandingJovenes />} />
         <Route path="/contrato/:token" element={<ContratoFirma />} />
       </Routes>
@@ -54,6 +50,13 @@ function AppContent() {
       {!isContractPage && <EmailFooter />}
     </div>
   );
+}
+
+function CourseLandingRedirect({ to }: { to: string }) {
+  // Keep UTM params when redirecting.
+  const location = useLocation();
+  const target = `${to}${location.search || ''}`;
+  return <Navigate to={target} replace />;
 }
 
 function App() {

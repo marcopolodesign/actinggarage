@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import TrimestralCards from '../components/TrimestralCards';
@@ -16,6 +17,7 @@ const Cursos: React.FC = () => {
   // Courses data
   const coursesData = [
     {
+      slug: 'garage-pro',
       title: 'Garage Pro',
       description: 'Formación integral para actores y actrices que buscan profesionalizarse. Entrenamiento completo en interpretación, cámara, cuerpo, voz, movimiento, improvisación, lucha escénica, danza y otras disciplinas esenciales.',
       duracion: '3 años',
@@ -26,6 +28,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Profesionalización actoral'
     },
     {
+      slug: 'garage-theatre',
       title: 'Garage Theatre',
       description: 'Curso de introducción al teatro. Formación práctica y divertida para quienes desean descubrir su potencial expresivo y conectar con su creatividad.',
       duracion: '3 años',
@@ -36,6 +39,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Iniciación y desarrollo personal'
     },
     {
+      slug: 'garage-cinema',
       title: 'Garage Cinema',
       description: 'Curso de iniciación en la interpretación frente a cámara. Desde el primer día se trabaja con cámara y ejercicios prácticos para ganar naturalidad y técnica audiovisual.',
       duracion: '3 años',
@@ -46,6 +50,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Iniciación actoral y práctica audiovisual'
     },
     {
+      slug: 'garage-hybrid',
       title: 'Garage Hybrid',
       description: 'Formación combinada en teatro y cine. Para quienes quieren explorar la interpretación en todas sus vertientes y prepararse para castings o audiciones.',
       duracion: '3 años',
@@ -56,6 +61,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Profesionalización y preparación para audiciones'
     },
     {
+      slug: 'garage-hybrid-plus',
       title: 'Garage Hybrid Plus',
       description: 'Formación integral para quienes buscan profesionalizarse sin la carga del PRO. Entrenamiento en interpretación, cámara, canto y creación.',
       duracion: '3 años',
@@ -66,6 +72,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Profesionalización actoral adaptable'
     },
     {
+      slug: 'garage-mini-kids',
       title: 'Garage Mini Kids',
       description: 'Teatro para los más pequeños y pequeñas. El teatro como herramienta de juego, descubrimiento y expresión libre. Un espacio para desarrollar confianza, creatividad y trabajo en equipo.',
       duracion: 'Curso anual',
@@ -76,6 +83,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Juego, expresión libre y confianza'
     },
     {
+      slug: 'garage-kids',
       title: 'Garage Kids',
       description: 'Teatro para niños y niñas. Del juego a la técnica: un espacio donde se profundiza en la interpretación de forma más técnica sin perder el disfrute y la creatividad.',
       duracion: 'Curso anual (renovable)',
@@ -86,6 +94,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Aprendizaje, diversión y desarrollo expresivo'
     },
     {
+      slug: 'garage-new-generation',
       title: 'Garage New Generation',
       description: 'Teatro para adolescentes. Formación práctica para explorar la interpretación y fortalecer la confianza personal.',
       duracion: 'Curso anual (renovable)',
@@ -96,7 +105,8 @@ const Cursos: React.FC = () => {
       objetivo: 'Descubrimiento y desarrollo artístico'
     },
     {
-      title: 'Garage New Generation Cámara',
+      slug: 'garage-new-generation-cinema',
+      title: 'Garage New Generation Cinema',
       description: 'Actuación ante cámara para jóvenes. Aprender a habitar el objetivo con verdad y sin miedo, con rodajes reales de monólogos y escenas en pareja disponibles para el alumnado.',
       duracion: 'Curso anual',
       diasSemana: '1',
@@ -106,6 +116,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Actuación ante cámara y autoconocimiento audiovisual'
     },
     {
+      slug: 'garage-new-generation-hybrid',
       title: 'Garage New Generation Hybrid',
       description: 'Formación en teatro y cine para jóvenes. Combina la práctica escénica y audiovisual para quienes quieren orientar sus estudios hacia el arte.',
       duracion: '3 años',
@@ -308,7 +319,7 @@ const Cursos: React.FC = () => {
         ref={backgroundRef}
         className="absolute inset-0 z-0 h-screen"
         style={{
-          backgroundImage: 'url(/content/cursos-bgg.png)',
+          backgroundImage: 'url(/content/cursos-header.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -402,6 +413,16 @@ const Cursos: React.FC = () => {
                   >
                     QUIERO MÁS INFORMACIÓN
                   </button>
+
+                  {course.slug && (
+                    <Link
+                      to={`/cursos/${course.slug}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="ml-4 inline-flex items-center justify-center px-8 py-3 border border-white/40 text-white font-bold text-lg uppercase transition-all duration-300 hover:border-white hover:bg-white hover:text-black hover:-translate-y-0.5"
+                    >
+                      VER DETALLES
+                    </Link>
+                  )}
                 </div>
               )}
 
