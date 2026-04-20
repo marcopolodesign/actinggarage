@@ -76,7 +76,30 @@ export const coursesConfig: Record<string, CourseConfig> = {
         body: [
           'Curso 2026/2027: 14 sep 2026 → 18 jun 2027 (dos cuatrimestres).',
           'Viernes: ensayos y materias extra (según calendario).',
-          'Incluye: fotos profesionales, bolsa de casting, material grabado, masterclasses, aulas de ensayo, descuentos culturales.',
+          'Horario: lunes a jueves 10:00–14:00 (16h semanales).',
+          'Grupos reducidos: máximo 14 alumnos por clase.',
+          'Incluye: fotos profesionales, bolsa de casting, material grabado, masterclasses, aulas de ensayo y descuentos culturales.',
+          'Muestras: todas las asignaturas (salvo Cámara y Análisis de texto) terminan con muestra abierta al público y grabada para análisis.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Plan de estudios (resumen por años)',
+        body: [
+          'Año 1 — Fundamentos: interpretación teatral y a cámara, cuerpo, voz, análisis de texto e improvisación. Rodajes: monólogo y escena en pareja.',
+          'Año 2 — Profundización: escenas complejas, giro emocional, clown/teatro físico, técnica vocal avanzada, lucha escénica y Técnica Alexander. Montajes y rodajes de alto nivel.',
+          'Año 3 — Profesionalización: cámara avanzada, técnica de audición, gestión emocional/profesionalización, marketing y videobook. Ensayos y rodaje de cortometraje profesional.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Sesión de fotos profesionales para todo el alumnado.',
+          'Bolsa de casting.',
+          'Material grabado en las clases.',
+          'Acceso preferente y con descuento a masterclasses.',
+          'Profesorado en activo, aulas para ensayar y descuentos culturales.',
         ],
       },
     ],
@@ -109,12 +132,42 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué TAG?',
+        body: [
+          'Creemos que la técnica es el 50% de esta profesión. El otro 50% es aprender a gestionar nervios, ansiedad, miedos y el constante “no”.',
+          'No buscamos perfección: buscamos honestidad. Herramientas tangibles que cada actor adapta a su proceso.',
+        ],
+      },
+      {
         id: 'program',
         title: 'Estructura del programa',
         body: [
           'Curso 2026/2027: 14 sep 2026 → 18 jun 2027 (dos cuatrimestres).',
+          'Formato: 2 horas semanales.',
+          'Grupos: máximo 12 alumnos por clase.',
           'Incluye: fotos profesionales, bolsa de casting, masterclasses, aulas de ensayo, descuentos culturales.',
           'Al finalizar los 3 años pasarás a ser miembro de la compañía TAG.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Qué trabajamos (por años)',
+        body: [
+          'Año 1 — Fundamentos: juego, desinhibición, presencia escénica e impulso. Muestras: improvisación grupal + escena en pareja y monólogo teatral.',
+          'Año 2 — Recorrido histórico: del teatro griego al Siglo de Oro (lectura contemporánea) y métodos de construcción de personaje (Stanislavski, Lecoq, Meisner, Donnellan…).',
+          'Año 3 — Siglo XX y post-dramático: vanguardias, experimentación, creación colectiva y montaje final en teatro profesional de Barcelona.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Sesión de fotos profesionales.',
+          'Bolsa de casting.',
+          'Acceso preferente y con descuento a masterclasses.',
+          'Profesorado en activo, aulas para ensayar y descuentos culturales.',
+          'Al finalizar los 3 años: compañía TAG.',
         ],
       },
     ],
@@ -148,12 +201,41 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué TAG?',
+        body: [
+          'La técnica es el 50%. El otro 50% es aprender a gestionar nervios, ansiedad, miedos y el constante “no”.',
+          'Herramientas prácticas y tangibles; cada actor adapta el método a su proceso.',
+        ],
+      },
+      {
         id: 'program',
         title: 'Estructura del programa',
         body: [
           'Curso 2026/2027: 14 sep 2026 → 18 jun 2027 (dos cuatrimestres).',
+          'Formato: 2 horas semanales.',
+          'Grupos: máximo 12 alumnos por clase.',
           'Incluye: fotos profesionales, bolsa de casting, material grabado en cada clase, masterclasses, aulas de ensayo, descuentos culturales.',
           'Rodajes: monólogo (Q1) y escena en pareja (Q2).',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Qué aprenderás (por años)',
+        body: [
+          'Año 1 — Fundamentos: conexión con cámara, relajación activa, escucha, personaje y escenas. Rodajes: monólogo + escena en pareja.',
+          'Año 2 — Profundización: acciones físicas con intención, subtexto, escucha avanzada, preparación emocional y escenas complejas. Rodajes: escena con giro emocional + escena grupal/alto nivel.',
+          'Año 3 — Profesionalización: negocio del acting, preproducción, ensayos intensivos y rodaje profesional de cortometraje (3–5 días), postproducción y presentación final.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Sesión de fotos profesionales.',
+          'Bolsa de casting.',
+          'Material grabado en cada clase.',
+          'Acceso a masterclasses, profesorado en activo, aulas para ensayar y descuentos culturales.',
         ],
       },
     ],
@@ -187,12 +269,42 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué TAG?',
+        body: [
+          'La técnica es el 50%. El otro 50% es aprender a gestionar nervios, ansiedad, miedos y el constante “no”.',
+          'No creemos en dogmas: herramientas tangibles para que encuentres tu camino con honestidad.',
+        ],
+      },
+      {
         id: 'program',
         title: 'Estructura del programa',
         body: [
           'Curso 2026/2027: 14 sep 2026 → 18 jun 2027 (dos cuatrimestres).',
+          'Formato: 2h cámara + 2h teatro por semana.',
+          'Grupos: máximo 12 alumnos por clase.',
           'Incluye: fotos profesionales, bolsa de casting, material grabado, masterclasses, aulas de ensayo, descuentos culturales.',
           'Al finalizar los 3 años, pasarás a formar parte de la compañía TAG.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Qué trabajamos (resumen por cuatrimestres)',
+        body: [
+          'Q1: cámara (rodaje monólogo + fotos) + teatro (muestra grupal). Bases: presencia, escucha, emoción y juego.',
+          'Q2: cámara (rodaje escena en pareja) + teatro (escena en pareja + monólogo). Texto, conflicto y subtexto.',
+          'Años 2–3: escenas complejas, clásicos y métodos de personaje, rodajes de alto nivel y profesionalización (cine/teatro).',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Sesión de fotos profesionales.',
+          'Bolsa de casting.',
+          'Material grabado en las clases.',
+          'Masterclasses, profesorado en activo, aulas para ensayar y descuentos culturales.',
+          'Compañía TAG al finalizar.',
         ],
       },
     ],
@@ -230,6 +342,14 @@ export const coursesConfig: Record<string, CourseConfig> = {
     sections: [
       {
         id: 'why',
+        title: '¿Por qué TAG?',
+        body: [
+          'La técnica es el 50%. El otro 50% es aprender a gestionar nervios, ansiedad, miedos y el constante “no”.',
+          'Herramientas prácticas para construir criterio y honestidad interpretativa.',
+        ],
+      },
+      {
+        id: 'why',
         title: '¿Qué es Hybrid Plus?',
         body: [
           'Combina interpretación para cámara y teatro, añadiendo formación en canto e improvisación/creación colectiva.',
@@ -241,8 +361,31 @@ export const coursesConfig: Record<string, CourseConfig> = {
         title: 'Estructura del programa',
         body: [
           'Curso 2026/2027: 14 sep 2026 → 18 jun 2027 (dos cuatrimestres).',
+          'Horario: 8h semanales (2h cámara + 2h teatro + 2h canto + 2h impro/creación colectiva).',
+          'Grupos: máximo 12 alumnos por clase.',
           'Incluye: fotos profesionales, bolsa de casting, material grabado, masterclasses, aulas de ensayo, descuentos culturales.',
           'Al finalizar la formación, pasarás a formar parte de la compañía TAG.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Plan de estudios (resumen por años)',
+        body: [
+          'Año 1: rodaje monólogo + fotos, muestra grupal de teatro, muestra vocal y jam de impro. Bases de personaje, voz y juego.',
+          'Año 2: rodajes complejos, montaje de clásico, recital avanzado y formatos de impro larga (Harold/Montage).',
+          'Año 3: preproducción + rodaje de cortometraje, montaje profesional, preparación de audiciones musicales y shows con industria invitada.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Sesión de fotos profesionales.',
+          'Bolsa de casting.',
+          'Material grabado en las clases.',
+          'Acceso preferente y con descuento a masterclasses.',
+          'Profesorado en activo, aulas para ensayar y descuentos culturales.',
+          'Compañía TAG al finalizar.',
         ],
       },
     ],
@@ -274,11 +417,22 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué TAG?',
+        body: [
+          'El teatro infantil debe ser un espacio de juego, descubrimiento y expresión libre.',
+          'No buscamos “pequeños actores perfectos”: buscamos niños felices, expresivos y seguros.',
+        ],
+      },
+      {
         id: 'program',
         title: 'Estructura del programa',
         body: [
           'Cuatrimestres: 18 sep 2026 → 5 feb 2027 y 12 feb 2027 → 18 jun 2027.',
+          'Formato: 1h30 semanal · grupos máximo 12.',
           'Muestras finales abiertas al público (grabadas y enviadas a las familias).',
+          'Q1: juego, cuerpo y grupo (desinhibición, confianza, escucha, trabajo en equipo).',
+          'Q2: personajes, emociones y escenas (texto sencillo, improvisaciones guiadas y pequeñas historias).',
         ],
       },
       {
@@ -322,11 +476,28 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué TAG?',
+        body: [
+          'Entre los 9 y 11 años es el momento ideal para profundizar en teatro de forma más técnica sin perder creatividad.',
+          'Trabajamos con rigor, respeto por su madurez y un enfoque que equilibra técnica y libertad creativa.',
+        ],
+      },
+      {
         id: 'program',
         title: 'Estructura del programa',
         body: [
           'Inicio: 6 de marzo · Fin: 19 de junio (14 sesiones).',
           'Bloques: fundamentos técnicos → construcción de personajes → montaje y muestra final (grabada).',
+          'Formato: viernes 18:00–20:00h · grupos máximo 12.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Filosofía “Del juego a la técnica”',
+        body: [
+          'No creemos en: técnica sin alma, perfección sin proceso, competir en lugar de colaborar, ni teatro infantilizado.',
+          'Creemos en: equilibrio técnica/libertad, compromiso y disciplina como crecimiento, y el teatro como escuela de vida.',
         ],
       },
       {
@@ -418,11 +589,30 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué TAG?',
+        body: [
+          'En adolescencia, la cámara ofrece un espacio para explorar identidad, emociones intensas y presencia delante del objetivo.',
+          'Buscamos jóvenes con criterio propio, capaces de comprometerse con el trabajo de cámara y encontrar su voz artística.',
+        ],
+      },
+      {
         id: 'program',
         title: 'Estructura del programa',
         body: [
           'Cuatrimestres: 14 sep 2026 → 5 feb 2027 y 8 feb 2027 → 18 jun 2027.',
           'Rodajes: monólogo (Q1) y escena en pareja (Q2). Material grabado disponible.',
+          'Formato: 2 horas semanales · grupos máximo 12.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Qué se trabaja',
+        body: [
+          'Q1 — Fundamentos: conexión con cámara y presencia (relajación, tensión, imaginación, textos contemporáneos).',
+          'Rodaje Q1: monólogo (1,5–2 min).',
+          'Q2 — Avanzado: personajes, emoción y técnica básica de rodaje (subtexto, escenas en pareja).',
+          'Rodaje Q2: escena en pareja (2–3 min).',
         ],
       },
       {
@@ -517,11 +707,45 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué TAG?',
+        body: [
+          'La técnica es el 50%. El otro 50% es aprender a gestionar nervios, ansiedad, miedos y el constante “no”.',
+          'Herramientas prácticas para que cada actor encuentre su camino: compromiso y verdad.',
+        ],
+      },
+      {
+        id: 'program',
+        title: '¿A quién va dirigido?',
+        body: [
+          'Personas sin experiencia previa que quieren iniciarse, perder el miedo escénico y descubrir capacidades expresivas en teatro y cámara.',
+          'Requisitos: ninguno (solo ganas de aprender, jugar y descubrir).',
+        ],
+      },
+      {
         id: 'program',
         title: 'Qué aprenderás',
         body: [
           'Teatro: expresión corporal, creación de personajes, trabajo de emociones, improvisación, escenas y muestra final (grabada).',
           'Cámara: relajación, imaginación, análisis de texto (monólogo), herramientas específicas y rodaje del monólogo (material en Drive).',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Estructura del intensivo',
+        body: [
+          'Duración: 4 semanas intensivas · 6–30 julio 2026.',
+          'Teatro: lunes y martes 19:00–21:00h.',
+          'Cámara: miércoles y jueves 19:00–21:00h.',
+          'Total: 16h teatro + 16h cámara · grupo máximo 12.',
+        ],
+      },
+      {
+        id: 'why',
+        title: 'Filosofía “El actor honesto”',
+        body: [
+          'No creemos en: gurús con “verdad absoluta”, buscar validación constante, “menos es más” como única verdad o una sola técnica para todos.',
+          'Creemos en: herramientas tangibles, compromiso y verdad, y que hacer mejores personas crea mejores actores.',
         ],
       },
     ],
@@ -555,6 +779,23 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué New Generation Julio?',
+        body: [
+          'La adolescencia es un momento rico y complejo: identidad, emociones intensas y presencia.',
+          'Este intensivo combina teatro y cámara (4h diarias) para trabajar presencia, personaje, emoción, escena y objetivo.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Cómo funciona',
+        body: [
+          'Cada semana es independiente: puedes inscribirte a 1, varias o las 4 semanas.',
+          'Quien llega por primera vez encuentra fundamentos; quien repite profundiza los mismos pilares desde un eje distinto.',
+          'Formato: lunes a viernes 10:00–14:00h (2h teatro + 2h cámara). Grupo máximo 12.',
+        ],
+      },
+      {
         id: 'weeks',
         title: 'Temario por semanas',
         body: [
@@ -562,6 +803,15 @@ export const coursesConfig: Record<string, CourseConfig> = {
           'Semana 2 (6–10 jul): “Quién soy, qué quiero, cómo reacciono” · rodaje monólogo.',
           'Semana 3 (13–17 jul): “La emoción genuina y la palabra” · rodaje monólogo emocional.',
           'Semana 4 (20–24 jul): “Juntos en escena y en pantalla” · rodaje escena en pareja.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Nuestro compromiso',
+        body: [
+          'Entorno profesional, seguro y estimulante.',
+          'Profesorado en activo, con rigor, respeto y entusiasmo.',
+          'Material grabado disponible para el alumnado.',
         ],
       },
     ],
@@ -595,11 +845,30 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
+        id: 'why',
+        title: '¿Por qué el Casal de Verano de TAG?',
+        body: [
+          'En verano aparece un espacio más libre donde la creatividad toma protagonismo.',
+          'A través de texto, personaje y acompañamiento respetuoso, los peques exploran su mundo interior y lo llevan a escena con compromiso y verdad.',
+          'Cada semana se trabaja una historia y se estrena el viernes (10–15 min) ante familias. Semanas alternas de teatro de texto y teatro musical.',
+        ],
+      },
+      {
         id: 'program',
         title: 'Cómo funciona',
         body: [
           'Cada semana se trabaja una historia: creación de personajes, ensayo y función el viernes (10–15 min) para familias (grabada).',
           'Semanas alternas de teatro de texto y teatro musical.',
+          'Formato: lunes a viernes 9:00–17:00h (40h semanales). Grupo máximo 12.',
+          'Profesorado: lunes+miércoles un/a profe, martes+jueves otro/a, viernes ambos para la función (con apoyo extra si hace falta).',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Estructura semanal',
+        body: [
+          'Teatro: lunes cohesión + impro; martes objetivos del personaje; miércoles creación (cuerpo/emoción); jueves ensayos con vestuario/atrezo; viernes calentamiento + ensayo general + estreno.',
+          'Teatro musical: lunes intro + talent show; martes voz + primeras coreos; miércoles escena musical + ensayo coreográfico; jueves ritmo/movimiento + ensayos; viernes control vocal/corporal + estreno.',
         ],
       },
       {
@@ -620,6 +889,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
           'Profesorado TAG en activo toda la semana (con apoyo si es necesario).',
           'Texto dramático preparado por TAG y adaptado al grupo.',
           'Función del viernes grabada y enviada a las familias.',
+          'Contacto: info@theactinggarage.com · 682 560 187.',
         ],
       },
     ],
