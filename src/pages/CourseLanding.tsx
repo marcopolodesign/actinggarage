@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import { coursesConfig, type CourseConfig } from '../content/coursesConfig';
 import { submitForm } from '../api/submitForm';
+import { getUtms, hasUtms } from '../utils/utm';
 
 declare global {
   interface Window {
@@ -42,9 +43,8 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-function getWhatsAppUrl(course: CourseConfig, search: string) {
-  const urlParams = new URLSearchParams(search);
-  const hasUtm = urlParams.has('utm_source') || urlParams.has('utm_medium') || urlParams.has('utm_campaign');
+function getWhatsAppUrl(course: CourseConfig, _search: string) {
+  const hasUtm = hasUtms();
   const label = course.whatsAppLabel || course.courseName;
   const extra = course.whatsAppExtra ? ` ${course.whatsAppExtra}` : '';
   const message = hasUtm
@@ -136,7 +136,6 @@ const CourseLanding: React.FC = () => {
     e.preventDefault();
     if (!course) return;
     setIsSubmitting(true);
-    const urlParams = new URLSearchParams(location.search);
     try {
       const result = await submitForm({
         name: formData.name,
@@ -148,10 +147,7 @@ const CourseLanding: React.FC = () => {
         age: calculateAge(formData.birthday),
         email: formData.email,
         source: course.inlineFormSource || `cursos_${course.slug}`,
-        utm_source: urlParams.get('utm_source') || '',
-        utm_medium: urlParams.get('utm_medium') || 'organic',
-        utm_campaign: urlParams.get('utm_campaign') || '',
-        utm_id: urlParams.get('utm_id') || '',
+        ...getUtms(),
       });
 
       if (!result.success) throw new Error('Submission failed');

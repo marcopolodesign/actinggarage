@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import { submitForm } from '../api/submitForm';
+import { getUtms, hasUtms } from '../utils/utm';
 
 declare global {
   interface Window {
@@ -80,12 +81,7 @@ const LandingHybrid: React.FC = () => {
   }, [isMobile]);
 
   const getWhatsAppUrl = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const hasUtm =
-      urlParams.has('utm_source') ||
-      urlParams.has('utm_medium') ||
-      urlParams.has('utm_campaign');
-    const message = hasUtm
+    const message = hasUtms()
       ? encodeURIComponent(`Hola TAG! Quisiera obtener más información sobre el ${COURSE_NAME}`)
       : encodeURIComponent(`Hola TAG! Quiero más información sobre el ${COURSE_NAME}`);
     return `https://wa.me/34682560187?text=${message}`;
@@ -94,7 +90,6 @@ const LandingHybrid: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const urlParams = new URLSearchParams(window.location.search);
     try {
       const result = await submitForm({
         name: formData.name,
@@ -106,10 +101,7 @@ const LandingHybrid: React.FC = () => {
         age: calculateAge(formData.birthday),
         email: formData.email,
         source: LANDING_SOURCE,
-        utm_source: urlParams.get('utm_source') || '',
-        utm_medium: urlParams.get('utm_medium') || 'organic',
-        utm_campaign: urlParams.get('utm_campaign') || '',
-        utm_id: urlParams.get('utm_id') || '',
+        ...getUtms(),
       });
 
       if (result.success) {

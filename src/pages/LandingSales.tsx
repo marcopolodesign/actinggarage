@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { hasUtms } from '../utils/utm';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 
@@ -39,9 +40,7 @@ const LandingSales: React.FC = () => {
   }, [isMobile]);
 
   const handleCTAClick = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const hasUtm = urlParams.has('utm_source') || urlParams.has('utm_medium') || urlParams.has('utm_campaign');
-    const message = hasUtm
+    const message = hasUtms()
       ? encodeURIComponent('Hola TAG! Quisiera obtener más información sobre los cursos trimestrales y semestrales')
       : encodeURIComponent('Hola TAG! Quiero más información sobre los cursos trimestrales y semestrales');
     window.open(`https://wa.me/34682560187?text=${message}`, '_blank');

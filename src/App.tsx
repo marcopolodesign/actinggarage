@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { FormFlyoutProvider } from './context/FormFlyoutContext';
 import { AboutFlyoutProvider } from './context/AboutFlyoutContext';
@@ -12,6 +13,7 @@ import EmailFooter from './components/EmailFooter';
 import WhatsAppButton from './components/WhatsAppButton';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import MetaPixel from './components/MetaPixel';
+import { captureUtms } from './utils/utm';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import CourseLanding from './pages/CourseLanding';
@@ -24,6 +26,8 @@ import './App.css';
 function AppContent() {
   const location = useLocation();
   const isContractPage = location.pathname.startsWith('/contrato');
+
+  useEffect(() => { captureUtms(); }, [location.search]);
 
   return (
     <div className="app">

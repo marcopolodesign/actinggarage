@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { submitForm } from '../api/submitForm';
+import { upsertLead } from '../api/upsertLead';
+import { getUtms } from '../utils/utm';
+import { computeAge } from '../utils/age';
 import { gsap } from 'gsap';
 import './FormFlyout.css';
 
@@ -35,11 +38,14 @@ const COURSES = [
   'Garage Workshops'
 ];
 
+const isValidEmail = (email: string): boolean =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
 const FormFlyout: React.FC = () => {
   const { isOpen, closeFlyout } = useFormFlyout();
   const flyoutRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-  
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
@@ -52,6 +58,12 @@ const FormFlyout: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // Ref always holds latest snapshot so pagehide/beforeunload closures can read it
+  const pendingRef = useRef({ userEmail, formData, submitted });
+  useEffect(() => {
+    pendingRef.current = { userEmail, formData, submitted };
+  }, [userEmail, formData, submitted]);
+
   // Get URL parameters
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -62,26 +74,14 @@ const FormFlyout: React.FC = () => {
     const interests = urlParams.get('interests') || '';
     const gender = urlParams.get('gender') || '';
     const course = urlParams.get('course') || '';
-    
+
     setUserEmail(email);
-    if (name) {
-      setFormData(prev => ({ ...prev, name }));
-    }
-    if (phone) {
-      setFormData(prev => ({ ...prev, phone }));
-    }
-    if (birthday) {
-      setFormData(prev => ({ ...prev, birthday }));
-    }
-    if (interests) {
-      setFormData(prev => ({ ...prev, interests }));
-    }
-    if (gender) {
-      setFormData(prev => ({ ...prev, gender }));
-    }
-    if (course) {
-      setFormData(prev => ({ ...prev, course }));
-    }
+    if (name) setFormData(prev => ({ ...prev, name }));
+    if (phone) setFormData(prev => ({ ...prev, phone }));
+    if (birthday) setFormData(prev => ({ ...prev, birthday }));
+    if (interests) setFormData(prev => ({ ...prev, interests }));
+    if (gender) setFormData(prev => ({ ...prev, gender }));
+    if (course) setFormData(prev => ({ ...prev, course }));
   }, []);
 
   // GSAP animations
@@ -89,13 +89,11 @@ const FormFlyout: React.FC = () => {
     if (isOpen) {
       gsap.set(flyoutRef.current, { x: '-100%' });
       gsap.set(overlayRef.current, { opacity: 0 });
-      
+
       const tl = gsap.timeline();
       tl.to(overlayRef.current, { opacity: 1, duration: 0.3 })
         .to(flyoutRef.current, { x: '0%', duration: 0.4, ease: 'power2.out' }, '-=0.1');
-      
-      // Track form view/start event with Meta Pixel
-      // Small delay to ensure pixel is fully initialized
+
       setTimeout(() => {
         if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
           try {
@@ -120,6 +118,67 @@ const FormFlyout: React.FC = () => {
     }
   }, [isOpen]);
 
+  // Upsert abandon lead on tab close / navigation away (sendBeacon path)
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handlePageHide = () => {
+      const { userEmail: email, formData: fd, submitted: wasSubmitted } = pendingRef.current;
+      if (wasSubmitted || !isValidEmail(email)) return;
+
+      const { utm_source, utm_medium, utm_campaign, utm_id } = getUtms();
+      const data = {
+        email:        email.trim().toLowerCase(),
+        name:         fd.name         || null,
+        phone:        fd.phone        || null,
+        birthday:     fd.birthday     || null,
+        age:          computeAge(fd.birthday) || null,
+        interests:    fd.interests    || null,
+        gender:       fd.gender       || null,
+        course:       fd.course       || null,
+        source:       'website_form',
+        utm_source:   utm_source      || null,
+        utm_medium:   utm_medium      || 'organic',
+        utm_campaign: utm_campaign    || null,
+        utm_id:       utm_id          || null,
+      };
+
+      navigator.sendBeacon(
+        '/api/upsert-lead',
+        new Blob([JSON.stringify(data)], { type: 'application/json' })
+      );
+    };
+
+    window.addEventListener('pagehide', handlePageHide);
+    window.addEventListener('beforeunload', handlePageHide);
+
+    return () => {
+      window.removeEventListener('pagehide', handlePageHide);
+      window.removeEventListener('beforeunload', handlePageHide);
+    };
+  }, [isOpen]);
+
+  // Build the abandon payload and fire upsertLead (used on X button / backdrop close)
+  const flushAbandon = () => {
+    if (submitted || !isValidEmail(userEmail)) return;
+    const { utm_source, utm_medium, utm_campaign, utm_id } = getUtms();
+    upsertLead({
+      email:        userEmail.trim().toLowerCase(),
+      name:         formData.name         || undefined,
+      phone:        formData.phone        || undefined,
+      birthday:     formData.birthday     || undefined,
+      age:          computeAge(formData.birthday) || undefined,
+      interests:    formData.interests    || undefined,
+      gender:       formData.gender       || undefined,
+      course:       formData.course       || undefined,
+      source:       'website_form',
+      utm_source:   utm_source            || undefined,
+      utm_medium:   utm_medium            || 'organic',
+      utm_campaign: utm_campaign          || undefined,
+      utm_id:       utm_id               || undefined,
+    });
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
     const { name, value } = target;
@@ -130,73 +189,43 @@ const FormFlyout: React.FC = () => {
     setFormData(prev => ({ ...prev, interests: interest }));
   };
 
+  const handleClose = () => {
+    flushAbandon();
+    closeFlyout();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Capture UTM parameters fresh at submission time
-    const urlParams = new URLSearchParams(window.location.search);
-    const utm_source = urlParams.get('utm_source') || '';
-    const utm_medium = urlParams.get('utm_medium') || 'organic'; // Default to 'organic' if not present
-    const utm_campaign = urlParams.get('utm_campaign') || '';
-    const utm_id = urlParams.get('utm_id') || '';
-    
-    // Source is always 'website_form' for contact form submissions
+    const { utm_source, utm_medium, utm_campaign, utm_id } = getUtms();
     const source = 'website_form';
+    const currentUtmParams = { utm_source, utm_medium, utm_campaign, utm_id };
 
-    const currentUtmParams = {
-      utm_source,
-      utm_medium,
-      utm_campaign,
-      utm_id,
-    };
-
-    // Calculate age on the fly from date of birth and send full date + age so DB has both
-    let calculatedAge = '';
-    const birthdayForSubmit = formData.birthday || ''; // Keep YYYY-MM-DD for DB
-    if (formData.birthday) {
-      const date = new Date(formData.birthday);
-      if (!Number.isNaN(date.getTime())) {
-        const today = new Date();
-        let age = today.getFullYear() - date.getFullYear();
-        const monthDiff = today.getMonth() - date.getMonth();
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < date.getDate())) {
-          age--;
-        }
-        calculatedAge = String(age);
-      }
-    }
-
-    console.log('Form data:', formData);
-    console.log('User email:', userEmail);
-    console.log('UTM params:', currentUtmParams);
-    console.log('Source:', source);
+    const birthdayForSubmit = formData.birthday || '';
+    const calculatedAge = computeAge(formData.birthday);
 
     const submissionData = {
       ...formData,
-      birthday: birthdayForSubmit, // Full date YYYY-MM-DD so lead (and prospect) have year for age
+      birthday: birthdayForSubmit,
       age: calculatedAge,
       email: userEmail,
       source,
       ...currentUtmParams
     };
 
-    console.log('Full submission data with UTMs:', submissionData);
-
     try {
       const result = await submitForm(submissionData);
 
       if (result.success) {
         setSubmitted(true);
-        
-        // Track Google Ads conversion
+
         if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
           window.gtag('event', 'conversion', {
             send_to: 'AW-17688095812/dXncCM7MhLsbEMTYq_JB',
           });
         }
-        
-        // Track Meta Pixel Lead event
+
         if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
           try {
             const leadParams: any = {
@@ -205,12 +234,9 @@ const FormFlyout: React.FC = () => {
               content_type: 'form',
               status: true
             };
-            
-            // Only add content_ids if course is provided
             if (formData.course) {
               leadParams.content_ids = [formData.course];
             }
-            
             window.fbq('track', 'Lead', leadParams);
             console.log('Meta Pixel: Lead event tracked', leadParams);
           } catch (error) {
@@ -219,11 +245,10 @@ const FormFlyout: React.FC = () => {
         } else {
           console.warn('Meta Pixel: fbq not available for Lead tracking');
         }
-        
+
         setTimeout(() => {
           setSubmitted(false);
           closeFlyout();
-          // Reset form
           setFormData({
             name: '',
             phone: '',
@@ -248,16 +273,16 @@ const FormFlyout: React.FC = () => {
 
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      closeFlyout();
+      handleClose();
     }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       ref={overlayRef}
-      className="flyout-overlay" 
+      className="flyout-overlay"
       onClick={handleOverlayClick}
     >
       <div ref={flyoutRef} className="flyout-container bg-tag-yellow">
@@ -271,7 +296,7 @@ const FormFlyout: React.FC = () => {
         ) : (
           <>
             <div className="flyout-header">
-              <button className="close-button" onClick={closeFlyout}>
+              <button className="close-button" onClick={handleClose}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>

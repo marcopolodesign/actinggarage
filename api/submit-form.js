@@ -74,9 +74,8 @@ export default async function handler(req, res) {
       try {
         console.log(`[${submissionTimestamp}] Submitting to Supabase...`);
 
-        const { data, error } = await supabase
-          .from('leads')
-          .insert([{
+        const { data: prospectId, error } = await supabase.rpc('create_prospect_from_form', {
+          payload: {
             email,
             name,
             phone,
@@ -86,22 +85,19 @@ export default async function handler(req, res) {
             gender: gender || null,
             course: course || null,
             source: source || 'website_form',
-            status: 'nuevo',
             utm_source: utm_source || null,
             utm_medium: utm_medium || 'organic',
             utm_campaign: utm_campaign || null,
-            utm_id: utm_id || null
-          }])
-          .select()
-          .single();
+            utm_id: utm_id || null,
+          }
+        });
 
         if (error) {
           console.error(`[${submissionTimestamp}] Supabase error:`, error);
-          // Don't fail the request, just log the error
           supabaseResult = { success: false, error: error.message };
         } else {
-          console.log(`[${submissionTimestamp}] Supabase SUCCESS:`, { id: data.id, email });
-          supabaseResult = { success: true, id: data.id };
+          console.log(`[${submissionTimestamp}] Supabase SUCCESS: prospect`, { id: prospectId, email });
+          supabaseResult = { success: true, id: prospectId };
         }
       } catch (supabaseError) {
         console.error(`[${submissionTimestamp}] Supabase exception:`, supabaseError.message);

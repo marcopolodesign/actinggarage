@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { hasUtms } from '../utils/utm';
 
 const WhatsAppButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,15 +18,7 @@ const WhatsAppButton: React.FC = () => {
 
   // Determine message based on UTM parameters
   const whatsappMessage = useMemo(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const utm_source = urlParams.get('utm_source');
-    const utm_medium = urlParams.get('utm_medium');
-    const utm_campaign = urlParams.get('utm_campaign');
-    
-    // If any UTM parameters are present, it's a paid campaign
-    const hasUtmParams = utm_source || utm_medium || utm_campaign;
-    
-    if (hasUtmParams) {
+    if (hasUtms()) {
       // Paid message
       return encodeURIComponent("Hola TAG! Quiero más info sobre sus cursos!");
     } else {

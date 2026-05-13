@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import LogoMin from '../assets/LogoMin';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { useAboutFlyout } from '../context/AboutFlyoutContext';
+import { hasUtms } from '../utils/utm';
 
 interface HeaderProps {
   showOnScroll?: boolean; // If true, only show after scrolling past viewport
@@ -18,22 +19,14 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
 
   // Determine WhatsApp message based on UTM parameters
   const whatsappMessage = useMemo(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const utm_source = urlParams.get('utm_source');
-    const utm_medium = urlParams.get('utm_medium');
-    const utm_campaign = urlParams.get('utm_campaign');
-    
-    // If any UTM parameters are present, it's a paid campaign
-    const hasUtmParams = utm_source || utm_medium || utm_campaign;
-    
-    if (hasUtmParams) {
+    if (hasUtms()) {
       // Paid message
       return encodeURIComponent("Hola TAG! Quiero más info sobre sus cursos!");
     } else {
       // Organic message
       return encodeURIComponent("Hola! Quiero más información sobre los cursos de la escuela");
     }
-  }, [location.search]);
+  }, []);
 
   const whatsappUrl = `https://wa.me/34682560187?text=${whatsappMessage}`;
 
