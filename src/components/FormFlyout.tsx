@@ -3,6 +3,7 @@ import { useFormFlyout } from '../context/FormFlyoutContext';
 import { submitForm } from '../api/submitForm';
 import { upsertLead } from '../api/upsertLead';
 import { getUtms } from '../utils/utm';
+import { trackFormConversion } from '../utils/trackConversion';
 import { computeAge } from '../utils/age';
 import { gsap } from 'gsap';
 import './FormFlyout.css';
@@ -220,11 +221,7 @@ const FormFlyout: React.FC = () => {
       if (result.success) {
         setSubmitted(true);
 
-        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-          window.gtag('event', 'conversion', {
-            send_to: 'AW-17688095812/dXncCM7MhLsbEMTYq_JB',
-          });
-        }
+        trackFormConversion({ email: userEmail, phone: formData.phone, name: formData.name });
 
         if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
           try {

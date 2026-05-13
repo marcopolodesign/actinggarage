@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { hasUtms } from '../utils/utm';
+import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
 const WhatsAppButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,12 +31,10 @@ const WhatsAppButton: React.FC = () => {
   const whatsappUrl = `https://wa.me/34682560187?text=${whatsappMessage}`;
 
   const handleClick = () => {
-    // Push custom GTM event
     if (typeof window !== 'undefined' && (window as any).dataLayer) {
-      (window as any).dataLayer.push({
-        event: 'join_chat'
-      });
+      (window as any).dataLayer.push({ event: 'join_chat' });
     }
+    trackWhatsappClick('floating_button');
   };
 
   return (

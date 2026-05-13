@@ -6,6 +6,8 @@ import Testimonios from '../components/Testimonios';
 import { coursesConfig, type CourseConfig } from '../content/coursesConfig';
 import { submitForm } from '../api/submitForm';
 import { getUtms, hasUtms } from '../utils/utm';
+import { trackFormConversion } from '../utils/trackConversion';
+import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
 declare global {
   interface Window {
@@ -154,10 +156,7 @@ const CourseLanding: React.FC = () => {
 
       setSubmitted(true);
 
-      // Light-weight conversion tracking (same pattern as existing landings)
-      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-        window.gtag('event', 'conversion', { send_to: 'AW-17688095812/dXncCM7MhLsbEMTYq_JB' });
-      }
+      trackFormConversion({ email: formData.email, phone: formData.phone, name: formData.name });
       if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
         try {
           window.fbq('track', 'Lead', {
@@ -270,6 +269,7 @@ const CourseLanding: React.FC = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsappClick('course_landing')}
             className="w-full bg-tag-yellow text-black px-6 py-4 sm:px-8 sm:py-5 font-druk text-lg sm:text-xl uppercase hover:bg-white transition-colors duration-300 shadow-lg flex items-center justify-center gap-3 mb-10"
           >
             <WhatsAppIcon />
@@ -421,6 +421,7 @@ const CourseLanding: React.FC = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsappClick('course_landing')}
             className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 font-druk text-lg uppercase hover:bg-white hover:text-black transition-colors duration-300"
           >
             <WhatsAppIcon />

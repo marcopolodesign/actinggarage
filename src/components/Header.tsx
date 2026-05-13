@@ -4,6 +4,7 @@ import LogoMin from '../assets/LogoMin';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { useAboutFlyout } from '../context/AboutFlyoutContext';
 import { hasUtms } from '../utils/utm';
+import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
 interface HeaderProps {
   showOnScroll?: boolean; // If true, only show after scrolling past viewport
@@ -140,6 +141,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsappClick('header')}
               className="flex items-center gap-2 text-white text-sm uppercase hover:text-tag-yellow transition-colors duration-300"
               style={{ WebkitFontSmoothing: 'antialiased' as const }}
             >
