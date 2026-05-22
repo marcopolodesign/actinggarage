@@ -22,6 +22,7 @@ import LandingSales from './pages/LandingSales';
 import LandingJovenes from './pages/LandingJovenes';
 import ContratoFirma from './pages/ContratoFirma';
 import Privacidad from './pages/Privacidad';
+import Terminos from './pages/Terminos';
 import './App.css';
 
 function AppContent() {
@@ -50,6 +51,7 @@ function AppContent() {
         <Route path="/jovenes" element={<LandingJovenes />} />
         <Route path="/contrato/:token" element={<ContratoFirma />} />
         <Route path="/privacidad" element={<Privacidad />} />
+        <Route path="/terminos" element={<Terminos />} />
       </Routes>
       <FormFlyout />
       <AboutFlyout />

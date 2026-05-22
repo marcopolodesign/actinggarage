@@ -111,6 +111,8 @@ const EmailFooter: React.FC = () => {
               <div className="pb-5 text-center">
                 <p className="m-0 font-sans text-xs text-[#e8e4da] leading-normal antialiased">
                   <Link to="/privacidad" className="hover:underline text-[#888]">Política de privacidad</Link>
+                  {' · '}
+                  <Link to="/terminos" className="hover:underline text-[#888]">Términos y condiciones</Link>
                   <br /></p>
                 <p className="m-0 font-sans text-xs text-[#e8e4da] leading-normal antialiased">
                   <a
