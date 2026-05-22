@@ -21,6 +21,7 @@ import Dashboard from './pages/Dashboard';
 import LandingSales from './pages/LandingSales';
 import LandingJovenes from './pages/LandingJovenes';
 import ContratoFirma from './pages/ContratoFirma';
+import Privacidad from './pages/Privacidad';
 import './App.css';
 
 function AppContent() {
@@ -48,6 +49,7 @@ function AppContent() {
         <Route path="/landing-new-generation-hybrid" element={<CourseLandingRedirect to="/cursos/garage-new-generation-hybrid" />} />
         <Route path="/jovenes" element={<LandingJovenes />} />
         <Route path="/contrato/:token" element={<ContratoFirma />} />
+        <Route path="/privacidad" element={<Privacidad />} />
       </Routes>
       <FormFlyout />
       <AboutFlyout />

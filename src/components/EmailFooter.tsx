@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 
 const EmailFooter: React.FC = () => {
@@ -108,6 +109,9 @@ const EmailFooter: React.FC = () => {
               </div>
 
               <div className="pb-5 text-center">
+                <p className="m-0 font-sans text-xs text-[#e8e4da] leading-normal antialiased">
+                  <Link to="/privacidad" className="hover:underline text-[#888]">Política de privacidad</Link>
+                  <br /></p>
                 <p className="m-0 font-sans text-xs text-[#e8e4da] leading-normal antialiased">
                   <a
                     href="tel:933398307"
