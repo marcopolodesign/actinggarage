@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import { submitForm } from '../api/submitForm';
-import { getUtms, hasUtms } from '../utils/utm';
+import { getUtms, buildWhatsAppUrl } from '../utils/utm';
 import { trackFormConversion } from '../utils/trackConversion';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
@@ -82,12 +82,10 @@ const LandingHybrid: React.FC = () => {
     };
   }, [isMobile]);
 
-  const getWhatsAppUrl = () => {
-    const message = hasUtms()
-      ? encodeURIComponent(`Hola TAG! Quisiera obtener más información sobre el ${COURSE_NAME}`)
-      : encodeURIComponent(`Hola TAG! Quiero más información sobre el ${COURSE_NAME}`);
-    return `https://wa.me/34682560187?text=${message}`;
-  };
+  const getWhatsAppUrl = () => buildWhatsAppUrl(
+    `Hola TAG! Quiero más información sobre el ${COURSE_NAME}`,
+    `Hola TAG! Quisiera obtener más información sobre el ${COURSE_NAME}`
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
+import { buildWhatsAppUrl } from '../utils/utm';
 
 const WhatsAppIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -37,17 +38,10 @@ const LandingMiniKids: React.FC = () => {
     };
   }, [isMobile]);
 
-  const getWhatsAppUrl = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const hasUtm =
-      urlParams.has('utm_source') ||
-      urlParams.has('utm_medium') ||
-      urlParams.has('utm_campaign');
-    const message = hasUtm
-      ? encodeURIComponent(`Hola TAG! Quisiera obtener más información sobre el ${COURSE_NAME} (6-8 años)`)
-      : encodeURIComponent(`Hola TAG! Quiero más información sobre el ${COURSE_NAME} (6-8 años)`);
-    return `https://wa.me/34682560187?text=${message}`;
-  };
+  const getWhatsAppUrl = () => buildWhatsAppUrl(
+    `Hola TAG! Quiero más información sobre el ${COURSE_NAME} (6-8 años)`,
+    `Hola TAG! Quisiera obtener más información sobre el ${COURSE_NAME} (6-8 años)`
+  );
 
   const stats = [
     { label: 'Edad', value: '6–8 años' },

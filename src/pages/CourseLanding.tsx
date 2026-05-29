@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import { coursesConfig, type CourseConfig } from '../content/coursesConfig';
 import { submitForm } from '../api/submitForm';
-import { getUtms, hasUtms } from '../utils/utm';
+import { getUtms, buildWhatsAppUrl } from '../utils/utm';
 import { trackFormConversion } from '../utils/trackConversion';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
@@ -46,13 +46,12 @@ const WhatsAppIcon = () => (
 );
 
 function getWhatsAppUrl(course: CourseConfig, _search: string) {
-  const hasUtm = hasUtms();
   const label = course.whatsAppLabel || course.courseName;
   const extra = course.whatsAppExtra ? ` ${course.whatsAppExtra}` : '';
-  const message = hasUtm
-    ? encodeURIComponent(`Hola TAG! Quisiera obtener más información sobre el ${label}${extra}`)
-    : encodeURIComponent(`Hola TAG! Quiero más información sobre el ${label}${extra}`);
-  return `https://wa.me/34682560187?text=${message}`;
+  return buildWhatsAppUrl(
+    `Hola TAG! Quiero más información sobre el ${label}${extra}`,
+    `Hola TAG! Quisiera obtener más información sobre el ${label}${extra}`
+  );
 }
 
 const NotFound: React.FC = () => (

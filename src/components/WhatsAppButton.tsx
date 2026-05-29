@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { hasUtms } from '../utils/utm';
+import { buildWhatsAppUrl } from '../utils/utm';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
 const WhatsAppButton: React.FC = () => {
@@ -17,18 +17,10 @@ const WhatsAppButton: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Determine message based on UTM parameters
-  const whatsappMessage = useMemo(() => {
-    if (hasUtms()) {
-      // Paid message
-      return encodeURIComponent("Hola TAG! Quiero más info sobre sus cursos!");
-    } else {
-      // Organic message
-      return encodeURIComponent("Hola! Quiero más información sobre los cursos de la escuela");
-    }
-  }, []);
-
-  const whatsappUrl = `https://wa.me/34682560187?text=${whatsappMessage}`;
+  const whatsappUrl = useMemo(() => buildWhatsAppUrl(
+    'Hola! Quiero más información sobre los cursos de la escuela',
+    'Hola TAG! Quiero más info sobre sus cursos!'
+  ), []);
 
   const handleClick = () => {
     if (typeof window !== 'undefined' && (window as any).dataLayer) {

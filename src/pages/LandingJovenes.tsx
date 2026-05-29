@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import { buildWhatsAppUrl } from '../utils/utm';
 
 const WhatsAppIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -41,7 +42,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   whatsappMsg,
   accentLabel,
 }) => {
-  const waUrl = `https://wa.me/34682560187?text=${encodeURIComponent(whatsappMsg)}`;
+  const waUrl = buildWhatsAppUrl(whatsappMsg);
 
   return (
     <div className="bg-black border border-white/10 flex flex-col group hover:border-tag-yellow/40 transition-colors duration-300">
@@ -118,7 +119,7 @@ const AgeGroupLabel: React.FC<{ age: string; label: string }> = ({ age, label })
 );
 
 const LandingJovenes: React.FC = () => {
-  const globalWaUrl = `https://wa.me/34682560187?text=${encodeURIComponent('Hola TAG! Quiero más información sobre los cursos para jóvenes')}`;
+  const globalWaUrl = buildWhatsAppUrl('Hola TAG! Quiero más información sobre los cursos para jóvenes');
 
   return (
     <section className="bg-black min-h-screen">

@@ -52,3 +52,17 @@ export function hasUtms(): boolean {
     Boolean(getUtm(key))
   );
 }
+
+const WA_NUMBER = '34682560187';
+
+// Builds a wa.me URL with the appropriate message and a [ref: source/medium] tag
+// appended for paid traffic so the team can assign whatsapp_paid in the CRM.
+export function buildWhatsAppUrl(organicText: string, paidText?: string): string {
+  const isPaid = hasUtms();
+  const { utm_source, utm_medium } = getUtms();
+  const base = isPaid ? (paidText ?? organicText) : organicText;
+  const ref = isPaid && utm_source
+    ? `\n[ref: ${utm_source}${utm_medium && utm_medium !== 'organic' ? '/' + utm_medium : ''}]`
+    : '';
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(base + ref)}`;
+}

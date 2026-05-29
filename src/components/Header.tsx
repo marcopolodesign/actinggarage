@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import LogoMin from '../assets/LogoMin';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { useAboutFlyout } from '../context/AboutFlyoutContext';
-import { hasUtms } from '../utils/utm';
+import { buildWhatsAppUrl } from '../utils/utm';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
 interface HeaderProps {
@@ -18,18 +18,10 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
   const location = useLocation();
   const isCursosPage = location.pathname === '/cursos';
 
-  // Determine WhatsApp message based on UTM parameters
-  const whatsappMessage = useMemo(() => {
-    if (hasUtms()) {
-      // Paid message
-      return encodeURIComponent("Hola TAG! Quiero más info sobre sus cursos!");
-    } else {
-      // Organic message
-      return encodeURIComponent("Hola! Quiero más información sobre los cursos de la escuela");
-    }
-  }, []);
-
-  const whatsappUrl = `https://wa.me/34682560187?text=${whatsappMessage}`;
+  const whatsappUrl = useMemo(() => buildWhatsAppUrl(
+    'Hola! Quiero más información sobre los cursos de la escuela',
+    'Hola TAG! Quiero más info sobre sus cursos!'
+  ), []);
 
   useEffect(() => {
     if (!showOnScroll) return;
