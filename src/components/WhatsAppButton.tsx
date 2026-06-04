@@ -19,7 +19,8 @@ const WhatsAppButton: React.FC = () => {
 
   const whatsappUrl = useMemo(() => buildWhatsAppUrl(
     'Hola! Quiero más información sobre los cursos de la escuela',
-    'Hola TAG! Quiero más info sobre sus cursos!'
+    'Hola TAG! Quiero más info sobre sus cursos!',
+    'Hola TAG! Quisiera más info sobre sus cursos!'
   ), []);
 
   const handleClick = () => {
