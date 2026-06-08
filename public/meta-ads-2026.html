@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Acting Garage · Meta Ads 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #0a0a0a;
+    --surface: #111111;
+    --card:    #161616;
+    --border:  #1e1e1e;
+    --border2: #2a2a2a;
+    --white:   #f0f0f0;
+    --dim:     #666;
+    --muted:   #444;
+    --gold:    #e8a020;
+    --gold2:   #f4c060;
+    --blue:    #5b9cf6;
+    --green:   #4ade80;
+    --orange:  #fb923c;
+    --purple:  #a78bfa;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(232,160,32,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 80% at 20% 80%, rgba(91,156,246,0.05) 0%, transparent 60%);
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1.0;
+    color: var(--white);
+    max-width: 700px;
+    margin-bottom: 28px;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--dim);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .hero-stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -1px;
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  /* ── SECTIONS ── */
+  .section { padding: 80px 60px; border-bottom: 1px solid var(--border); }
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 48px;
+    max-width: 600px;
+  }
+  .section-title em { color: var(--gold); font-style: normal; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 10px;
+  }
+  .card-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+  .card-sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+  .card-gold { border-color: rgba(232,160,32,0.2); background: rgba(232,160,32,0.04); }
+  .card-blue { border-color: rgba(91,156,246,0.2); background: rgba(91,156,246,0.04); }
+  .card-green { border-color: rgba(74,222,128,0.2); background: rgba(74,222,128,0.04); }
+
+  /* ── CAMPAIGN BLOCK ── */
+  .campaign-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2px;
+  }
+  .campaign-header {
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .level-pill {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .pill-campaign { background: rgba(232,160,32,0.15); color: var(--gold); }
+  .pill-adset    { background: rgba(91,156,246,0.15); color: var(--blue); }
+  .pill-ad       { background: rgba(74,222,128,0.15); color: var(--green); }
+  .pill-form     { background: rgba(251,146,60,0.15); color: var(--orange); }
+
+  .campaign-name { font-size: 14px; font-weight: 600; flex: 1; }
+  .status-pill {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    color: #666;
+  }
+  .campaign-body { padding: 24px 28px; }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+  }
+  .meta-field-label { font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .meta-field-value { font-size: 13px; color: #ccc; font-weight: 500; }
+  .meta-field-value strong { color: var(--white); }
+  .meta-field-value.big { font-size: 22px; font-weight: 700; color: var(--gold); }
+
+  /* ── AUDIENCE VIZ ── */
+  .audience-section {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .audience-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--dim);
+    margin-bottom: 16px;
+  }
+  .audience-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .audience-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .audience-box-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 10px; }
+
+  .geo-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .geo-pin {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(91,156,246,0.12);
+    border: 1px solid rgba(91,156,246,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .geo-text strong { font-size: 14px; font-weight: 600; display: block; }
+  .geo-text span { font-size: 11px; color: var(--dim); }
+
+  .age-viz { margin-top: 4px; }
+  .age-range-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--dim);
+    margin-bottom: 6px;
+  }
+  .age-range-label strong { color: var(--white); font-size: 16px; font-weight: 700; }
+  .age-track { height: 4px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+  .age-fill { height: 100%; width: 60%; background: linear-gradient(90deg, var(--blue), var(--gold)); border-radius: 2px; }
+
+  /* ── INTEREST TAGS ── */
+  .interest-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .interest-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    font-size: 12px;
+    color: #bbb;
+  }
+  .interest-tag .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .interest-tag .dot.blue { background: var(--blue); }
+  .interest-tag .dot.purple { background: var(--purple); }
+
+  /* ── COPY PREVIEW ── */
+  .ad-preview {
+    background: #1a1a1a;
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 380px;
+  }
+  .ad-preview-img {
+    height: 200px;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2a2020 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .ad-preview-img::after {
+    content: 'Imagen / Vídeo del equipo';
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 10px;
+    color: var(--muted);
+    background: rgba(0,0,0,0.5);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .ad-preview-body { padding: 16px; }
+  .ad-preview-page { font-size: 11px; font-weight: 600; color: var(--white); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .page-dot { width: 24px; height: 24px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #000; }
+  .ad-preview-copy { font-size: 13px; color: #bbb; line-height: 1.6; margin-bottom: 12px; }
+  .ad-preview-link {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .ad-preview-link-url { font-size: 10px; color: var(--dim); }
+  .ad-preview-link-title { font-size: 12px; font-weight: 600; color: var(--white); }
+  .ad-cta {
+    background: var(--gold);
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    padding: 9px;
+    border-radius: 6px;
+  }
+
+  /* ── FORM STEPS ── */
+  .form-steps { display: flex; flex-direction: column; gap: 8px; }
+  .form-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(232,160,32,0.12);
+    border: 1px solid rgba(232,160,32,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .step-label { font-size: 13px; color: #ccc; }
+  .step-note { font-size: 11px; color: var(--dim); margin-left: auto; }
+
+  /* ── TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-left { width: 80px; flex-shrink: 0; }
+  .tl-month { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; }
+  .tl-budget { font-size: 18px; font-weight: 700; color: var(--white); margin-top: 4px; }
+  .tl-budget-label { font-size: 10px; color: var(--dim); }
+  .tl-right { flex: 1; }
+  .tl-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+  .tl-desc { font-size: 13px; color: var(--dim); line-height: 1.6; }
+  .tl-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .tl-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    color: var(--dim);
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; }
+  .check-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; margin-top: 1px; }
+  .check-done { background: rgba(74,222,128,0.15); color: var(--green); }
+  .check-pending { background: rgba(251,146,60,0.12); color: var(--orange); }
+  .check-text { font-size: 13px; color: #bbb; line-height: 1.5; }
+  .check-text strong { color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+  }
+  footer span { font-size: 12px; color: var(--muted); }
+
+  @media (max-width: 768px) {
+    .hero, .section { padding: 48px 24px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 36px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-label">The Acting Garage · Meta Ads 2026</div>
+  <h1>Captación de leads<br>en <em>Instagram</em> y Facebook</h1>
+  <p class="hero-sub">Estrategia de primer lanzamiento en Meta Ads. Campaña de generación de leads para programas de adultos en Barcelona.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-value">€220</div>
+      <div class="hero-stat-label">Inversión mensual</div>
+    </div>
+    <div>
+      <div class="hero-stat-value">€35–60</div>
+      <div class="hero-stat-label">CPL estimado</div>
+    </div>
+    <div>
+      <div class="hero-stat-value">4–6</div>
+      <div class="hero-stat-label">Leads / semana estimados</div>
+    </div>
+    <div>
+      <div class="hero-stat-value">Junio</div>
+      <div class="hero-stat-label">Inicio de campaña</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ESTRUCTURA ── -->
+<section class="section">
+  <div class="section-label">Estructura</div>
+  <div class="section-title">Cómo está armada<br>la <em>campaña</em></div>
+
+  <!-- Campaign -->
+  <div class="campaign-block" style="margin-bottom:8px">
+    <div class="campaign-header">
+      <span class="level-pill pill-campaign">Campaña</span>
+      <span class="campaign-name">TAG | Adultos | Lead Gen | Barcelona</span>
+      <span class="status-pill">En pausa · listo para activar</span>
+    </div>
+    <div class="campaign-body">
+      <div class="meta-grid">
+        <div>
+          <div class="meta-field-label">Presupuesto diario</div>
+          <div class="meta-field-value big">€7.33</div>
+          <div class="meta-field-label" style="margin-top:2px">≈ €220 / mes</div>
+        </div>
+        <div>
+          <div class="meta-field-label">Objetivo</div>
+          <div class="meta-field-value"><strong>Lead Generation</strong><br>Formulario nativo Meta</div>
+        </div>
+        <div>
+          <div class="meta-field-label">Estrategia de puja</div>
+          <div class="meta-field-value"><strong>Lowest Cost</strong><br>Meta optimiza automáticamente</div>
+        </div>
+        <div>
+          <div class="meta-field-label">Tipo de compra</div>
+          <div class="meta-field-value">Subasta (Auction)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ad Set -->
+  <div style="padding-left:32px; margin-bottom:8px">
+    <div class="campaign-block">
+      <div class="campaign-header">
+        <span class="level-pill pill-adset">Conjunto de anuncios</span>
+        <span class="campaign-name">AdSet | Adultos | Barcelona 18–45</span>
+        <span class="status-pill">En pausa</span>
+      </div>
+      <div class="campaign-body">
+        <div class="meta-grid" style="margin-bottom:24px">
+          <div>
+            <div class="meta-field-label">Optimización</div>
+            <div class="meta-field-value"><strong>Lead Generation</strong></div>
+          </div>
+          <div>
+            <div class="meta-field-label">Facturación</div>
+            <div class="meta-field-value">Por impresiones (CPM)</div>
+          </div>
+          <div>
+            <div class="meta-field-label">Destino del anuncio</div>
+            <div class="meta-field-value">Formulario nativo (ON_AD)</div>
+          </div>
+          <div>
+            <div class="meta-field-label">Advantage+</div>
+            <div class="meta-field-value" style="color:var(--green)"><strong>Desactivado</strong> — targeting exacto</div>
+          </div>
+        </div>
+
+        <div class="audience-section">
+          <div class="audience-title">Audiencia configurada</div>
+          <div class="audience-row">
+
+            <div class="audience-box">
+              <div class="audience-box-title">Geografía</div>
+              <div class="geo-display">
+                <div class="geo-pin">📍</div>
+                <div class="geo-text">
+                  <strong>Barcelona, España</strong>
+                  <span>Radio de 20 km · Residentes y visitantes frecuentes</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="audience-box">
+              <div class="audience-box-title">Edad</div>
+              <div class="age-viz">
+                <div class="age-range-label">
+                  <span>18</span>
+                  <strong>18 – 45 años</strong>
+                  <span>45</span>
+                </div>
+                <div class="age-track"><div class="age-fill"></div></div>
+                <div style="font-size:11px;color:var(--dim);margin-top:6px">Hombres y mujeres · Todos los idiomas</div>
+              </div>
+            </div>
+
+            <div class="audience-box" style="flex-basis:100%">
+              <div class="audience-box-title">Intereses (OR — cualquiera de estos clasifica al usuario)</div>
+              <div class="interest-grid">
+                <div class="interest-tag"><span class="dot"></span>Actuación / Acting</div>
+                <div class="interest-tag"><span class="dot"></span>Teatro</div>
+                <div class="interest-tag"><span class="dot"></span>Artes escénicas</div>
+                <div class="interest-tag"><span class="dot"></span>Obras de teatro</div>
+                <div class="interest-tag"><span class="dot"></span>Actores</div>
+                <div class="interest-tag"><span class="dot blue"></span>Cine</div>
+                <div class="interest-tag"><span class="dot purple"></span>Escritura de guiones</div>
+              </div>
+              <p style="font-size:11px;color:var(--dim);margin-top:12px;line-height:1.6">
+                Intereses validados via Meta Targeting API. Cualquier usuario que siga páginas, interactúe con contenido o haya expresado afinidad con alguno de estos temas entra en la audiencia.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ad -->
+  <div style="padding-left:64px; margin-bottom:8px">
+    <div class="campaign-block">
+      <div class="campaign-header">
+        <span class="level-pill pill-ad">Anuncio</span>
+        <span class="campaign-name">TAG | Adultos | Hook — ¿Siempre has querido actuar?</span>
+        <span class="status-pill">En pausa</span>
+      </div>
+      <div class="campaign-body">
+        <div class="grid-2" style="gap:40px;align-items:start">
+          <div>
+            <div class="meta-field-label" style="margin-bottom:16px">Vista previa del anuncio</div>
+            <div class="ad-preview">
+              <div class="ad-preview-img"></div>
+              <div class="ad-preview-body">
+                <div class="ad-preview-page">
+                  <div class="page-dot">T</div>
+                  The Acting Garage · Publicidad
+                </div>
+                <div class="ad-preview-copy">¿Siempre has querido actuar pero no sabías por dónde empezar?<br><br>En The Acting Garage entrenamos actores reales — adultos sin experiencia previa — con las mismas técnicas que usan los profesionales.<br><br>Barcelona · Grupos reducidos · Septiembre 2026.</div>
+                <div class="ad-preview-link">
+                  <div>
+                    <div class="ad-preview-link-url">theactinggarage.com</div>
+                    <div class="ad-preview-link-title">The Acting Garage — Escuela de interpretación en Barcelona</div>
+                  </div>
+                </div>
+                <div class="ad-cta">Regístrate</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="meta-field-label" style="margin-bottom:12px">Detalles del anuncio</div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div>
+                <div class="meta-field-label">Hook principal</div>
+                <div class="meta-field-value" style="font-size:15px;font-style:italic;color:var(--gold)">"¿Siempre has querido actuar pero no sabías por dónde empezar?"</div>
+              </div>
+              <div>
+                <div class="meta-field-label">CTA</div>
+                <div class="meta-field-value">Regístrate → abre formulario nativo</div>
+              </div>
+              <div>
+                <div class="meta-field-label">Imagen</div>
+                <div class="meta-field-value" style="color:var(--orange)">⚠ Pendiente de equipo de diseño</div>
+              </div>
+              <div>
+                <div class="meta-field-label">Formato recomendado</div>
+                <div class="meta-field-value">Vídeo vertical 9:16 · 15–30 segundos<br>o imagen 4:5 · 1080×1350 px</div>
+              </div>
+            </div>
+
+            <div style="margin-top:24px">
+              <div class="meta-field-label" style="margin-bottom:12px">Próximas variantes a testear (Mes 2)</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--dim)">
+                  <span style="color:#555;margin-right:8px">B</span>"¿Cuánto tiempo llevas queriendo actuar?"
+                </div>
+                <div style="padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--dim)">
+                  <span style="color:#555;margin-right:8px">C</span>"Sí, podés aprender a actuar. En serio."
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div style="padding-left:96px">
+    <div class="campaign-block">
+      <div class="campaign-header">
+        <span class="level-pill pill-form">Formulario de lead</span>
+        <span class="campaign-name">TAG | Adultos | Formulario de contacto</span>
+        <span class="status-pill" style="background:rgba(74,222,128,0.1);color:var(--green)">Activo</span>
+      </div>
+      <div class="campaign-body">
+        <div class="grid-2" style="gap:40px;align-items:start">
+          <div>
+            <div class="meta-field-label" style="margin-bottom:12px">Preguntas</div>
+            <div class="form-steps">
+              <div class="form-step">
+                <div class="step-num">1</div>
+                <div class="step-label">Nombre completo</div>
+                <div class="step-note">Pre-completado por Meta</div>
+              </div>
+              <div class="form-step">
+                <div class="step-num">2</div>
+                <div class="step-label">Email</div>
+                <div class="step-note">Pre-completado por Meta</div>
+              </div>
+              <div class="form-step">
+                <div class="step-num">3</div>
+                <div class="step-label">Teléfono</div>
+                <div class="step-note">Pre-completado por Meta</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="meta-field-label" style="margin-bottom:12px">Por qué formulario nativo</div>
+            <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:16px">
+              El usuario <strong style="color:#ccc">nunca sale de Instagram o Facebook</strong>. Meta pre-completa el formulario con los datos del perfil del usuario, lo que reduce la fricción y aumenta la tasa de conversión frente a un formulario en el sitio web.
+            </p>
+            <div style="padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+              <div class="meta-field-label" style="margin-bottom:6px">Pantalla de agradecimiento</div>
+              <div style="font-size:13px;color:#ccc">¡Gracias por tu interés!</div>
+              <div style="font-size:12px;color:var(--dim);margin-top:4px">Nos pondremos en contacto en menos de 24h → Ver nuestros cursos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRESUPUESTO ── -->
+<section class="section">
+  <div class="section-label">Inversión</div>
+  <div class="section-title">Presupuesto y<br><em>proyección</em></div>
+
+  <div class="grid-4" style="margin-bottom:64px">
+    <div class="card card-gold">
+      <div class="card-label">Inversión diaria</div>
+      <div class="card-value">€7.33</div>
+      <div class="card-sub">Controlado · se puede ajustar en cualquier momento</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Inversión mensual</div>
+      <div class="card-value">€220</div>
+      <div class="card-sub">Campaña adultos · Fase 1</div>
+    </div>
+    <div class="card card-blue">
+      <div class="card-label">CPL estimado</div>
+      <div class="card-value">€35–60</div>
+      <div class="card-sub">Cuenta nueva sin historial de pixel. Se optimiza con el tiempo.</div>
+    </div>
+    <div class="card card-green">
+      <div class="card-label">Leads/mes estimados</div>
+      <div class="card-value">4–6</div>
+      <div class="card-sub">Primer mes. Escala si CPL < €60 y close rate > 15%</div>
+    </div>
+  </div>
+
+  <!-- MES 1 -->
+  <div style="margin-bottom:48px">
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:24px">
+      <div style="background:rgba(232,160,32,0.1);border:1px solid rgba(232,160,32,0.25);border-radius:8px;padding:8px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold)">Mes 1</div>
+      <div style="height:1px;flex:1;background:var(--border)"></div>
+      <div style="font-size:22px;font-weight:700;color:var(--white)">€220 <span style="font-size:13px;font-weight:400;color:var(--dim)">/ mes</span></div>
+    </div>
+
+    <div class="grid-2" style="gap:24px;align-items:start">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px">Aprendizaje — no tocar nada</div>
+        <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:20px">El objetivo del primer mes <strong style="color:#ccc">no es optimizar</strong> — es entender. Meta necesita acumular datos de quién hace clic, quién llena el formulario y quién no. Si tocamos la campaña antes de que el pixel tenga datos, reiniciamos ese aprendizaje desde cero y desperdiciamos el presupuesto.</p>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:14px">
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:4px">Qué medir al final del mes</div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:5px;flex-shrink:0"></div>
+            <div><strong style="font-size:13px">CPL real</strong> — ¿cuánto nos costó cada lead? Si está bajo €60, todo bien. Si supera €80, revisamos el copy o la imagen.</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:5px;flex-shrink:0"></div>
+            <div><strong style="font-size:13px">CTR del anuncio</strong> — porcentaje de personas que hicieron clic. Un CTR bajo (&lt;1%) indica que la imagen o el hook no llama la atención.</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:5px;flex-shrink:0"></div>
+            <div><strong style="font-size:13px">Tasa de conversión del formulario</strong> — de los que hacen clic, ¿cuántos completan el formulario? Si es baja, el problema está en las preguntas, no en el anuncio.</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:5px;flex-shrink:0"></div>
+            <div><strong style="font-size:13px">Close rate</strong> — de los leads recibidos, ¿cuántos se convirtieron en alumnos? Si es bajo (&lt;10%), el problema no es el anuncio sino el proceso de seguimiento.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim)">Estructura activa · Mes 1</div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:10px">
+            <div style="padding:12px 16px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.15);border-radius:8px">
+              <div style="font-size:10px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">1 Campaña</div>
+              <div style="font-size:12px;color:#ccc">TAG | Adultos | Lead Gen | Barcelona</div>
+              <div style="font-size:11px;color:var(--dim);margin-top:2px">€7.33/día · Objetivo: Leads</div>
+            </div>
+            <div style="padding:12px 16px;background:rgba(91,156,246,0.05);border:1px solid rgba(91,156,246,0.15);border-radius:8px;margin-left:16px">
+              <div style="font-size:10px;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">1 Ad Set</div>
+              <div style="font-size:12px;color:#ccc">Barcelona 18–45 · 7 intereses</div>
+            </div>
+            <div style="padding:12px 16px;background:rgba(74,222,128,0.05);border:1px solid rgba(74,222,128,0.15);border-radius:8px;margin-left:32px">
+              <div style="font-size:10px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">1 Anuncio</div>
+              <div style="font-size:12px;color:#ccc;font-style:italic">"¿Siempre has querido actuar?"</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;padding:16px 20px;background:rgba(251,146,60,0.06);border:1px solid rgba(251,146,60,0.2);border-radius:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--orange);margin-bottom:8px">⚠ Regla de oro del Mes 1</div>
+          <p style="font-size:12px;color:#bbb;line-height:1.6">No cambiar nada aunque los números parezcan lentos las primeras dos semanas. Meta tarda entre 7 y 14 días en salir de la "fase de aprendizaje". Cualquier cambio antes reinicia el contador.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MES 2 -->
+  <div style="margin-bottom:48px">
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:24px">
+      <div style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.25);border-radius:8px;padding:8px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--blue)">Mes 2</div>
+      <div style="height:1px;flex:1;background:var(--border)"></div>
+      <div style="font-size:22px;font-weight:700;color:var(--white)">€220 <span style="font-size:13px;font-weight:400;color:var(--dim)">/ mes · mismo presupuesto</span></div>
+    </div>
+
+    <div class="grid-2" style="gap:24px;align-items:start">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px">A/B de creatividades — 3 hooks</div>
+        <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:20px">Con 30–50 leads acumulados, el pixel tiene suficiente información para optimizar. Lanzamos <strong style="color:#ccc">3 variantes del anuncio dentro del mismo ad set</strong>: mismo presupuesto, misma audiencia, solo cambia el hook y la imagen. Meta distribuye automáticamente más presupuesto hacia la versión que genera más leads al menor costo. Sin gasto extra.</p>
+
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+          <div style="padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(232,160,32,0.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--gold)">A</div>
+              <div style="font-size:12px;font-weight:600;color:#ccc">Hook emocional — duda</div>
+              <div style="margin-left:auto;font-size:10px;color:var(--dim);background:rgba(232,160,32,0.1);padding:2px 8px;border-radius:4px;color:var(--gold)">Activo ahora</div>
+            </div>
+            <div style="font-size:13px;color:#bbb;font-style:italic;padding-left:32px">"¿Siempre has querido actuar pero no sabías por dónde empezar?"</div>
+            <div style="font-size:11px;color:var(--dim);padding-left:32px;margin-top:4px">Apunta a quien ya tiene el deseo pero tiene freno. Alta intención.</div>
+          </div>
+          <div style="padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(91,156,246,0.15);display:flex;align-items:center;justify-content:font-size:10px;font-weight:700;color:var(--blue);justify-content:center">B</div>
+              <div style="font-size:12px;font-weight:600;color:#ccc">Hook curiosidad — tiempo perdido</div>
+            </div>
+            <div style="font-size:13px;color:#bbb;font-style:italic;padding-left:32px">"¿Cuánto tiempo llevas queriendo actuar?"</div>
+            <div style="font-size:11px;color:var(--dim);padding-left:32px;margin-top:4px">Genera introspección. Funciona bien con público 28–40 años.</div>
+          </div>
+          <div style="padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(167,139,250,0.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--purple)">C</div>
+              <div style="font-size:12px;font-weight:600;color:#ccc">Hook disruptivo — permiso</div>
+            </div>
+            <div style="font-size:13px;color:#bbb;font-style:italic;padding-left:32px">"Sí, podés aprender a actuar. En serio."</div>
+            <div style="font-size:11px;color:var(--dim);padding-left:32px;margin-top:4px">Rompe la creencia de que actuar "no es para mí". Alto potencial de CTR.</div>
+          </div>
+        </div>
+
+        <div style="padding:16px 20px;background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.2);border-radius:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--green);margin-bottom:8px">Cómo declaramos ganador</div>
+          <p style="font-size:12px;color:#bbb;line-height:1.6">Después de 2 semanas y al menos 15 leads por variante, la que tenga el <strong style="color:#ccc">CPL más bajo con CTR aceptable</strong> (&gt;1%) se queda. Las otras se pausan. Esa variante ganadora se convierte en el anuncio base del Mes 3.</p>
+        </div>
+      </div>
+
+      <div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim)">Estructura activa · Mes 2</div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:10px">
+            <div style="padding:12px 16px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.15);border-radius:8px">
+              <div style="font-size:10px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">1 Campaña</div>
+              <div style="font-size:12px;color:#ccc">TAG | Adultos | Lead Gen | Barcelona</div>
+            </div>
+            <div style="padding:12px 16px;background:rgba(91,156,246,0.05);border:1px solid rgba(91,156,246,0.15);border-radius:8px;margin-left:16px">
+              <div style="font-size:10px;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">1 Ad Set</div>
+              <div style="font-size:12px;color:#ccc">Misma audiencia</div>
+            </div>
+            <div style="padding:12px 16px;background:rgba(74,222,128,0.05);border:1px solid rgba(74,222,128,0.15);border-radius:8px;margin-left:32px">
+              <div style="font-size:10px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">3 Anuncios (A/B/C)</div>
+              <div style="font-size:11px;color:var(--dim);margin-top:2px">Meta distribuye presupuesto → ganador automático</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:14px">Qué necesitamos del equipo para Mes 2</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:#bbb">
+              <div style="width:18px;height:18px;border-radius:50%;background:rgba(251,146,60,0.12);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--orange);flex-shrink:0;margin-top:1px">!</div>
+              <div><strong style="color:#ccc">3 imágenes o vídeos distintos</strong> — uno por hook. Misma estética, diferente primer frame.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:#bbb">
+              <div style="width:18px;height:18px;border-radius:50%;background:rgba(251,146,60,0.12);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--orange);flex-shrink:0;margin-top:1px">!</div>
+              <div>Si es vídeo: <strong style="color:#ccc">los primeros 3 segundos cambian</strong> por variante. El resto puede ser el mismo clip.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MES 3 -->
+  <div>
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:24px">
+      <div style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:8px;padding:8px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--green)">Mes 3+</div>
+      <div style="height:1px;flex:1;background:var(--border)"></div>
+      <div style="font-size:22px;font-weight:700;color:var(--white)">€470–570 <span style="font-size:13px;font-weight:400;color:var(--dim)">/ mes · si el canal valida</span></div>
+    </div>
+
+    <div class="grid-2" style="gap:24px;align-items:start">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:10px">Escala + Kids + Remarketing</div>
+        <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:24px">Si el Mes 2 confirma que el canal convierte (CPL &lt; €60, close rate &gt; 15%), expandimos en tres frentes simultáneos: escalamos adultos, lanzamos kids y activamos remarketing.</p>
+
+        <!-- Kids campaign -->
+        <div style="margin-bottom:20px">
+          <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:12px;display:flex;align-items:center;gap:8px">
+            <span style="background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.25);border-radius:4px;padding:2px 8px;font-size:10px;color:var(--green)">NUEVO</span>
+            Campaña 02 — Kids & New Generation
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:14px">
+            <div class="grid-2" style="gap:16px">
+              <div>
+                <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Presupuesto</div>
+                <div style="font-size:18px;font-weight:700;color:var(--white)">€150<span style="font-size:12px;font-weight:400;color:var(--dim)">/mes</span></div>
+              </div>
+              <div>
+                <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Audiencia</div>
+                <div style="font-size:13px;font-weight:600;color:#ccc">Padres 30–48 años</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Intereses para padres</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--surface);border:1px solid var(--border2);color:#aaa">Actividades extraescolares</span>
+                <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--surface);border:1px solid var(--border2);color:#aaa">Teatro infantil</span>
+                <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--surface);border:1px solid var(--border2);color:#aaa">Desarrollo creativo</span>
+                <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--surface);border:1px solid var(--border2);color:#aaa">Educación</span>
+                <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--surface);border:1px solid var(--border2);color:#aaa">Familia</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Hook</div>
+              <div style="font-size:13px;color:#bbb;font-style:italic">"¿Tu hijo sueña con las artes escénicas? Dale un espacio donde brillar."</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Creatividad</div>
+              <div style="font-size:12px;color:#bbb">Vídeo de clase real — niños actuando, caras felices, momento genuino. Los padres convierten muy bien con este formato.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remarketing -->
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:12px;display:flex;align-items:center;gap:8px">
+            <span style="background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.25);border-radius:4px;padding:2px 8px;font-size:10px;color:var(--purple)">NUEVO</span>
+            Campaña 03 — Remarketing
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:14px">
+            <div class="grid-2" style="gap:16px">
+              <div>
+                <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Presupuesto</div>
+                <div style="font-size:18px;font-weight:700;color:var(--white)">€100<span style="font-size:12px;font-weight:400;color:var(--dim)">/mes</span></div>
+              </div>
+              <div>
+                <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Condición para activar</div>
+                <div style="font-size:12px;font-weight:600;color:var(--orange)">Mínimo 60 días de pixel acumulado</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">A quién se muestra</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;gap:10px;font-size:12px;color:#bbb;align-items:flex-start">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--purple);margin-top:4px;flex-shrink:0"></div>
+                  <div>Visitantes del sitio web en los últimos 30 días que <strong style="color:#ccc">no completaron el formulario</strong></div>
+                </div>
+                <div style="display:flex;gap:10px;font-size:12px;color:#bbb;align-items:flex-start">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--purple);margin-top:4px;flex-shrink:0"></div>
+                  <div>Personas que <strong style="color:#ccc">abrieron el formulario pero no lo enviaron</strong></div>
+                </div>
+                <div style="display:flex;gap:10px;font-size:12px;color:#bbb;align-items:flex-start">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--purple);margin-top:4px;flex-shrink:0"></div>
+                  <div>Personas que <strong style="color:#ccc">interactuaron con el anuncio</strong> (lo vieron &gt;50%) pero no convirtieron</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Mensaje</div>
+              <div style="font-size:12px;color:#bbb">Más directo y específico — ya conocen TAG. Ej: "Las inscripciones para septiembre cierran pronto. ¿Reservamos tu lugar?"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim)">Estructura completa · Mes 3</div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:10px">
+            <div style="padding:12px 16px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.15);border-radius:8px">
+              <div style="font-size:10px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px">Campaña Adultos</div>
+              <div style="font-size:11px;color:var(--dim)">€220/mes · 1 anuncio ganador de Mes 2</div>
+            </div>
+            <div style="padding:12px 16px;background:rgba(74,222,128,0.05);border:1px solid rgba(74,222,128,0.15);border-radius:8px">
+              <div style="font-size:10px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px">Campaña Kids · NUEVA</div>
+              <div style="font-size:11px;color:var(--dim)">€150/mes · padres 30–48 · Barcelona</div>
+            </div>
+            <div style="padding:12px 16px;background:rgba(167,139,250,0.05);border:1px solid rgba(167,139,250,0.15);border-radius:8px">
+              <div style="font-size:10px;color:var(--purple);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px">Remarketing · NUEVA</div>
+              <div style="font-size:11px;color:var(--dim)">€100/mes · audiencias calientes</div>
+            </div>
+            <div style="padding:14px 16px;background:rgba(232,160,32,0.04);border:1px dashed rgba(232,160,32,0.2);border-radius:8px;margin-top:4px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-size:11px;color:var(--dim)">Total mensual</div>
+                <div style="font-size:20px;font-weight:700;color:var(--gold)">€470</div>
+              </div>
+              <div style="font-size:10px;color:var(--muted);margin-top:2px">Escala a €570+ si CPL sigue optimizando</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px">
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:14px">Condiciones para escalar</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="font-size:13px;font-weight:700;color:var(--green);width:60px;flex-shrink:0">&lt; €60</div>
+              <div style="font-size:12px;color:#bbb">CPL en Mes 1–2</div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="font-size:13px;font-weight:700;color:var(--green);width:60px;flex-shrink:0">&gt; 15%</div>
+              <div style="font-size:12px;color:#bbb">Close rate leads → alumnos</div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="font-size:13px;font-weight:700;color:var(--green);width:60px;flex-shrink:0">60 días</div>
+              <div style="font-size:12px;color:#bbb">Pixel acumulado antes de activar remarketing</div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="font-size:13px;font-weight:700;color:var(--orange);width:60px;flex-shrink:0">Ago–Sep</div>
+              <div style="font-size:12px;color:#bbb">Pico estacional — subir presupuesto previo a inscripción de septiembre</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHECKLIST ── -->
+<section class="section">
+  <div class="section-label">Estado actual</div>
+  <div class="section-title">Qué está listo y<br>qué falta para <em>activar</em></div>
+
+  <div class="grid-2" style="gap:48px;align-items:start">
+    <div>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:16px">Completado ✓</div>
+      <div class="checklist">
+        <div class="check-item">
+          <div class="check-icon check-done">✓</div>
+          <div class="check-text"><strong>Cuenta de anuncios activa</strong> con método de pago configurado</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon check-done">✓</div>
+          <div class="check-text"><strong>Terms of Service de Lead Generation</strong> aceptados en la página de Facebook</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon check-done">✓</div>
+          <div class="check-text"><strong>Campaña creada</strong> con objetivo Lead Generation y presupuesto €7.33/día</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon check-done">✓</div>
+          <div class="check-text"><strong>Targeting configurado</strong> — Barcelona +20km, 18–45 años, 7 intereses validados</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon check-done">✓</div>
+          <div class="check-text"><strong>Formulario de lead</strong> creado en español con nombre, email y teléfono</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon check-done">✓</div>
+          <div class="check-text"><strong>Copy del anuncio</strong> redactado con hook principal validado</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:16px">Pendiente para activar</div>
+      <div class="checklist">
+        <div class="check-item">
+          <div class="check-icon check-pending">!</div>
+          <div class="check-text"><strong>Imagen o vídeo real</strong> — reemplazar el placeholder actual con material del equipo de diseño (vídeo 9:16, 15–30s o imagen 1080×1350px)</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon check-pending">!</div>
+          <div class="check-text"><strong>Información de contacto</strong> de la cuenta de anuncios — necesaria para que Meta Manager muestre la campaña correctamente</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon check-pending">!</div>
+          <div class="check-text"><strong>Protocolo de respuesta a leads</strong> — definir quién responde, en cuánto tiempo (máximo 4h), por WhatsApp, con qué mensaje</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon check-pending">!</div>
+          <div class="check-text"><strong>Conexión leads → CRM</strong> — integrar Meta Lead Center con TAG Admin vía webhook para que los contactos entren automáticamente</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span>The Acting Garage · Meta Ads Strategy 2026</span>
+  <span>Cuenta: theactinggarage_ad_account · act_5315666445325138</span>
+  <span>Preparado con Claude Code</span>
+</footer>
+
+</body>
+</html>
