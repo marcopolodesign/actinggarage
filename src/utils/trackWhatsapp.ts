@@ -17,6 +17,10 @@ export function trackWhatsappClick(page: string): void {
     });
   }
 
+  if (typeof window !== 'undefined' && typeof (window as any).fbq === 'function') {
+    (window as any).fbq('track', 'Contact');
+  }
+
   try {
     navigator.sendBeacon(
       '/api/whatsapp-click',
