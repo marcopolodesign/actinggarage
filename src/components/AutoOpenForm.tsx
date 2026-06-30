@@ -1,20 +1,19 @@
 import { useEffect } from 'react';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 
-const META_SOURCES = ['meta', 'facebook', 'instagram'];
-
 /**
  * AutoOpenForm component
- * Automatically opens the form flyout when URL contains:
+ * Opens the form flyout when URL contains:
  * - Hash: #modal or #form
  * - Query param: ?modal=1 or ?openForm=1
- * - Meta paid traffic: utm_source=meta|facebook|instagram + utm_medium=paid (1.5s delay)
+ *
+ * Timed capture (all visitors) is handled by LeadPopup at 10s.
  */
 const AutoOpenForm: React.FC = () => {
   const { openFlyout } = useFormFlyout();
 
   useEffect(() => {
-    // Check for hash-based trigger (#modal)
+    // Hash-based trigger (#modal / #form)
     const hash = window.location.hash;
     if (hash === '#modal' || hash === '#form') {
       openFlyout();
@@ -34,16 +33,6 @@ const AutoOpenForm: React.FC = () => {
       const newSearch = urlParams.toString();
       window.history.replaceState(null, '', window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash);
       return;
-    }
-
-    // Meta paid traffic — open after short delay so the page settles first
-    const utmSource = (urlParams.get('utm_source') || '').toLowerCase();
-    const utmMedium = (urlParams.get('utm_medium') || '').toLowerCase();
-    const isPaidMeta = META_SOURCES.includes(utmSource) && utmMedium === 'paid';
-
-    if (isPaidMeta) {
-      const timer = setTimeout(() => openFlyout(), 1500);
-      return () => clearTimeout(timer);
     }
   }, [openFlyout]);
 

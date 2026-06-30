@@ -8,10 +8,9 @@ declare global {
   interface Window { fbq: (...args: any[]) => void; }
 }
 
-const META_SOURCES = ['meta', 'facebook', 'instagram'];
 const STORAGE_KEY = 'tag_popup_seen';
 const COOLDOWN_DAYS = 7;
-const DELAY_MS = 12000;
+const DELAY_MS = 10000;
 
 const inputStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.07)',
@@ -34,13 +33,6 @@ const LeadPopup: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const utmSource = (params.get('utm_source') || '').toLowerCase();
-    const utmMedium = (params.get('utm_medium') || '').toLowerCase();
-
-    // Meta paid traffic already gets the flyout at 1.5s — skip popup
-    if (META_SOURCES.includes(utmSource) && utmMedium === 'paid') return;
-
     // Cooldown: don't show if dismissed/submitted in the last COOLDOWN_DAYS
     const seen = localStorage.getItem(STORAGE_KEY);
     if (seen) {
