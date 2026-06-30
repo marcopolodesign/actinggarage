@@ -6,6 +6,7 @@ import { AboutFlyoutProvider } from './context/AboutFlyoutContext';
 import FormFlyout from './components/FormFlyout';
 import AboutFlyout from './components/AboutFlyout';
 import AutoOpenForm from './components/AutoOpenForm';
+import LeadPopup from './components/LeadPopup';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
 import EulaDisclaimer from './components/EulaDisclaimer';
@@ -78,6 +79,7 @@ function App() {
           <PageTransition />
           <EulaDisclaimer />
           <AutoOpenForm />
+          <LeadPopup />
           <AppContent />
         </AboutFlyoutProvider>
       </FormFlyoutProvider>
