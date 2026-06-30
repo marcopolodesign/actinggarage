@@ -3,6 +3,7 @@ import { useFormFlyout } from '../context/FormFlyoutContext';
 import { submitForm } from '../api/submitForm';
 import { upsertLead } from '../api/upsertLead';
 import { getUtms } from '../utils/utm';
+import { getMetaAttribution } from '../utils/metaAttribution';
 import { trackFormConversion } from '../utils/trackConversion';
 import { computeAge } from '../utils/age';
 import { gsap } from 'gsap';
@@ -200,8 +201,12 @@ const FormFlyout: React.FC = () => {
     setIsSubmitting(true);
 
     const { utm_source, utm_medium, utm_campaign, utm_id } = getUtms();
+    const { fbc, fbp } = getMetaAttribution();
     const source = 'website_form';
     const currentUtmParams = { utm_source, utm_medium, utm_campaign, utm_id };
+
+    // Generate event_id before submit so Pixel and CAPI share the same ID (deduplication)
+    const event_id = crypto.randomUUID();
 
     const birthdayForSubmit = formData.birthday || '';
     const calculatedAge = computeAge(formData.birthday);
@@ -225,6 +230,13 @@ const FormFlyout: React.FC = () => {
 
         if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
           try {
+            const PIXEL_ID = '834745809170874';
+            // Re-init with advanced matching so Meta can match this lead to a user profile
+            window.fbq('init', PIXEL_ID, {
+              em: userEmail.trim().toLowerCase(),
+              ph: formData.phone.replace(/[\s\-\(\)]/g, ''),
+            });
+
             const leadParams: any = {
               content_name: 'Contact Form Submission',
               content_category: 'Lead Generation',
@@ -234,14 +246,30 @@ const FormFlyout: React.FC = () => {
             if (formData.course) {
               leadParams.content_ids = [formData.course];
             }
-            window.fbq('track', 'Lead', leadParams);
-            console.log('Meta Pixel: Lead event tracked', leadParams);
+            // Pass event_id so Meta deduplicates with the CAPI call below
+            window.fbq('track', 'Lead', leadParams, { eventID: event_id });
+            console.log('Meta Pixel: Lead event tracked', { ...leadParams, event_id });
           } catch (error) {
             console.error('Meta Pixel: Error tracking Lead', error);
           }
         } else {
           console.warn('Meta Pixel: fbq not available for Lead tracking');
         }
+
+        // Fire CAPI server-side (non-blocking — don't await)
+        fetch('https://pyiypxvvruwvwfcsprrb.supabase.co/functions/v1/capi-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event_id,
+            email: userEmail.trim().toLowerCase(),
+            phone: formData.phone || undefined,
+            fbc,
+            fbp,
+            client_user_agent: navigator.userAgent,
+            event_source_url: window.location.href,
+          }),
+        }).catch(err => console.warn('CAPI call failed (non-critical):', err));
 
         setTimeout(() => {
           setSubmitted(false);
