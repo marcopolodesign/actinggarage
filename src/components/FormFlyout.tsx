@@ -4,6 +4,7 @@ import { submitForm } from '../api/submitForm';
 import { upsertLead } from '../api/upsertLead';
 import { getUtms } from '../utils/utm';
 import { getMetaAttribution } from '../utils/metaAttribution';
+import { supabase } from '../lib/supabase';
 import { trackFormConversion } from '../utils/trackConversion';
 import { computeAge } from '../utils/age';
 import { gsap } from 'gsap';
@@ -59,6 +60,7 @@ const FormFlyout: React.FC = () => {
   const [userEmail, setUserEmail] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [crmRef, setCrmRef] = useState<{ name: string; id: string } | null>(null);
 
   // Ref always holds latest snapshot so pagehide/beforeunload closures can read it
   const pendingRef = useRef({ userEmail, formData, submitted });
@@ -226,6 +228,17 @@ const FormFlyout: React.FC = () => {
       if (result.success) {
         setSubmitted(true);
 
+        // Fetch CRM entry to show verification to the user (non-blocking)
+        supabase
+          .from('prospects')
+          .select('id, name')
+          .eq('email', userEmail.trim().toLowerCase())
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .then(({ data }) => {
+            if (data?.[0]) setCrmRef({ id: data[0].id.slice(0, 8).toUpperCase(), name: data[0].name });
+          });
+
         trackFormConversion({ email: userEmail, phone: formData.phone, name: formData.name });
 
         if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
@@ -273,6 +286,7 @@ const FormFlyout: React.FC = () => {
 
         setTimeout(() => {
           setSubmitted(false);
+          setCrmRef(null);
           closeFlyout();
           setFormData({
             name: '',
@@ -283,7 +297,7 @@ const FormFlyout: React.FC = () => {
             course: ''
           });
           setUserEmail('');
-        }, 2000);
+        }, 4000);
       } else {
         throw new Error(result.message);
       }
@@ -314,8 +328,27 @@ const FormFlyout: React.FC = () => {
         {submitted ? (
           <div className="success-container">
             <div className="success-content">
-              <h1>¡Gracias por tu interés!</h1>
+              <h1>¡Gracias{formData.name ? `, ${formData.name.split(' ')[0]}` : ''}!</h1>
               <p>Hemos recibido tu información y nos pondremos en contacto contigo pronto.</p>
+              {crmRef && (
+                <div style={{
+                  marginTop: '1.5rem',
+                  padding: '1rem 1.25rem',
+                  background: 'rgba(0,0,0,0.08)',
+                  borderRadius: '8px',
+                  textAlign: 'left',
+                }}>
+                  <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.1em', marginBottom: '0.4rem', opacity: 0.6 }}>
+                    SOLICITUD VERIFICADA ✓
+                  </p>
+                  <p style={{ fontSize: '0.85rem', margin: 0 }}>
+                    <strong>{crmRef.name}</strong> — ref. <code style={{ fontSize: '0.8rem' }}>#{crmRef.id}</code>
+                  </p>
+                  <p style={{ fontSize: '0.75rem', marginTop: '0.3rem', opacity: 0.7, margin: '0.3rem 0 0' }}>
+                    Te contactaremos en las próximas 24–48h.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         ) : (

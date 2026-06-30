@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 
+const META_SOURCES = ['meta', 'facebook', 'instagram'];
+
 /**
  * AutoOpenForm component
  * Automatically opens the form flyout when URL contains:
- * - Hash: #modal
+ * - Hash: #modal or #form
  * - Query param: ?modal=1 or ?openForm=1
- * 
- * Does not interfere with UTM parameters
+ * - Meta paid traffic: utm_source=meta|facebook|instagram + utm_medium=paid (1.5s delay)
  */
 const AutoOpenForm: React.FC = () => {
   const { openFlyout } = useFormFlyout();
@@ -17,24 +18,32 @@ const AutoOpenForm: React.FC = () => {
     const hash = window.location.hash;
     if (hash === '#modal' || hash === '#form') {
       openFlyout();
-      // Clean up hash from URL without reloading
       window.history.replaceState(null, '', window.location.pathname + window.location.search);
       return;
     }
 
-    // Check for query parameter-based triggers
     const urlParams = new URLSearchParams(window.location.search);
     const modalParam = urlParams.get('modal');
     const openFormParam = urlParams.get('openForm');
-    
+
+    // Explicit trigger params — open immediately
     if (modalParam === '1' || modalParam === 'true' || openFormParam === '1' || openFormParam === 'true') {
       openFlyout();
-      // Remove the trigger parameter but keep UTM and other params
       urlParams.delete('modal');
       urlParams.delete('openForm');
       const newSearch = urlParams.toString();
-      const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash;
-      window.history.replaceState(null, '', newUrl);
+      window.history.replaceState(null, '', window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash);
+      return;
+    }
+
+    // Meta paid traffic — open after short delay so the page settles first
+    const utmSource = (urlParams.get('utm_source') || '').toLowerCase();
+    const utmMedium = (urlParams.get('utm_medium') || '').toLowerCase();
+    const isPaidMeta = META_SOURCES.includes(utmSource) && utmMedium === 'paid';
+
+    if (isPaidMeta) {
+      const timer = setTimeout(() => openFlyout(), 1500);
+      return () => clearTimeout(timer);
     }
   }, [openFlyout]);
 
