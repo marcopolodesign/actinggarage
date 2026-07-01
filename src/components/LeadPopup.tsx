@@ -33,6 +33,9 @@ const LeadPopup: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
+    // Don't show on dedicated landing pages
+    if (window.location.pathname.startsWith('/referido')) return;
+
     // Cooldown: don't show if dismissed/submitted in the last COOLDOWN_DAYS
     const seen = localStorage.getItem(STORAGE_KEY);
     if (seen) {

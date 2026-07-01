@@ -30,12 +30,13 @@ import './App.css';
 function AppContent() {
   const location = useLocation();
   const isContractPage = location.pathname.startsWith('/contrato');
+  const isStandalonePage = location.pathname.startsWith('/referido');
 
   useEffect(() => { captureUtms(); }, [location.search]);
 
   return (
     <div className="app">
-      {!isContractPage && <WhatsAppButton />}
+      {!isContractPage && !isStandalonePage && <WhatsAppButton />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cursos" element={<Cursos />} />
@@ -58,7 +59,7 @@ function AppContent() {
       </Routes>
       <FormFlyout />
       <AboutFlyout />
-      {!isContractPage && <EmailFooter />}
+      {!isContractPage && !isStandalonePage && <EmailFooter />}
     </div>
   );
 }
