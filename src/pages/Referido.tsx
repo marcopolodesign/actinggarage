@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { submitForm } from '../api/submitForm';
+
+const SUPABASE_URL = 'https://pyiypxvvruwvwfcsprrb.supabase.co';
 
 const Referido: React.FC = () => {
   const [referrerEmail, setReferrerEmail] = useState('');
@@ -10,6 +12,17 @@ const Referido: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+
+  // Log click as prospect when alumno arrives via personalized email link
+  useEffect(() => {
+    const ref = new URLSearchParams(window.location.search).get('ref');
+    if (!ref) return;
+    fetch(`${SUPABASE_URL}/functions/v1/log-referral-click`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref }),
+    }).catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
