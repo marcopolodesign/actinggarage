@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { submitForm } from '../api/submitForm';
-
-const SUPABASE_URL = 'https://pyiypxvvruwvwfcsprrb.supabase.co';
+import { supabase } from '../lib/supabase';
+import { REFERIDO_BIENVENIDA_SUBJECT, buildReferidoBienvenidaHtml } from '../emails/referidoBienvenida';
+import { REFERENTE_CONFIRMACION_SUBJECT, buildReferenteConfirmacionHtml } from '../emails/referenteConfirmacion';
+import { REFERRAL_REWARD_OPTIONS, PHOTO_SESSION_OPTIONS, buildReferralRewardValue, getReferralRewardLabel } from '../lib/referralRewards';
 
 const Referido: React.FC = () => {
   const [referrerEmail, setReferrerEmail] = useState('');
   const [friendName, setFriendName] = useState('');
   const [friendEmail, setFriendEmail] = useState('');
   const [friendPhone, setFriendPhone] = useState('');
+  const [reward, setReward] = useState('');
+  const [photoSessionType, setPhotoSessionType] = useState('');
+  const [submittedReward, setSubmittedReward] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -17,19 +22,27 @@ const Referido: React.FC = () => {
   useEffect(() => {
     const ref = new URLSearchParams(window.location.search).get('ref');
     if (!ref) return;
-    fetch(`${SUPABASE_URL}/functions/v1/log-referral-click`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ref }),
-    }).catch(() => {});
+    supabase.functions.invoke('log-referral-click', { body: { ref } }).catch(() => {});
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
     setError('');
 
+    if (!reward) {
+      setError('Elige tu regalo antes de enviar.');
+      return;
+    }
+    if (reward === 'sesion_fotos' && !photoSessionType) {
+      setError('Elige el tipo de sesión de fotos.');
+      return;
+    }
+
+    setSubmitting(true);
+
     try {
+      const referralReward = buildReferralRewardValue(reward, photoSessionType);
+
       const result = await submitForm({
         name: friendName.trim(),
         email: friendEmail.trim().toLowerCase(),
@@ -39,12 +52,33 @@ const Referido: React.FC = () => {
         source: 'referido',
         utm_source: referrerEmail.trim().toLowerCase(),
         utm_medium: 'referral',
+        referral_reward: referralReward,
       });
 
       if (!result.success) throw new Error(result.message);
+      setSubmittedReward(referralReward);
       setSubmitted(true);
+
+      const friendFirstName = friendName.trim().split(' ')[0];
+      supabase.functions.invoke('send-email', {
+        body: {
+          to: friendEmail.trim().toLowerCase(),
+          subject: REFERIDO_BIENVENIDA_SUBJECT,
+          html: buildReferidoBienvenidaHtml(friendFirstName),
+          category: 'transactional',
+        },
+      }).catch(err => console.error('Error enviando email de bienvenida al referido:', err));
+
+      supabase.functions.invoke('send-email', {
+        body: {
+          to: referrerEmail.trim().toLowerCase(),
+          subject: REFERENTE_CONFIRMACION_SUBJECT,
+          html: buildReferenteConfirmacionHtml(friendName.trim(), referralReward),
+          category: 'transactional',
+        },
+      }).catch(err => console.error('Error enviando confirmación al referente:', err));
     } catch (err: any) {
-      setError('Hubo un error al enviar. Intentá de nuevo.');
+      setError('Hubo un error al enviar. Inténtalo de nuevo.');
       console.error(err);
     } finally {
       setSubmitting(false);
@@ -54,7 +88,7 @@ const Referido: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Referí un amigo — The Acting Garage</title>
+        <title>Trae un amigo — The Acting Garage</title>
         <meta name="robots" content="noindex" />
       </Helmet>
 
@@ -86,7 +120,7 @@ const Referido: React.FC = () => {
                 Nos contactamos con <strong style={{ color: '#fff' }}>{friendName.split(' ')[0]}</strong> en las próximas 24–48h.
               </p>
               <p style={{ marginTop: '0.75rem', color: 'rgba(255,255,255,0.35)', fontSize: '0.82rem' }}>
-                Tu 20% se acredita cuando se inscriba.
+                Tu regalo ({getReferralRewardLabel(submittedReward)}) se acredita cuando se inscriba.
               </p>
             </div>
           ) : (
@@ -105,7 +139,7 @@ const Referido: React.FC = () => {
                   letterSpacing: '-0.02em', marginBottom: '0.5rem',
                   textTransform: 'uppercase',
                 }}>
-                  TRAÉ UN<br />AMIGO A TAG
+                  TRAE UN<br />AMIGO A TAG
                 </h1>
               </div>
 
@@ -123,7 +157,7 @@ const Referido: React.FC = () => {
                   borderRadius: '100px', padding: '0.35rem 0.85rem',
                   fontSize: '0.75rem', fontWeight: 800,
                 }}>
-                  Vos: 20% de descuento
+                  Tú: elegís tu regalo
                 </span>
               </div>
 
@@ -148,8 +182,65 @@ const Referido: React.FC = () => {
                     style={field}
                   />
                   <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.25)', marginTop: '0.3rem' }}>
-                    Para acreditarte el descuento cuando se inscriba.
+                    Para acreditarte el regalo cuando se inscriba.
                   </p>
+                </div>
+
+                {/* Reward picker */}
+                <div style={{ marginBottom: '0.75rem' }}>
+                  <label style={{
+                    display: 'block', fontSize: '0.6rem', fontWeight: 700,
+                    letterSpacing: '0.15em', color: 'rgba(255,255,255,0.4)',
+                    marginBottom: '0.5rem',
+                  }}>
+                    ELIGE TU REGALO *
+                  </label>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {REFERRAL_REWARD_OPTIONS.map(opt => (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onClick={() => { setReward(opt.value); if (opt.value !== 'sesion_fotos') setPhotoSessionType(''); }}
+                        style={{
+                          ...field,
+                          fontFamily: 'inherit',
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          fontSize: '0.9rem',
+                          fontWeight: reward === opt.value ? 800 : 400,
+                          borderColor: reward === opt.value ? '#FFBE00' : 'rgba(255,255,255,0.12)',
+                          color: reward === opt.value ? '#FFBE00' : '#fff',
+                        }}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {reward === 'sesion_fotos' && (
+                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+                      {PHOTO_SESSION_OPTIONS.map(opt => (
+                        <button
+                          key={opt.value}
+                          type="button"
+                          onClick={() => setPhotoSessionType(opt.value)}
+                          style={{
+                            ...field,
+                            fontFamily: 'inherit',
+                            flex: 1,
+                            textAlign: 'center',
+                            cursor: 'pointer',
+                            fontSize: '0.85rem',
+                            fontWeight: photoSessionType === opt.value ? 800 : 400,
+                            borderColor: photoSessionType === opt.value ? '#FFBE00' : 'rgba(255,255,255,0.12)',
+                            color: photoSessionType === opt.value ? '#FFBE00' : '#fff',
+                          }}
+                        >
+                          {opt.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Divider */}
@@ -215,7 +306,7 @@ const Referido: React.FC = () => {
                   fontSize: '0.7rem', color: 'rgba(255,255,255,0.2)',
                   textAlign: 'center', marginTop: '1rem', lineHeight: 1.5,
                 }}>
-                  El 20% se acredita al momento de la inscripción de tu amigo/a.
+                  Tu regalo se acredita al momento de la inscripción de tu amigo/a.
                 </p>
               </form>
             </>

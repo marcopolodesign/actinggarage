@@ -12,6 +12,7 @@ export interface FormSubmission {
   utm_medium?: string;
   utm_campaign?: string;
   utm_id?: string;
+  referral_reward?: string;
 }
 
 export interface MemberData {
