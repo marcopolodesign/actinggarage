@@ -57,7 +57,7 @@ const WA_NUMBER = '34682560187';
 
 export function isMetaSource(): boolean {
   const source = getUtm('utm_source');
-  return source === 'instagram' || source === 'facebook';
+  return source === 'instagram' || source === 'facebook' || source === 'meta';
 }
 
 // Builds a wa.me URL. Meta paid uses metaText, other paid uses paidText, organic uses organicText.
