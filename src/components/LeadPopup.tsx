@@ -12,6 +12,24 @@ const STORAGE_KEY = 'tag_popup_seen';
 const COOLDOWN_DAYS = 7;
 const DELAY_MS = 10000;
 
+const COUNTRIES = [
+  { flag: '🇪🇸', code: '+34', name: 'España' },
+  { flag: '🇦🇷', code: '+54', name: 'Argentina' },
+  { flag: '🇲🇽', code: '+52', name: 'México' },
+  { flag: '🇨🇴', code: '+57', name: 'Colombia' },
+  { flag: '🇵🇪', code: '+51', name: 'Perú' },
+  { flag: '🇨🇱', code: '+56', name: 'Chile' },
+  { flag: '🇻🇪', code: '+58', name: 'Venezuela' },
+  { flag: '🇺🇾', code: '+598', name: 'Uruguay' },
+  { flag: '🇧🇴', code: '+591', name: 'Bolivia' },
+  { flag: '🇵🇹', code: '+351', name: 'Portugal' },
+  { flag: '🇫🇷', code: '+33', name: 'Francia' },
+  { flag: '🇮🇹', code: '+39', name: 'Italia' },
+  { flag: '🇬🇧', code: '+44', name: 'Reino Unido' },
+  { flag: '🇩🇪', code: '+49', name: 'Alemania' },
+  { flag: '🇺🇸', code: '+1',  name: 'EEUU' },
+];
+
 const inputStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.07)',
   border: '1px solid rgba(255,255,255,0.15)',
@@ -29,14 +47,13 @@ const LeadPopup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [countryCode, setCountryCode] = useState('+34');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    // Don't show on dedicated landing pages
     if (window.location.pathname.startsWith('/referido')) return;
 
-    // Cooldown: don't show if dismissed/submitted in the last COOLDOWN_DAYS
     const seen = localStorage.getItem(STORAGE_KEY);
     if (seen) {
       const daysSince = (Date.now() - Number(seen)) / (1000 * 60 * 60 * 24);
@@ -67,6 +84,7 @@ const LeadPopup: React.FC = () => {
     e.preventDefault();
     setSubmitting(true);
 
+    const fullPhone = countryCode + phone.replace(/^0+/, '');
     const { utm_source, utm_medium, utm_campaign, utm_id } = getUtms();
     const { fbc, fbp } = getMetaAttribution();
     const event_id = crypto.randomUUID();
@@ -75,7 +93,7 @@ const LeadPopup: React.FC = () => {
       const result = await submitForm({
         email,
         name,
-        phone,
+        phone: fullPhone,
         birthday: '',
         interests: '',
         source: 'website_popup',
@@ -88,7 +106,7 @@ const LeadPopup: React.FC = () => {
       if (result.success) {
         setSubmitted(true);
         localStorage.setItem(STORAGE_KEY, String(Date.now()));
-        trackFormConversion({ email, phone, name });
+        trackFormConversion({ email, phone: fullPhone, name });
 
         if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
           try {
@@ -99,13 +117,13 @@ const LeadPopup: React.FC = () => {
           } catch {}
         }
 
-        fetch('https://pyiypxvvruwvwfcsprrb.supabase.co/functions/v1/capi-lead', {
+        fetch('https://eqyprtyrsbbpiwapnclb.supabase.co/functions/v1/capi-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             event_id,
             email,
-            phone,
+            phone: fullPhone,
             fbc,
             fbp,
             client_user_agent: navigator.userAgent,
@@ -118,13 +136,15 @@ const LeadPopup: React.FC = () => {
         throw new Error('Submit failed');
       }
     } catch {
-      alert('Error al enviar. Intentá de nuevo.');
+      alert('Error al enviar. Intenta de nuevo.');
     } finally {
       setSubmitting(false);
     }
   };
 
   if (!visible) return null;
+
+  const selectedCountry = COUNTRIES.find(c => c.code === countryCode) ?? COUNTRIES[0];
 
   return (
     <div
@@ -197,10 +217,10 @@ const LeadPopup: React.FC = () => {
               marginBottom: '0.5rem',
               letterSpacing: '-0.01em',
             }}>
-              ¿Querés saber más<br />sobre nuestros cursos?
+              ¿Quieres saber más<br />sobre nuestros cursos?
             </h2>
             <p style={{ fontSize: '0.82rem', opacity: 0.55, marginBottom: '1.75rem', lineHeight: 1.5 }}>
-              Dejanos tus datos y te contactamos con toda la info.
+              Déjanos tus datos y te contactamos con toda la info.
             </p>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               <input
@@ -219,14 +239,50 @@ const LeadPopup: React.FC = () => {
                 onChange={e => setName(e.target.value)}
                 style={inputStyle}
               />
-              <input
-                type="tel"
-                placeholder="Teléfono *"
-                required
-                value={phone}
-                onChange={e => setPhone(e.target.value)}
-                style={inputStyle}
-              />
+
+              {/* Phone with country selector */}
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <div style={{ position: 'relative', flexShrink: 0 }}>
+                  <select
+                    value={countryCode}
+                    onChange={e => setCountryCode(e.target.value)}
+                    style={{
+                      ...inputStyle,
+                      width: 'auto',
+                      paddingRight: '2rem',
+                      paddingLeft: '0.65rem',
+                      appearance: 'none',
+                      cursor: 'pointer',
+                      minWidth: '80px',
+                    }}
+                  >
+                    {COUNTRIES.map(c => (
+                      <option key={c.code} value={c.code}>
+                        {c.flag} {c.code}
+                      </option>
+                    ))}
+                  </select>
+                  {/* Dropdown chevron */}
+                  <span style={{
+                    position: 'absolute',
+                    right: '0.5rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    pointerEvents: 'none',
+                    fontSize: '0.65rem',
+                    opacity: 0.5,
+                  }}>▾</span>
+                </div>
+                <input
+                  type="tel"
+                  placeholder="Teléfono *"
+                  required
+                  value={phone}
+                  onChange={e => setPhone(e.target.value)}
+                  style={{ ...inputStyle, flex: 1 }}
+                />
+              </div>
+
               <button
                 type="submit"
                 disabled={submitting}
