@@ -25,7 +25,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: '16 horas',
       edades: 'Desde 17 años',
       modalidad: 'Teatro + Cine (integral)',
-      objetivo: 'Profesionalización actoral'
+      objetivo: 'Profesionalización actoral',
+      categories: ['pro']
     },
     {
       slug: 'garage-theatre',
@@ -36,7 +37,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: '2 horas',
       edades: '17 a 60 años',
       modalidad: 'Teatro',
-      objetivo: 'Iniciación y desarrollo personal'
+      objetivo: 'Iniciación y desarrollo personal',
+      categories: ['iniciacion', 'pro']
     },
     {
       slug: 'garage-cinema',
@@ -47,7 +49,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: '2 horas',
       edades: '17 a 60 años',
       modalidad: 'Cine',
-      objetivo: 'Iniciación actoral y práctica audiovisual'
+      objetivo: 'Iniciación actoral y práctica audiovisual',
+      categories: ['iniciacion', 'pro']
     },
     {
       slug: 'garage-hybrid',
@@ -58,7 +61,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: '4 horas',
       edades: '17 a 60 años',
       modalidad: 'Teatro + Cine',
-      objetivo: 'Profesionalización y preparación para audiciones'
+      objetivo: 'Profesionalización y preparación para audiciones',
+      categories: ['iniciacion', 'pro']
     },
     {
       slug: 'garage-hybrid-plus',
@@ -69,7 +73,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: '8 horas',
       edades: '17 a 45 años',
       modalidad: 'Teatro + Cine',
-      objetivo: 'Profesionalización actoral adaptable'
+      objetivo: 'Profesionalización actoral adaptable',
+      categories: ['pro']
     },
     {
       href: '/jovenes',
@@ -80,7 +85,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: 'Desde 1h30/semana',
       edades: '6 a 17 años',
       modalidad: 'Teatro / Cine / Híbrido según edad',
-      objetivo: 'Formación por etapa de desarrollo'
+      objetivo: 'Formación por etapa de desarrollo',
+      categories: ['menores']
     },
     {
       title: 'Garage Evolution',
@@ -90,7 +96,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: 'Personalizada',
       edades: 'Desde 17 años',
       modalidad: 'Entrenamiento personalizado',
-      objetivo: 'Perfeccionamiento actoral'
+      objetivo: 'Perfeccionamiento actoral',
+      categories: ['pro']
     },
     {
       slug: 'garage-classic',
@@ -101,7 +108,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: '1 hora y media',
       edades: '60+',
       modalidad: 'Teatro',
-      objetivo: 'Bienestar, diversión y desarrollo cognitivo'
+      objetivo: 'Bienestar, diversión y desarrollo cognitivo',
+      categories: ['iniciacion']
     },
     {
       title: 'Garage Workshops',
@@ -114,6 +122,12 @@ const Cursos: React.FC = () => {
       objetivo: 'Entrenamiento especializado y networking profesional'
     }
   ];
+
+  const CATEGORY_INFO: Record<string, { label: string; href: string }> = {
+    iniciacion: { label: 'Iniciación', href: '/iniciacion' },
+    pro: { label: 'Pro', href: '/pro' },
+    menores: { label: 'Menores', href: '/jovenes' },
+  };
 
   const [expandedCourse, setExpandedCourse] = useState<number | null>(null);
   const { openFlyout } = useFormFlyout();
@@ -331,14 +345,34 @@ const Cursos: React.FC = () => {
         <div className="w-full max-w-2xl mt-24">
           {coursesData.map((course, index) => (
             <div key={index} className="mb-2">
-              <div 
+              <div
                 ref={(el) => { coursesRef.current[index] = el; }}
                 className="flex items-center justify-between py-6 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => toggleCourse(index)}
               >
-                <h3 className="text-white text-2xl md:text-2xl font-semibold uppercase text-left">
-                  {course.title}
-                </h3>
+                <div>
+                  {course.categories && course.categories.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {course.categories.map((cat) => {
+                        const info = CATEGORY_INFO[cat];
+                        if (!info) return null;
+                        return (
+                          <Link
+                            key={cat}
+                            to={info.href}
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-tag-yellow/70 text-[10px] uppercase tracking-widest font-druk border border-tag-yellow/30 px-2 py-0.5 hover:bg-tag-yellow hover:text-black hover:border-tag-yellow transition-colors duration-200"
+                          >
+                            {info.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                  <h3 className="text-white text-2xl md:text-2xl font-semibold uppercase text-left">
+                    {course.title}
+                  </h3>
+                </div>
                 <span className="text-white text-2xl">
                   {expandedCourse === index ? '×' : '+'}
                 </span>

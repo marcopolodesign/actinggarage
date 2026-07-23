@@ -21,6 +21,8 @@ import CourseLanding from './pages/CourseLanding';
 import Dashboard from './pages/Dashboard';
 import LandingSales from './pages/LandingSales';
 import LandingJovenes from './pages/LandingJovenes';
+import LandingIniciacion from './pages/LandingIniciacion';
+import LandingPro from './pages/LandingPro';
 import Referido from './pages/Referido';
 import ContratoFirma from './pages/ContratoFirma';
 import Privacidad from './pages/Privacidad';
@@ -58,6 +60,8 @@ function AppContent() {
         <Route path="/landing-new-generation-camara" element={<CourseLandingRedirect to="/jovenes" />} />
         <Route path="/landing-new-generation-hybrid" element={<CourseLandingRedirect to="/jovenes" />} />
         <Route path="/jovenes" element={<LandingJovenes />} />
+        <Route path="/iniciacion" element={<LandingIniciacion />} />
+        <Route path="/pro" element={<LandingPro />} />
         <Route path="/contrato/:token" element={<ContratoFirma />} />
         <Route path="/referido" element={<Referido />} />
         <Route path="/privacidad" element={<Privacidad />} />
