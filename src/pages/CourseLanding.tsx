@@ -237,9 +237,14 @@ const CourseLanding: React.FC = () => {
 
           <div className="flex flex-wrap gap-3">
             {course.stats.map(({ label, value }) => (
-              <div key={label} className="border border-tag-yellow/40 px-4 py-2 flex flex-col">
-                <span className="text-tag-yellow/50 text-[10px] uppercase tracking-widest font-druk">{label}</span>
-                <span className="text-white text-sm font-druk">{value}</span>
+              <div
+                key={label}
+                className={`border border-tag-yellow/40 flex flex-col ${course.statsEmphasis ? 'px-5 py-3' : 'px-4 py-2'}`}
+              >
+                <span className={`text-tag-yellow/50 uppercase tracking-widest font-druk ${course.statsEmphasis ? 'text-xs' : 'text-[10px]'}`}>
+                  {label}
+                </span>
+                <span className={`text-white font-druk ${course.statsEmphasis ? 'text-xl' : 'text-sm'}`}>{value}</span>
               </div>
             ))}
           </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { buildWhatsAppUrl } from '../utils/utm';
 
@@ -13,20 +12,14 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-const ArrowIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
 interface CourseCardProps {
   title: string;
   tagline: string;
   age: string;
   hours: string;
   modality: string;
+  startDate: string;
   description: string;
-  landingHref: string;
   whatsappMsg: string;
   accentLabel?: string;
 }
@@ -37,8 +30,8 @@ const CourseCard: React.FC<CourseCardProps> = ({
   age,
   hours,
   modality,
+  startDate,
   description,
-  landingHref,
   whatsappMsg,
   accentLabel,
 }) => {
@@ -70,6 +63,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             { label: 'Edad', value: age },
             { label: 'Formato', value: hours },
             { label: 'Modalidad', value: modality },
+            { label: 'Inicio', value: startDate },
           ].map(({ label, value }) => (
             <div key={label} className="border border-white/10 px-3 py-1.5 flex flex-col">
               <span className="text-white/30 text-[9px] uppercase tracking-widest font-druk">{label}</span>
@@ -80,25 +74,16 @@ const CourseCard: React.FC<CourseCardProps> = ({
 
         <p className="text-white/50 font-garamond text-base leading-relaxed flex-1 mb-8">{description}</p>
 
-        {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-3 mt-auto">
-          <Link
-            to={landingHref}
-            className="flex-1 flex items-center justify-center gap-2 border border-tag-yellow text-tag-yellow px-4 py-3 font-druk text-sm uppercase tracking-wide hover:bg-tag-yellow hover:text-black transition-colors duration-200"
-          >
-            VER PROGRAMA
-            <ArrowIcon />
-          </Link>
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 bg-tag-yellow text-black px-4 py-3 font-druk text-sm uppercase tracking-wide hover:bg-white transition-colors duration-200"
-          >
-            <WhatsAppIcon />
-            CONTACTAR
-          </a>
-        </div>
+        {/* Action */}
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-auto flex items-center justify-center gap-2 bg-tag-yellow text-black px-4 py-3 font-druk text-sm uppercase tracking-wide hover:bg-white transition-colors duration-200"
+        >
+          <WhatsAppIcon />
+          CONTACTAR
+        </a>
       </div>
     </div>
   );
@@ -185,8 +170,8 @@ const LandingJovenes: React.FC = () => {
                 age="6–8 años"
                 hours="1h30/semana"
                 modality="Teatro"
+                startDate="14 sep 2026"
                 description="Un espacio de juego, descubrimiento y expresión libre. No buscamos pequeños actores perfectos: buscamos niños y niñas felices, expresivos y seguros de sí mismos."
-                landingHref="/landing-mini-kids"
                 whatsappMsg="Hola TAG! Quiero más información sobre Garage Mini Kids (6-8 años)"
               />
             </div>
@@ -202,8 +187,8 @@ const LandingJovenes: React.FC = () => {
                 age="9–12 años"
                 hours="2h/semana"
                 modality="Teatro"
+                startDate="6 mar 2026"
                 description="El momento ideal para profundizar en el teatro de forma más técnica sin perder el disfrute. Construcción de personajes, texto dramático y muestra final cada cuatrimestre."
-                landingHref="/landing-kids"
                 whatsappMsg="Hola TAG! Quiero más información sobre Garage Kids (9-12 años)"
               />
             </div>
@@ -219,8 +204,8 @@ const LandingJovenes: React.FC = () => {
                 age="13–17 años"
                 hours="2h/semana"
                 modality="Teatro"
+                startDate="14 sep 2026"
                 description="Teatro para adolescentes. Un espacio seguro para explorar la identidad artística, canalizar emociones y comprometerse con proyectos teatrales exigentes."
-                landingHref="/landing-new-generation"
                 whatsappMsg="Hola TAG! Quiero más información sobre Garage New Generation (13-17 años)"
                 accentLabel="Teatro"
               />
@@ -230,8 +215,8 @@ const LandingJovenes: React.FC = () => {
                 age="13–17 años"
                 hours="2h/semana"
                 modality="Cine"
+                startDate="14 sep 2026"
                 description="Actuación ante cámara para jóvenes. Aprende a habitar el objetivo con verdad y sin miedo. Incluye rodajes reales: monólogo individual y escena en pareja."
-                landingHref="/landing-new-generation-camara"
                 whatsappMsg="Hola TAG! Quiero más información sobre New Generation Cámara (13-17 años)"
                 accentLabel="Cámara"
               />
@@ -241,8 +226,8 @@ const LandingJovenes: React.FC = () => {
                 age="13–17 años"
                 hours="4h/semana"
                 modality="Teatro + Cine"
+                startDate="14 sep 2026"
                 description="La formación completa: 2h de teatro + 2h de cámara cada semana. Para jóvenes que quieren dominar el escenario y el objetivo en un solo programa."
-                landingHref="/landing-new-generation-hybrid"
                 whatsappMsg="Hola TAG! Quiero más información sobre New Generation Hybrid (13-17 años)"
                 accentLabel="Teatro + Cine"
               />

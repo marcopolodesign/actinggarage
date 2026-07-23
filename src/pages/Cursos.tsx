@@ -72,59 +72,15 @@ const Cursos: React.FC = () => {
       objetivo: 'Profesionalización actoral adaptable'
     },
     {
-      slug: 'garage-mini-kids',
-      title: 'Garage Mini Kids',
-      description: 'Teatro para los más pequeños y pequeñas. El teatro como herramienta de juego, descubrimiento y expresión libre. Un espacio para desarrollar confianza, creatividad y trabajo en equipo.',
+      href: '/jovenes',
+      title: 'TAG para Jóvenes',
+      description: 'Programas de teatro y actuación para cada etapa: Mini Kids (6-8), Kids (9-12) y New Generation —teatro, cámara o híbrido— (13-17). Grupos pequeños, profesores en activo.',
       duracion: 'Curso anual',
-      diasSemana: '1',
-      cargaHoraria: '1 hora y media',
-      edades: '6 a 8 años',
-      modalidad: 'Teatro',
-      objetivo: 'Juego, expresión libre y confianza'
-    },
-    {
-      slug: 'garage-kids',
-      title: 'Garage Kids',
-      description: 'Teatro para niños y niñas. Del juego a la técnica: un espacio donde se profundiza en la interpretación de forma más técnica sin perder el disfrute y la creatividad.',
-      duracion: 'Curso anual (renovable)',
-      diasSemana: '1',
-      cargaHoraria: '2 horas',
-      edades: '9 a 12 años',
-      modalidad: 'Teatro',
-      objetivo: 'Aprendizaje, diversión y desarrollo expresivo'
-    },
-    {
-      slug: 'garage-new-generation',
-      title: 'Garage New Generation',
-      description: 'Teatro para adolescentes. Formación práctica para explorar la interpretación y fortalecer la confianza personal.',
-      duracion: 'Curso anual (renovable)',
-      diasSemana: '1',
-      cargaHoraria: '2 horas',
-      edades: '13 a 17 años',
-      modalidad: 'Teatro',
-      objetivo: 'Descubrimiento y desarrollo artístico'
-    },
-    {
-      slug: 'garage-new-generation-cinema',
-      title: 'Garage New Generation Cinema',
-      description: 'Actuación ante cámara para jóvenes. Aprender a habitar el objetivo con verdad y sin miedo, con rodajes reales de monólogos y escenas en pareja disponibles para el alumnado.',
-      duracion: 'Curso anual',
-      diasSemana: '1',
-      cargaHoraria: '2 horas',
-      edades: '13 a 17 años',
-      modalidad: 'Cine',
-      objetivo: 'Actuación ante cámara y autoconocimiento audiovisual'
-    },
-    {
-      slug: 'garage-new-generation-hybrid',
-      title: 'Garage New Generation Hybrid',
-      description: 'Formación en teatro y cine para jóvenes. Combina la práctica escénica y audiovisual para quienes quieren orientar sus estudios hacia el arte.',
-      duracion: '3 años',
-      diasSemana: '2',
-      cargaHoraria: '4 horas',
-      edades: '13 a 17 años',
-      modalidad: 'Teatro + Cine',
-      objetivo: 'Formación artística y preparación para el futuro profesional'
+      diasSemana: 'Según programa',
+      cargaHoraria: 'Desde 1h30/semana',
+      edades: '6 a 17 años',
+      modalidad: 'Teatro / Cine / Híbrido según edad',
+      objetivo: 'Formación por etapa de desarrollo'
     },
     {
       title: 'Garage Evolution',
@@ -415,9 +371,9 @@ const Cursos: React.FC = () => {
                     QUIERO MÁS INFORMACIÓN
                   </button>
 
-                  {course.slug && (
+                  {(course.slug || course.href) && (
                     <Link
-                      to={`/cursos/${course.slug}`}
+                      to={course.href || `/cursos/${course.slug}`}
                       onClick={(e) => e.stopPropagation()}
                       className="ml-4 inline-flex items-center justify-center px-8 py-3 border border-white/40 text-white font-bold text-lg uppercase transition-all duration-300 hover:border-white hover:bg-white hover:text-black hover:-translate-y-0.5"
                     >

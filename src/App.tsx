@@ -40,17 +40,23 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cursos" element={<Cursos />} />
+        {/* Consolidated into /jovenes 2026-07-23 — keep old course URLs redirecting for SEO/bookmarks */}
+        <Route path="/cursos/garage-mini-kids" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/cursos/garage-kids" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/cursos/garage-new-generation" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/cursos/garage-new-generation-cinema" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/cursos/garage-new-generation-hybrid" element={<CourseLandingRedirect to="/jovenes" />} />
         <Route path="/cursos/:slug" element={<CourseLanding />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/landing-sales" element={<LandingSales />} />
         {/* Backwards-compatible aliases (ads / bookmarks) */}
         <Route path="/landing-hybrid" element={<CourseLandingRedirect to="/cursos/garage-hybrid" />} />
         <Route path="/landing-hybrid-plus" element={<CourseLandingRedirect to="/cursos/garage-hybrid-plus" />} />
-        <Route path="/landing-mini-kids" element={<CourseLandingRedirect to="/cursos/garage-mini-kids" />} />
-        <Route path="/landing-kids" element={<CourseLandingRedirect to="/cursos/garage-kids" />} />
-        <Route path="/landing-new-generation" element={<CourseLandingRedirect to="/cursos/garage-new-generation" />} />
-        <Route path="/landing-new-generation-camara" element={<CourseLandingRedirect to="/cursos/garage-new-generation-cinema" />} />
-        <Route path="/landing-new-generation-hybrid" element={<CourseLandingRedirect to="/cursos/garage-new-generation-hybrid" />} />
+        <Route path="/landing-mini-kids" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/landing-kids" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/landing-new-generation" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/landing-new-generation-camara" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/landing-new-generation-hybrid" element={<CourseLandingRedirect to="/jovenes" />} />
         <Route path="/jovenes" element={<LandingJovenes />} />
         <Route path="/contrato/:token" element={<ContratoFirma />} />
         <Route path="/referido" element={<Referido />} />
