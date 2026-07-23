@@ -263,6 +263,20 @@ const CourseLanding: React.FC = () => {
             </div>
           )}
 
+          {!course.youtubeId && course.videoSrc && (
+            <video
+              className="w-full mb-8"
+              src={course.videoSrc}
+              poster={course.videoPoster}
+              controls
+              preload="none"
+              playsInline
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            >
+              Tu navegador no soporta video HTML5.
+            </video>
+          )}
+
           <a
             ref={whatsappButtonRef}
             href={whatsappUrl}

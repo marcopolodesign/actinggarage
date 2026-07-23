@@ -27,6 +27,8 @@ export type CourseConfig = {
   heroBgImage?: string; // public path
   heroBgOverlayClassName?: string; // tailwind overlay e.g. bg-black/60
   youtubeId?: string;
+  videoSrc?: string; // self-hosted video path (public/), used when there's no youtubeId
+  videoPoster?: string; // poster image for videoSrc
   ctaMode: CtaMode;
   whatsAppLabel?: string; // overrides courseName in WA message
   whatsAppExtra?: string; // e.g. "(13-17 años)"
@@ -39,6 +41,9 @@ export type CourseConfig = {
 
 const headerBg = '/content/cursos-header.jpg';
 const overlay = 'bg-black/60';
+// Video genérico de clase real usado en campañas de Meta Ads, reutilizado en los cursos anuales.
+const genericAnnualVideo = '/videos/tag-cursos-anuales.mp4';
+const genericAnnualVideoPoster = '/videos/tag-cursos-anuales-poster.jpg';
 
 export const coursesConfig: Record<string, CourseConfig> = {
   'garage-pro': {
@@ -51,6 +56,8 @@ export const coursesConfig: Record<string, CourseConfig> = {
       'Curso profesional de interpretación teatral y a cámara en Barcelona. 3 años de formación actoral: técnica, cuerpo, voz y gestión emocional para construir una carrera real.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
+    videoSrc: genericAnnualVideo,
+    videoPoster: genericAnnualVideoPoster,
     ctaMode: 'whatsappPlusInlineForm',
     inlineFormSource: 'cursos_garage_pro',
     inlineFormDefaultInterest: 'teatro-cine',
@@ -121,6 +128,8 @@ export const coursesConfig: Record<string, CourseConfig> = {
       'Curso de interpretación teatral en Barcelona para construir técnica, presencia escénica y criterio actoral. Recorrido progresivo en 3 años.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
+    videoSrc: genericAnnualVideo,
+    videoPoster: genericAnnualVideoPoster,
     ctaMode: 'whatsappPlusInlineForm',
     inlineFormSource: 'cursos_garage_theatre',
     inlineFormDefaultInterest: 'teatro',
@@ -189,6 +198,8 @@ export const coursesConfig: Record<string, CourseConfig> = {
       'Curso de interpretación para cámara en Barcelona: actuación audiovisual, técnica de cine y televisión, rodajes durante el curso y material grabado en cada clase.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
+    videoSrc: genericAnnualVideo,
+    videoPoster: genericAnnualVideoPoster,
     ctaMode: 'whatsappPlusInlineForm',
     inlineFormSource: 'cursos_garage_cinema',
     inlineFormDefaultInterest: 'cine',
@@ -256,6 +267,8 @@ export const coursesConfig: Record<string, CourseConfig> = {
     heroDescription: 'Curso de interpretación teatral y a cámara en Barcelona. Cámara + Teatro en un solo camino para desarrollar versatilidad y criterio profesional.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
+    videoSrc: genericAnnualVideo,
+    videoPoster: genericAnnualVideoPoster,
     ctaMode: 'whatsappPlusInlineForm',
     inlineFormSource: 'cursos_garage_hybrid',
     inlineFormDefaultInterest: 'teatro-cine',
@@ -326,6 +339,8 @@ export const coursesConfig: Record<string, CourseConfig> = {
       'Curso de interpretación teatral y a cámara con canto e improvisación en Barcelona. El programa de tardes más completo para máxima versatilidad profesional.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
+    videoSrc: genericAnnualVideo,
+    videoPoster: genericAnnualVideoPoster,
     ctaMode: 'whatsappPlusInlineForm',
     inlineFormSource: 'cursos_garage_hybrid_plus',
     inlineFormDefaultInterest: 'teatro-cine',
