@@ -150,8 +150,6 @@ const LeadPopup: React.FC = () => {
 
   if (!visible) return null;
 
-  const selectedCountry = COUNTRIES.find(c => c.code === countryCode) ?? COUNTRIES[0];
-
   return (
     <div
       onClick={e => { if (e.target === e.currentTarget) handleClose(); }}
