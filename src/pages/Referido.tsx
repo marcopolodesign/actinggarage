@@ -18,10 +18,20 @@ const Referido: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  // Log click as prospect when alumno arrives via personalized email link
+  // Log click as prospect + pre-fill referrer email when alumno arrives via personalized email link
   useEffect(() => {
     const ref = new URLSearchParams(window.location.search).get('ref');
     if (!ref) return;
+
+    try {
+      const base64 = ref.replace(/-/g, '+').replace(/_/g, '/');
+      const padded = base64 + '='.repeat((4 - (base64.length % 4)) % 4);
+      const email = atob(padded);
+      if (email.includes('@')) setReferrerEmail(email.toLowerCase());
+    } catch {
+      // invalid ref, ignore
+    }
+
     supabase.functions.invoke('log-referral-click', { body: { ref } }).catch(() => {});
   }, []);
 
@@ -182,7 +192,7 @@ const Referido: React.FC = () => {
                     style={field}
                   />
                   <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.25)', marginTop: '0.3rem' }}>
-                    Para acreditarte el regalo cuando se inscriba.
+                    Para darte el regalo cuando se inscriba.
                   </p>
                 </div>
 
@@ -299,7 +309,7 @@ const Referido: React.FC = () => {
                     opacity: submitting ? 0.7 : 1,
                   }}
                 >
-                  {submitting ? 'ENVIANDO...' : 'ENVIAR REFERIDO'}
+                  {submitting ? 'ENVIANDO...' : 'ENVIAR AMIGO'}
                 </button>
 
                 <p style={{
