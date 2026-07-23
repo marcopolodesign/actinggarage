@@ -44,11 +44,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-pro': {
     slug: 'garage-pro',
     courseName: 'Garage Pro',
-    eyebrow: 'Formación Anual · Garage',
+    eyebrow: 'Formación Anual de Interpretación · Barcelona',
     heroTitleLines: ['GARAGE', 'PRO'],
     heroQuote: '"EL ACTOR HONESTO"',
     heroDescription:
-      'Programa profesional de interpretación. Técnica + gestión emocional: herramientas tangibles para construir una carrera real.',
+      'Curso profesional de interpretación teatral y a cámara en Barcelona. 3 años de formación actoral: técnica, cuerpo, voz y gestión emocional para construir una carrera real.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappPlusInlineForm',
@@ -104,9 +104,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Pro — Programa Profesional de Interpretación | TAG',
+      title: 'Garage Pro — Curso de Interpretación Teatral y a Cámara en Barcelona | TAG',
       description:
-        'Programa profesional de interpretación de 3 años en TAG. Técnica, cámara, cuerpo, voz y gestión emocional. Inicio 14 septiembre 2026.',
+        'Curso profesional de interpretación teatral y a cámara en Barcelona. 3 años de formación actoral: técnica, cuerpo, voz y gestión emocional. Inicio 14 sep 2026.',
       canonicalPath: '/cursos/garage-pro',
     },
   },
@@ -114,11 +114,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-theatre': {
     slug: 'garage-theatre',
     courseName: 'Garage Theatre',
-    eyebrow: 'Formación Anual · Teatro',
+    eyebrow: 'Curso de Interpretación Teatral · Barcelona',
     heroTitleLines: ['GARAGE', 'THEATRE'],
     heroQuote: '"EL ACTOR HONESTO"',
     heroDescription:
-      'Interpretación teatral para construir técnica, presencia y criterio. Recorrido progresivo en 3 años.',
+      'Curso de interpretación teatral en Barcelona para construir técnica, presencia escénica y criterio actoral. Recorrido progresivo en 3 años.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappPlusInlineForm',
@@ -172,9 +172,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Theatre — Interpretación Teatral | TAG',
+      title: 'Garage Theatre — Curso de Interpretación Teatral en Barcelona | TAG',
       description:
-        'Curso anual de interpretación teatral en TAG. Formación de 3 años, grupos reducidos y profesorado en activo. Inicio septiembre 2026.',
+        'Curso de interpretación teatral en Barcelona. Formación actoral de 3 años, grupos reducidos y profesorado en activo. Inicio septiembre 2026.',
       canonicalPath: '/cursos/garage-theatre',
     },
   },
@@ -182,11 +182,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-cinema': {
     slug: 'garage-cinema',
     courseName: 'Garage Cinema',
-    eyebrow: 'Formación Anual · Cámara',
+    eyebrow: 'Curso de Interpretación para Cámara · Barcelona',
     heroTitleLines: ['GARAGE', 'CINEMA'],
     heroQuote: '"EL ACTOR HONESTO"',
     heroDescription:
-      'Interpretación para cámara: herramientas específicas para el audiovisual, rodajes durante el curso y material grabado en cada clase.',
+      'Curso de interpretación para cámara en Barcelona: actuación audiovisual, técnica de cine y televisión, rodajes durante el curso y material grabado en cada clase.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappPlusInlineForm',
@@ -240,9 +240,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Cinema — Interpretación para Cámara | TAG',
+      title: 'Garage Cinema — Curso de Interpretación para Cámara en Barcelona | TAG',
       description:
-        'Curso anual de actuación para cámara en TAG. Formación de 3 años con rodajes, material grabado y grupos reducidos. Inicio septiembre 2026.',
+        'Curso de interpretación para cámara y actuación audiovisual en Barcelona. Formación de 3 años con rodajes, material grabado y grupos reducidos.',
       canonicalPath: '/cursos/garage-cinema',
     },
   },
@@ -250,10 +250,10 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-hybrid': {
     slug: 'garage-hybrid',
     courseName: 'Garage Hybrid',
-    eyebrow: 'Formación Anual · Teatro + Cámara',
+    eyebrow: 'Curso de Interpretación Teatral y a Cámara · Barcelona',
     heroTitleLines: ['GARAGE', 'HYBRID'],
     heroQuote: '"EL ACTOR HONESTO"',
-    heroDescription: 'Cámara + Teatro. Un solo camino para desarrollar versatilidad y criterio profesional.',
+    heroDescription: 'Curso de interpretación teatral y a cámara en Barcelona. Cámara + Teatro en un solo camino para desarrollar versatilidad y criterio profesional.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappPlusInlineForm',
@@ -309,9 +309,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Hybrid — Teatro + Cámara | TAG',
+      title: 'Garage Hybrid — Curso de Interpretación Teatral y a Cámara en Barcelona | TAG',
       description:
-        'Curso anual híbrido de teatro y cámara en TAG. 3 años, 4h semanales, rodajes y muestras. Inicio septiembre 2026.',
+        'Curso de interpretación teatral y a cámara en Barcelona. Formación híbrida de 3 años, 4h semanales, rodajes y muestras. Inicio septiembre 2026.',
       canonicalPath: '/cursos/garage-hybrid',
     },
   },
@@ -319,11 +319,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-hybrid-plus': {
     slug: 'garage-hybrid-plus',
     courseName: 'Garage Hybrid Plus',
-    eyebrow: 'Formación Anual · Cámara + Teatro + Canto + Impro',
+    eyebrow: 'Curso de Interpretación con Canto e Improvisación · Barcelona',
     heroTitleLines: ['GARAGE', 'HYBRID PLUS'],
     heroQuote: '"EL ACTOR HONESTO"',
     heroDescription:
-      'El programa de tardes más completo: cámara + teatro, con canto e improvisación para máxima versatilidad profesional.',
+      'Curso de interpretación teatral y a cámara con canto e improvisación en Barcelona. El programa de tardes más completo para máxima versatilidad profesional.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappPlusInlineForm',
@@ -390,9 +390,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Hybrid Plus — Cámara, Teatro, Canto e Impro | TAG',
+      title: 'Garage Hybrid Plus — Interpretación con Canto e Improvisación en Barcelona | TAG',
       description:
-        'Hybrid Plus: programa anual de 3 años (8h/semana) con cámara, teatro, canto e improvisación. Inicio septiembre 2026.',
+        'Curso de interpretación teatral y a cámara con canto e improvisación en Barcelona. Programa anual de 3 años (8h/semana). Inicio septiembre 2026.',
       canonicalPath: '/cursos/garage-hybrid-plus',
     },
   },
@@ -400,10 +400,10 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-mini-kids': {
     slug: 'garage-mini-kids',
     courseName: 'Garage Mini Kids',
-    eyebrow: 'Curso Anual · 6–8 años',
+    eyebrow: 'Clases de Teatro para Niños 6–8 años · Barcelona',
     heroTitleLines: ['GARAGE', 'MINI KIDS'],
     heroQuote: '"EL JUEGO COMO HERRAMIENTA"',
-    heroDescription: 'Teatro como juego, descubrimiento y expresión libre. Un espacio seguro para crecer.',
+    heroDescription: 'Clases de teatro para niños de 6 a 8 años en Barcelona: juego, descubrimiento y expresión libre en un espacio seguro para crecer.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappOnly',
@@ -447,9 +447,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Mini Kids — Teatro 6 a 8 años | TAG',
+      title: 'Garage Mini Kids — Clases de Teatro para Niños de 6 a 8 años en Barcelona | TAG',
       description:
-        'Teatro infantil para niños y niñas de 6 a 8 años en TAG. Juego, confianza, creatividad y muestras grabadas. Curso 2026/2027.',
+        'Clases de teatro infantil en Barcelona para niños y niñas de 6 a 8 años. Juego, confianza, creatividad y muestras grabadas. Curso 2026/2027.',
       canonicalPath: '/cursos/garage-mini-kids',
     },
   },
@@ -457,11 +457,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-kids': {
     slug: 'garage-kids',
     courseName: 'Garage Kids',
-    eyebrow: 'Curso · 9–11 años',
+    eyebrow: 'Clases de Teatro para Niños 9–11 años · Barcelona',
     heroTitleLines: ['GARAGE', 'KIDS'],
     heroQuote: '"DEL JUEGO A LA TÉCNICA"',
     heroDescription:
-      'Entre 9 y 11 años es el momento ideal para profundizar de forma más técnica sin perder disfrute y creatividad.',
+      'Clases de teatro para niños de 9 a 11 años en Barcelona. Entre los 9 y 11 años es el momento ideal para profundizar de forma más técnica sin perder disfrute y creatividad.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappOnly',
@@ -512,9 +512,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Kids — Teatro 9 a 11 años | TAG',
+      title: 'Garage Kids — Clases de Teatro para Niños de 9 a 11 años en Barcelona | TAG',
       description:
-        'Teatro para chicos y chicas de 9 a 11 años en TAG. Del juego a la técnica, viernes 18–20h, muestra final grabada.',
+        'Clases de teatro en Barcelona para niños y niñas de 9 a 11 años. Del juego a la técnica actoral, viernes 18–20h, muestra final grabada.',
       canonicalPath: '/cursos/garage-kids',
     },
   },
@@ -522,11 +522,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-new-generation': {
     slug: 'garage-new-generation',
     courseName: 'Garage New Generation',
-    eyebrow: 'Curso Anual · 13–17 años',
+    eyebrow: 'Clases de Teatro para Adolescentes 13–17 años · Barcelona',
     heroTitleLines: ['GARAGE NEW', 'GENERATION'],
     heroQuote: '"DEL JUEGO A LA IDENTIDAD ARTÍSTICA"',
     heroDescription:
-      'Teatro para adolescentes: presencia, personaje, emoción y escena en un entorno seguro y exigente.',
+      'Clases de teatro para adolescentes de 13 a 17 años en Barcelona: presencia, personaje, emoción y escena en un entorno seguro y exigente.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappOnly',
@@ -559,9 +559,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage New Generation — Teatro 13 a 17 años | TAG',
+      title: 'Garage New Generation — Clases de Teatro para Adolescentes en Barcelona | TAG',
       description:
-        'Teatro para jóvenes de 13 a 17 años en TAG. Del juego a la identidad artística, grupos reducidos y muestras grabadas. Curso 2026/2027.',
+        'Clases de teatro para adolescentes de 13 a 17 años en Barcelona. Del juego a la identidad artística, grupos reducidos y muestras grabadas.',
       canonicalPath: '/cursos/garage-new-generation',
     },
   },
@@ -569,11 +569,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-new-generation-cinema': {
     slug: 'garage-new-generation-cinema',
     courseName: 'Garage New Generation Cinema',
-    eyebrow: 'Curso Anual · 13–17 años · Cámara',
+    eyebrow: 'Clases de Actuación para Cámara Adolescentes 13–17 años · Barcelona',
     heroTitleLines: ['NEW GENERATION', 'CINEMA'],
     heroQuote: '"CONOCERSE DELANTE DE LA CÁMARA"',
     heroDescription:
-      'Actuación audiovisual para adolescentes: presencia ante el objetivo, personaje, emoción y técnica básica de rodaje.',
+      'Clases de actuación para cámara para adolescentes de 13 a 17 años en Barcelona: presencia ante el objetivo, personaje, emoción y técnica básica de rodaje.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappOnly',
@@ -627,9 +627,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'New Generation Cinema — Actuación para cámara 13 a 17 años | TAG',
+      title: 'New Generation Cinema — Clases de Actuación para Cámara para Adolescentes en Barcelona | TAG',
       description:
-        'Actuación para cámara para jóvenes de 13 a 17 años en TAG. Rodajes, material grabado y grupos reducidos. Curso 2026/2027.',
+        'Clases de actuación para cámara para adolescentes de 13 a 17 años en Barcelona. Rodajes, material grabado y grupos reducidos.',
       canonicalPath: '/cursos/garage-new-generation-cinema',
     },
   },
@@ -637,11 +637,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-new-generation-hybrid': {
     slug: 'garage-new-generation-hybrid',
     courseName: 'Garage New Generation Hybrid',
-    eyebrow: 'Curso Anual · 13–17 años · Teatro + Cámara',
+    eyebrow: 'Clases de Teatro y Cámara Adolescentes 13–17 años · Barcelona',
     heroTitleLines: ['NEW GENERATION', 'HYBRID'],
     heroQuote: '"DEL JUEGO A LA IDENTIDAD ARTÍSTICA"',
     heroDescription:
-      'Teatro y cámara en una sola formación: 4h semanales (2h teatro + 2h cámara) para orientar su camino artístico.',
+      'Clases de teatro e interpretación para cámara para adolescentes de 13 a 17 años en Barcelona: 4h semanales (2h teatro + 2h cámara) para orientar su camino artístico.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappOnly',
@@ -677,9 +677,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'New Generation Hybrid — Teatro + Cámara 13 a 17 años | TAG',
+      title: 'New Generation Hybrid — Clases de Teatro y Cámara para Adolescentes en Barcelona | TAG',
       description:
-        'Teatro y cámara combinados para jóvenes de 13 a 17 años en TAG. 4h semanales, rodajes y muestras grabadas. Curso 2026/2027.',
+        'Clases de teatro e interpretación para cámara combinadas para adolescentes de 13 a 17 años en Barcelona. 4h semanales, rodajes y muestras grabadas.',
       canonicalPath: '/cursos/garage-new-generation-hybrid',
     },
   },
@@ -687,11 +687,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-hybrid-julio': {
     slug: 'garage-hybrid-julio',
     courseName: 'Garage Hybrid Julio',
-    eyebrow: 'Verano 2026 · Adultos · Iniciación',
+    eyebrow: 'Curso de Iniciación a la Interpretación · Verano Barcelona',
     heroTitleLines: ['GARAGE', 'HYBRID JULIO'],
     heroQuote: '"EL ACTOR HONESTO"',
     heroDescription:
-      '4 semanas intensivas para iniciarte en teatro y cámara, perder el miedo escénico y descubrir tu verdad.',
+      'Curso intensivo de iniciación a la interpretación teatral y a cámara en Barcelona. 4 semanas de verano para perder el miedo escénico y descubrir tu verdad.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappPlusInlineForm',
@@ -750,9 +750,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Hybrid Julio — Intensivo verano (Teatro + Cámara) | TAG',
+      title: 'Garage Hybrid Julio — Curso de Iniciación a la Interpretación en Barcelona | TAG',
       description:
-        'Curso intensivo de verano 2026: 4 semanas de teatro y cámara (nivel iniciación). 6–30 julio 2026, tardes 19–21h.',
+        'Curso intensivo de iniciación a la interpretación teatral y a cámara en Barcelona, verano 2026. 4 semanas, 6–30 julio, tardes 19–21h.',
       canonicalPath: '/cursos/garage-hybrid-julio',
     },
   },
@@ -760,11 +760,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-new-generation-julio': {
     slug: 'garage-new-generation-julio',
     courseName: 'Garage New Generation Julio',
-    eyebrow: 'Verano 2026 · 13–17 años · Teatro + Cámara',
+    eyebrow: 'Campamento Urbano de Teatro Adolescentes · Verano Barcelona',
     heroTitleLines: ['NEW GENERATION', 'JULIO'],
     heroQuote: '"DEL JUEGO A LA IDENTIDAD ARTÍSTICA"',
     heroDescription:
-      '4 semanas de verano: 4h diarias (2h teatro + 2h cámara). Cada semana es independiente: puedes hacer 1 o varias.',
+      'Campamento urbano de teatro y cámara para adolescentes de 13 a 17 años en Barcelona. 4 semanas de verano, 4h diarias (2h teatro + 2h cámara), semanas independientes.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappOnly',
@@ -816,9 +816,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'New Generation Julio — Verano 2026 (13–17) | TAG',
+      title: 'New Generation Julio — Campamento Urbano de Teatro para Adolescentes en Barcelona | TAG',
       description:
-        'Programa de verano 2026 para jóvenes 13–17: teatro + cámara, 4h diarias. Semanas independientes con rodajes y material grabado.',
+        'Campamento urbano de verano en Barcelona para adolescentes de 13 a 17 años: teatro y cámara, 4h diarias, semanas independientes con rodajes.',
       canonicalPath: '/cursos/garage-new-generation-julio',
     },
   },
@@ -826,11 +826,11 @@ export const coursesConfig: Record<string, CourseConfig> = {
   'garage-casal': {
     slug: 'garage-casal',
     courseName: 'Garage Casal',
-    eyebrow: 'Verano 2026 · 7–13 años',
+    eyebrow: 'Casal de Verano de Teatro Niños 7–13 años · Barcelona',
     heroTitleLines: ['GARAGE', 'CASAL'],
     heroQuote: '"DEL JUEGO A LA ESCENA"',
     heroDescription:
-      'Casal de verano para descubrir el teatro con acompañamiento profesional: creación, ensayo y función semanal para familias.',
+      'Casal de verano de teatro en Barcelona para niños y niñas de 7 a 13 años, con acompañamiento profesional: creación, ensayo y función semanal para familias.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappOnly',
@@ -894,10 +894,67 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Casal — Casal de Verano 2026 (7–13) | TAG',
+      title: 'Garage Casal — Casal de Verano de Teatro para Niños en Barcelona | TAG',
       description:
-        'Casal de verano 2026 en TAG para niños y niñas de 7 a 13 años. Teatro y teatro musical por semanas, función semanal grabada.',
+        'Casal de verano de teatro en Barcelona para niños y niñas de 7 a 13 años. Teatro y teatro musical por semanas, función semanal grabada.',
       canonicalPath: '/cursos/garage-casal',
+    },
+  },
+
+  'garage-classic': {
+    slug: 'garage-classic',
+    courseName: 'Garage Classic',
+    eyebrow: 'Clases de Teatro para Mayores de 60 años · Barcelona',
+    heroTitleLines: ['GARAGE', 'CLASSIC'],
+    heroQuote: '"NUNCA ES TARDE PARA SUBIRSE AL ESCENARIO"',
+    heroDescription:
+      'Clases de teatro para mayores de 60 años en Barcelona. Interpretación teatral para estimular la memoria, la expresión y la motricidad, en un grupo activo y con acompañamiento profesional.',
+    heroBgImage: headerBg,
+    heroBgOverlayClassName: overlay,
+    ctaMode: 'whatsappPlusInlineForm',
+    inlineFormSource: 'cursos_garage_classic',
+    inlineFormDefaultInterest: 'teatro',
+    stats: [
+      { label: 'Edad', value: '60+' },
+      { label: 'Curso', value: 'Anual' },
+      { label: 'Formato', value: '1h30/semana' },
+      { label: 'Días', value: '1 día/semana' },
+      { label: 'Grupo', value: 'Reducido' },
+    ],
+    sections: [
+      {
+        id: 'why',
+        title: '¿Por qué Garage Classic?',
+        body: [
+          'El teatro es una herramienta de bienestar a cualquier edad: estimula la memoria, la expresión corporal y la motricidad en un espacio de disfrute y conexión con otras personas.',
+          'No buscamos "actores profesionales": buscamos personas que se animen a jugar, a expresarse y a subirse a un escenario, muchas veces por primera vez en su vida.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Estructura del programa',
+        body: [
+          'Curso anual, 1h30 semanal, en grupo reducido.',
+          'Trabajo de memoria, voz, cuerpo y expresión a través de juegos teatrales y ejercicios adaptados.',
+          'Muestra final abierta a familiares y amigos.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Profesorado especializado en trabajo con adultos mayores.',
+          'Grupo reducido y ambiente cercano.',
+          'Muestra final con público.',
+          'Aulas accesibles y descuentos culturales.',
+        ],
+      },
+    ],
+    seo: {
+      title: 'Garage Classic — Clases de Teatro para Mayores de 60 años en Barcelona | TAG',
+      description:
+        'Clases de teatro para mayores de 60 años en Barcelona. Interpretación teatral para la memoria, la expresión y el bienestar en la tercera edad.',
+      canonicalPath: '/cursos/garage-classic',
     },
   },
 };

@@ -137,6 +137,7 @@ const Cursos: React.FC = () => {
       objetivo: 'Perfeccionamiento actoral'
     },
     {
+      slug: 'garage-classic',
       title: 'Garage Classic',
       description: 'Teatro para mayores de 60. Propuesta de aprendizaje y disfrute a través del teatro, fomentando la memoria, expresión y motricidad.',
       duracion: 'Curso anual',
