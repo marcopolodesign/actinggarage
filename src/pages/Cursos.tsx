@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
-import TrimestralCards from '../components/TrimestralCards';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 
 const Cursos: React.FC = () => {
@@ -338,8 +337,7 @@ const Cursos: React.FC = () => {
           </p>
         </div>
 
-        {/* Trimestral Courses Cards */}
-        <TrimestralCards />
+        {/* Cursos de verano (TrimestralCards) ocultos 2026-07-31 — terminaron el 30 jul */}
 
         {/* Courses List */}
         <div className="w-full max-w-2xl mt-24">

@@ -4,7 +4,6 @@ import gsap from 'gsap';
 import Logo from '../assets/Logo';
 // Video will be loaded from public folder
 import AnimatedMarquee from '../components/AnimatedMarquee';
-import TrimestralCards from '../components/TrimestralCards';
 import CursosHome from '../components/CursosHome';
 import TagSteps from '../components/TagSteps';
 import Testimonios from '../components/Testimonios';
@@ -233,9 +232,8 @@ const Home: React.FC = () => {
       />
     </div>
     
-     {/* Trimestral Courses Cards */}
-     <TrimestralCards />
-    
+     {/* Cursos de verano (TrimestralCards) ocultos 2026-07-31 — terminaron el 30 jul */}
+
      {/* Cursos Sections */}
      <CursosHome />
      

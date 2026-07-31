@@ -1,4 +1,21 @@
 {
+  "redirects": [
+    {
+      "source": "/cursos/garage-casal",
+      "destination": "/cursos",
+      "permanent": true
+    },
+    {
+      "source": "/cursos/garage-hybrid-julio",
+      "destination": "/cursos",
+      "permanent": true
+    },
+    {
+      "source": "/cursos/garage-new-generation-julio",
+      "destination": "/cursos",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

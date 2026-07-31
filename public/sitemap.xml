@@ -72,21 +72,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://actinggarage.com/cursos/garage-hybrid-julio</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://actinggarage.com/cursos/garage-new-generation-julio</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://actinggarage.com/cursos/garage-casal</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
+  <!-- Cursos de verano 2026 (garage-hybrid-julio, garage-new-generation-julio,
+       garage-casal) retirados el 2026-07-31: terminaron y redirigen 301 a /cursos -->
+
 </urlset>
 
