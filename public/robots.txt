@@ -7,7 +7,7 @@ Allow: /cursos
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://actinggarage.com/sitemap.xml
+Sitemap: https://www.theactinggarage.com/sitemap.xml
 
 # Disallow admin or private areas (if any in future)
 # Disallow: /admin/

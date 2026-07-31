@@ -122,6 +122,8 @@ const LandingPro: React.FC = () => {
           content="Formación profesional de interpretación en Barcelona: Garage Pro, Hybrid Plus, teatro/cámara/híbrido nivel II y III, y Garage Expert Lab para egresados."
         />
         <meta name="title" content="Garage Pro — Formación Profesional de Interpretación en Barcelona | TAG" />
+        <link rel="canonical" href="https://www.theactinggarage.com/pro" />
+        <meta property="og:url" content="https://www.theactinggarage.com/pro" />
       </Helmet>
 
       <Header showOnScroll={false} />

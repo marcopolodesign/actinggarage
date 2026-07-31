@@ -188,11 +188,11 @@ const CourseLanding: React.FC = () => {
         <title>{course.seo.title}</title>
         <meta name="title" content={course.seo.title} />
         <meta name="description" content={course.seo.description} />
-        <link rel="canonical" href={`https://actinggarage.com${course.seo.canonicalPath}`} />
+        <link rel="canonical" href={`https://www.theactinggarage.com${course.seo.canonicalPath}`} />
 
         <meta property="og:title" content={course.seo.title} />
         <meta property="og:description" content={course.seo.description} />
-        <meta property="og:url" content={`https://actinggarage.com${course.seo.canonicalPath}`} />
+        <meta property="og:url" content={`https://www.theactinggarage.com${course.seo.canonicalPath}`} />
 
         <meta name="twitter:title" content={course.seo.title} />
         <meta name="twitter:description" content={course.seo.description} />

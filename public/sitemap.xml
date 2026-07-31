@@ -4,76 +4,103 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-  
+
+  <!-- Dominio canónico: www.theactinggarage.com (el apex redirige aquí).
+       Hasta 2026-07-31 este sitemap apuntaba a actinggarage.com, un dominio sin DNS. -->
+
   <!-- Homepage -->
   <url>
-    <loc>https://actinggarage.com/</loc>
-    <lastmod>2025-01-14</lastmod>
+    <loc>https://www.theactinggarage.com/</loc>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <!-- Cursos Page -->
   <url>
-    <loc>https://actinggarage.com/cursos</loc>
-    <lastmod>2025-01-14</lastmod>
+    <loc>https://www.theactinggarage.com/cursos</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landings agrupadas por perfil -->
+  <url>
+    <loc>https://www.theactinggarage.com/iniciacion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.theactinggarage.com/pro</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.theactinggarage.com/jovenes</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Course landings -->
   <url>
-    <loc>https://actinggarage.com/cursos/garage-pro</loc>
+    <loc>https://www.theactinggarage.com/cursos/garage-pro</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://actinggarage.com/cursos/garage-theatre</loc>
+    <loc>https://www.theactinggarage.com/cursos/garage-theatre</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://actinggarage.com/cursos/garage-cinema</loc>
+    <loc>https://www.theactinggarage.com/cursos/garage-cinema</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://actinggarage.com/cursos/garage-hybrid</loc>
+    <loc>https://www.theactinggarage.com/cursos/garage-hybrid</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://actinggarage.com/cursos/garage-hybrid-plus</loc>
+    <loc>https://www.theactinggarage.com/cursos/garage-hybrid-plus</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://actinggarage.com/cursos/garage-mini-kids</loc>
+    <loc>https://www.theactinggarage.com/cursos/garage-videobook</loc>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://actinggarage.com/cursos/garage-kids</loc>
+    <loc>https://www.theactinggarage.com/cursos/garage-writing</loc>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://actinggarage.com/cursos/garage-new-generation</loc>
+    <loc>https://www.theactinggarage.com/cursos/garage-classic</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Legales -->
+  <url>
+    <loc>https://www.theactinggarage.com/privacidad</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://actinggarage.com/cursos/garage-new-generation-cinema</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.theactinggarage.com/terminos</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
-  <url>
-    <loc>https://actinggarage.com/cursos/garage-new-generation-hybrid</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <!-- Cursos de verano 2026 (garage-hybrid-julio, garage-new-generation-julio,
-       garage-casal) retirados el 2026-07-31: terminaron y redirigen 301 a /cursos -->
+
+  <!-- Fuera del sitemap a propósito:
+       · /cursos/garage-mini-kids, garage-kids, garage-new-generation(-cinema|-hybrid)
+         redirigen a /jovenes desde el 2026-07-23 — la página indexable es /jovenes.
+       · Cursos de verano 2026 (garage-casal, garage-hybrid-julio,
+         garage-new-generation-julio) retirados el 2026-07-31, 301 a /cursos. -->
 
 </urlset>
-

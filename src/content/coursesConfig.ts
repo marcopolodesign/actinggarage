@@ -692,5 +692,224 @@ export const coursesConfig: Record<string, CourseConfig> = {
       canonicalPath: '/cursos/garage-classic',
     },
   },
+
+  'garage-videobook': {
+    slug: 'garage-videobook',
+    courseName: 'Garage Videobook Intensive',
+    eyebrow: 'Curso Anual para Actores Avanzados · Barcelona',
+    heroTitleLines: ['GARAGE', 'VIDEOBOOK', 'INTENSIVE'],
+    heroQuote: '"EL ACTOR HONESTO"',
+    heroDescription:
+      'Curso anual para actores avanzados en Barcelona: terminas con un videobook profesional de 3 a 5 escenas rodadas, editadas y montadas, listo para agentes, castings y plataformas de la industria.',
+    heroBgImage: headerBg,
+    heroBgOverlayClassName: overlay,
+    ctaMode: 'whatsappPlusInlineForm',
+    inlineFormSource: 'cursos_garage_videobook',
+    inlineFormDefaultInterest: 'teatro-cine',
+    statsEmphasis: true,
+    stats: [
+      { label: 'Duración', value: 'Sep → Jun' },
+      { label: 'Carga', value: '4h/semana' },
+      { label: 'Formato', value: '2h escena + 2h cámara' },
+      { label: 'Grupo', value: 'Máx. 10 alumnos' },
+      { label: 'Entregable', value: 'Videobook profesional' },
+    ],
+    sections: [
+      {
+        id: 'why',
+        title: '¿Qué es Videobook Intensive?',
+        body: [
+          'No es un curso de escenas sueltas: es la culminación de tu proceso como actor. Está pensado para actores avanzados que ya dominan las herramientas técnicas y necesitan un espacio donde afilarlas, aplicarlas a material exigente y convertirlas en el material que de verdad les abre puertas: su videobook profesional.',
+          'Aquí no repetimos teoría desde cero. Repasamos y llevamos a maestría todo lo trabajado en tu formación, y lo cruzamos con lo que la industria realmente pide: cómo te vendes, cómo gestionas una audición, cómo sostienes una carrera cuando el "no" es la respuesta más frecuente.',
+          'Técnica y negocio, cuerpo y estrategia, arte y oficio: el 50% técnica + 50% gestión emocional de la filosofía TAG, aplicado a la etapa donde más importa — la salida al mercado.',
+          'El objetivo es tangible: terminar el curso con un videobook profesional de 3 a 5 escenas rodadas en condiciones profesionales, editadas y montadas, listo para agentes, castings y plataformas de la industria.',
+          'Trabajo a medida: las escenas se escriben específicamente para cada alumno, según lo que quiere mostrar en su videobook. Cada actor se enseña y se trata de forma personal a lo largo de todo el curso.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Estructura del programa',
+        body: [
+          'Duración: un curso completo, de septiembre a junio.',
+          'Formato: 4 horas semanales — 2h de Escena/Herramientas + 2h de Cámara/Industria.',
+          'Para quién: actores avanzados con formación técnica sólida.',
+          'Grupos: máximo 10 alumnos por clase.',
+          'Estructura: núcleo de entrenamiento fijo + foco rotativo por trimestre.',
+          'Entregable final: videobook profesional completo.',
+        ],
+      },
+      {
+        id: 'why',
+        title: 'Filosofía "El actor honesto"',
+        body: [
+          'Mentalidad de profesional que se lanza al mercado, no de estudiante que termina un curso. No vienes a aprender el oficio: vienes a demostrarlo, grabarlo y venderlo.',
+          'El "no" va a ser la respuesta más común en tu carrera. Este curso te entrena para recibirlo, gestionarlo y seguir presentándote a la siguiente audición con la misma verdad.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Bloque 1 · Maestría y escena (2h/semana)',
+        body: [
+          'Repaso y maestría — llevar el instrumento al límite. No se aprenden herramientas nuevas desde cero: se revisan, se pulen y se llevan a maestría todas las que ya tienes, aplicadas sobre material de nivel profesional. Cada sesión es entrenamiento de atleta, no clase de estudiante.',
+          'Repaso integral de herramientas: cuerpo, voz, escucha, impulso y construcción de personaje, auditadas y afinadas sobre escenas exigentes.',
+          'Análisis y ataque de material: cómo leer un guion de casting real y tomar decisiones de actuación en poco tiempo, como en la industria.',
+          'Trabajo de escena avanzado: escenas de alta exigencia dramática elegidas específicamente por su potencial para videobook.',
+          'Escenas escritas a medida: cada escena que grabarás se escribe específicamente para ti, en función de lo que quieres mostrar. Nunca material genérico de grupo.',
+          'Feedback individualizado: cada actor recibe notas dirigidas a su propio material, alumno a alumno.',
+          'Primer semestre (septiembre a enero): selección de material y registros que mejor representan tu rango, construcción de personaje a nivel profesional (biografía, psicología y fisicalidad aplicadas a papeles de casting real) y preparación de los dos primeros bloques de rodaje.',
+          'Segundo semestre (febrero a junio): registro y versatilidad (comedia, drama, thriller), escenas de giro emocional y alta complejidad, y ensayo y ajuste fino de cada escena antes de su rodaje definitivo.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Bloque 2 · Cámara y rodaje (incluido)',
+        body: [
+          'De la escena ensayada al material que te representa. Cada escena de trabajo se lleva a rodaje en condiciones profesionales: equipo de cámara, iluminación y dirección, con el mismo compromiso que un rodaje real.',
+          'Primer semestre: 1-2 escenas rodadas.',
+          'Segundo semestre: 2-3 escenas rodadas de mayor exigencia y registro.',
+          'Cierre de curso: sesión de fotos profesionales (headshots) para completar tu material de presentación.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Bloque 3 · El negocio del acting (2h/semana)',
+        body: [
+          'De actor en formación a actor profesional. La técnica te lleva a la sala; el negocio te lleva a la carrera. Este bloque trabaja todo lo que rodea a la actuación y que ninguna escuela suele enseñar con la misma seriedad.',
+          'Audiciones y material: el self-tape profesional (setup, luz, encuadre y entrega — el estándar que espera un director de casting hoy), callbacks, y el reel y el videobook (qué escenas incluir, cómo ordenarlas, duración y primeras impresiones).',
+          'Agentes y self-marketing: cómo funciona la relación con un agente, presencia profesional y comunicación de marca sin perder honestidad, y networking de industria para construir relaciones de trabajo que duran.',
+          'Gestión del "no": vivir en el rechazo, ansiedad y bloqueo frente al casting (regulación antes, durante y después de la sala), identidad más allá del resultado y resiliencia a largo plazo.',
+          'El bloque de negocio se trabaja con la misma disciplina que la escena: no son "charlas motivacionales", son sesiones de entrenamiento con herramientas prácticas que se repiten y se interiorizan.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Masterclasses e industria',
+        body: [
+          'Directores de casting, agentes y actores en activo comparten sala con el grupo a lo largo del curso.',
+          'Traemos la industria al aula: mínimo una masterclass por trimestre.',
+          'Sesión de mock-castings con directores de casting y/o representantes sobre tu propio material.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Qué incluye tu videobook al terminar el curso',
+        body: [
+          '3 a 5 escenas rodadas en condiciones profesionales.',
+          'Registro variado: drama, comedia, thriller u otros géneros.',
+          'Edición y montaje profesional del material.',
+          'Sesión de fotos (headshots) actualizada.',
+          'Self-tape de audición grabado bajo condiciones reales.',
+          'CV de actor actualizado y revisado.',
+          'Feedback individual de industria sobre el material final.',
+          'Presentación final ante industria invitada.',
+        ],
+      },
+      {
+        id: 'why',
+        title: '¿Qué conseguirás en el curso?',
+        body: [
+          'Como actor: herramientas llevadas a maestría (no solo aprendidas), videobook profesional terminado, versatilidad demostrada en registro y género, y criterio propio ante el material de casting.',
+          'Como profesional: conocimiento real del negocio del acting, material listo para agentes y plataformas, experiencia en rodaje y self-tape profesional, y una red de contactos e industria conocida en persona.',
+          'Como persona: herramientas concretas para gestionar el rechazo a largo plazo, resiliencia emocional entrenada (no improvisada) y una relación más honesta y sostenible con tu carrera.',
+          '"Siempre hacemos lo mejor que podemos con las luces que tenemos." Al terminar este curso, sales con muchas más luces — y con el material que lo demuestra.',
+        ],
+      },
+    ],
+    seo: {
+      title: 'Garage Videobook Intensive — Curso para Actores Avanzados en Barcelona | TAG',
+      description:
+        'Curso anual para actores avanzados en Barcelona. Terminas con un videobook profesional: 3 a 5 escenas rodadas, headshots y self-tape. Grupos de máximo 10. Septiembre a junio.',
+      canonicalPath: '/cursos/garage-videobook',
+    },
+  },
+
+  'garage-writing': {
+    slug: 'garage-writing',
+    courseName: 'Garage Writing',
+    eyebrow: 'Curso de Escritura de Comedia Teatral · Online',
+    heroTitleLines: ['GARAGE', 'WRITING'],
+    heroQuote: '"¿CÓMO SE TRANSFORMA UNA IDEA CÓMICA EN UNA HISTORIA?"',
+    heroDescription:
+      'Curso online de escritura de comedia teatral con Yago Alonso: de la premisa al escenario. 12 sesiones para llevar una idea cómica hasta una pieza que se convierta en obra.',
+    heroBgImage: headerBg,
+    heroBgOverlayClassName: overlay,
+    ctaMode: 'whatsappPlusInlineForm',
+    whatsAppExtra: '(online, miércoles 17-20h)',
+    inlineFormSource: 'cursos_garage_writing',
+    // El selector del form sólo acepta teatro / cine / teatro-cine — 'escritura' dejaría
+    // el chip sin marcar y mandaría un interés que el CRM no conoce.
+    inlineFormDefaultInterest: 'teatro',
+    stats: [
+      { label: 'Duración', value: '12 sesiones' },
+      { label: 'Inicio', value: '16 sep 2026' },
+      { label: 'Horario', value: 'Miércoles 17:00–20:00' },
+      { label: 'Carga', value: '3h/semana' },
+      { label: 'Modalidad', value: 'Online vía Zoom' },
+    ],
+    sections: [
+      {
+        id: 'why',
+        title: 'Escribir comedia — de la premisa al escenario',
+        body: [
+          '¿Cómo se transforma una idea cómica en una historia capaz de sostenerse durante más de una hora sobre un escenario?',
+          'Este curso propone un recorrido completo por el proceso de escritura de una comedia teatral: desde la búsqueda de la premisa hasta la lectura y reescritura del texto con actores.',
+          'A lo largo de doce sesiones, trabajaremos la premisa, el conflicto, la estructura, los personajes, los diálogos, los mecanismos cómicos, el tono y la tesis de la obra. Todo para poder desarrollar una pieza que se convierta en una obra teatral.',
+          'El curso combinará conceptos de dramaturgia con ejercicios de escritura y lecturas en voz alta. El objetivo no será únicamente escribir chistes, sino construir situaciones, personajes y conflictos que produzcan comedia de manera orgánica.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Estructura del programa',
+        body: [
+          'Duración: 12 sesiones.',
+          'Fechas: inicio miércoles 16 de septiembre de 2026 // fin miércoles 2 de diciembre de 2026.',
+          'Horario: miércoles de 17:00 a 20:00 h (3 horas semanales).',
+          'Modalidad: teórico-práctica, online vía Zoom.',
+          'Nivel: abierto a personas con interés en la escritura dramática.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Objetivos del curso',
+        body: [
+          'Encontrar y formular una premisa cómica clara.',
+          'Comprobar si una idea tiene suficiente recorrido dramático.',
+          'Construir una escaleta organizada en tres actos.',
+          'Crear personajes reconocibles, contradictorios y diferenciados.',
+          'Utilizar mecanismos como la negación, la ironía dramática, los secretos y los cambios de estatus.',
+          'Escribir diálogos ágiles y adecuados a cada personaje.',
+          'Integrar un tema o una mirada propia sin convertir la obra en un discurso.',
+          'Detectar problemas de ritmo, tono y estructura.',
+          'Utilizar a los actores como herramienta para comprobar y mejorar un texto.',
+          'Reescribir una escena a partir de lo descubierto en una lectura o ensayo.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Metodología',
+        body: [
+          'El curso combina conceptos de dramaturgia con ejercicios de escritura y lecturas en voz alta.',
+          'Se trabaja sesión a sesión sobre el material propio de cada participante, con puesta en común y revisión del texto en grupo.',
+        ],
+      },
+      {
+        id: 'why',
+        title: 'El profesor · Yago Alonso',
+        body: [
+          'Guionista de ficción y entretenimiento, dramaturgo y director teatral.',
+          'Guion audiovisual: forma parte del equipo responsable del guion de la película "Wolfgang. Extraordinario" (2025), dirigida por Javier Ruiz Caldera.',
+          'Autoría teatral: coautor, junto a Carmen Marfà, de "La presència (Sixto Paz)", que hizo temporada en la Sala Villarroel de Barcelona en 2024 y en el Teatre Borràs en 2026. Coautor de "La promesa" (2026), junto a Silvia Navarro. Coautor, junto a Eva Mor, y director de "Els plans" (2025). Director de "Kalumba" (2020).',
+          'Coautoría y codirección con Carmen Marfà: "Ovelles" (2018) — candidata a los Premios Max a Mejor Espectáculo de Pequeño Formato, Premio Teatre Barcelona 2022 a la Mejor Reposición, nominada a dos Premios Butaca (Mejor Texto y Mejor Espectáculo de Pequeño Formato) y a un Premio de la Crítica (Mejor Espectáculo de Pequeño Formato).',
+          '"Instruccions per enterrar un pare" (2020) y "La pell fina" (2022) — esta última candidata a los Premios Max a Mejor Autoría Revelación 2022, nominada a dos Premios Butaca (Mejor Texto y Mejor Espectáculo de Pequeño Formato) y a cuatro Premios Teatre Barcelona.',
+        ],
+      },
+    ],
+    seo: {
+      title: 'Garage Writing — Curso de Escritura de Comedia Teatral Online | TAG',
+      description:
+        'Curso online de escritura de comedia teatral con Yago Alonso. 12 sesiones, miércoles de 17 a 20h vía Zoom, del 16 de septiembre al 2 de diciembre de 2026. De la premisa al escenario.',
+      canonicalPath: '/cursos/garage-writing',
+    },
+  },
 };
 

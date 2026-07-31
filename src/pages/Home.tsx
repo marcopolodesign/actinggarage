@@ -139,10 +139,10 @@ const Home: React.FC = () => {
       <meta name="description" content="Formaciones profesionales en interpretación para cine y teatro. Desarrolla técnica, actitud y autenticidad con profesionales en activo. Cursos para todas las edades." />
       
       {/* Open Graph */}
-      <meta property="og:url" content="https://actinggarage.com/" />
+      <meta property="og:url" content="https://www.theactinggarage.com/" />
       
       {/* Canonical */}
-      <link rel="canonical" content="https://actinggarage.com/" />
+      <link rel="canonical" href="https://www.theactinggarage.com/" />
     </Helmet>
     
     {/* Header - shows after scrolling past first viewport */}

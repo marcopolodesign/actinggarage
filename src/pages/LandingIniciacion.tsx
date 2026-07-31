@@ -122,6 +122,8 @@ const LandingIniciacion: React.FC = () => {
           content="Cursos de iniciación a la interpretación en Barcelona: teatro, cámara, teatro+cámara y teatro para mayores de 60. Grupos reducidos, profesores en activo."
         />
         <meta name="title" content="Garage Iniciación — Primeros Pasos en Teatro y Cámara en Barcelona | TAG" />
+        <link rel="canonical" href="https://www.theactinggarage.com/iniciacion" />
+        <meta property="og:url" content="https://www.theactinggarage.com/iniciacion" />
       </Helmet>
 
       <Header showOnScroll={false} />

@@ -115,6 +115,8 @@ const LandingJovenes: React.FC = () => {
           content="Cursos de teatro y actuación para niños y jóvenes de 6 a 17 años en TAG. Mini Kids (6-8), Kids (9-12), New Generation teatro y cámara (13-17). Grupos pequeños, profesores en activo."
         />
         <meta name="title" content="TAG para Jóvenes — Cursos de Teatro y Cine de 6 a 17 años" />
+        <link rel="canonical" href="https://www.theactinggarage.com/jovenes" />
+        <meta property="og:url" content="https://www.theactinggarage.com/jovenes" />
       </Helmet>
 
       <Header showOnScroll={false} />

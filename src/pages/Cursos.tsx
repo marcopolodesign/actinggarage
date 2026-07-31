@@ -111,6 +111,30 @@ const Cursos: React.FC = () => {
       categories: ['iniciacion']
     },
     {
+      slug: 'garage-videobook',
+      title: 'Garage Videobook Intensive',
+      description: 'El curso para actores avanzados. Un año para llevar tus herramientas a maestría y salir con un videobook profesional: 3 a 5 escenas rodadas, headshots y self-tape, listo para agentes y castings.',
+      duracion: 'Curso anual (sep–jun)',
+      diasSemana: '2',
+      cargaHoraria: '4 horas',
+      edades: 'Actores avanzados',
+      modalidad: 'Escena + Cámara + Industria',
+      objetivo: 'Salida al mercado con material profesional',
+      categories: ['pro']
+    },
+    {
+      slug: 'garage-writing',
+      title: 'Garage Writing',
+      description: 'Escribir comedia, de la premisa al escenario. 12 sesiones online con Yago Alonso para llevar una idea cómica hasta una pieza teatral: estructura, personajes, diálogos y mecanismos cómicos.',
+      duracion: '12 sesiones',
+      diasSemana: '1',
+      cargaHoraria: '3 horas',
+      edades: 'Interés en escritura dramática',
+      modalidad: 'Online vía Zoom',
+      objetivo: 'Escribir una comedia teatral propia',
+      categories: ['iniciacion', 'pro']
+    },
+    {
       title: 'Garage Workshops',
       description: 'Talleres intensivos de fin de semana. Dictados por profesionales del sector para actores, actrices y estudiantes avanzados.',
       duracion: 'Fin de semana (2-3 días)',
@@ -266,7 +290,7 @@ const Cursos: React.FC = () => {
       {/* Open Graph */}
       <meta property="og:title" content="Cursos de Interpretación - The Acting Garage" />
       <meta property="og:description" content="Descubre nuestros cursos de interpretación para cine y teatro. Formación profesional para todas las edades." />
-      <meta property="og:url" content="https://actinggarage.com/cursos" />
+      <meta property="og:url" content="https://www.theactinggarage.com/cursos" />
       
       {/* Twitter */}
       <meta name="twitter:title" content="Cursos de Interpretación - The Acting Garage" />
@@ -277,7 +301,7 @@ const Cursos: React.FC = () => {
       <meta name="ai:description" content="Cursos profesionales de interpretación: GARAGE PRO (formación integral 16h/semana), GARAGE THEATRE (iniciación teatro 2h/semana), GARAGE CINEMA (interpretación cámara 2h/semana), GARAGE HYBRID (teatro+cine 4h/semana), GARAGE KIDS (8-12 años), GARAGE NEW GENERATION (13-17 años), GARAGE CLASSIC (60+), y más." />
       
       {/* Canonical */}
-      <link rel="canonical" href="https://actinggarage.com/cursos" />
+      <link rel="canonical" href="https://www.theactinggarage.com/cursos" />
     </Helmet>
     
     {/* Header - always visible on Cursos page */}
