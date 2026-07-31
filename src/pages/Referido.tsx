@@ -32,7 +32,14 @@ const Referido: React.FC = () => {
       // invalid ref, ignore
     }
 
-    supabase.functions.invoke('log-referral-click', { body: { ref } }).catch(() => {});
+    // Don't swallow this silently: a broken tracker here cost us the entire
+    // click attribution of the 2026-07-14 campaign without anyone noticing.
+    supabase.functions
+      .invoke('log-referral-click', { body: { ref } })
+      .then(({ error: fnError }) => {
+        if (fnError) console.error('log-referral-click falló:', fnError);
+      })
+      .catch(err => console.error('log-referral-click falló:', err));
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
