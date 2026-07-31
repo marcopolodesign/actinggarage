@@ -3,17 +3,17 @@
     {
       "source": "/cursos/garage-casal",
       "destination": "/cursos",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/cursos/garage-hybrid-julio",
       "destination": "/cursos",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/cursos/garage-new-generation-julio",
       "destination": "/cursos",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "rewrites": [
