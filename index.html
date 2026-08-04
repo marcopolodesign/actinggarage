@@ -7,17 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
+    <!-- ⚠️ NO agregar aquí description, og:url ni rel=canonical.
+         react-helmet-async sólo reemplaza los tags que él mismo inyecta (los marca con
+         data-rh); un tag estático puesto acá NO se borra al hidratar y queda duplicado.
+         Cada página define los suyos con <Helmet>. Ver docs/marketing/seo-audit-2026-08.html. -->
     <title>The Acting Garage - Escuela de Interpretación para Cine y Teatro</title>
     <meta name="title" content="The Acting Garage - Escuela de Interpretación para Cine y Teatro" />
-    <meta name="description" content="Formaciones profesionales en interpretación para cine y teatro. Desarrolla técnica, actitud y autenticidad con profesionales en activo. Cursos para todas las edades." />
     <meta name="keywords" content="escuela de actuación, interpretación, cine, teatro, formación actores, TAG, acting garage, clases de teatro, clases de cine, cursos de interpretación" />
     <meta name="author" content="The Acting Garage" />
     <meta name="language" content="Spanish" />
     <meta name="robots" content="index, follow" />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.theactinggarage.com/" />
     <meta property="og:title" content="The Acting Garage - Escuela de Interpretación para Cine y Teatro" />
     <meta property="og:description" content="Formaciones profesionales en interpretación para cine y teatro. Desarrolla técnica, actitud y autenticidad con profesionales en activo." />
     <meta property="og:image" content="https://www.theactinggarage.com/tag.jpg" />
@@ -30,9 +32,6 @@
     <meta property="twitter:title" content="The Acting Garage - Escuela de Interpretación para Cine y Teatro" />
     <meta property="twitter:description" content="Formaciones profesionales en interpretación para cine y teatro. Desarrolla técnica, actitud y autenticidad con profesionales en activo." />
     <meta property="twitter:image" content="https://www.theactinggarage.com/tag.jpg" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.theactinggarage.com/" />
     
     <!-- Structured Data (JSON-LD) for LLMs and Search Engines -->
     <script type="application/ld+json">
