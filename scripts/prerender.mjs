@@ -38,7 +38,24 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chromium } from 'playwright';
+import { chromium } from 'playwright-core';
+
+/**
+ * En local se usa el Chromium que ya tiene Playwright en su caché. En Vercel eso
+ * no sirve: el binario se instala pero la imagen de build no trae las librerías
+ * del sistema que necesita (`libnspr4.so` y compañía), y `playwright install
+ * --with-deps` haría falta root. @sparticuz/chromium trae un Chromium empaquetado
+ * con sus dependencias adentro, que es justo el caso de uso.
+ */
+async function launch() {
+  if (!process.env.VERCEL) return chromium.launch();
+  const { default: sparticuz } = await import('@sparticuz/chromium');
+  return chromium.launch({
+    executablePath: await sparticuz.executablePath(),
+    args: sparticuz.args,
+    headless: true,
+  });
+}
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
@@ -92,7 +109,7 @@ function serve() {
 }
 
 const server = await serve();
-const browser = await chromium.launch();
+const browser = await launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 
 const problems = [];
