@@ -112,11 +112,20 @@ const server = await serve();
 const browser = await launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 
+// Cortar todo lo externo. El prerender sólo necesita que la app monte y que Helmet
+// resuelva el head: GTM, gtag, el pixel y las fuentes no aportan nada y encima
+// mantienen conexiones abiertas que hacían que `networkidle` no llegara nunca —
+// en Vercel el build se quedaba colgado hasta el timeout en cada ruta.
+await page.route('**/*', (route) => {
+  const url = route.request().url();
+  return url.startsWith(`http://localhost:${PORT}`) ? route.continue() : route.abort();
+});
+
 const problems = [];
 let ok = 0;
 
 for (const route of ROUTES) {
-  await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle', timeout: 45000 });
+  await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
 
   // Esperar a que Helmet haya puesto el canonical de ESTA ruta. Sin esto se
   // capturan snapshots pre-hidratación, que es exactamente el bug que veníamos
