@@ -435,17 +435,21 @@ const Cursos: React.FC = () => {
                   type="button"
                   onClick={() => selectFilter(f.key)}
                   aria-pressed={active}
-                  className={`font-druk text-xs uppercase tracking-widest px-4 py-2 border transition-colors duration-200 ${
+                  style={{ fontFamily: 'system-ui, sans-serif' }}
+                  className={`text-lg md:text-xl px-5 py-2.5 border transition-colors duration-200 ${
                     active
-                      ? 'bg-tag-yellow text-black border-tag-yellow'
-                      : 'text-tag-yellow/70 border-tag-yellow/30 hover:bg-tag-yellow hover:text-black hover:border-tag-yellow'
+                      ? 'bg-white text-black border-white'
+                      : 'text-white border-white/30 hover:border-white'
                   }`}
                 >
                   {f.label}
                 </button>
               );
             })}
-            <span className="text-white/35 text-xs tracking-widest uppercase ml-2">
+            <span
+              className="text-white/40 text-base md:text-lg ml-3"
+              style={{ fontFamily: 'system-ui, sans-serif' }}
+            >
               {visibleCount} {visibleCount === 1 ? 'curso' : 'cursos'}
             </span>
           </div>
