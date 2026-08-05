@@ -189,7 +189,27 @@ const Cursos: React.FC = () => {
   };
 
   const [expandedCourse, setExpandedCourse] = useState<number | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string>('todos');
   const { openFlyout } = useFormFlyout();
+
+  const FILTERS: { key: string; label: string }[] = [
+    { key: 'todos', label: 'Todos' },
+    { key: 'iniciacion', label: 'Iniciación' },
+    { key: 'pro', label: 'Pro' },
+    { key: 'menores', label: 'Menores' },
+  ];
+
+  const matchesFilter = (course: { categories?: string[] }) =>
+    activeFilter === 'todos' || (course.categories ?? []).includes(activeFilter);
+
+  const visibleCount = coursesData.filter(matchesFilter).length;
+
+  const selectFilter = (key: string) => {
+    setActiveFilter(key);
+    // Si el curso abierto queda fuera del filtro, el acordeón se quedaría expandido
+    // sin ser visible y al volver a "Todos" aparecería abierto sin motivo.
+    setExpandedCourse(null);
+  };
 
   const toggleCourse = (index: number) => {
     setExpandedCourse(expandedCourse === index ? null : index);
@@ -402,10 +422,39 @@ const Cursos: React.FC = () => {
 
         {/* Cursos de verano (TrimestralCards) ocultos 2026-07-31 — terminaron el 30 jul */}
 
+        {/* Filtros por categoría. Los cursos que no matchean se ocultan por CSS en vez de
+            sacarse del array: los refs de las animaciones de scroll son por índice, así que
+            filtrar el array los desalinearía. De paso el contenido sigue en el HTML. */}
+        <div className="w-full max-w-2xl mt-20">
+          <div className="flex flex-wrap items-center gap-2">
+            {FILTERS.map((f) => {
+              const active = activeFilter === f.key;
+              return (
+                <button
+                  key={f.key}
+                  type="button"
+                  onClick={() => selectFilter(f.key)}
+                  aria-pressed={active}
+                  className={`font-druk text-xs uppercase tracking-widest px-4 py-2 border transition-colors duration-200 ${
+                    active
+                      ? 'bg-tag-yellow text-black border-tag-yellow'
+                      : 'text-tag-yellow/70 border-tag-yellow/30 hover:bg-tag-yellow hover:text-black hover:border-tag-yellow'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              );
+            })}
+            <span className="text-white/35 text-xs tracking-widest uppercase ml-2">
+              {visibleCount} {visibleCount === 1 ? 'curso' : 'cursos'}
+            </span>
+          </div>
+        </div>
+
         {/* Courses List */}
-        <div className="w-full max-w-2xl mt-24">
+        <div className="w-full max-w-2xl mt-8">
           {coursesData.map((course, index) => (
-            <div key={index} className="mb-2">
+            <div key={index} className={`mb-2 ${matchesFilter(course) ? '' : 'hidden'}`}>
               <div
                 ref={(el) => { coursesRef.current[index] = el; }}
                 className="flex items-center justify-between py-6 cursor-pointer hover:opacity-80 transition-opacity"
