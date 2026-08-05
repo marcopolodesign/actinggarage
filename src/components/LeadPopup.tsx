@@ -30,6 +30,12 @@ const COUNTRIES = [
   { flag: '🇺🇸', code: '+1',  name: 'EEUU' },
 ];
 
+const INTERESTS = [
+  { value: 'teatro', label: 'TEATRO' },
+  { value: 'cine', label: 'CINE' },
+  { value: 'teatro-cine', label: 'TEATRO & CINE' },
+];
+
 const inputStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.07)',
   border: '1px solid rgba(255,255,255,0.15)',
@@ -48,6 +54,7 @@ const LeadPopup: React.FC = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [countryCode, setCountryCode] = useState('+34');
+  const [interests, setInterests] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -101,7 +108,7 @@ const LeadPopup: React.FC = () => {
         name,
         phone: fullPhone,
         birthday: '',
-        interests: '',
+        interests,
         source: 'website_popup',
         utm_source,
         utm_medium: utm_medium || 'organic',
@@ -310,9 +317,45 @@ const LeadPopup: React.FC = () => {
                 />
               </div>
 
+              {/* Interests */}
+              <div style={{ marginTop: '0.35rem' }}>
+                <p style={{
+                  fontSize: '0.68rem',
+                  letterSpacing: '0.12em',
+                  opacity: 0.45,
+                  marginBottom: '0.5rem',
+                }}>
+                  ¿CUÁLES SON TUS INTERESES? *
+                </p>
+                <div style={{ display: 'flex', gap: '0.4rem' }}>
+                  {INTERESTS.map(i => (
+                    <button
+                      key={i.value}
+                      type="button"
+                      onClick={() => setInterests(i.value)}
+                      style={{
+                        flex: 1,
+                        background: interests === i.value ? '#FFBE00' : 'rgba(255,255,255,0.07)',
+                        border: `1px solid ${interests === i.value ? '#FFBE00' : 'rgba(255,255,255,0.15)'}`,
+                        color: interests === i.value ? '#111' : '#fff',
+                        borderRadius: '6px',
+                        padding: '0.6rem 0.35rem',
+                        fontSize: '0.65rem',
+                        fontWeight: 800,
+                        letterSpacing: '0.05em',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      {i.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <button
                 type="submit"
-                disabled={submitting}
+                disabled={submitting || !interests}
                 style={{
                   background: '#FFBE00',
                   color: '#111',
@@ -322,9 +365,9 @@ const LeadPopup: React.FC = () => {
                   fontSize: '0.85rem',
                   fontWeight: 900,
                   letterSpacing: '0.12em',
-                  cursor: submitting ? 'not-allowed' : 'pointer',
+                  cursor: submitting || !interests ? 'not-allowed' : 'pointer',
                   marginTop: '0.5rem',
-                  opacity: submitting ? 0.7 : 1,
+                  opacity: submitting || !interests ? 0.5 : 1,
                 }}
               >
                 {submitting ? 'ENVIANDO...' : 'QUIERO INFO'}
