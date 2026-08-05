@@ -88,6 +88,42 @@ const Cursos: React.FC = () => {
       categories: ['menores']
     },
     {
+      slug: 'garage-mini-kids',
+      title: 'Garage Mini Kids',
+      description: 'Teatro para niños y niñas de 6 a 8 años. Juego, desinhibición y primeras herramientas escénicas, con muestra al final de cada cuatrimestre.',
+      duracion: 'Curso anual',
+      diasSemana: 'Según grupo',
+      cargaHoraria: '1h30/semana',
+      edades: '6 a 8 años',
+      modalidad: 'Teatro',
+      objetivo: 'Confianza, expresión y trabajo en equipo',
+      categories: ['menores']
+    },
+    {
+      slug: 'garage-kids',
+      title: 'Garage Kids',
+      description: 'Teatro para niños y niñas de 9 a 12 años. Técnica actoral real adaptada a su edad: presencia escénica, voz, personaje y montaje final.',
+      duracion: 'Curso anual',
+      diasSemana: 'Según grupo',
+      cargaHoraria: '2h/semana',
+      edades: '9 a 12 años',
+      modalidad: 'Teatro',
+      objetivo: 'Identidad, técnica y pensamiento crítico',
+      categories: ['menores']
+    },
+    {
+      slug: 'garage-new-generation',
+      title: 'Garage New Generation',
+      description: 'Teatro para jóvenes de 13 a 17 años, en recorrido de teatro, cámara o híbrido. Del juego a la identidad artística, con bolsa de casting.',
+      duracion: 'Curso anual',
+      diasSemana: 'Según grupo',
+      cargaHoraria: '2h/semana',
+      edades: '13 a 17 años',
+      modalidad: 'Teatro / Cine / Híbrido',
+      objetivo: 'Identidad artística y presencia escénica',
+      categories: ['menores']
+    },
+    {
       title: 'Garage Evolution',
       description: 'Entrenamiento avanzado para egresados TAG. Programas personalizados para seguir desarrollando técnica, creatividad y autoconocimiento actoral.',
       duracion: 'Continua / anual',
@@ -330,20 +366,23 @@ const Cursos: React.FC = () => {
         className="fixed md:top-20 top-30 left-0 right-0 z-20 flex justify-center items-center pointer-events-none transition-all duration-300 ease-out"
         style={{ opacity: 1 }}
       >
-        <div className="flex gap-8 items-center">
-          <span 
+        {/* h1 real de la página: es el titular que ya se veía, sólo cambia la etiqueta.
+            La página no tenía ningún h1 y el h2 de más abajo es por curso, dentro del
+            acordeón, así que se repetía. */}
+        <h1 className="flex gap-8 items-center m-0 font-normal">
+          <span
             ref={cursosTextRef}
             className="font-druk text-8xl md:text-8xl lg:text-[250px] text-white transition-transform duration-300 ease-out"
           >
             Cursos
           </span>
-          <span 
+          <span
             ref={tagTextRef}
             className="font-druk text-8xl md:text-8xl lg:text-[250px] text-white transition-transform duration-300 ease-out"
           >
             TAG
           </span>
-        </div>
+        </h1>
       </div>
 
       {/* Content */}

@@ -53,6 +53,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.theactinggarage.com/cursos/garage-mini-kids</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theactinggarage.com/cursos/garage-kids</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.theactinggarage.com/cursos/garage-new-generation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.theactinggarage.com/cursos/garage-cinema</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

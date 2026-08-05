@@ -911,5 +911,220 @@ export const coursesConfig: Record<string, CourseConfig> = {
       canonicalPath: '/cursos/garage-writing',
     },
   },
-};
 
+  'garage-mini-kids': {
+    slug: 'garage-mini-kids',
+    courseName: 'Garage Mini Kids',
+    eyebrow: 'Clases de Teatro para Niños de 6 a 8 años · Barcelona',
+    heroTitleLines: ['GARAGE', 'MINI KIDS'],
+    heroDescription:
+      'Clases de teatro para niños y niñas de 6 a 8 años en Barcelona. Juego, expresión y primeras herramientas escénicas en grupos de doce.',
+    heroBgImage: headerBg,
+    heroBgOverlayClassName: overlay,
+    ctaMode: 'whatsappPlusInlineForm',
+    whatsAppExtra: '(6-8 años)',
+    inlineFormSource: 'cursos_garage_mini_kids',
+    inlineFormDefaultInterest: 'teatro',
+    stats: [
+      { label: 'Edad', value: '6–8 años' },
+      { label: 'Inicio', value: '14 sep 2026' },
+      { label: 'Formato', value: '1h30/semana' },
+      { label: 'Grupo', value: 'Máx. 12 alumnos' },
+    ],
+    sections: [
+      {
+        id: 'why',
+        title: '¿Por qué teatro a esta edad?',
+        body: [
+          'A los 6 años no se viene a aprender a actuar: se viene a jugar en serio, y de ahí sale todo lo demás.',
+          'Desarrollar confianza en sí mismos y sí mismas.',
+          'Expresar emociones de forma sana.',
+          'Conectar con otros niños y niñas y aprender a trabajar en equipo.',
+          'Potenciar su creatividad e imaginación.',
+          'Divertirse mientras aprenden.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Estructura del programa',
+        body: [
+          'Curso 2026/2027, dos cuatrimestres, con muestra al final de cada uno.',
+          'Formato: 1 hora y media semanal.',
+          'Grupos: máximo 12 niños y niñas por clase.',
+          'No hace falta experiencia previa ni ningún tipo de prueba de acceso.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Qué trabajamos',
+        body: [
+          'Primer cuatrimestre — Desinhibición y confianza en el espacio. Conciencia corporal y movimiento expresivo. Mirada, escucha y trabajo en equipo. Consolidación y juegos de cierre de bloque.',
+          'Segundo cuatrimestre — Creación de personajes simples: animales, objetos mágicos, diferentes tipos de personas. Emociones básicas y expresividad: alegría, tristeza, miedo, sorpresa, enfado. Introducción al texto dramático: primeras palabras en escena con textos muy sencillos. Pequeñas escenas guiadas. Ensayos con puesta en escena: construimos pequeñas historias entre todos y todas.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Sesión de media hora de fotos profesionales (book o artísticas).',
+          'Acceso preferente y con descuento a masterclasses de profesionales en activo.',
+          'Todo el profesorado de TAG son profesionales en ACTIVO.',
+          'Aulas para ensayar.',
+          'Descuentos en actividades culturales de Barcelona (teatro, cine, exposiciones…).',
+        ],
+      },
+    ],
+    seo: {
+      title: 'Garage Mini Kids — Clases de Teatro para Niños de 6 a 8 años en Barcelona | TAG',
+      description:
+        'Clases de teatro para niños y niñas de 6 a 8 años en Barcelona. Grupos de máximo 12, profesorado en activo y muestra cada cuatrimestre. Inicio septiembre 2026.',
+      canonicalPath: '/cursos/garage-mini-kids',
+    },
+  },
+
+  'garage-kids': {
+    slug: 'garage-kids',
+    courseName: 'Garage Kids',
+    eyebrow: 'Clases de Teatro para Niños de 9 a 12 años · Barcelona',
+    heroTitleLines: ['GARAGE', 'KIDS'],
+    heroDescription:
+      'Clases de teatro para niños y niñas de 9 a 12 años en Barcelona. Técnica actoral real adaptada a su edad, en grupos de doce.',
+    heroBgImage: headerBg,
+    heroBgOverlayClassName: overlay,
+    ctaMode: 'whatsappPlusInlineForm',
+    whatsAppExtra: '(9-12 años)',
+    inlineFormSource: 'cursos_garage_kids',
+    inlineFormDefaultInterest: 'teatro',
+    stats: [
+      { label: 'Edad', value: '9–12 años' },
+      { label: 'Inicio', value: '14 sep 2026' },
+      { label: 'Formato', value: '2h/semana' },
+      { label: 'Grupo', value: 'Máx. 12 alumnos' },
+    ],
+    sections: [
+      {
+        id: 'why',
+        title: '¿Por qué teatro a esta edad?',
+        body: [
+          'Es la edad en la que empiezan a preguntarse quiénes son. El teatro les da un sitio donde probarlo sin consecuencias.',
+          'Construir su identidad y autoconocimiento.',
+          'Expresarse con mayor profundidad y matices.',
+          'Desarrollar pensamiento crítico y análisis.',
+          'Trabajar en equipo con mayor responsabilidad.',
+          'Aprender herramientas técnicas que les acompañarán toda la vida.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Estructura del programa',
+        body: [
+          'Curso 2026/2027, dos cuatrimestres, con muestra al final de cada uno.',
+          'Formato: 2 horas semanales.',
+          'Grupos: máximo 12 alumnos por clase.',
+          'No hace falta experiencia previa ni ningún tipo de prueba de acceso.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Qué trabajamos',
+        body: [
+          'Primer cuatrimestre — Presencia escénica y uso del espacio: ocupar el escenario con confianza y propósito. Expresión corporal avanzada: control corporal, movimiento expresivo y lenguaje no verbal. Proyección vocal y dicción: técnicas para que su voz llegue clara y potente al público. Concentración y escucha activa: estar presente en escena y reaccionar con verdad.',
+          'Segundo cuatrimestre — Análisis de personajes: ¿quién es?, ¿qué quiere?, ¿por qué actúa así? Trabajo emocional profundo: emociones complejas y matices (frustración, celos, esperanza, decepción). Creación física del personaje. Trabajo con texto dramático: análisis, memorización y entrega de diálogos con intención. Escenas complejas: conflicto, subtexto y desarrollo dramático. Improvisación estructurada. Ensayos intensivos y montaje final.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Sesión de media hora de fotos profesionales (book o artísticas).',
+          'Acceso preferente y con descuento a masterclasses de profesionales en activo.',
+          'Todo el profesorado de TAG son profesionales en ACTIVO.',
+          'Aulas para ensayar.',
+          'Descuentos en actividades culturales de Barcelona (teatro, cine, exposiciones…).',
+        ],
+      },
+    ],
+    seo: {
+      title: 'Garage Kids — Clases de Teatro para Niños de 9 a 12 años en Barcelona | TAG',
+      description:
+        'Clases de teatro para niños y niñas de 9 a 12 años en Barcelona. Grupos de máximo 12, profesorado en activo y muestra cada cuatrimestre. Inicio septiembre 2026.',
+      canonicalPath: '/cursos/garage-kids',
+    },
+  },
+
+  'garage-new-generation': {
+    slug: 'garage-new-generation',
+    courseName: 'Garage New Generation',
+    eyebrow: 'Teatro para Adolescentes de 13 a 17 años · Barcelona',
+    heroTitleLines: ['GARAGE', 'NEW GENERATION'],
+    heroQuote: '"JUGAR, PERO JUGAR MUY EN SERIO"',
+    heroDescription:
+      'Teatro para jóvenes de 13 a 17 años en Barcelona. Del juego a la identidad artística, en grupos de doce y con profesorado en activo.',
+    heroBgImage: headerBg,
+    heroBgOverlayClassName: overlay,
+    videoSrc: genericAnnualVideo,
+    videoPoster: genericAnnualVideoPoster,
+    ctaMode: 'whatsappPlusInlineForm',
+    whatsAppExtra: '(13-17 años)',
+    inlineFormSource: 'cursos_garage_new_generation',
+    inlineFormDefaultInterest: 'teatro',
+    stats: [
+      { label: 'Edad', value: '13–17 años' },
+      { label: 'Inicio', value: '14 sep 2026' },
+      { label: 'Formato', value: '2h/semana' },
+      { label: 'Grupo', value: 'Máx. 12 alumnos' },
+    ],
+    sections: [
+      {
+        id: 'why',
+        title: '¿Por qué New Generation?',
+        body: [
+          'A esta edad nadie pide permiso para hacer algo que da vergüenza querer. Este es el sitio donde deja de darla.',
+          'Explorar su identidad artística y personal.',
+          'Mayor autoconocimiento y comprensión de sus emociones.',
+          'Canalizar emociones de forma creativa y segura.',
+          'Desarrollar presencia escénica y confianza en público.',
+          'Aprender herramientas actorales adecuadas a su madurez.',
+          'Capacidad de trabajo en equipo con responsabilidad, empatía y comprensión de perspectivas diferentes.',
+          'Jugar, pero jugar MUY EN SERIO.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Estructura del programa',
+        body: [
+          'Curso 2026/2027, dos cuatrimestres, con muestra al final de cada uno.',
+          'Formato: 2 horas semanales.',
+          'Grupos: máximo 12 alumnos por clase.',
+          'Tres recorridos a elegir: Teatro, Cámara o Hybrid, que combina los dos.',
+          'No hace falta experiencia previa ni ningún tipo de prueba de acceso.',
+        ],
+      },
+      {
+        id: 'program',
+        title: 'Qué trabajamos',
+        body: [
+          'Primer cuatrimestre — Confianza y cohesión grupal: crear un espacio seguro para la expresión. Técnica corporal y presencia escénica: control, energía y uso del espacio. Voz proyectada, articulación y ritmo. Atención, escucha y verdad escénica: estar presente y reaccionar con autenticidad. Creación de personajes a partir de improvisaciones. Consolidación y muestra interna de bloque.',
+          'Segundo cuatrimestre — Construcción de personajes: objetivo, conflicto y actitud. Trabajo emocional adaptado a la edad: canalizar emociones de forma creativa y segura. Improvisación: escucha activa, creatividad y resolución espontánea de escenas. Escenas breves contemporáneas: introducción a la escena dialogada y pequeños monólogos. Ensayos de escenas o montaje grupal.',
+        ],
+      },
+      {
+        id: 'included',
+        title: 'Incluido en el programa',
+        body: [
+          'Sesión de media hora de fotos profesionales (book o artísticas).',
+          'Acceso preferente y con descuento a masterclasses de profesionales en activo.',
+          'Todo el profesorado de TAG son profesionales en ACTIVO.',
+          'Aulas para ensayar.',
+          'Descuentos en actividades culturales de Barcelona (teatro, cine, exposiciones…).',
+        ],
+      },
+    ],
+    seo: {
+      title: 'Garage New Generation — Teatro para Adolescentes de 13 a 17 años en Barcelona | TAG',
+      description:
+        'Teatro para jóvenes de 13 a 17 años en Barcelona. Recorridos de teatro y cámara, grupos de máximo 12 y bolsa de casting. Inicio septiembre 2026.',
+      canonicalPath: '/cursos/garage-new-generation',
+    },
+  },
+};

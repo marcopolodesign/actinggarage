@@ -42,23 +42,24 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cursos" element={<Cursos />} />
-        {/* Consolidated into /jovenes 2026-07-23 — keep old course URLs redirecting for SEO/bookmarks */}
-        <Route path="/cursos/garage-mini-kids" element={<CourseLandingRedirect to="/jovenes" />} />
-        <Route path="/cursos/garage-kids" element={<CourseLandingRedirect to="/jovenes" />} />
-        <Route path="/cursos/garage-new-generation" element={<CourseLandingRedirect to="/jovenes" />} />
-        <Route path="/cursos/garage-new-generation-cinema" element={<CourseLandingRedirect to="/jovenes" />} />
-        <Route path="/cursos/garage-new-generation-hybrid" element={<CourseLandingRedirect to="/jovenes" />} />
+        {/* Mini Kids, Kids y New Generation vuelven a tener página propia (2026-08-04).
+            Redirigían a /jovenes desde el 23/07, así que el bloque con más prospectos del
+            CRM no tenía ninguna página indexable — las sirve CourseLanding vía :slug.
+            Las dos variantes de New Generation siguen redirigiendo: no tienen contenido
+            propio y se cubren dentro de la página de New Generation. */}
+        <Route path="/cursos/garage-new-generation-cinema" element={<CourseLandingRedirect to="/cursos/garage-new-generation" />} />
+        <Route path="/cursos/garage-new-generation-hybrid" element={<CourseLandingRedirect to="/cursos/garage-new-generation" />} />
         <Route path="/cursos/:slug" element={<CourseLanding />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/landing-sales" element={<LandingSales />} />
         {/* Backwards-compatible aliases (ads / bookmarks) */}
         <Route path="/landing-hybrid" element={<CourseLandingRedirect to="/cursos/garage-hybrid" />} />
         <Route path="/landing-hybrid-plus" element={<CourseLandingRedirect to="/cursos/garage-hybrid-plus" />} />
-        <Route path="/landing-mini-kids" element={<CourseLandingRedirect to="/jovenes" />} />
-        <Route path="/landing-kids" element={<CourseLandingRedirect to="/jovenes" />} />
-        <Route path="/landing-new-generation" element={<CourseLandingRedirect to="/jovenes" />} />
-        <Route path="/landing-new-generation-camara" element={<CourseLandingRedirect to="/jovenes" />} />
-        <Route path="/landing-new-generation-hybrid" element={<CourseLandingRedirect to="/jovenes" />} />
+        <Route path="/landing-mini-kids" element={<CourseLandingRedirect to="/cursos/garage-mini-kids" />} />
+        <Route path="/landing-kids" element={<CourseLandingRedirect to="/cursos/garage-kids" />} />
+        <Route path="/landing-new-generation" element={<CourseLandingRedirect to="/cursos/garage-new-generation" />} />
+        <Route path="/landing-new-generation-camara" element={<CourseLandingRedirect to="/cursos/garage-new-generation" />} />
+        <Route path="/landing-new-generation-hybrid" element={<CourseLandingRedirect to="/cursos/garage-new-generation" />} />
         <Route path="/jovenes" element={<LandingJovenes />} />
         <Route path="/iniciacion" element={<LandingIniciacion />} />
         <Route path="/pro" element={<LandingPro />} />

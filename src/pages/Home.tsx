@@ -173,6 +173,12 @@ const Home: React.FC = () => {
       <div className="relative z-10 flex flex-col justify-between min-h-screen p-8" style={{ color: '#FFBE00' }}>
         {/* Top Section */}
         <div className="flex flex-col items-center">
+          {/* El hero de Home es el logo y el video, sin ningún titular de texto, así que
+              la página no tenía h1. Va oculto visualmente para no tocar el diseño: lo leen
+              los buscadores y los lectores de pantalla. */}
+          <h1 className="sr-only">
+            The Acting Garage — Escuela de interpretación para cine y teatro en Barcelona
+          </h1>
           <Logo />
         </div>
         

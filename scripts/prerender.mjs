@@ -75,6 +75,9 @@ const ROUTES = [
   '/cursos/garage-videobook',
   '/cursos/garage-writing',
   '/cursos/garage-classic',
+  '/cursos/garage-mini-kids',
+  '/cursos/garage-kids',
+  '/cursos/garage-new-generation',
 ];
 
 const MIME = {
