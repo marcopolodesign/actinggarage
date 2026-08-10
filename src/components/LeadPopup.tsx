@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { submitForm } from '../api/submitForm';
-import { getUtms, buildWhatsAppUrl } from '../utils/utm';
+import { getUtms, getLandingPage, buildWhatsAppUrl } from '../utils/utm';
 import { getMetaAttribution } from '../utils/metaAttribution';
 import { trackFormConversion } from '../utils/trackConversion';
 
@@ -110,6 +110,7 @@ const LeadPopup: React.FC = () => {
         birthday: '',
         interests,
         source: 'website_popup',
+        landing_page: getLandingPage(),
         utm_source,
         utm_medium: utm_medium || 'organic',
         utm_campaign,

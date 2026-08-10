@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { buildWhatsAppUrl } from '../utils/utm';
+import { useFormFlyout } from '../context/FormFlyoutContext';
 
 const WhatsAppIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -20,6 +21,9 @@ const ArrowIcon = () => (
 );
 
 interface CourseCardProps {
+  /** Curso a precargar en el formulario. Debe coincidir EXACTO con una
+   *  option del select de FormFlyout (nombres base, sin "Level I"). */
+  formCourse?: string;
   title: string;
   tagline: string;
   modality: string;
@@ -43,8 +47,10 @@ const CourseCard: React.FC<CourseCardProps> = ({
   fullProgramHref,
   whatsappMsg,
   accentLabel,
+  formCourse,
 }) => {
   const waUrl = buildWhatsAppUrl(whatsappMsg);
+  const { openFlyout } = useFormFlyout();
 
   return (
     <div className="bg-black border border-white/10 flex flex-col group hover:border-tag-yellow/40 transition-colors duration-300">
@@ -96,6 +102,15 @@ const CourseCard: React.FC<CourseCardProps> = ({
             CONTACTAR
           </a>
         </div>
+
+        <button
+          type="button"
+          onClick={() => openFlyout(formCourse)}
+          className="mt-3 w-full flex items-center justify-center gap-2 border border-white/20 text-white/70 px-4 py-3 font-druk text-sm uppercase tracking-wide hover:border-tag-yellow hover:text-tag-yellow transition-colors duration-200"
+        >
+          SOLICITAR INFORMACIÓN
+          <ArrowIcon />
+        </button>
       </div>
     </div>
   );
@@ -172,6 +187,7 @@ const LandingIniciacion: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
               <CourseCard
                 title="Garage Theatre I"
+                formCourse="Garage Theatre"
                 tagline='"El actor honesto"'
                 modality="Teatro"
                 hours="2h/semana"
@@ -184,6 +200,7 @@ const LandingIniciacion: React.FC = () => {
               />
               <CourseCard
                 title="Garage Cinema I"
+                formCourse="Garage Cinema"
                 tagline='"Conocerse delante de la cámara"'
                 modality="Cine"
                 hours="2h/semana"
@@ -196,6 +213,7 @@ const LandingIniciacion: React.FC = () => {
               />
               <CourseCard
                 title="Garage Hybrid Level I"
+                formCourse="Garage Hybrid"
                 tagline='"Teatro y Cine. Un solo camino."'
                 modality="Teatro + Cine"
                 hours="4h/semana"
@@ -214,6 +232,7 @@ const LandingIniciacion: React.FC = () => {
             <div className="grid grid-cols-1 gap-px bg-white/5">
               <CourseCard
                 title="Garage Classic"
+                formCourse="Garage Classic"
                 tagline='"Nunca es tarde para subirse al escenario"'
                 modality="Teatro"
                 hours="1h30/semana"

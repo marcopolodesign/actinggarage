@@ -67,3 +67,11 @@ export function buildWhatsAppUrl(organicText: string, paidText?: string, metaTex
   const text = isPaid ? (paidText ?? organicText) : organicText;
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 }
+
+// Ruta de la página desde la que se envía el formulario, para poder cortar los
+// reportes por landing. Sólo el pathname: la query ya viaja en los utm_* y el
+// dominio es siempre el mismo.
+export function getLandingPage(): string {
+  if (typeof window === 'undefined') return '';
+  return window.location.pathname || '/';
+}

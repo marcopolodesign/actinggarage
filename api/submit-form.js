@@ -37,7 +37,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email, name, phone, birthday, age, interests, gender, course, source, utm_source, utm_medium, utm_campaign, utm_id } = req.body;
+    const { email, name, phone, birthday, age, interests, gender, course, source, landing_page, utm_source, utm_medium, utm_campaign, utm_id } = req.body;
 
     // Validate required fields
     if (!email || !name || !phone || !interests) {
@@ -85,6 +85,7 @@ export default async function handler(req, res) {
             gender: gender || null,
             course: course || null,
             source: source || 'website_form',
+            landing_page: landing_page || null,
             utm_source: utm_source || null,
             utm_medium: utm_medium || 'organic',
             utm_campaign: utm_campaign || null,

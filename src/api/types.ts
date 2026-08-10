@@ -8,6 +8,8 @@ export interface FormSubmission {
   gender?: string;
   course?: string;
   source: string;
+  /** Ruta de la página desde la que se envió el form (ej: /iniciacion) */
+  landing_page?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;

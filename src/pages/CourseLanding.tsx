@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import { coursesConfig, type CourseConfig } from '../content/coursesConfig';
 import { submitForm } from '../api/submitForm';
-import { getUtms, buildWhatsAppUrl } from '../utils/utm';
+import { getUtms, getLandingPage, buildWhatsAppUrl } from '../utils/utm';
 import { trackFormConversion } from '../utils/trackConversion';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
@@ -148,6 +148,7 @@ const CourseLanding: React.FC = () => {
         age: calculateAge(formData.birthday),
         email: formData.email,
         source: course.inlineFormSource || `cursos_${course.slug}`,
+        landing_page: getLandingPage(),
         ...getUtms(),
       });
 

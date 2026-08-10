@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { submitForm } from '../api/submitForm';
 import { upsertLead } from '../api/upsertLead';
-import { getUtms, buildWhatsAppUrl } from '../utils/utm';
+import { getUtms, getLandingPage, buildWhatsAppUrl } from '../utils/utm';
 import { getMetaAttribution } from '../utils/metaAttribution';
 import { supabase } from '../lib/supabase';
 import { trackFormConversion } from '../utils/trackConversion';
@@ -147,6 +147,7 @@ const FormFlyout: React.FC = () => {
         gender:       fd.gender       || null,
         course:       fd.course       || null,
         source:       'website_form',
+        landing_page: getLandingPage() || null,
         utm_source:   utm_source      || null,
         utm_medium:   utm_medium      || 'organic',
         utm_campaign: utm_campaign    || null,
@@ -182,6 +183,7 @@ const FormFlyout: React.FC = () => {
       gender:       formData.gender       || undefined,
       course:       formData.course       || undefined,
       source:       'website_form',
+      landing_page: getLandingPage()      || undefined,
       utm_source:   utm_source            || undefined,
       utm_medium:   utm_medium            || 'organic',
       utm_campaign: utm_campaign          || undefined,
@@ -225,6 +227,7 @@ const FormFlyout: React.FC = () => {
       age: calculatedAge,
       email: userEmail,
       source,
+      landing_page: getLandingPage(),
       ...currentUtmParams
     };
 
