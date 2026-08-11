@@ -49,7 +49,14 @@ const CourseCard: React.FC<CourseCardProps> = ({
   accentLabel,
   formCourse,
 }) => {
-  const waUrl = buildWhatsAppUrl(whatsappMsg);
+  // 3 variantes según origen. El texto de Meta tiene que arrancar con
+  // "Quisiera" — Florencia lo usa como señal de "viene de Meta pago"
+  // (ver CAMPAIGNS.md → Texto pre-cargado en WhatsApp).
+  const waUrl = buildWhatsAppUrl(
+    whatsappMsg,
+    whatsappMsg.replace('Quiero más información', 'Quisiera obtener más información'),
+    whatsappMsg.replace('Quiero más información', 'Quisiera más info')
+  );
   const { openFlyout } = useFormFlyout();
 
   return (
@@ -126,7 +133,11 @@ const SectionLabel: React.FC<{ label: string }> = ({ label }) => (
 );
 
 const LandingIniciacion: React.FC = () => {
-  const globalWaUrl = buildWhatsAppUrl('Hola TAG! Quiero más información sobre los cursos de iniciación');
+  const globalWaUrl = buildWhatsAppUrl(
+    'Hola TAG! Quiero más información sobre los cursos de iniciación',
+    'Hola TAG! Quisiera obtener más información sobre los cursos de iniciación',
+    'Hola TAG! Quisiera más info sobre los cursos!'
+  );
 
   return (
     <section className="bg-black min-h-screen">

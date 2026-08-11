@@ -20,7 +20,11 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
 
   const whatsappUrl = useMemo(() => buildWhatsAppUrl(
     'Hola! Quiero más información sobre los cursos de la escuela',
-    'Hola TAG! Quiero más info sobre sus cursos!'
+    'Hola TAG! Quiero más info sobre sus cursos!',
+    // Meta pago: el texto tiene que arrancar con "Quisiera" — es la señal que
+    // usa Florencia para identificar el origen (ver CAMPAIGNS.md). Faltaba
+    // acá, así que el botón del header rompía la señal en TODO el sitio.
+    'Hola TAG! Quisiera más info sobre sus cursos!'
   ), []);
 
   useEffect(() => {
