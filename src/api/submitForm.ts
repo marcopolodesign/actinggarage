@@ -18,6 +18,9 @@ export const submitForm = async (formData: FormSubmission) => {
       gender:       formData.gender       || null,
       course:       formData.course       || null,
       source:       formData.source       || 'website_form',
+      // OJO: este payload es una lista blanca — cualquier campo que no esté
+      // acá se descarta en silencio, aunque el componente lo mande.
+      landing_page: formData.landing_page || null,
       utm_source:   formData.utm_source   || null,
       utm_medium:   formData.utm_medium   || 'organic',
       utm_campaign: formData.utm_campaign || null,
