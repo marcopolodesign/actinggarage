@@ -122,7 +122,7 @@ const LandingMiniKids: React.FC = () => {
             {stats.map(({ label, value }) => (
               <div key={label} className="border border-tag-yellow/40 px-4 py-2 flex flex-col">
                 <span className="text-tag-yellow/50 text-[10px] uppercase tracking-widest font-druk">{label}</span>
-                <span className="text-white text-sm font-druk">{value}</span>
+                <span className="text-white text-lg font-druk">{value}</span>
               </div>
             ))}
           </div>
@@ -198,7 +198,7 @@ const LandingMiniKids: React.FC = () => {
                 {q1Content.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="text-tag-yellow font-druk text-sm flex-shrink-0">→</span>
-                    <p className="text-white/50 font-garamond text-base leading-relaxed">{item}</p>
+                    <p className="text-white/60 font-garamond text-xl leading-relaxed">{item}</p>
                   </li>
                 ))}
               </ul>
@@ -217,7 +217,7 @@ const LandingMiniKids: React.FC = () => {
                 {q2Content.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="text-tag-yellow font-druk text-sm flex-shrink-0">→</span>
-                    <p className="text-white/50 font-garamond text-base leading-relaxed">{item}</p>
+                    <p className="text-white/60 font-garamond text-xl leading-relaxed">{item}</p>
                   </li>
                 ))}
               </ul>

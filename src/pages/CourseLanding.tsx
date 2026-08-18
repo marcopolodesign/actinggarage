@@ -240,12 +240,12 @@ const CourseLanding: React.FC = () => {
             {course.stats.map(({ label, value }) => (
               <div
                 key={label}
-                className={`border border-tag-yellow/40 flex flex-col ${course.statsEmphasis ? 'px-5 py-3' : 'px-4 py-2'}`}
+                className={`border border-tag-yellow/40 flex flex-col ${course.statsEmphasis ? 'px-5 py-3' : 'px-4 py-2.5'}`}
               >
-                <span className={`text-tag-yellow/50 uppercase tracking-widest font-druk ${course.statsEmphasis ? 'text-xs' : 'text-[10px]'}`}>
+                <span className={`text-tag-yellow/60 uppercase tracking-widest font-druk ${course.statsEmphasis ? 'text-xs' : 'text-[11px]'}`}>
                   {label}
                 </span>
-                <span className={`text-white font-druk ${course.statsEmphasis ? 'text-xl' : 'text-sm'}`}>{value}</span>
+                <span className={`text-white font-druk ${course.statsEmphasis ? 'text-xl' : 'text-base'}`}>{value}</span>
               </div>
             ))}
           </div>
@@ -308,7 +308,7 @@ const CourseLanding: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-tag-yellow text-[11px] font-druk uppercase tracking-widest mb-1.5">Email</label>
+                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Email</label>
                     <input
                       type="email"
                       required
@@ -320,7 +320,7 @@ const CourseLanding: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-tag-yellow text-[11px] font-druk uppercase tracking-widest mb-1.5">Nombre y Apellido</label>
+                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Nombre y Apellido</label>
                     <input
                       type="text"
                       required
@@ -331,7 +331,7 @@ const CourseLanding: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-tag-yellow text-[11px] font-druk uppercase tracking-widest mb-1.5">Teléfono</label>
+                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Teléfono</label>
                     <input
                       type="tel"
                       required
@@ -342,7 +342,7 @@ const CourseLanding: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-tag-yellow text-[11px] font-druk uppercase tracking-widest mb-1.5">Fecha de Nacimiento</label>
+                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Fecha de Nacimiento</label>
                     <input
                       type="date"
                       required
@@ -354,7 +354,7 @@ const CourseLanding: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-tag-yellow text-[11px] font-druk uppercase tracking-widest mb-2">¿Cuáles son tus intereses?</label>
+                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-2">¿Cuáles son tus intereses?</label>
                     <div className="flex gap-2 flex-wrap">
                       {[
                         { id: 'teatro', label: 'TEATRO' },
@@ -365,7 +365,7 @@ const CourseLanding: React.FC = () => {
                           key={id}
                           type="button"
                           onClick={() => setFormData(p => ({ ...p, interests: id }))}
-                          className={`px-4 py-2 text-xs font-druk uppercase tracking-wide border transition-all duration-200 ${
+                          className={`px-4 py-3 text-sm font-druk uppercase tracking-wide border transition-all duration-200 ${
                             formData.interests === id
                               ? 'bg-tag-yellow text-black border-tag-yellow'
                               : 'bg-transparent text-white/50 border-white/15 hover:border-tag-yellow/40 hover:text-white/80'
@@ -378,7 +378,7 @@ const CourseLanding: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-tag-yellow text-[11px] font-druk uppercase tracking-widest mb-1.5">Género</label>
+                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Género</label>
                     <select
                       value={formData.gender}
                       onChange={e => setFormData(p => ({ ...p, gender: e.target.value }))}

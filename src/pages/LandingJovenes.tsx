@@ -55,7 +55,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         >
           {title}
         </h3>
-        <p className="text-tag-yellow/70 font-garamond text-sm italic mb-6">{tagline}</p>
+        <p className="text-tag-yellow/80 font-garamond text-lg italic mb-6">{tagline}</p>
 
         {/* Badges */}
         <div className="flex flex-wrap gap-2 mb-6">
@@ -65,21 +65,21 @@ const CourseCard: React.FC<CourseCardProps> = ({
             { label: 'Modalidad', value: modality },
             { label: 'Inicio', value: startDate },
           ].map(({ label, value }) => (
-            <div key={label} className="border border-white/10 px-3 py-1.5 flex flex-col">
-              <span className="text-white/30 text-[9px] uppercase tracking-widest font-druk">{label}</span>
-              <span className="text-white text-xs font-druk">{value}</span>
+            <div key={label} className="border border-white/10 px-4 py-2 flex flex-col">
+              <span className="text-white/40 text-[11px] uppercase tracking-widest font-druk">{label}</span>
+              <span className="text-white text-base font-druk">{value}</span>
             </div>
           ))}
         </div>
 
-        <p className="text-white/50 font-garamond text-base leading-relaxed flex-1 mb-8">{description}</p>
+        <p className="text-white/60 font-garamond text-xl leading-relaxed flex-1 mb-8">{description}</p>
 
         {/* Action */}
         <a
           href={waUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto flex items-center justify-center gap-2 bg-tag-yellow text-black px-4 py-3 font-druk text-sm uppercase tracking-wide hover:bg-white transition-colors duration-200"
+          className="mt-auto flex items-center justify-center gap-2 bg-tag-yellow text-black px-5 py-4 font-druk text-base uppercase tracking-wide hover:bg-white transition-colors duration-200"
         >
           <WhatsAppIcon />
           CONTACTAR
@@ -95,7 +95,7 @@ const AgeGroupLabel: React.FC<{ age: string; label: string }> = ({ age, label })
       <span className="text-tag-yellow font-druk leading-none" style={{ fontSize: 'clamp(1.4rem, 4vw, 2.2rem)' }}>
         {age}
       </span>
-      <span className="text-white/30 text-[9px] uppercase tracking-widest font-druk">años</span>
+      <span className="text-white/40 text-[11px] uppercase tracking-widest font-druk">años</span>
     </div>
     <div className="h-px flex-1 bg-white/10" />
     <span className="text-white/20 font-garamond text-base italic flex-shrink-0">{label}</span>
@@ -150,8 +150,8 @@ const LandingJovenes: React.FC = () => {
               { label: 'Muestras', value: 'Cada cuatrimestre' },
             ].map(({ label, value }) => (
               <div key={label} className="border border-white/10 px-4 py-2 flex flex-col">
-                <span className="text-white/30 text-[10px] uppercase tracking-widest font-druk">{label}</span>
-                <span className="text-white text-sm font-druk">{value}</span>
+                <span className="text-white/40 text-xs uppercase tracking-widest font-druk">{label}</span>
+                <span className="text-white text-lg font-druk">{value}</span>
               </div>
             ))}
           </div>

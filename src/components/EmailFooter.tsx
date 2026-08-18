@@ -21,7 +21,7 @@ const EmailFooter: React.FC = () => {
           SIN MIEDOS NI LÍMITES.
         </h4>
         
-        <p className="m-0 font-sans text-sm text-black text-center leading-relaxed antialiased">
+        <p className="m-0 font-sans text-base text-black text-center leading-relaxed antialiased">
           <strong>Cada actriz tiene algo único.</strong><br />
           Nuestro trabajo es ayudarte a <strong>descubrirlo y proyectarlo</strong><br />
           con fuerza, acompañada por profesionales que ya vivieron esa transformación.
@@ -41,7 +41,7 @@ const EmailFooter: React.FC = () => {
                 ¿QUIERES DAR EL PRIMER PASO?
               </h5>
               
-              <p className="m-0 font-sans text-sm text-[#e8e4da] leading-normal text-center antialiased">
+              <p className="m-0 font-sans text-base text-[#e8e4da] leading-relaxed text-center antialiased">
                 Déjanos tu teléfono para conversar sobre tus objetivos, sueños<br />
                 y miedos reales :)
               </p>
@@ -109,12 +109,12 @@ const EmailFooter: React.FC = () => {
               </div>
 
               <div className="pb-5 text-center">
-                <p className="m-0 font-sans text-xs text-[#e8e4da] leading-normal antialiased">
+                <p className="m-0 font-sans text-sm text-[#e8e4da] leading-relaxed antialiased">
                   <Link to="/privacidad" className="hover:underline text-[#888]">Política de privacidad</Link>
                   {' · '}
                   <Link to="/terminos" className="hover:underline text-[#888]">Términos y condiciones</Link>
                   <br /></p>
-                <p className="m-0 font-sans text-xs text-[#e8e4da] leading-normal antialiased">
+                <p className="m-0 font-sans text-sm text-[#e8e4da] leading-relaxed antialiased">
                   <a
                     href="tel:933398307"
                     className="hover:underline text-[#e8e4da]"

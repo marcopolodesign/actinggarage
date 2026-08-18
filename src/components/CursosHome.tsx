@@ -384,7 +384,7 @@ const CursosHome = () => {
             {/* Right Side - Button */}
             <Link 
               to="/cursos"
-              className="md:px-8 px-4 md:py-4 py-2 border uppercase font-semibold text-sm transition-all duration-300 rounded-full whitespace-nowrap tracking-tightest md:tracking-normal"
+              className="md:px-8 px-5 md:py-4 py-3 border uppercase font-semibold text-base transition-all duration-300 rounded-full whitespace-nowrap tracking-tightest md:tracking-normal"
               style={{ 
                 borderColor: curso.buttonBorderColor || curso.textColor,
                 backgroundColor: 'transparent',

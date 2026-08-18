@@ -42,7 +42,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: '6px',
   padding: '0.75rem 1rem',
   color: '#fff',
-  fontSize: '0.9rem',
+  fontSize: '1rem',
   outline: 'none',
   width: '100%',
   boxSizing: 'border-box',
@@ -215,7 +215,7 @@ const LeadPopup: React.FC = () => {
               fontSize: '1.5rem',
             }}>✓</div>
             <p style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.4rem' }}>¡Gracias!</p>
-            <p style={{ fontSize: '0.85rem', opacity: 0.6, marginBottom: '1.25rem' }}>Nos ponemos en contacto en las próximas 24h.</p>
+            <p style={{ fontSize: '1rem', opacity: 0.6, marginBottom: '1.25rem' }}>Nos ponemos en contacto en las próximas 24h.</p>
             <a
               href={waUrl}
               target="_blank"
@@ -229,7 +229,7 @@ const LeadPopup: React.FC = () => {
                 textDecoration: 'none',
                 padding: '0.7rem 1.25rem',
                 borderRadius: '7px',
-                fontSize: '0.82rem',
+                fontSize: '1rem',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
               }}
@@ -242,7 +242,7 @@ const LeadPopup: React.FC = () => {
           </div>
         ) : (
           <>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', opacity: 0.4, marginBottom: '0.75rem' }}>
+            <p style={{ fontSize: '0.8rem', letterSpacing: '0.18em', opacity: 0.55, marginBottom: '0.75rem' }}>
               THE ACTING GARAGE
             </p>
             <h2 style={{
@@ -254,7 +254,7 @@ const LeadPopup: React.FC = () => {
             }}>
               ¿Quieres saber más<br />sobre nuestros cursos?
             </h2>
-            <p style={{ fontSize: '0.82rem', opacity: 0.55, marginBottom: '1.75rem', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '1rem', opacity: 0.7, marginBottom: '1.75rem', lineHeight: 1.5 }}>
               Déjanos tus datos y te contactamos con toda la info.
             </p>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
@@ -304,7 +304,7 @@ const LeadPopup: React.FC = () => {
                     top: '50%',
                     transform: 'translateY(-50%)',
                     pointerEvents: 'none',
-                    fontSize: '0.65rem',
+                    fontSize: '0.8rem',
                     opacity: 0.5,
                   }}>▾</span>
                 </div>
@@ -321,7 +321,7 @@ const LeadPopup: React.FC = () => {
               {/* Interests */}
               <div style={{ marginTop: '0.35rem' }}>
                 <p style={{
-                  fontSize: '0.68rem',
+                  fontSize: '0.8rem',
                   letterSpacing: '0.12em',
                   opacity: 0.45,
                   marginBottom: '0.5rem',
@@ -341,7 +341,7 @@ const LeadPopup: React.FC = () => {
                         color: interests === i.value ? '#111' : '#fff',
                         borderRadius: '6px',
                         padding: '0.6rem 0.35rem',
-                        fontSize: '0.65rem',
+                        fontSize: '0.8rem',
                         fontWeight: 800,
                         letterSpacing: '0.05em',
                         cursor: 'pointer',
@@ -363,7 +363,7 @@ const LeadPopup: React.FC = () => {
                   border: 'none',
                   borderRadius: '7px',
                   padding: '0.9rem',
-                  fontSize: '0.85rem',
+                  fontSize: '1rem',
                   fontWeight: 900,
                   letterSpacing: '0.12em',
                   cursor: submitting || !interests ? 'not-allowed' : 'pointer',
@@ -374,7 +374,7 @@ const LeadPopup: React.FC = () => {
                 {submitting ? 'ENVIANDO...' : 'QUIERO INFO'}
               </button>
             </form>
-            <p style={{ fontSize: '0.7rem', opacity: 0.3, textAlign: 'center', marginTop: '1rem' }}>
+            <p style={{ fontSize: '0.8rem', opacity: 0.45, textAlign: 'center', marginTop: '1rem' }}>
               Sin spam. Te contactamos una sola vez.
             </p>
           </>

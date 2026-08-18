@@ -58,7 +58,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         <h3 className="font-druk text-white uppercase leading-none mb-1" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)' }}>
           {title}
         </h3>
-        <p className="text-tag-yellow/70 font-garamond text-sm italic mb-6">{tagline}</p>
+        <p className="text-tag-yellow/80 font-garamond text-lg italic mb-6">{tagline}</p>
 
         <div className="flex flex-wrap gap-2 mb-6">
           {[
@@ -67,20 +67,20 @@ const CourseCard: React.FC<CourseCardProps> = ({
             { label: 'Modalidad', value: modality },
             { label: 'Inicio', value: startDate },
           ].map(({ label, value }) => (
-            <div key={label} className="border border-white/10 px-3 py-1.5 flex flex-col">
-              <span className="text-white/30 text-[9px] uppercase tracking-widest font-druk">{label}</span>
-              <span className="text-white text-xs font-druk">{value}</span>
+            <div key={label} className="border border-white/10 px-4 py-2 flex flex-col">
+              <span className="text-white/40 text-[11px] uppercase tracking-widest font-druk">{label}</span>
+              <span className="text-white text-base font-druk">{value}</span>
             </div>
           ))}
         </div>
 
-        <p className="text-white/50 font-garamond text-base leading-relaxed flex-1 mb-8">{description}</p>
+        <p className="text-white/60 font-garamond text-xl leading-relaxed flex-1 mb-8">{description}</p>
 
         <div className="flex flex-col sm:flex-row gap-3 mt-auto">
           {fullProgramHref && (
             <Link
               to={fullProgramHref}
-              className="flex-1 flex items-center justify-center gap-2 border border-tag-yellow text-tag-yellow px-4 py-3 font-druk text-sm uppercase tracking-wide hover:bg-tag-yellow hover:text-black transition-colors duration-200"
+              className="flex-1 flex items-center justify-center gap-2 border border-tag-yellow text-tag-yellow px-5 py-4 font-druk text-base uppercase tracking-wide hover:bg-tag-yellow hover:text-black transition-colors duration-200"
             >
               VER PROGRAMA COMPLETO
               <ArrowIcon />
@@ -90,7 +90,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 bg-tag-yellow text-black px-4 py-3 font-druk text-sm uppercase tracking-wide hover:bg-white transition-colors duration-200"
+            className="flex-1 flex items-center justify-center gap-2 bg-tag-yellow text-black px-5 py-4 font-druk text-base uppercase tracking-wide hover:bg-white transition-colors duration-200"
           >
             <WhatsAppIcon />
             CONTACTAR
@@ -156,8 +156,8 @@ const LandingPro: React.FC = () => {
               { label: 'Bolsa', value: 'De casting' },
             ].map(({ label, value }) => (
               <div key={label} className="border border-white/10 px-4 py-2 flex flex-col">
-                <span className="text-white/30 text-[10px] uppercase tracking-widest font-druk">{label}</span>
-                <span className="text-white text-sm font-druk">{value}</span>
+                <span className="text-white/40 text-xs uppercase tracking-widest font-druk">{label}</span>
+                <span className="text-white text-lg font-druk">{value}</span>
               </div>
             ))}
           </div>

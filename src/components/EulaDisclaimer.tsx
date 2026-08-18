@@ -30,14 +30,14 @@ const EulaDisclaimer: React.FC = () => {
     >
       <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-5">
         <span 
-          className="text-tag-yellow text-xs md:text-sm text-center md:text-left flex-1"
+          className="text-tag-yellow text-sm md:text-base text-center md:text-left flex-1"
           style={{ color: '#FFBE00', fontFamily: 'MDIO, Arial, Helvetica, sans-serif' }}
         >
           Al continuar navegando, aceptas nuestros términos y condiciones de uso.
         </span>
         <div className="flex gap-3 flex-shrink-0 w-full md:w-auto justify-center">
           <button 
-            className="px-3 py-2 md:px-4 md:py-2 border-2 border-tag-yellow rounded text-xs font-bold uppercase cursor-pointer transition-all duration-300 hover:bg-tag-yellow hover:text-black flex-1 md:flex-none min-w-20"
+            className="px-4 py-3 md:px-5 md:py-3 border-2 border-tag-yellow rounded text-sm font-bold uppercase cursor-pointer transition-all duration-300 hover:bg-tag-yellow hover:text-black flex-1 md:flex-none min-w-20"
             style={{ 
               borderColor: '#FFBE00', 
               backgroundColor: '#1a1a1a', 
@@ -50,7 +50,7 @@ const EulaDisclaimer: React.FC = () => {
             DECLINAR
           </button>
           <button 
-            className="px-3 py-2 md:px-4 md:py-2 border-2 border-tag-yellow rounded text-xs font-bold uppercase cursor-pointer transition-all duration-300 hover:bg-black hover:text-tag-yellow flex-1 md:flex-none min-w-20"
+            className="px-4 py-3 md:px-5 md:py-3 border-2 border-tag-yellow rounded text-sm font-bold uppercase cursor-pointer transition-all duration-300 hover:bg-black hover:text-tag-yellow flex-1 md:flex-none min-w-20"
             style={{ 
               borderColor: '#FFBE00', 
               backgroundColor: '#FFBE00', 

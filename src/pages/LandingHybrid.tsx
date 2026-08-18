@@ -231,7 +231,7 @@ const LandingHybrid: React.FC = () => {
                 <span className="text-tag-yellow/50 text-[10px] uppercase tracking-widest font-druk">
                   {label}
                 </span>
-                <span className="text-white text-sm font-druk">{value}</span>
+                <span className="text-white text-lg font-druk">{value}</span>
               </div>
             ))}
           </div>
