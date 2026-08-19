@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import LogoMin from '../assets/LogoMin';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { useAboutFlyout } from '../context/AboutFlyoutContext';
-import { buildWhatsAppUrl } from '../utils/utm';
+import { buildCampaignWhatsAppUrl } from '../utils/utm';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
 interface HeaderProps {
@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
   const location = useLocation();
   const isCursosPage = location.pathname === '/cursos';
 
-  const whatsappUrl = useMemo(() => buildWhatsAppUrl(
+  const whatsappUrl = useMemo(() => buildCampaignWhatsAppUrl(
     'Hola! Quiero más información sobre los cursos de la escuela',
     'Hola TAG! Quiero más info sobre sus cursos!',
     // Meta pago: el texto tiene que arrancar con "Quisiera" — es la señal que

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { buildWhatsAppUrl } from '../utils/utm';
+import { buildCampaignWhatsAppUrl } from '../utils/utm';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
 const WhatsAppButton: React.FC = () => {
@@ -17,7 +17,7 @@ const WhatsAppButton: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const whatsappUrl = useMemo(() => buildWhatsAppUrl(
+  const whatsappUrl = useMemo(() => buildCampaignWhatsAppUrl(
     'Hola! Quiero más información sobre los cursos de la escuela',
     'Hola TAG! Quiero más info sobre sus cursos!',
     'Hola TAG! Quisiera más info sobre sus cursos!'
