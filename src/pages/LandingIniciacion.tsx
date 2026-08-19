@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
-import { buildWhatsAppUrl } from '../utils/utm';
+import { buildWhatsAppUrl, buildCampaignWhatsAppUrl } from '../utils/utm';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 
 const WhatsAppIcon = () => (
@@ -133,10 +133,15 @@ const SectionLabel: React.FC<{ label: string }> = ({ label }) => (
 );
 
 const LandingIniciacion: React.FC = () => {
-  const globalWaUrl = buildWhatsAppUrl(
+  // Campaign-aware: con `utm_campaign=adultos-bcn-web` (C02) manda el texto de
+  // esa campaña. El tercer argumento es el fallback para tráfico de Meta sin
+  // campaña mapeada — y NO puede ser "Quisiera más info sobre los cursos!",
+  // que es el texto reservado a C01 (el anuncio que va directo a WhatsApp): si
+  // se repite, los dos orígenes llegan idénticos y no se pueden separar.
+  const globalWaUrl = buildCampaignWhatsAppUrl(
     'Hola TAG! Quiero más información sobre los cursos de iniciación',
     'Hola TAG! Quisiera obtener más información sobre los cursos de iniciación',
-    'Hola TAG! Quisiera más info sobre los cursos!'
+    'Hola TAG! Quisiera info sobre los cursos de iniciación'
   );
 
   return (
