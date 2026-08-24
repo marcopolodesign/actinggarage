@@ -137,6 +137,16 @@ const coursesDetailsData: CourseDetails[] = [
     objetivo: 'Bienestar, diversión y desarrollo cognitivo'
   },
   {
+    title: 'Garage Writing',
+    description: 'Formación online de escritura dramática y guion cinematográfico. Empieza con Escribir Comedia, de la mano de Yago Alonso: de la premisa al escenario.',
+    duracion: '12 sesiones',
+    diasSemana: '1',
+    cargaHoraria: '3 horas',
+    edades: 'Abierto a mayores de edad',
+    modalidad: 'Online vía Zoom',
+    objetivo: 'Escritura dramática y guion cinematográfico'
+  },
+  {
     title: 'Garage Workshops',
     description: 'Talleres intensivos de fin de semana. Dictados por profesionales del sector para actores, actrices y estudiantes avanzados.',
     duracion: 'Fin de semana (2-3 días)',
@@ -322,7 +332,21 @@ const CursosHome = () => {
       buttonBorderColor: '#000000',
       containerWidth: '50%', // Full width
       noiseEffect: false // No noise for yellow background
-    }, 
+    },
+    {
+      id: 'escritura',
+      mainText: 'Escritura',
+      mainTagline: 'TAG YOUR STORY',
+      description: 'La nueva formación online de TAG dedicada a la escritura dramática y el guion cinematográfico. Doce sesiones en directo vía Zoom, con los mejores profesionales del oficio — sales con material propio, no con apuntes.',
+      cursoName: 'GARAGE WRITING',
+      buttonText: 'VER CURSOS',
+      backgroundColor: '#FFBE00', // tag-yellow
+      textColor: '#000000', // black
+      buttonTextColor: '#000000',
+      buttonBorderColor: '#000000',
+      containerWidth: '50%',
+      noiseEffect: false // No noise for yellow background
+    },
         {
         id: 'teatro-cine',
         mainText: 'Teatro & Cine',
