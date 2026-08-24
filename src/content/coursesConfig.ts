@@ -9,6 +9,8 @@ export type CourseSection = {
   id: string;
   title: string;
   body: string[];
+  image?: string; // public path, opcional — ej. foto del profesor
+  imageAlt?: string;
 };
 
 export type CourseSeo = {
@@ -904,6 +906,8 @@ export const coursesConfig: Record<string, CourseConfig> = {
       {
         id: 'profesor',
         title: 'El profesor · Yago Alonso',
+        image: '/content/yago.jpg',
+        imageAlt: 'Yago Alonso',
         body: [
           'Guionista de ficción y entretenimiento, dramaturgo y director teatral.',
           'Guion audiovisual: forma parte del equipo responsable del guion de la película "Wolfgang. Extraordinario" (2025), dirigida por Javier Ruiz Caldera.',

@@ -415,12 +415,21 @@ const CourseLanding: React.FC = () => {
                 {section.title.split(' ').slice(0, 1).join(' ')}{' '}
                 <span className="text-tag-yellow">{section.title.split(' ').slice(1).join(' ')}</span>
               </h2>
-              <div className="space-y-4">
-                {section.body.map((p, idx) => (
-                  <p key={idx} className="text-white/55 font-garamond text-lg sm:text-xl leading-relaxed">
-                    {p}
-                  </p>
-                ))}
+              <div className={section.image ? 'flex flex-col sm:flex-row gap-8 sm:gap-10' : undefined}>
+                {section.image && (
+                  <img
+                    src={section.image}
+                    alt={section.imageAlt || ''}
+                    className="w-40 sm:w-56 rounded-2xl object-cover shrink-0 border border-white/10"
+                  />
+                )}
+                <div className="space-y-4">
+                  {section.body.map((p, idx) => (
+                    <p key={idx} className="text-white/55 font-garamond text-lg sm:text-xl leading-relaxed">
+                      {p}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

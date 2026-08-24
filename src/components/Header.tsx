@@ -10,6 +10,8 @@ interface HeaderProps {
   showOnScroll?: boolean; // If true, only show after scrolling past viewport
 }
 
+const INSTAGRAM_URL = 'https://www.instagram.com/theactingarage/';
+
 const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
   const [isVisible, setIsVisible] = useState(!showOnScroll);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -155,6 +157,21 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
               </svg>
               <span>WhatsApp</span>
             </a>
+
+            {/* Instagram */}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram de The Acting Garage"
+              className="text-white hover:text-tag-yellow transition-colors duration-300"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" />
+                <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="2" />
+                <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" />
+              </svg>
+            </a>
           </nav>
 
           {/* Mobile Hamburger */}
@@ -235,6 +252,21 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
               />
             </svg>
             <span>WhatsApp</span>
+          </a>
+
+          {/* Instagram for Mobile */}
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram de The Acting Garage"
+            className="flex items-center gap-3 text-black hover:opacity-70 transition-opacity duration-300"
+          >
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" />
+              <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="2" />
+              <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" />
+            </svg>
           </a>
         </nav>
       </div>

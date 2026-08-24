@@ -109,6 +109,21 @@ const EmailFooter: React.FC = () => {
               </div>
 
               <div className="pb-5 text-center">
+                <p className="m-0 mb-3 font-sans text-sm text-[#e8e4da] leading-relaxed antialiased">
+                  <a
+                    href="https://www.instagram.com/theactingarage/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 hover:underline text-[#e8e4da]"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" />
+                      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="2" />
+                      <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" />
+                    </svg>
+                    @theactingarage
+                  </a>
+                </p>
                 <p className="m-0 font-sans text-sm text-[#e8e4da] leading-relaxed antialiased">
                   <Link to="/privacidad" className="hover:underline text-[#888]">Política de privacidad</Link>
                   {' · '}
