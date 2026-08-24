@@ -12,6 +12,7 @@ import PageTransition from './components/PageTransition';
 import EulaDisclaimer from './components/EulaDisclaimer';
 import EmailFooter from './components/EmailFooter';
 import WhatsAppButton from './components/WhatsAppButton';
+import GarageWritingCorner from './components/GarageWritingCorner';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import MetaPixel from './components/MetaPixel';
 import { captureUtms } from './utils/utm';
@@ -33,12 +34,14 @@ function AppContent() {
   const location = useLocation();
   const isContractPage = location.pathname.startsWith('/contrato');
   const isStandalonePage = location.pathname.startsWith('/referido');
+  const isGarageWritingPage = location.pathname.startsWith('/cursos/garage-writing');
 
   useEffect(() => { captureUtms(); }, [location.search]);
 
   return (
     <div className="app">
       {!isContractPage && !isStandalonePage && <WhatsAppButton />}
+      {!isContractPage && !isStandalonePage && !isGarageWritingPage && <GarageWritingCorner />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cursos" element={<Cursos />} />

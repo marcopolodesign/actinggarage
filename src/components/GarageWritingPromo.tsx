@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Se retira sola después de que arranca el curso (16 sep 2026) — evita
+// promocionar "empezamos el 16 sep" una vez que ya empezó.
+const PROMO_CUTOFF = new Date('2026-09-16T00:00:00');
+
 const GarageWritingPromo: React.FC = () => {
+  if (new Date() >= PROMO_CUTOFF) return null;
+
   return (
     <div className="w-full bg-black px-4 md:px-6 py-10 md:py-14">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row md:items-center gap-6 md:gap-10 border-l-4 border-tag-yellow pl-5 md:pl-8">
