@@ -79,8 +79,11 @@ export function isMetaSource(): boolean {
 const META_CAMPAIGN_TEXTS: Record<string, string> = {
   // C02 — Adultos · Tráfico Web · Barcelona → /iniciacion
   'adultos-bcn-web': 'Hola TAG! Quisiera info sobre los cursos de iniciación',
-  // C04 — Dramaturgia (Garage Writing), online. Todavía sin crear en Meta:
-  // el texto queda reservado para que el día que se lance ya esté cubierto.
+  // C04 — Dramaturgia (Garage Writing), online. EN VIVO desde el 2026-08-20
+  // (campaña 120254699942670285). El ad set de España está ACTIVE; el de LatAm
+  // (AR/CO/MX) existe en PAUSED. Los dos comparten este mismo utm_campaign, así
+  // que por WhatsApp NO se distinguen entre sí — sólo el formulario, vía
+  // `utm_term` (espana_25_55 / latam_25_55), permite separar la geo en el CRM.
   'dramaturgia-online': 'Hola TAG! Quisiera info sobre el curso de escritura',
 };
 

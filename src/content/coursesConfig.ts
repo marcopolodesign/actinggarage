@@ -6,7 +6,7 @@ export type CourseStat = {
 };
 
 export type CourseSection = {
-  id: 'why' | 'program' | 'included' | 'faqs' | 'weeks';
+  id: string;
   title: string;
   body: string[];
 };
@@ -848,7 +848,16 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ],
     sections: [
       {
-        id: 'why',
+        id: 'modalidad',
+        title: 'Garage Writing — cursos online',
+        body: [
+          'Garage Writing es la nueva formación online de TAG dedicada a la escritura dramática y el guion cinematográfico.',
+          'Cada curso: doce sesiones de tres horas, en directo vía Zoom —da igual dónde estés— con los mejores profesionales de la dramaturgia y el guion. Y sales con material propio: no con apuntes, sino con una pieza escrita.',
+          'Empezamos con Escribir Comedia, con Yago Alonso.',
+        ],
+      },
+      {
+        id: 'curso',
         title: 'Escribir comedia — de la premisa al escenario',
         body: [
           '¿Cómo se transforma una idea cómica en una historia capaz de sostenerse durante más de una hora sobre un escenario?',
@@ -858,7 +867,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
         ],
       },
       {
-        id: 'program',
+        id: 'estructura',
         title: 'Estructura del programa',
         body: [
           'Duración: 12 sesiones.',
@@ -869,7 +878,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
         ],
       },
       {
-        id: 'included',
+        id: 'objetivos',
         title: 'Objetivos del curso',
         body: [
           'Encontrar y formular una premisa cómica clara.',
@@ -885,7 +894,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
         ],
       },
       {
-        id: 'program',
+        id: 'metodologia',
         title: 'Metodología',
         body: [
           'El curso combina conceptos de dramaturgia con ejercicios de escritura y lecturas en voz alta.',
@@ -893,7 +902,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
         ],
       },
       {
-        id: 'why',
+        id: 'profesor',
         title: 'El profesor · Yago Alonso',
         body: [
           'Guionista de ficción y entretenimiento, dramaturgo y director teatral.',

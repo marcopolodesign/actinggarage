@@ -5,6 +5,7 @@ import Logo from '../assets/Logo';
 // Video will be loaded from public folder
 import AnimatedMarquee from '../components/AnimatedMarquee';
 import CursosHome from '../components/CursosHome';
+import GarageWritingPromo from '../components/GarageWritingPromo';
 import TagSteps from '../components/TagSteps';
 import Testimonios from '../components/Testimonios';
 import Header from '../components/Header';
@@ -239,6 +240,9 @@ const Home: React.FC = () => {
     </div>
     
      {/* Cursos de verano (TrimestralCards) ocultos 2026-07-31 — terminaron el 30 jul */}
+
+     {/* Garage Writing — nueva modalidad online */}
+     <GarageWritingPromo />
 
      {/* Cursos Sections */}
      <CursosHome />
