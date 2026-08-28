@@ -3,6 +3,7 @@ import { useFormFlyout } from '../context/FormFlyoutContext';
 import { submitForm } from '../api/submitForm';
 import { upsertLead } from '../api/upsertLead';
 import { getUtms, getLandingPage, buildWhatsAppUrl } from '../utils/utm';
+import { getReferrerSource, getSessionPath } from '../utils/journey';
 import { getMetaAttribution } from '../utils/metaAttribution';
 import { supabase } from '../lib/supabase';
 import { trackFormConversion } from '../utils/trackConversion';
@@ -152,6 +153,8 @@ const FormFlyout: React.FC = () => {
         utm_medium:   utm_medium      || 'organic',
         utm_campaign: utm_campaign    || null,
         utm_id:       utm_id          || null,
+        referrer_source: getReferrerSource(),
+        session_path:    getSessionPath(),
       };
 
       navigator.sendBeacon(
@@ -188,6 +191,8 @@ const FormFlyout: React.FC = () => {
       utm_medium:   utm_medium            || 'organic',
       utm_campaign: utm_campaign          || undefined,
       utm_id:       utm_id               || undefined,
+      referrer_source: getReferrerSource(),
+      session_path:    getSessionPath(),
     });
   };
 
@@ -228,7 +233,9 @@ const FormFlyout: React.FC = () => {
       email: userEmail,
       source,
       landing_page: getLandingPage(),
-      ...currentUtmParams
+      ...currentUtmParams,
+      referrer_source: getReferrerSource(),
+      session_path:    getSessionPath(),
     };
 
     try {

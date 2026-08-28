@@ -16,6 +16,7 @@ import GarageWritingCorner from './components/GarageWritingCorner';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import MetaPixel from './components/MetaPixel';
 import { captureUtms } from './utils/utm';
+import { captureReferrerSource, pushSessionPath } from './utils/journey';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import CourseLanding from './pages/CourseLanding';
@@ -37,6 +38,10 @@ function AppContent() {
   const isGarageWritingPage = location.pathname.startsWith('/cursos/garage-writing');
 
   useEffect(() => { captureUtms(); }, [location.search]);
+  // First-touch, una sola vez por carga de la app (no depende de la ruta).
+  useEffect(() => { captureReferrerSource(); }, []);
+  // Recorrido de la sesión: cada cambio de ruta suma una entrada.
+  useEffect(() => { pushSessionPath(location.pathname); }, [location.pathname]);
 
   return (
     <div className="app">

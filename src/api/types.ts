@@ -15,6 +15,10 @@ export interface FormSubmission {
   utm_campaign?: string;
   utm_id?: string;
   referral_reward?: string;
+  /** Canal real detrás de la visita, aunque no traiga UTM (ej: instagram_organic, direct). */
+  referrer_source?: string;
+  /** Recorrido de la sesión hasta el envío, legible: "/cursos/garage-cinema → /cursos". */
+  session_path?: string;
 }
 
 export interface MemberData {

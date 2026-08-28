@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { submitForm } from '../api/submitForm';
 import { getUtms, getLandingPage, buildWhatsAppUrl } from '../utils/utm';
+import { getReferrerSource, getSessionPath } from '../utils/journey';
 import { getMetaAttribution } from '../utils/metaAttribution';
 import { trackFormConversion } from '../utils/trackConversion';
 
@@ -115,6 +116,8 @@ const LeadPopup: React.FC = () => {
         utm_medium: utm_medium || 'organic',
         utm_campaign,
         utm_id,
+        referrer_source: getReferrerSource(),
+        session_path: getSessionPath(),
       });
 
       if (result.success) {

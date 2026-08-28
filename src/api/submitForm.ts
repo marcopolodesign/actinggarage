@@ -26,6 +26,8 @@ export const submitForm = async (formData: FormSubmission) => {
       utm_campaign: formData.utm_campaign || null,
       utm_id:       formData.utm_id       || null,
       referral_reward: formData.referral_reward || null,
+      referrer_source: formData.referrer_source || null,
+      session_path:    formData.session_path    || null,
     };
 
     const { data, error } = await supabase.rpc('create_prospect_from_form', { payload });
