@@ -15,6 +15,12 @@
  * aparte. Acá se guarda sólo su SHA-256: la tabla no sirve para entrar. Se
  * revoca poniéndole `revoked_at` a la fila, sin tocar código ni redeployar.
  *
+ * ⚠️ El archivo NO puede ser `api/mcp/[token].js`. Las rutas dinámicas se
+ * resuelven en la misma fase que los `rewrites` de `vercel.json`, y el
+ * catch-all a `/index.html` gana: el endpoint devolvía el HTML del sitio y un
+ * 405 a cualquier POST. Por eso la función tiene nombre estático y el token
+ * llega por un rewrite explícito, declarado ANTES del catch-all.
+ *
  * Protocolo: MCP sobre Streamable HTTP, sin estado. Cada POST trae un mensaje
  * JSON-RPC 2.0 completo y se contesta con JSON plano — no se abre SSE ni se
  * emiten session ids, que la spec permite para servidores sin estado.
@@ -25,7 +31,7 @@
  * tocan `events` — nunca prospectos, alumnos ni pagos.
  */
 import crypto from 'node:crypto';
-import { getSupabaseAdmin } from '../_utils/supabaseAdmin.js';
+import { getSupabaseAdmin } from './_utils/supabaseAdmin.js';
 
 const PROTOCOL_VERSION = '2025-06-18';
 const SERVER_INFO = { name: 'the-acting-garage', title: 'The Acting Garage', version: '1.0.0' };
