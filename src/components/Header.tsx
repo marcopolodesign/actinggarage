@@ -79,6 +79,12 @@ const Header: React.FC<HeaderProps> = ({ showOnScroll = false }) => {
       onClick: () => setIsMobileMenuOpen(false)
     },
     { 
+      label: 'Calendario', 
+      to: '/calendario', 
+      type: 'link' as const,
+      onClick: () => setIsMobileMenuOpen(false)
+    },
+    { 
       label: 'Contacto', 
       type: 'button' as const,
       onClick: handleContactClick

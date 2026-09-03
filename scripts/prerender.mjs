@@ -64,6 +64,7 @@ const PORT = 4183;
 const ROUTES = [
   '/',
   '/cursos',
+  '/calendario',
   '/iniciacion',
   '/pro',
   '/jovenes',

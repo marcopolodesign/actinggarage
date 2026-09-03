@@ -19,6 +19,8 @@ import { captureUtms } from './utils/utm';
 import { captureReferrerSource, pushSessionPath } from './utils/journey';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
+import Calendario from './pages/Calendario';
+import EventoDetalle from './pages/EventoDetalle';
 import CourseLanding from './pages/CourseLanding';
 import Dashboard from './pages/Dashboard';
 import LandingSales from './pages/LandingSales';
@@ -50,6 +52,8 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cursos" element={<Cursos />} />
+        <Route path="/calendario" element={<Calendario />} />
+        <Route path="/calendario/:slug" element={<EventoDetalle />} />
         {/* Mini Kids, Kids y New Generation vuelven a tener página propia (2026-08-04).
             Redirigían a /jovenes desde el 23/07, así que el bloque con más prospectos del
             CRM no tenía ninguna página indexable — las sirve CourseLanding vía :slug.
