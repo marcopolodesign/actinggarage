@@ -1,6 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormFlyout } from '../context/FormFlyoutContext';
+
+/**
+ * Retrato de un fundador en el pie.
+ *
+ * Las tres imágenes de este bloque estaban enganchadas al CDN de Mailchimp
+ * (`mcusercontent.com`), que desde hace semanas responde **403 Access Denied**
+ * a cualquier petición — con o sin cabeceras de navegador. O sea que todo el
+ * que entraba al sitio veía tres imágenes rotas en el pie, en todas las páginas.
+ *
+ * Dos cambios para que no vuelva a pasar:
+ *
+ * 1. La foto se sirve **desde el propio sitio** (`/content/…`). Nunca desde un
+ *    tercero: si el tercero corta el acceso, se cae la web y nadie se entera.
+ * 2. Si el archivo no está, no se muestra una imagen rota: se pintan las
+ *    iniciales sobre el aro amarillo, que es una pieza válida del sistema
+ *    (tipografía pesada + amarillo sobre negro) y se lee como intencional.
+ *
+ * Para poner las fotos reales basta con dejar los archivos en
+ * `public/content/` con estos nombres. No hace falta tocar código.
+ */
+const FounderAvatar: React.FC<{ src: string; name: string; initials: string }> = ({
+  src,
+  name,
+  initials,
+}) => {
+  const [falló, setFalló] = useState(false);
+
+  return (
+    <div className="w-[120px] h-[120px] rounded-full overflow-hidden mx-auto mb-4 border-3 border-[#f4b03e] flex items-center justify-center bg-black">
+      {falló ? (
+        <span
+          aria-hidden="true"
+          className="font-druk text-4xl text-tag-yellow uppercase tracking-tight antialiased"
+        >
+          {initials}
+        </span>
+      ) : (
+        <img
+          src={src}
+          alt={name}
+          onError={() => setFalló(true)}
+          className="w-[120px] h-[120px] block object-cover"
+        />
+      )}
+    </div>
+  );
+};
 
 const EmailFooter: React.FC = () => {
   const { openFlyout } = useFormFlyout();
@@ -64,13 +111,11 @@ const EmailFooter: React.FC = () => {
             <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center mb-8">
               {/* Founder 1 */}
               <div className="text-center flex-1 min-w-[200px]">
-                <div className="w-[120px] h-[120px] rounded-full overflow-hidden mx-auto mb-4 border-3 border-[#f4b03e]">
-                  <img 
-                    src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/bbf2c804-6ae5-2cfa-97b4-a23ede914cf6.jpg" 
-                    alt="Tony Corvillo" 
-                    className="w-[120px] h-[120px] block object-cover"
-                  />
-                </div>
+                <FounderAvatar
+                  src="/content/tony-corvillo.jpg"
+                  name="Tony Corvillo"
+                  initials="TC"
+                />
                 <h2 className="m-0 font-druk text-lg font-medium text-tag-yellow uppercase tracking-tight text-center antialiased">
                   Tony Corvillo
                 </h2>
@@ -78,13 +123,11 @@ const EmailFooter: React.FC = () => {
 
               {/* Founder 2 */}
               <div className="text-center flex-1 min-w-[200px]">
-                <div className="w-[120px] h-[120px] rounded-full overflow-hidden mx-auto mb-4 border-3 border-[#f4b03e]">
-                  <img 
-                    src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/032d3a3c-f6ba-a826-ed37-339fbc96e935.jpg" 
-                    alt="Andrés Vicente" 
-                    className="w-[120px] h-[120px] block object-cover"
-                  />
-                </div>
+                <FounderAvatar
+                  src="/content/andres-vicente.jpg"
+                  name="Andrés Vicente"
+                  initials="AV"
+                />
                 <h2 className="m-0 font-druk text-lg font-medium text-tag-yellow uppercase tracking-tight text-center antialiased">
                   Andrés Vicente
                 </h2>
@@ -94,14 +137,15 @@ const EmailFooter: React.FC = () => {
             {/* Footer Info */}
             <div className="flex flex-col items-center gap-5">
               
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                <div className="h-20 rounded-full flex items-end justify-end">
-                  <img 
-                    src="https://mcusercontent.com/449da8926588f125f8a1cb1a7/images/4c56683f-7143-90ec-7562-3987b221a970.png" 
-                    alt="TAG Badge" 
-                    className="w-[100px] h-[100px] block rounded-full"
-                  />
-                </div>
+              {/*
+                Acá había un "TAG Badge" traído del mismo CDN de Mailchimp, roto
+                por el mismo 403. La chapa no dice nada que no diga ya el
+                logotipo del encabezado, así que en vez de dejar un hueco o una
+                imagen rota, el lema se queda solo y centrado. Si aparece el
+                archivo original, se vuelve a poner — servido desde `/content/`,
+                no desde un tercero.
+              */}
+              <div className="flex items-center justify-center">
                 <p className="m-0 font-druk text-lg font-medium text-[#f4b03e] uppercase tracking-tight text-center leading-tight antialiased">
                   BUILT TO TRANSFORM<br />
                   BOLD PERFORMANCES
