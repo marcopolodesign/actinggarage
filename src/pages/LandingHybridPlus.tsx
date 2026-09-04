@@ -371,6 +371,7 @@ const LandingHybridPlus: React.FC = () => {
                       { id: 'teatro', label: 'TEATRO' },
                       { id: 'cine', label: 'CINE' },
                       { id: 'teatro-cine', label: 'TEATRO & CINE' },
+                      { id: 'escritura', label: 'ESCRITURA' },
                     ].map(({ id, label }) => (
                       <button
                         key={id}

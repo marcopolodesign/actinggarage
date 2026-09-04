@@ -839,9 +839,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
     ctaMode: 'whatsappPlusInlineForm',
     whatsAppExtra: '(online, miércoles 17-20h)',
     inlineFormSource: 'cursos_garage_writing',
-    // El selector del form sólo acepta teatro / cine / teatro-cine — 'escritura' dejaría
-    // el chip sin marcar y mandaría un interés que el CRM no conoce.
-    inlineFormDefaultInterest: 'teatro',
+    inlineFormDefaultInterest: 'escritura',
     stats: [
       { label: 'Duración', value: '12 sesiones' },
       { label: 'Inicio', value: '16 sep 2026' },

@@ -486,6 +486,13 @@ const FormFlyout: React.FC = () => {
                   >
                     TEATRO & CINE
                   </button>
+                  <button
+                    type="button"
+                    className={`interest-button ${formData.interests === 'escritura' ? 'selected' : ''}`}
+                    onClick={() => handleInterestChange('escritura')}
+                  >
+                    ESCRITURA
+                  </button>
                 </div>
               </div>
 

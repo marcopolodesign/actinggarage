@@ -35,6 +35,7 @@ const INTERESTS = [
   { value: 'teatro', label: 'TEATRO' },
   { value: 'cine', label: 'CINE' },
   { value: 'teatro-cine', label: 'TEATRO & CINE' },
+  { value: 'escritura', label: 'ESCRITURA' },
 ];
 
 const inputStyle: React.CSSProperties = {
