@@ -702,7 +702,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
     heroTitleLines: ['GARAGE', 'EXPERT', 'CINEMA'],
     heroQuote: '"EL ACTOR HONESTO"',
     heroDescription:
-      'Curso anual para actores avanzados en Barcelona: terminas con un videobook profesional de 3 a 5 escenas rodadas, editadas y montadas, listo para agentes, castings y plataformas de la industria.',
+      'Curso anual para actores avanzados en Barcelona: terminas con 3 a 5 escenas profesionales rodadas, editadas y montadas, listas para agentes, castings y plataformas de la industria.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappPlusInlineForm',
@@ -714,18 +714,18 @@ export const coursesConfig: Record<string, CourseConfig> = {
       { label: 'Carga', value: '4h/semana' },
       { label: 'Formato', value: '2h escena + 2h cámara' },
       { label: 'Grupo', value: 'Máx. 10 alumnos' },
-      { label: 'Entregable', value: 'Videobook profesional' },
+      { label: 'Entregable', value: 'Escenas rodadas y montadas' },
     ],
     sections: [
       {
         id: 'why',
         title: '¿Qué es Garage Expert Cinema?',
         body: [
-          'No es un curso de escenas sueltas: es la culminación de tu proceso como actor. Está pensado para actores avanzados que ya dominan las herramientas técnicas y necesitan un espacio donde afilarlas, aplicarlas a material exigente y convertirlas en el material que de verdad les abre puertas: su videobook profesional.',
+          'No es un curso de escenas sueltas: es la culminación de tu proceso como actor. Está pensado para actores avanzados que ya dominan las herramientas técnicas y necesitan un espacio donde afilarlas, aplicarlas a material exigente y convertirlas en el material que de verdad les abre puertas: sus escenas profesionales rodadas.',
           'Aquí no repetimos teoría desde cero. Repasamos y llevamos a maestría todo lo trabajado en tu formación, y lo cruzamos con lo que la industria realmente pide: cómo te vendes, cómo gestionas una audición, cómo sostienes una carrera cuando el "no" es la respuesta más frecuente.',
           'Técnica y negocio, cuerpo y estrategia, arte y oficio: el 50% técnica + 50% gestión emocional de la filosofía TAG, aplicado a la etapa donde más importa — la salida al mercado.',
-          'El objetivo es tangible: terminar el curso con un videobook profesional de 3 a 5 escenas rodadas en condiciones profesionales, editadas y montadas, listo para agentes, castings y plataformas de la industria.',
-          'Trabajo a medida: las escenas se escriben específicamente para cada alumno, según lo que quiere mostrar en su videobook. Cada actor se enseña y se trata de forma personal a lo largo de todo el curso.',
+          'El objetivo es tangible: terminar el curso con 3 a 5 escenas profesionales rodadas en condiciones profesionales, editadas y montadas — listas para agentes, castings y plataformas de la industria.',
+          'Trabajo a medida: las escenas se escriben específicamente para cada alumno, según lo que quiere mostrar en ellas, y cada actor se enseña y se trata de forma personal a lo largo de todo el curso.',
         ],
       },
       {
@@ -737,7 +737,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
           'Para quién: actores avanzados con formación técnica sólida.',
           'Grupos: máximo 10 alumnos por clase.',
           'Estructura: núcleo de entrenamiento fijo + foco rotativo por trimestre.',
-          'Entregable final: videobook profesional completo.',
+          'Entregable final: escenas profesionales rodadas, editadas y montadas.',
         ],
       },
       {
@@ -755,7 +755,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
           'Repaso y maestría — llevar el instrumento al límite. No se aprenden herramientas nuevas desde cero: se revisan, se pulen y se llevan a maestría todas las que ya tienes, aplicadas sobre material de nivel profesional. Cada sesión es entrenamiento de atleta, no clase de estudiante.',
           'Repaso integral de herramientas: cuerpo, voz, escucha, impulso y construcción de personaje, auditadas y afinadas sobre escenas exigentes.',
           'Análisis y ataque de material: cómo leer un guion de casting real y tomar decisiones de actuación en poco tiempo, como en la industria.',
-          'Trabajo de escena avanzado: escenas de alta exigencia dramática elegidas específicamente por su potencial para videobook.',
+          'Trabajo de escena avanzado: escenas de alta exigencia dramática elegidas específicamente por su potencial en cámara.',
           'Escenas escritas a medida: cada escena que grabarás se escribe específicamente para ti, en función de lo que quieres mostrar. Nunca material genérico de grupo.',
           'Feedback individualizado: cada actor recibe notas dirigidas a su propio material, alumno a alumno.',
           'Primer semestre (septiembre a enero): selección de material y registros que mejor representan tu rango, construcción de personaje a nivel profesional (biografía, psicología y fisicalidad aplicadas a papeles de casting real) y preparación de los dos primeros bloques de rodaje.',
@@ -777,7 +777,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
         title: 'Bloque 3 · El negocio del acting (2h/semana)',
         body: [
           'De actor en formación a actor profesional. La técnica te lleva a la sala; el negocio te lleva a la carrera. Este bloque trabaja todo lo que rodea a la actuación y que ninguna escuela suele enseñar con la misma seriedad.',
-          'Audiciones y material: el self-tape profesional (setup, luz, encuadre y entrega — el estándar que espera un director de casting hoy), callbacks, y el reel y el videobook (qué escenas incluir, cómo ordenarlas, duración y primeras impresiones).',
+          'Audiciones y material: el self-tape profesional (setup, luz, encuadre y entrega — el estándar que espera un director de casting hoy), callbacks, y el reel y las escenas (qué escenas incluir, cómo ordenarlas, duración y primeras impresiones).',
           'Agentes y self-marketing: cómo funciona la relación con un agente, presencia profesional y comunicación de marca sin perder honestidad, y networking de industria para construir relaciones de trabajo que duran.',
           'Gestión del "no": vivir en el rechazo, ansiedad y bloqueo frente al casting (regulación antes, durante y después de la sala), identidad más allá del resultado y resiliencia a largo plazo.',
           'El bloque de negocio se trabaja con la misma disciplina que la escena: no son "charlas motivacionales", son sesiones de entrenamiento con herramientas prácticas que se repiten y se interiorizan.',
@@ -794,8 +794,9 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
       {
         id: 'included',
-        title: 'Qué incluye tu videobook al terminar el curso',
+        title: 'Las escenas finales — qué te llevas al terminar el curso',
         body: [
+          'El curso entero converge en un entregable claro: tus escenas profesionales rodadas, la carta de presentación que te acompañará en cada audición, con cada agente y en cada plataforma de la industria a partir de ahora.',
           '3 a 5 escenas rodadas en condiciones profesionales.',
           'Registro variado: drama, comedia, thriller u otros géneros.',
           'Edición y montaje profesional del material.',
@@ -810,7 +811,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
         id: 'why',
         title: '¿Qué conseguirás en el curso?',
         body: [
-          'Como actor: herramientas llevadas a maestría (no solo aprendidas), videobook profesional terminado, versatilidad demostrada en registro y género, y criterio propio ante el material de casting.',
+          'Como actor: herramientas llevadas a maestría (no solo aprendidas), escenas profesionales rodadas y terminadas, versatilidad demostrada en registro y género, y criterio propio ante el material de casting.',
           'Como profesional: conocimiento real del negocio del acting, material listo para agentes y plataformas, experiencia en rodaje y self-tape profesional, y una red de contactos e industria conocida en persona.',
           'Como persona: herramientas concretas para gestionar el rechazo a largo plazo, resiliencia emocional entrenada (no improvisada) y una relación más honesta y sostenible con tu carrera.',
           '"Siempre hacemos lo mejor que podemos con las luces que tenemos." Al terminar este curso, sales con muchas más luces — y con el material que lo demuestra.',
@@ -820,7 +821,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
     seo: {
       title: 'Garage Expert Cinema — Curso Anual para Actores Avanzados en Barcelona | TAG',
       description:
-        'Curso anual para actores avanzados en Barcelona. Terminas con un videobook profesional: 3 a 5 escenas rodadas, headshots y self-tape. Grupos de máximo 10. Septiembre a junio.',
+        'Curso anual para actores avanzados en Barcelona. Terminas con 3 a 5 escenas profesionales rodadas, editadas y montadas —tu videobook—, headshots y self-tape. Grupos de máximo 10. Septiembre a junio.',
       canonicalPath: '/cursos/garage-expert-cinema',
     },
   },
