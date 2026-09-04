@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { buildWhatsAppUrl, buildCampaignWhatsAppUrl } from '../utils/utm';
+import InlineLeadForm from '../components/InlineLeadForm';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 
 const WhatsAppIcon = () => (
@@ -260,6 +261,25 @@ const LandingIniciacion: React.FC = () => {
               />
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* ─── FORMULARIO INLINE ─── */}
+      {/* 🔴 Es el destino de C02 (Adultos · Tráfico Web · Barcelona). Hasta el
+          2026-09-04 esta página captaba SÓLO por WhatsApp, donde el UTM se pierde
+          en el 66% de los casos: en agosto tuvo 1.209 vistas y 2 prospectos
+          medibles, ambos rescatados por el popup global. Sin este formulario la
+          campaña es imposible de leer. Ver `CLAUDE.md` → Atribución, Regla 3. */}
+      <div className="w-full px-6 sm:px-12 lg:px-24 py-20 bg-black">
+        <div className="max-w-3xl mx-auto">
+          <InlineLeadForm
+            courseName="Garage Iniciación"
+            source="landing_iniciacion"
+            defaultInterest="teatro-cine"
+            title="¿Quieres empezar?"
+            subtitle="Déjanos tus datos y te contamos qué curso de iniciación te encaja mejor."
+            pixelContentName="Garage Iniciación"
+          />
         </div>
       </div>
 

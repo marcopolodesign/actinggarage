@@ -108,14 +108,47 @@ const META_CAMPAIGN_TEXTS: Record<string, string> = {
   // que por WhatsApp NO se distinguen entre sí — sólo el formulario, vía
   // `utm_term` (espana_25_55 / latam_25_55), permite separar la geo en el CRM.
   'dramaturgia-online': 'Hola TAG! Quisiera info sobre el curso de escritura',
+  // C05 — Garage Expert Cinema, curso anual para actores avanzados. Reemplaza a
+  // C04 (dramaturgia) a partir del 2026-09-11. Destino: /cursos/garage-expert-cinema,
+  // que ya tiene formulario inline (`cursos_garage_expert_cinema`), así que esta
+  // campaña se puede medir por formulario además de por WhatsApp.
+  'expert-online': 'Hola TAG! Quisiera info sobre el curso Expert Cinema',
 };
 
+// Deriva el texto de pago y el de Meta a partir del orgánico, siguiendo la tabla
+// de equivalencias de `CAMPAIGNS.md`:
+//
+//   orgánico   "Hola TAG! Quiero más información sobre X"
+//   otro pago  "Hola TAG! Quisiera obtener más información sobre X"
+//   Meta pago  "Hola TAG! Quisiera más info sobre X"
+//
+// 🔴 Por qué existe. `buildWhatsAppUrl` caía en silencio al texto orgánico —o al
+// de pago— cuando el llamador no pasaba los tres, y el 2026-09-04 una auditoría
+// encontró **12 sitios** llamándola con uno o dos: las 16 fichas de `/cursos/:slug`
+// y las landings de Hybrid, Kids, Mini Kids, New Generation (×3), Jóvenes, Pro y
+// Sales. En todas ellas el tráfico de Meta mandaba el texto de "otro pago", que es
+// justo la señal que Florencia lee como **Google**. Es decir: prospectos de Meta
+// anotados como Google, en silencio, desde siempre.
+//
+// La regla de `CLAUDE.md` (pasar siempre los tres) sigue vigente y es lo preferible
+// —un texto escrito a mano siempre gana—, pero ahora el olvido degrada a algo
+// correcto en vez de romper la atribución.
+function derivarTexto(organicText: string, destino: 'paid' | 'meta'): string {
+  const reemplazo = destino === 'meta' ? 'Quisiera más info' : 'Quisiera obtener más información';
+  if (organicText.includes('Quiero más información')) return organicText.replace('Quiero más información', reemplazo);
+  if (organicText.includes('Quiero más info')) return organicText.replace('Quiero más info', reemplazo);
+  // Sin el patrón conocido no se inventa nada: se devuelve tal cual.
+  return organicText;
+}
+
 // Builds a wa.me URL. Meta paid uses metaText, other paid uses paidText, organic uses organicText.
+// Los dos últimos son opcionales sólo por compatibilidad: si faltan se derivan.
 export function buildWhatsAppUrl(organicText: string, paidText?: string, metaText?: string): string {
-  if (isMetaSource() && metaText) return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(metaText)}`;
   if (isLinktreeSource()) return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(LINKTREE_TEXT)}`;
-  const isPaid = hasUtms();
-  const text = isPaid ? (paidText ?? organicText) : organicText;
+  if (isMetaSource()) {
+    return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(metaText ?? derivarTexto(organicText, 'meta'))}`;
+  }
+  const text = hasUtms() ? (paidText ?? derivarTexto(organicText, 'paid')) : organicText;
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 

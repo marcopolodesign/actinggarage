@@ -4,10 +4,8 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import { coursesConfig, type CourseConfig } from '../content/coursesConfig';
-import { submitForm } from '../api/submitForm';
-import { getUtms, getLandingPage, buildWhatsAppUrl } from '../utils/utm';
-import { getReferrerSource, getSessionPath } from '../utils/journey';
-import { trackFormConversion } from '../utils/trackConversion';
+import InlineLeadForm from '../components/InlineLeadForm';
+import { buildWhatsAppUrl } from '../utils/utm';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
 
 declare global {
@@ -16,26 +14,6 @@ declare global {
     gtag: (...args: any[]) => void;
   }
 }
-
-type InlineFormData = {
-  email: string;
-  name: string;
-  phone: string;
-  birthday: string;
-  interests: string;
-  gender: string;
-};
-
-const calculateAge = (birthday: string): string => {
-  if (!birthday) return '';
-  const date = new Date(birthday);
-  if (Number.isNaN(date.getTime())) return '';
-  const today = new Date();
-  let age = today.getFullYear() - date.getFullYear();
-  const m = today.getMonth() - date.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < date.getDate())) age--;
-  return String(age);
-};
 
 const WhatsAppIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -49,9 +27,15 @@ const WhatsAppIcon = () => (
 function getWhatsAppUrl(course: CourseConfig, _search: string) {
   const label = course.whatsAppLabel || course.courseName;
   const extra = course.whatsAppExtra ? ` ${course.whatsAppExtra}` : '';
+  // 🔴 Los TRES textos, siempre (CLAUDE.md → Atribución, Regla 1). Faltaba el
+  // tercero hasta el 2026-09-04: el tráfico de Meta que llegaba a una ficha de
+  // curso caía al texto de "otro pago" — el mismo que manda Google — así que en
+  // el WhatsApp esos prospectos se leían como Google. Afectaba a las 16 fichas
+  // de /cursos/:slug, incluida la de C04 (garage-writing) y la de C05.
   return buildWhatsAppUrl(
     `Hola TAG! Quiero más información sobre el ${label}${extra}`,
-    `Hola TAG! Quisiera obtener más información sobre el ${label}${extra}`
+    `Hola TAG! Quisiera obtener más información sobre el ${label}${extra}`,
+    `Hola TAG! Quisiera más info sobre el ${label}${extra}`
   );
 }
 
@@ -85,34 +69,12 @@ const CourseLanding: React.FC = () => {
 
   const whatsappUrl = useMemo(() => (course ? getWhatsAppUrl(course, location.search) : ''), [course, location.search]);
 
-  // Inline form state (only used when enabled)
-  const defaultInterest = course?.inlineFormDefaultInterest || '';
-  const [formData, setFormData] = useState<InlineFormData>({
-    email: '',
-    name: '',
-    phone: '',
-    birthday: '',
-    interests: defaultInterest,
-    gender: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  // El formulario y su estado viven en <InlineLeadForm/> desde el 2026-09-04:
+  // se extrajo para poder reutilizarlo en /iniciacion (destino de C02), que
+  // captaba sólo por WhatsApp y por eso no se podía medir.
   const whatsappButtonRef = useRef<HTMLAnchorElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [showFixedButton, setShowFixedButton] = useState(false);
-
-  // Keep defaults in sync when navigating between slugs
-  useEffect(() => {
-    setFormData({
-      email: '',
-      name: '',
-      phone: '',
-      birthday: '',
-      interests: defaultInterest,
-      gender: '',
-    });
-    setSubmitted(false);
-  }, [slug, defaultInterest]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
@@ -133,53 +95,6 @@ const CourseLanding: React.FC = () => {
       observer.unobserve(current);
     };
   }, [isMobile]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!course) return;
-    setIsSubmitting(true);
-    try {
-      const result = await submitForm({
-        name: formData.name,
-        phone: formData.phone,
-        birthday: formData.birthday,
-        interests: formData.interests,
-        gender: formData.gender,
-        course: course.courseName,
-        age: calculateAge(formData.birthday),
-        email: formData.email,
-        source: course.inlineFormSource || `cursos_${course.slug}`,
-        landing_page: getLandingPage(),
-        ...getUtms(),
-        referrer_source: getReferrerSource(),
-        session_path: getSessionPath(),
-      });
-
-      if (!result.success) throw new Error('Submission failed');
-
-      setSubmitted(true);
-
-      trackFormConversion({ email: formData.email, phone: formData.phone, name: formData.name });
-      if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-        try {
-          window.fbq('track', 'Lead', {
-            content_name: `${course.courseName} Landing Form`,
-            content_category: 'Lead Generation',
-            content_ids: [course.courseName],
-            content_type: 'form',
-            status: true,
-          });
-        } catch (err) {
-          console.error('Meta Pixel error:', err);
-        }
-      }
-    } catch (err) {
-      console.error('Form error:', err);
-      alert('Error al enviar el formulario. Por favor, inténtalo de nuevo.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   if (!course) return <NotFound />;
 
@@ -299,112 +214,11 @@ const CourseLanding: React.FC = () => {
           </a>
 
           {course.ctaMode === 'whatsappPlusInlineForm' && (
-            <div className="bg-[#0d0d0d] border border-white/10 p-6 sm:p-10">
-              <h2 className="font-druk text-tag-yellow text-2xl sm:text-3xl uppercase mb-2">¿Te interesa este curso?</h2>
-              <p className="text-white/50 font-garamond text-base mb-8">Déjanos tus datos y te contactamos con toda la información.</p>
-
-              {submitted ? (
-                <div className="text-center py-12">
-                  <p className="font-druk text-tag-yellow text-3xl mb-3">¡GRACIAS!</p>
-                  <p className="text-white/60 font-garamond text-lg">Hemos recibido tu información. Te contactamos pronto.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Email</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
-                      placeholder="tu@email.com"
-                      className="w-full bg-black border border-white/15 text-white px-4 py-3 focus:outline-none focus:border-tag-yellow transition-colors duration-200 font-garamond placeholder:text-white/25"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Nombre y Apellido</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={e => setFormData(p => ({ ...p, name: e.target.value }))}
-                      className="w-full bg-black border border-white/15 text-white px-4 py-3 focus:outline-none focus:border-tag-yellow transition-colors duration-200 font-garamond"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Teléfono</label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))}
-                      className="w-full bg-black border border-white/15 text-white px-4 py-3 focus:outline-none focus:border-tag-yellow transition-colors duration-200 font-garamond"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Fecha de Nacimiento</label>
-                    <input
-                      type="date"
-                      required
-                      value={formData.birthday}
-                      onChange={e => setFormData(p => ({ ...p, birthday: e.target.value }))}
-                      className="w-full bg-black border border-white/15 text-white px-4 py-3 focus:outline-none focus:border-tag-yellow transition-colors duration-200 font-garamond"
-                      style={{ colorScheme: 'dark' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-2">¿Cuáles son tus intereses?</label>
-                    <div className="flex gap-2 flex-wrap">
-                      {[
-                        { id: 'teatro', label: 'TEATRO' },
-                        { id: 'cine', label: 'CINE' },
-                        { id: 'teatro-cine', label: 'TEATRO & CINE' },
-                      ].map(({ id, label }) => (
-                        <button
-                          key={id}
-                          type="button"
-                          onClick={() => setFormData(p => ({ ...p, interests: id }))}
-                          className={`px-4 py-3 text-sm font-druk uppercase tracking-wide border transition-all duration-200 ${
-                            formData.interests === id
-                              ? 'bg-tag-yellow text-black border-tag-yellow'
-                              : 'bg-transparent text-white/50 border-white/15 hover:border-tag-yellow/40 hover:text-white/80'
-                          }`}
-                        >
-                          {label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-tag-yellow text-xs font-druk uppercase tracking-widest mb-1.5">Género</label>
-                    <select
-                      value={formData.gender}
-                      onChange={e => setFormData(p => ({ ...p, gender: e.target.value }))}
-                      className="w-full bg-black border border-white/15 text-white px-4 py-3 focus:outline-none focus:border-tag-yellow transition-colors duration-200 font-garamond appearance-none"
-                      style={{ colorScheme: 'dark' }}
-                    >
-                      <option value="">Seleccionar...</option>
-                      <option value="masculino">Masculino</option>
-                      <option value="femenino">Femenino</option>
-                      <option value="no_especificado">No especificado</option>
-                    </select>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting || !formData.interests}
-                    className="w-full bg-tag-yellow text-black font-druk text-lg uppercase py-4 hover:bg-white transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed mt-2"
-                  >
-                    {isSubmitting ? 'ENVIANDO...' : 'QUIERO MÁS INFORMACIÓN'}
-                  </button>
-                </form>
-              )}
-            </div>
+            <InlineLeadForm
+              courseName={course.courseName}
+              source={course.inlineFormSource || `cursos_${course.slug}`}
+              defaultInterest={course.inlineFormDefaultInterest || ''}
+            />
           )}
         </div>
       </div>
