@@ -60,6 +60,29 @@ export function isMetaSource(): boolean {
   return source === 'instagram' || source === 'facebook' || source === 'meta';
 }
 
+/**
+ * Tráfico del Linktree de la bio de Instagram. ORGÁNICO, no pago.
+ *
+ * 🔴 Por qué `utm_source=linktree` y no `instagram`: `isMetaSource()` trata
+ * `instagram` como Meta PAGO. Etiquetar la bio con `instagram` haría que todo
+ * el orgánico llegara al WhatsApp de Florencia con el texto de "Quisiera…" —
+ * o sea, contando como pauta gente que no costó un euro. Sería peor que no
+ * etiquetar nada.
+ *
+ * Y necesita texto propio porque `hasUtms()` es true en cuanto hay cualquier
+ * UTM: sin esto, la bio caería en la rama de "otro canal pago" y Florencia lo
+ * leería como Google.
+ */
+export function isLinktreeSource(): boolean {
+  return getUtm('utm_source') === 'linktree';
+}
+
+// El texto que ve Florencia cuando alguien llega desde la bio de Instagram.
+// Tiene que ser distinto de los tres de siempre y reconocible de un vistazo.
+// Al cambiarlo, cambiarlo TAMBIÉN en el selector "Seleccioná el mensaje
+// recibido" de TAG-admin (`Prospects.jsx`) y en TAG/CAMPAIGNS.md.
+const LINKTREE_TEXT = 'Hola TAG! Os vi en Instagram y quiero más info sobre los cursos!';
+
 // Texto de WhatsApp por campaña de Meta, para los botones GENÉRICOS del sitio
 // (header, botón flotante, CTA global de una landing). La clave es el
 // `utm_campaign` que trae la URL del anuncio.
@@ -90,6 +113,7 @@ const META_CAMPAIGN_TEXTS: Record<string, string> = {
 // Builds a wa.me URL. Meta paid uses metaText, other paid uses paidText, organic uses organicText.
 export function buildWhatsAppUrl(organicText: string, paidText?: string, metaText?: string): string {
   if (isMetaSource() && metaText) return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(metaText)}`;
+  if (isLinktreeSource()) return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(LINKTREE_TEXT)}`;
   const isPaid = hasUtms();
   const text = isPaid ? (paidText ?? organicText) : organicText;
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -104,6 +128,7 @@ export function buildWhatsAppUrl(organicText: string, paidText?: string, metaTex
 // conservar ese nombre — es información que Florencia usa. Si el mapa se
 // aplicara a todos, los pisaría con el texto genérico de la campaña.
 export function buildCampaignWhatsAppUrl(organicText: string, paidText?: string, metaText?: string): string {
+  if (isLinktreeSource()) return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(LINKTREE_TEXT)}`;
   if (isMetaSource()) {
     const campaign = getUtm('utm_campaign');
     const campaignText = campaign ? META_CAMPAIGN_TEXTS[campaign] : undefined;
