@@ -109,12 +109,12 @@ const LandingJovenes: React.FC = () => {
   return (
     <section className="bg-black min-h-screen">
       <Helmet>
-        <title>TAG para Jóvenes — Cursos de Teatro y Cine de 6 a 17 años</title>
+        <title>TAG para Jóvenes — Cursos de Teatro y Cine de 9 a 17 años</title>
         <meta
           name="description"
-          content="Cursos de teatro y actuación para niños y jóvenes de 6 a 17 años en TAG. Mini Kids (6-8), Kids (9-12), New Generation teatro y cámara (13-17). Grupos pequeños, profesores en activo."
+          content="Cursos de teatro y actuación para niños y jóvenes de 9 a 17 años en TAG. Kids (9-12) y New Generation teatro y cámara (13-17). Grupos pequeños, profesores en activo."
         />
-        <meta name="title" content="TAG para Jóvenes — Cursos de Teatro y Cine de 6 a 17 años" />
+        <meta name="title" content="TAG para Jóvenes — Cursos de Teatro y Cine de 9 a 17 años" />
         <link rel="canonical" href="https://www.theactinggarage.com/jovenes" />
         <meta property="og:url" content="https://www.theactinggarage.com/jovenes" />
       </Helmet>
@@ -144,7 +144,7 @@ const LandingJovenes: React.FC = () => {
           {/* Global stats */}
           <div className="flex flex-wrap gap-3">
             {[
-              { label: 'Edades', value: '6 a 17 años' },
+              { label: 'Edades', value: '9 a 17 años' },
               { label: 'Grupos', value: 'Máx. 12 alumnos' },
               { label: 'Profesorado', value: 'En activo' },
               { label: 'Muestras', value: 'Cada cuatrimestre' },
@@ -161,23 +161,6 @@ const LandingJovenes: React.FC = () => {
       {/* ─── COURSES ─── */}
       <div className="w-full px-6 sm:px-12 lg:px-24 pb-24 bg-black">
         <div className="max-w-5xl mx-auto space-y-20">
-
-          {/* 6–8 años */}
-          <div>
-            <AgeGroupLabel age="6–8" label="El juego como herramienta" />
-            <div className="grid grid-cols-1 gap-px bg-white/5">
-              <CourseCard
-                title="Garage Mini Kids"
-                tagline='"El juego como herramienta"'
-                age="6–8 años"
-                hours="1h30/semana"
-                modality="Teatro"
-                startDate="14 sep 2026"
-                description="Un espacio de juego, descubrimiento y expresión libre. No buscamos pequeños actores perfectos: buscamos niños y niñas felices, expresivos y seguros de sí mismos."
-                whatsappMsg="Hola TAG! Quiero más información sobre Garage Mini Kids (6-8 años)"
-              />
-            </div>
-          </div>
 
           {/* 9–12 años */}
           <div>

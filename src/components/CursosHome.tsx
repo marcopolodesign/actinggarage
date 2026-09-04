@@ -67,16 +67,6 @@ const coursesDetailsData: CourseDetails[] = [
     objetivo: 'Profesionalización actoral adaptable'
   },
   {
-    title: 'Garage Mini Kids',
-    description: 'Teatro para los más pequeños y pequeñas. El teatro como herramienta de juego, descubrimiento y expresión libre. Un espacio para desarrollar confianza, creatividad y trabajo en equipo.',
-    duracion: 'Curso anual',
-    diasSemana: '1',
-    cargaHoraria: '1 hora y media',
-    edades: '6 a 8 años',
-    modalidad: 'Teatro',
-    objetivo: 'Juego, expresión libre y confianza'
-  },
-  {
     title: 'Garage Kids',
     description: 'Teatro para niños y niñas. Del juego a la técnica: un espacio donde se profundiza en la interpretación de forma más técnica sin perder el disfrute y la creatividad.',
     duracion: 'Curso anual (renovable)',

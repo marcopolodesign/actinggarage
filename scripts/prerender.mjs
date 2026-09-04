@@ -73,10 +73,9 @@ const ROUTES = [
   '/cursos/garage-cinema',
   '/cursos/garage-hybrid',
   '/cursos/garage-hybrid-plus',
-  '/cursos/garage-videobook',
+  '/cursos/garage-expert-cinema',
   '/cursos/garage-writing',
   '/cursos/garage-classic',
-  '/cursos/garage-mini-kids',
   '/cursos/garage-kids',
   '/cursos/garage-new-generation',
 ];

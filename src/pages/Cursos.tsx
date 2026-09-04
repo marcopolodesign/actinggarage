@@ -78,25 +78,13 @@ const Cursos: React.FC = () => {
     {
       href: '/jovenes',
       title: 'TAG para Jóvenes',
-      description: 'Programas de teatro y actuación para cada etapa: Mini Kids (6-8), Kids (9-12) y New Generation —teatro, cámara o híbrido— (13-17). Grupos pequeños, profesores en activo.',
+      description: 'Programas de teatro y actuación para cada etapa: Kids (9-12) y New Generation —teatro, cámara o híbrido— (13-17). Grupos pequeños, profesores en activo.',
       duracion: 'Curso anual',
       diasSemana: 'Según programa',
       cargaHoraria: 'Desde 1h30/semana',
-      edades: '6 a 17 años',
+      edades: '9 a 17 años',
       modalidad: 'Teatro / Cine / Híbrido según edad',
       objetivo: 'Formación por etapa de desarrollo',
-      categories: ['menores']
-    },
-    {
-      slug: 'garage-mini-kids',
-      title: 'Garage Mini Kids',
-      description: 'Teatro para niños y niñas de 6 a 8 años. Juego, desinhibición y primeras herramientas escénicas, con muestra al final de cada cuatrimestre.',
-      duracion: 'Curso anual',
-      diasSemana: 'Según grupo',
-      cargaHoraria: '1h30/semana',
-      edades: '6 a 8 años',
-      modalidad: 'Teatro',
-      objetivo: 'Confianza, expresión y trabajo en equipo',
       categories: ['menores']
     },
     {
@@ -147,8 +135,8 @@ const Cursos: React.FC = () => {
       categories: ['iniciacion']
     },
     {
-      slug: 'garage-videobook',
-      title: 'Garage Videobook Intensive',
+      slug: 'garage-expert-cinema',
+      title: 'Garage Expert Cinema',
       description: 'El curso para actores avanzados. Un año para llevar tus herramientas a maestría y salir con un videobook profesional: 3 a 5 escenas rodadas, headshots y self-tape, listo para agentes y castings.',
       duracion: 'Curso anual (sep–jun)',
       diasSemana: '2',

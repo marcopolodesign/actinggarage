@@ -1,6 +1,21 @@
 {
   "redirects": [
     {
+      "source": "/cursos/garage-videobook",
+      "destination": "/cursos/garage-expert-cinema",
+      "statusCode": 301
+    },
+    {
+      "source": "/cursos/garage-mini-kids",
+      "destination": "/cursos",
+      "statusCode": 301
+    },
+    {
+      "source": "/landing-mini-kids",
+      "destination": "/cursos",
+      "statusCode": 301
+    },
+    {
       "source": "/cursos/garage-casal",
       "destination": "/cursos",
       "statusCode": 301

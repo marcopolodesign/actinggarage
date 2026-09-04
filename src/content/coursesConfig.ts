@@ -695,18 +695,18 @@ export const coursesConfig: Record<string, CourseConfig> = {
     },
   },
 
-  'garage-videobook': {
-    slug: 'garage-videobook',
-    courseName: 'Garage Videobook Intensive',
+  'garage-expert-cinema': {
+    slug: 'garage-expert-cinema',
+    courseName: 'Garage Expert Cinema',
     eyebrow: 'Curso Anual para Actores Avanzados · Barcelona',
-    heroTitleLines: ['GARAGE', 'VIDEOBOOK', 'INTENSIVE'],
+    heroTitleLines: ['GARAGE', 'EXPERT', 'CINEMA'],
     heroQuote: '"EL ACTOR HONESTO"',
     heroDescription:
       'Curso anual para actores avanzados en Barcelona: terminas con un videobook profesional de 3 a 5 escenas rodadas, editadas y montadas, listo para agentes, castings y plataformas de la industria.',
     heroBgImage: headerBg,
     heroBgOverlayClassName: overlay,
     ctaMode: 'whatsappPlusInlineForm',
-    inlineFormSource: 'cursos_garage_videobook',
+    inlineFormSource: 'cursos_garage_expert_cinema',
     inlineFormDefaultInterest: 'teatro-cine',
     statsEmphasis: true,
     stats: [
@@ -719,7 +719,7 @@ export const coursesConfig: Record<string, CourseConfig> = {
     sections: [
       {
         id: 'why',
-        title: '¿Qué es Videobook Intensive?',
+        title: '¿Qué es Garage Expert Cinema?',
         body: [
           'No es un curso de escenas sueltas: es la culminación de tu proceso como actor. Está pensado para actores avanzados que ya dominan las herramientas técnicas y necesitan un espacio donde afilarlas, aplicarlas a material exigente y convertirlas en el material que de verdad les abre puertas: su videobook profesional.',
           'Aquí no repetimos teoría desde cero. Repasamos y llevamos a maestría todo lo trabajado en tu formación, y lo cruzamos con lo que la industria realmente pide: cómo te vendes, cómo gestionas una audición, cómo sostienes una carrera cuando el "no" es la respuesta más frecuente.',
@@ -818,10 +818,10 @@ export const coursesConfig: Record<string, CourseConfig> = {
       },
     ],
     seo: {
-      title: 'Garage Videobook Intensive — Curso para Actores Avanzados en Barcelona | TAG',
+      title: 'Garage Expert Cinema — Curso Anual para Actores Avanzados en Barcelona | TAG',
       description:
         'Curso anual para actores avanzados en Barcelona. Terminas con un videobook profesional: 3 a 5 escenas rodadas, headshots y self-tape. Grupos de máximo 10. Septiembre a junio.',
-      canonicalPath: '/cursos/garage-videobook',
+      canonicalPath: '/cursos/garage-expert-cinema',
     },
   },
 

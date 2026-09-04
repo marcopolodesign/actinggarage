@@ -32,7 +32,7 @@ const COURSES = [
   'Garage Cinema',
   'Garage Hybrid',
   'Garage Hybrid Plus',
-  'Garage Mini Kids',
+  'Garage Expert Cinema',
   'Garage Kids',
   'Garage New Generation',
   'Garage New Generation Cámara',
