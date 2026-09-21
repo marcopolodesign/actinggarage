@@ -18,6 +18,7 @@ import MetaPixel from './components/MetaPixel';
 import { captureUtms } from './utils/utm';
 import { captureReferrerSource, pushSessionPath } from './utils/journey';
 import Home from './pages/Home';
+import HomeNueva from './pages/HomeNueva';
 import Cursos from './pages/Cursos';
 import Calendario from './pages/Calendario';
 import EventoDetalle from './pages/EventoDetalle';
@@ -38,6 +39,9 @@ function AppContent() {
   const isContractPage = location.pathname.startsWith('/contrato');
   const isStandalonePage = location.pathname.startsWith('/referido');
   const isGarageWritingPage = location.pathname.startsWith('/cursos/garage-writing');
+  // La home nueva cierra con su propio bloque de captura (el escalón de email), así que
+  // no lleva el EmailFooter global: si no, quedan dos cierres seguidos pidiendo lo mismo.
+  const isHomeNueva = location.pathname === '/nueva';
 
   useEffect(() => { captureUtms(); }, [location.search]);
   // First-touch, una sola vez por carga de la app (no depende de la ruta).
@@ -51,6 +55,8 @@ function AppContent() {
       {!isContractPage && !isStandalonePage && !isGarageWritingPage && <GarageWritingCorner />}
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* Home nueva — preview de la reestructura segun el informe de LFS. No indexable. */}
+        <Route path="/nueva" element={<HomeNueva />} />
         <Route path="/cursos" element={<Cursos />} />
         <Route path="/calendario" element={<Calendario />} />
         <Route path="/calendario/:slug" element={<EventoDetalle />} />
@@ -82,7 +88,7 @@ function AppContent() {
       </Routes>
       <FormFlyout />
       <AboutFlyout />
-      {!isContractPage && !isStandalonePage && <EmailFooter />}
+      {!isContractPage && !isStandalonePage && !isHomeNueva && <EmailFooter />}
     </div>
   );
 }

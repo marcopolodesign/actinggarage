@@ -232,3 +232,26 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Home nueva (/nueva) — utilidades del acento.
+
+   Tailwind v4 ignora `tailwind.config.js` salvo que se lo importe con @config,
+   así que las clases `text-tag-yellow` / `border-tag-yellow` que hay repartidas
+   por el sitio nunca generaron nada: la única que funciona es `.bg-tag-yellow`,
+   escrita a mano más arriba con !important. El resto del sitio se las arregla
+   con `style={{ color: '#FFBE00' }}` inline.
+
+   Se declaran acá acotadas a `[data-tag-nueva]` para no cambiar el hover de
+   ninguna página en producción mientras la home nueva esté en revisión. Cuando
+   se promueva, conviene subirlas a un bloque `@theme` y borrar este.
+   ─────────────────────────────────────────────────────────────────────────── */
+[data-tag-nueva] .text-tag-yellow { color: #FFBE00; }
+[data-tag-nueva] .border-tag-yellow { border-color: #FFBE00; }
+[data-tag-nueva] .hover\:text-tag-yellow:hover { color: #FFBE00; }
+[data-tag-nueva] .hover\:bg-tag-yellow:hover { background-color: #FFBE00; }
+[data-tag-nueva] .group:hover .group-hover\:text-tag-yellow { color: #FFBE00; }
+
+/* Los saltos de «Estudiar en TAG» tienen que dejar la sección por debajo de la
+   barra de convocatoria + el header, que suman ~106 px y van fijos. */
+[data-tag-nueva] section[id] { scroll-margin-top: 112px; }
