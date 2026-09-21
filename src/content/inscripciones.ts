@@ -10,7 +10,7 @@
  * cambia en los dos lados.
  *
  * 🔴 PENDIENTE DE TAG (los campos vacíos no se pintan):
- *   - `puertasAbiertas.fecha` / `.hora`  → jornada de puertas abiertas o clase de prueba
+ *   - `puertasAbiertas.fecha` / `.hora`  → jornada de puertas abiertas
  *   - `precio.rango` / `.formaPago`       → decisión de la escuela
  *   - `hablaConUnAlumno.url`              → alumnos voluntarios de Garage Pro
  */
@@ -47,13 +47,17 @@ export type Peldano = {
   que: string;
   /** Qué pasa después de hacerlo — el informe marcaba que los CTA de TAG no lo dicen. */
   despues: string;
-  accion: 'email' | 'prueba' | 'alumno' | 'entrevista';
+  accion: 'email' | 'alumno' | 'entrevista';
 };
 
 /**
- * La escalera de compromiso. LFS tiene cuatro peldaños y TAG dos, los dos altos
- * (WhatsApp con un comercial o dejar el teléfono). Cada peldaño pide menos que el
- * siguiente, así que el que está mirando en enero para septiembre tiene dónde entrar.
+ * La escalera de compromiso. TAG tenía dos peldaños y los dos altos (WhatsApp con un
+ * comercial o dejar el teléfono). Cada peldaño pide menos que el siguiente, así que el
+ * que está mirando en enero para septiembre tiene dónde entrar.
+ *
+ * 🔴 Son TRES, no cuatro. El peldaño de «clase de prueba» se sacó el 2026-09-21 porque
+ * **TAG no hace clases de prueba** — lo avisó Tony por mail. Estaba en la página, y
+ * además era el CTA principal del hero. Si alguna vez se ofrecen, vuelve acá como 02.
  */
 export const escalera: Peldano[] = [
   {
@@ -64,26 +68,19 @@ export const escalera: Peldano[] = [
     // sólo email, el texto dice lo que de verdad pasa.
     n: '01',
     titulo: 'Recibe el calendario',
-    que: 'Las fechas del curso 2026/27, los horarios de cada formación y cuándo son las clases de prueba.',
+    que: 'Las fechas del curso 2026/27, los horarios de cada formación y hasta cuándo quedan plazas.',
     despues: 'Te lo mandamos por email el mismo día.',
     accion: 'email',
   },
   {
     n: '02',
-    titulo: 'Ven a una clase de prueba',
-    que: 'Una clase real, con el grupo y el profesor con los que estudiarías.',
-    despues: 'Reservas día y hora. Vienes, y decides después.',
-    accion: 'prueba',
-  },
-  {
-    n: '03',
     titulo: 'Habla con un alumno',
     que: 'Alguien que está cursando ahora te cuenta cómo es el día a día, sin nadie de la escuela en el medio.',
     despues: 'Te ponemos en contacto directo.',
     accion: 'alumno',
   },
   {
-    n: '04',
+    n: '03',
     titulo: 'Pide tu plaza',
     que: 'Entrevista con la dirección de la escuela para ver qué formación te corresponde.',
     despues: 'Media hora de charla y, si encaja, reservas la plaza.',
@@ -126,7 +123,7 @@ export const faqs: Faq[] = [
   {
     pregunta: '¿Dónde está la escuela?',
     respuesta:
-      'En el Carrer de Londres, en el Eixample de Barcelona. Todas las formaciones son presenciales, salvo Garage Writing, que es online.',
+      'En el Carrer de Londres, 9, en el Eixample de Barcelona. Todas las formaciones son presenciales, salvo Garage Writing, que es online.',
   },
 ];
 

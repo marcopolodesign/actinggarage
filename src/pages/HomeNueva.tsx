@@ -103,7 +103,7 @@ const HomeNueva: React.FC = () => {
           <p className="text-tag-yellow text-[11px] md:text-xs uppercase tracking-[0.18em] md:tracking-[0.22em] font-bold mb-4 md:mb-5">
             <span className="md:hidden">Interpretación · Barcelona</span>
             <span className="hidden md:inline">
-              Escuela de interpretación · Carrer de Londres, Barcelona
+              Escuela de interpretación · Carrer de Londres 9, Barcelona
             </span>
           </p>
 
@@ -129,7 +129,7 @@ const HomeNueva: React.FC = () => {
               onClick={() => openFlyout()}
               className="bg-tag-yellow text-black px-6 md:px-8 py-4 md:py-5 font-druk text-base md:text-lg uppercase tracking-tight hover:bg-white transition-colors duration-300 flex items-center justify-between gap-6"
             >
-              Reservar una clase de prueba
+              Hablar con la escuela
               <Flecha />
             </button>
             <a
@@ -210,7 +210,7 @@ const HomeNueva: React.FC = () => {
             Esto es lo que vas a ver el primer día
           </h2>
           <p className="font-garamond text-white/70 text-xl mt-5 max-w-[52ch] leading-snug">
-            Estamos en el Carrer de Londres, en el Eixample. Aulas para ensayar, plató de
+            Estamos en el Carrer de Londres, 9, en el Eixample. Aulas para ensayar, plató de
             cámara y profesores que siguen trabajando en activo.
           </p>
         </div>
@@ -305,7 +305,7 @@ const HomeNueva: React.FC = () => {
                   onClick={() => openFlyout()}
                   className="bg-tag-yellow text-black px-5 py-3 text-xs uppercase tracking-[0.12em] font-bold hover:bg-white transition-colors duration-300 flex items-center gap-3"
                 >
-                  {p.accion === 'email' ? 'Recibirlo' : p.accion === 'prueba' ? 'Reservar' : p.accion === 'alumno' ? 'Que me escriban' : 'Pedir entrevista'}
+                  {p.accion === 'email' ? 'Recibirlo' : p.accion === 'alumno' ? 'Que me escriban' : 'Pedir entrevista'}
                   <Flecha />
                 </button>
               </div>
@@ -454,8 +454,8 @@ const HomeNueva: React.FC = () => {
               Llévate las fechas
             </h2>
             <p className="font-garamond text-xl md:text-2xl mt-5 max-w-[46ch] leading-snug">
-              Horarios de cada formación, cuándo son las clases de prueba y hasta cuándo hay
-              plazas. Te llega por email y no te llama nadie.
+              Horarios de cada formación, fechas de inicio y hasta cuándo quedan plazas.
+              Te lo mandamos por email el mismo día.
             </p>
           </div>
           <button
@@ -469,7 +469,7 @@ const HomeNueva: React.FC = () => {
       </section>
 
       <footer className="px-5 md:px-8 py-12 text-white/45 text-xs font-mdio flex flex-wrap gap-x-8 gap-y-3 justify-between">
-        <span>The Acting Garage · Carrer de Londres, Barcelona</span>
+        <span>The Acting Garage · Carrer de Londres, 9 · Barcelona</span>
         <span style={{ color: YELLOW }}>Convocatoria {CURSO} abierta</span>
       </footer>
     </div>
