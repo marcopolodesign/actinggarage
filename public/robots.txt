@@ -12,3 +12,7 @@ Sitemap: https://www.theactinggarage.com/sitemap.xml
 # Disallow admin or private areas (if any in future)
 # Disallow: /admin/
 
+# /nueva es la home reestructurada en revision. No se prerenderiza, asi que el
+# noindex de Helmet llega recien cuando el bot ejecuta el JS: esto lo cubre antes.
+Disallow: /nueva
+
