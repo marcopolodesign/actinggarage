@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HeaderNueva from '../components/HeaderNueva';
+import ProximosEventos from '../components/ProximosEventos';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { useAboutFlyout } from '../context/AboutFlyoutContext';
 import {
@@ -265,6 +266,14 @@ const HomeNueva: React.FC = () => {
         </section>
       )}
 
+      {/* ───────────── 5b · AGENDA — novedades fechadas como señal de vida ─────────────
+          Era el punto 10 del embudo del informe y se me habia pasado: el componente ya
+          existe, se alimenta solo de la tabla `events` y **no pinta nada si no hay
+          fechas publicadas**, asi que no puede quedar una seccion de agenda vacia. */}
+      <div className="border-b border-white/10">
+        <ProximosEventos />
+      </div>
+
       {/* ───────────── 6 · INSCRIPCIONES — cómo se entra, en cuatro peldaños ───────────── */}
       <section id="inscripciones" className="px-5 md:px-8 py-20 md:py-28 border-b border-white/10">
         <Rotulo>Inscripciones {CURSO}</Rotulo>
@@ -322,7 +331,9 @@ const HomeNueva: React.FC = () => {
 
       {/* ───────────── 7 · FECHAS CLAVE ───────────── */}
       <section id="fechas" className="px-5 md:px-8 py-20 md:py-28 border-b border-white/10">
-        <Rotulo>Calendario</Rotulo>
+        {/* «Convocatoria», no «Calendario»: el calendario de eventos es el bloque de
+            Próximas fechas de más arriba. Esto es el inicio y el fin del curso. */}
+        <Rotulo>Convocatoria</Rotulo>
         <h2 className="font-druk uppercase text-5xl md:text-7xl leading-[0.9] tracking-tight max-w-[16ch]">
           Fechas clave
         </h2>

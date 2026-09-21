@@ -57,10 +57,15 @@ export type Peldano = {
  */
 export const escalera: Peldano[] = [
   {
+    // 🔴 Este peldaño todavía NO es de baja fricción: los dos formularios del sitio
+    // (`FormFlyout` e `InlineLeadForm`) piden el teléfono como obligatorio. Decía
+    // «Te llega un email. No te llama nadie.» y eso era falso — justo el problema
+    // que el informe marca en el punto 7 de copy. Hasta que exista una captura de
+    // sólo email, el texto dice lo que de verdad pasa.
     n: '01',
     titulo: 'Recibe el calendario',
     que: 'Las fechas del curso 2026/27, los horarios de cada formación y cuándo son las clases de prueba.',
-    despues: 'Te llega un email. No te llama nadie.',
+    despues: 'Te lo mandamos por email el mismo día.',
     accion: 'email',
   },
   {
