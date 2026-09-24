@@ -525,6 +525,13 @@ const HomeNueva: React.FC = () => {
                 <a href="tel:+34682560187" className="text-white hover:text-tag-yellow transition-colors">
                   +34 682 56 01 87
                 </a>
+                <span className="text-white/40"> · móvil y WhatsApp</span>
+              </li>
+              <li>
+                <a href="tel:+34933398307" className="text-white hover:text-tag-yellow transition-colors">
+                  933 398 307
+                </a>
+                <span className="text-white/40"> · fijo</span>
               </li>
               <li>
                 <a href="mailto:hola@theactinggarage.com" className="hover:text-tag-yellow transition-colors">
