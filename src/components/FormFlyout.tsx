@@ -8,6 +8,7 @@ import { getMetaAttribution } from '../utils/metaAttribution';
 import { supabase } from '../lib/supabase';
 import { trackFormConversion } from '../utils/trackConversion';
 import { computeAge } from '../utils/age';
+import { AvisoMenores, CasillaPrivacidad, esMenor } from './FormLegal';
 import { gsap } from 'gsap';
 import './FormFlyout.css';
 
@@ -62,6 +63,7 @@ const FormFlyout: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [crmRef, setCrmRef] = useState<{ name: string; id: string } | null>(null);
+  const [aceptaPrivacidad, setAceptaPrivacidad] = useState(false);
 
   const waUrl = useMemo(() => buildWhatsAppUrl(
     `Hola TAG! Acabo de registrarme en vuestra web${formData.course ? ` para el curso ${formData.course}` : ''} y me gustaría recibir más información.`,
@@ -313,6 +315,7 @@ const FormFlyout: React.FC = () => {
             course: ''
           });
           setUserEmail('');
+          setAceptaPrivacidad(false);
         }, 8000);
       } else {
         throw new Error(result.message);
@@ -496,23 +499,6 @@ const FormFlyout: React.FC = () => {
                 </div>
               </div>
 
-              {/* Gender */}
-              <div className="form-group">
-                <label htmlFor="gender">GÉNERO</label>
-                <select
-                  id="gender"
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                  className="form-input"
-                >
-                  <option value="">Seleccionar...</option>
-                  <option value="masculino">Masculino</option>
-                  <option value="femenino">Femenino</option>
-                  <option value="no_especificado">No especificado</option>
-                </select>
-              </div>
-
               {/* Course */}
               <div className="form-group">
                 <label htmlFor="course">¿QUÉ CURSO TE INTERESA?</label>
@@ -530,10 +516,21 @@ const FormFlyout: React.FC = () => {
                 </select>
               </div>
 
+              {esMenor(formData.course, formData.birthday) && (
+                <AvisoMenores className="text-black/80 mb-3" />
+              )}
+
+              <CasillaPrivacidad
+                id="flyout-privacidad"
+                checked={aceptaPrivacidad}
+                onChange={setAceptaPrivacidad}
+                className="text-black mb-4"
+              />
+
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isSubmitting || !formData.interests}
+                disabled={isSubmitting || !formData.interests || !aceptaPrivacidad}
                 className="submit-button"
               >
                 {isSubmitting ? 'ENVIANDO...' : 'ENVIAR'}

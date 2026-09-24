@@ -3,6 +3,7 @@ import { submitForm } from '../api/submitForm';
 import { getUtms, getLandingPage } from '../utils/utm';
 import { getReferrerSource, getSessionPath } from '../utils/journey';
 import { trackFormConversion } from '../utils/trackConversion';
+import { AvisoMenores, CasillaPrivacidad, esMenor } from './FormLegal';
 
 // Formulario de captura embebido en una landing.
 //
@@ -73,11 +74,13 @@ const InlineLeadForm: React.FC<InlineLeadFormProps> = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [aceptaPrivacidad, setAceptaPrivacidad] = useState(false);
 
   // Al navegar entre landings el componente se reutiliza: resetear.
   useEffect(() => {
     setFormData({ email: '', name: '', phone: '', birthday: '', interests: defaultInterest, gender: '' });
     setSubmitted(false);
+    setAceptaPrivacidad(false);
   }, [source, defaultInterest]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -211,24 +214,20 @@ const InlineLeadForm: React.FC<InlineLeadFormProps> = ({
             </div>
           </div>
 
-          <div>
-            <label className={LABEL_CLASS}>Género</label>
-            <select
-              value={formData.gender}
-              onChange={e => setFormData(p => ({ ...p, gender: e.target.value }))}
-              className={`${INPUT_CLASS} appearance-none`}
-              style={{ colorScheme: 'dark' }}
-            >
-              <option value="">Seleccionar...</option>
-              <option value="masculino">Masculino</option>
-              <option value="femenino">Femenino</option>
-              <option value="no_especificado">No especificado</option>
-            </select>
-          </div>
+          {esMenor(courseName, formData.birthday) && <AvisoMenores className="text-white/60" />}
+
+          <CasillaPrivacidad
+            id={'inline-privacidad-' + source}
+            checked={aceptaPrivacidad}
+            onChange={setAceptaPrivacidad}
+            className="text-white/70"
+            linkClassName="underline text-tag-yellow"
+            accent="#FFBE00"
+          />
 
           <button
             type="submit"
-            disabled={isSubmitting || !formData.interests}
+            disabled={isSubmitting || !formData.interests || !aceptaPrivacidad}
             className="w-full bg-tag-yellow text-black font-druk text-lg uppercase py-4 hover:bg-white transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed mt-2"
           >
             {isSubmitting ? 'ENVIANDO...' : 'QUIERO MÁS INFORMACIÓN'}

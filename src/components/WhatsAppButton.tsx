@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { buildCampaignWhatsAppUrl } from '../utils/utm';
 import { trackWhatsappClick } from '../utils/trackWhatsapp';
+import { useConsent } from '../lib/consent';
 
 const WhatsAppButton: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  // En móvil el botón tapaba el «Aceptar» del aviso de cookies: no aparece hasta
+  // que la persona eligió.
+  const cookiesResueltas = useConsent() !== null;
+  const isVisible = scrolled && cookiesResueltas;
 
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 500;
-      setIsVisible(scrolled);
+      setScrolled(scrolled);
     };
 
     window.addEventListener('scroll', handleScroll);
