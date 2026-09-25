@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import HeaderNueva from '../components/HeaderNueva';
+import RecibirCalendario from '../components/RecibirCalendario';
 import ProximosEventos from '../components/ProximosEventos';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { useAboutFlyout } from '../context/AboutFlyoutContext';
@@ -16,7 +17,7 @@ import {
   fotosEscuela,
   incluido,
   muestras,
-  precio,
+  formaPago,
   puertasAbiertas,
 } from '../content/inscripciones';
 
@@ -80,6 +81,7 @@ const Flecha: React.FC<{ className?: string }> = ({ className }) => (
 const HomeNueva: React.FC = () => {
   const { openFlyout } = useFormFlyout();
   const { openFlyout: openAboutFlyout } = useAboutFlyout();
+  const [calendarioAbierto, setCalendarioAbierto] = useState(false);
 
   const hayPuertasAbiertas = Boolean(puertasAbiertas.fecha);
 
@@ -99,6 +101,7 @@ const HomeNueva: React.FC = () => {
       </Helmet>
 
       <HeaderNueva />
+      <RecibirCalendario open={calendarioAbierto} onClose={() => setCalendarioAbierto(false)} />
 
       {/* ───────────── 1 · HERO — la promesa es del alumno, no de la marca ───────────── */}
       {/* En mobile el hero no va a pantalla completa ni pegado abajo: el banner de
@@ -313,10 +316,10 @@ const HomeNueva: React.FC = () => {
               </div>
               <div className="md:col-span-2 flex md:justify-end items-start">
                 <button
-                  onClick={() => openFlyout()}
+                  onClick={() => (p.accion === 'email' ? setCalendarioAbierto(true) : openFlyout())}
                   className="bg-tag-yellow text-black px-5 py-3 text-xs uppercase tracking-[0.12em] font-bold hover:bg-white transition-colors duration-300 flex items-center gap-3"
                 >
-                  {p.accion === 'email' ? 'Recibirlo' : p.accion === 'alumno' ? 'Que me escriban' : 'Pedir entrevista'}
+                  {p.accion === 'email' ? 'Recibirlo' : 'Pedir entrevista'}
                   <Flecha />
                 </button>
               </div>
@@ -324,19 +327,17 @@ const HomeNueva: React.FC = () => {
           ))}
         </ol>
 
-        {/* Precio — mientras TAG no publique número, se publica la política */}
+        {/* Forma de pago — TAG no publica precios (reunión 25/09): mensaje de inclusión */}
         <div className="mt-12 max-w-[62ch]">
-          <h3 className="font-druk uppercase text-2xl tracking-tight">Precio y forma de pago</h3>
-          {precio.rango ? (
-            <p className="font-garamond text-xl text-white/80 mt-3 leading-snug">
-              {precio.rango}. {precio.formaPago}
-            </p>
-          ) : (
-            <p className="font-garamond text-xl text-white/80 mt-3 leading-snug">
-              Te lo pasamos por escrito en la primera respuesta, con la matrícula, las cuotas
-              y qué entra en cada formación. Sin tener que llamar a nadie para saberlo.
-            </p>
-          )}
+          <h3 className="font-druk uppercase text-2xl tracking-tight">{formaPago.titulo}</h3>
+          <p className="font-garamond text-xl text-white/80 mt-3 leading-snug">{formaPago.texto}</p>
+          <button
+            onClick={() => openFlyout()}
+            className="mt-5 border-2 border-tag-yellow text-tag-yellow px-5 py-3 text-xs uppercase tracking-[0.12em] font-bold hover:bg-tag-yellow hover:text-black transition-colors duration-300 inline-flex items-center gap-3"
+          >
+            Escribirnos
+            <Flecha />
+          </button>
         </div>
       </section>
 
@@ -470,7 +471,7 @@ const HomeNueva: React.FC = () => {
             </p>
           </div>
           <button
-            onClick={() => openFlyout()}
+            onClick={() => setCalendarioAbierto(true)}
             className="shrink-0 bg-black text-tag-yellow px-10 py-7 font-druk text-2xl md:text-4xl uppercase tracking-tight hover:bg-white hover:text-black transition-colors duration-300 flex items-center gap-8"
           >
             Recibirlo
