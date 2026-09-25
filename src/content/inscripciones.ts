@@ -11,8 +11,7 @@
  *
  * 🔴 PENDIENTE DE TAG (los campos vacíos no se pintan):
  *   - `puertasAbiertas.fecha` / `.hora`  → jornada de puertas abiertas
- *   - `precio.rango` / `.formaPago`       → decisión de la escuela
- *   - `hablaConUnAlumno.url`              → alumnos voluntarios de Garage Pro
+ *   - precio: NO se publica (reunión 25/09) — ver `formaPago`
  */
 
 export const CURSO = '2026/27';
@@ -47,7 +46,7 @@ export type Peldano = {
   que: string;
   /** Qué pasa después de hacerlo — el informe marcaba que los CTA de TAG no lo dicen. */
   despues: string;
-  accion: 'email' | 'alumno' | 'entrevista';
+  accion: 'email' | 'entrevista';
 };
 
 /**
@@ -55,32 +54,24 @@ export type Peldano = {
  * comercial o dejar el teléfono). Cada peldaño pide menos que el siguiente, así que el
  * que está mirando en enero para septiembre tiene dónde entrar.
  *
- * 🔴 Son TRES, no cuatro. El peldaño de «clase de prueba» se sacó el 2026-09-21 porque
- * **TAG no hace clases de prueba** — lo avisó Tony por mail. Estaba en la página, y
- * además era el CTA principal del hero. Si alguna vez se ofrecen, vuelve acá como 02.
+ * 🔴 Son DOS. Se sacaron:
+ *   - «Clase de prueba» (2026-09-21): TAG no hace clases de prueba — lo avisó Tony.
+ *   - «Habla con un alumno» (2026-09-25): decidido en la reunión con la escuela;
+ *     coordinarlo con alumnos voluntarios era demasiado complejo.
+ *
+ * El 01 ahora sí es de baja fricción: abre RecibirCalendario, que pide sólo el email
+ * y manda el PDF por Resend (api/enviar-calendario.js).
  */
 export const escalera: Peldano[] = [
   {
-    // 🔴 Este peldaño todavía NO es de baja fricción: los dos formularios del sitio
-    // (`FormFlyout` e `InlineLeadForm`) piden el teléfono como obligatorio. Decía
-    // «Te llega un email. No te llama nadie.» y eso era falso — justo el problema
-    // que el informe marca en el punto 7 de copy. Hasta que exista una captura de
-    // sólo email, el texto dice lo que de verdad pasa.
     n: '01',
     titulo: 'Recibe el calendario',
     que: 'Las fechas del curso 2026/27, los horarios de cada formación y hasta cuándo quedan plazas.',
-    despues: 'Te lo mandamos por email el mismo día.',
+    despues: 'Sólo te pedimos el email. Te llega al momento.',
     accion: 'email',
   },
   {
     n: '02',
-    titulo: 'Habla con un alumno',
-    que: 'Alguien que está cursando ahora te cuenta cómo es el día a día, sin nadie de la escuela en el medio.',
-    despues: 'Te ponemos en contacto directo.',
-    accion: 'alumno',
-  },
-  {
-    n: '03',
     titulo: 'Pide tu plaza',
     que: 'Entrevista con la dirección de la escuela para ver qué formación te corresponde.',
     despues: 'Media hora de charla y, si encaja, reservas la plaza.',
@@ -152,14 +143,16 @@ export const puertasAbiertas: { fecha: string; hora: string; que: string } = {
   que: 'Conoce las aulas, el plató y a los profesores. Sin compromiso y sin que nadie te venda nada.',
 };
 
-/** 🔴 Lo decide TAG. Mientras `rango` esté vacío, se muestra la política, no el número. */
-export const precio: { rango: string; formaPago: string } = {
-  rango: '',
-  formaPago: '',
+/**
+ * Forma de pago. 🔴 TAG NO publica precios ni rangos (reunión del 25/09/2026): sólo,
+ * quizá, los de cursos cortos y dentro de una campaña. En la web va un mensaje de
+ * inclusión. Ver «Precios» en ~/Local/TAG/CLAUDE.md.
+ */
+export const formaPago: { titulo: string; texto: string } = {
+  titulo: 'No queremos dejar a nadie fuera',
+  texto:
+    'Si quieres ser parte de TAG, podrás serlo. Escríbenos y vemos juntos cómo podemos ayudarte con la forma de pago.',
 };
-
-/** 🔴 Lo arma TAG con dos o tres alumnos voluntarios de Garage Pro. */
-export const hablaConUnAlumno: { url: string } = { url: '' };
 
 export type Alumni = {
   nombre: string;
