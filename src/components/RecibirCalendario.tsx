@@ -44,7 +44,9 @@ const RecibirCalendario: React.FC<{ open: boolean; onClose: () => void }> = ({ o
     try {
       const r = await submitForm({
         email,
-        name: '',
+        // `prospects.name` es NOT NULL y este peldaño no pide nombre: va la parte del
+        // email antes de la @, que en el admin se lee mejor que un vacío o un «-».
+        name: email.split('@')[0],
         phone: '',
         birthday: '',
         interests: '',
