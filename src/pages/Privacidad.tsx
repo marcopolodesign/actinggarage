@@ -113,7 +113,9 @@ const Privacidad: React.FC = () => (
 
         <Section title="8. Cookies">
           <p>Nuestra web utiliza cookies técnicas necesarias para su funcionamiento y cookies analíticas para medir el rendimiento. También utilizamos el píxel de Meta y el seguimiento de Google Ads para medir el retorno de nuestra inversión publicitaria.</p>
-          <p>Al seguir navegando en nuestra web, aceptas el uso de estas cookies conforme a esta política.</p>
+          <p>Las cookies de análisis y de publicidad sólo se activan si las aceptas en el aviso de cookies, y puedes cambiar tu elección cuando quieras. El detalle está en la{' '}
+            <Link to="/cookies" className="underline text-black">política de cookies</Link>.
+          </p>
         </Section>
 
         <Section title="9. Seguridad">

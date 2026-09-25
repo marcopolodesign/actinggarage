@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useConsent } from '../lib/consent';
+import { CasillaPrivacidad } from './FormLegal';
 import { submitForm } from '../api/submitForm';
 import { getUtms, getLandingPage, buildWhatsAppUrl } from '../utils/utm';
 import { getReferrerSource, getSessionPath } from '../utils/journey';
@@ -59,6 +61,7 @@ const LeadPopup: React.FC = () => {
   const [interests, setInterests] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [aceptaPrivacidad, setAceptaPrivacidad] = useState(false);
 
   const waUrl = useMemo(() => buildWhatsAppUrl(
     'Hola TAG! Acabo de registrarme en vuestra web y me gustaría recibir más información sobre los cursos.',
@@ -66,7 +69,14 @@ const LeadPopup: React.FC = () => {
     'Hola TAG! Os vi en Instagram y acabo de dejar mis datos. Me gustaría recibir más info sobre los cursos.'
   ), []);
 
+  // Nunca a la vez que el aviso de cookies: el reloj arranca recién cuando la
+  // persona eligió (aceptar, rechazar o configurar). Antes salían los dos juntos
+  // al entrar, uno encima del otro.
+  const consent = useConsent();
+  const cookiesResueltas = consent !== null;
+
   useEffect(() => {
+    if (!cookiesResueltas) return;
     if (window.location.pathname.startsWith('/referido')) return;
 
     const seen = localStorage.getItem(STORAGE_KEY);
@@ -88,7 +98,7 @@ const LeadPopup: React.FC = () => {
     }, DELAY_MS);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [cookiesResueltas]);
 
   const handleClose = () => {
     localStorage.setItem(STORAGE_KEY, String(Date.now()));
@@ -358,9 +368,18 @@ const LeadPopup: React.FC = () => {
                 </div>
               </div>
 
+              <CasillaPrivacidad
+                id="popup-privacidad"
+                checked={aceptaPrivacidad}
+                onChange={setAceptaPrivacidad}
+                className="text-white/70 mt-2"
+                linkClassName="underline text-tag-yellow"
+                accent="#FFBE00"
+              />
+
               <button
                 type="submit"
-                disabled={submitting || !interests}
+                disabled={submitting || !interests || !aceptaPrivacidad}
                 style={{
                   background: '#FFBE00',
                   color: '#111',
@@ -370,9 +389,9 @@ const LeadPopup: React.FC = () => {
                   fontSize: '1rem',
                   fontWeight: 900,
                   letterSpacing: '0.12em',
-                  cursor: submitting || !interests ? 'not-allowed' : 'pointer',
+                  cursor: submitting || !interests || !aceptaPrivacidad ? 'not-allowed' : 'pointer',
                   marginTop: '0.5rem',
-                  opacity: submitting || !interests ? 0.5 : 1,
+                  opacity: submitting || !interests || !aceptaPrivacidad ? 0.5 : 1,
                 }}
               >
                 {submitting ? 'ENVIANDO...' : 'QUIERO INFO'}

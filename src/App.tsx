@@ -9,7 +9,7 @@ import AutoOpenForm from './components/AutoOpenForm';
 import LeadPopup from './components/LeadPopup';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
-import EulaDisclaimer from './components/EulaDisclaimer';
+import CookieConsent from './components/CookieConsent';
 import EmailFooter from './components/EmailFooter';
 import WhatsAppButton from './components/WhatsAppButton';
 import GarageWritingCorner from './components/GarageWritingCorner';
@@ -32,6 +32,7 @@ import Referido from './pages/Referido';
 import ContratoFirma from './pages/ContratoFirma';
 import Privacidad from './pages/Privacidad';
 import Terminos from './pages/Terminos';
+import Cookies from './pages/Cookies';
 import './App.css';
 
 function AppContent() {
@@ -85,6 +86,7 @@ function AppContent() {
         <Route path="/referido" element={<Referido />} />
         <Route path="/privacidad" element={<Privacidad />} />
         <Route path="/terminos" element={<Terminos />} />
+        <Route path="/cookies" element={<Cookies />} />
       </Routes>
       <FormFlyout />
       <AboutFlyout />
@@ -109,7 +111,7 @@ function App() {
           <MetaPixel />
           <ScrollToTop />
           <PageTransition />
-          <EulaDisclaimer />
+          <CookieConsent />
           <AutoOpenForm />
           <LeadPopup />
           <AppContent />

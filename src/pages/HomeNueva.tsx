@@ -5,6 +5,7 @@ import HeaderNueva from '../components/HeaderNueva';
 import ProximosEventos from '../components/ProximosEventos';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import { useAboutFlyout } from '../context/AboutFlyoutContext';
+import { openConsentSettings } from '../lib/consent';
 import {
   CURSO,
   alumni,
@@ -42,6 +43,22 @@ import {
 
 const YELLOW = '#FFBE00';
 
+/** Las formaciones que ofrece la home — misma lista en la sección de cursos y en el pie. */
+const FORMACIONES = [
+
+  { slug: 'garage-pro', nombre: 'Garage Pro', desc: 'Formación profesional de interpretación · 3 años · 16 h/semana', grupo: 'Máx. 14' },
+  { slug: 'garage-hybrid-plus', nombre: 'Garage Hybrid Plus', desc: 'Teatro y cine para profesionalizarse · 3 años · 8 h/semana', grupo: 'Máx. 14' },
+  { slug: 'garage-hybrid', nombre: 'Garage Hybrid', desc: 'Teatro y cine combinados · 3 años · 4 h/semana', grupo: 'Máx. 12' },
+  { slug: 'garage-theatre', nombre: 'Garage Theatre', desc: 'Interpretación teatral desde cero · 3 años · 2 h/semana', grupo: 'Máx. 12' },
+  { slug: 'garage-cinema', nombre: 'Garage Cinema', desc: 'Interpretación a cámara desde cero · 3 años · 2 h/semana', grupo: 'Máx. 12' },
+  { slug: 'garage-new-generation', nombre: 'Garage New Generation', desc: 'Teatro y cine para adolescentes · 13 a 17 años', grupo: 'Máx. 12' },
+  { slug: 'garage-kids', nombre: 'Garage Kids', desc: 'Teatro para chicos · 9 a 12 años', grupo: 'Máx. 12' },
+  { slug: 'garage-mini-kids', nombre: 'Garage Mini Kids', desc: 'Juego teatral · 5 a 8 años', grupo: 'Máx. 12' },
+  { slug: 'garage-writing', nombre: 'Garage Writing', desc: 'Escritura para cine y teatro · online', grupo: '' },
+];
+
+
+
 /** Rótulo de sección: cajita que sobresale como una pestaña, al estilo LFS. */
 const Rotulo: React.FC<{ children: React.ReactNode; oscuro?: boolean }> = ({ children, oscuro }) => (
   <span
@@ -74,7 +91,11 @@ const HomeNueva: React.FC = () => {
           name="description"
           content={`Escuela de interpretación para cine y teatro en Barcelona. Convocatoria ${CURSO} abierta: empieza el 14 de septiembre. Grupos de 14 alumnos, tres años de formación y muestra abierta al público en cada asignatura.`}
         />
+        {/* Mientras esté en /nueva: noindex (y bloqueada en robots.txt). Al publicarla en
+            «/» se borra este noindex y la línea «Disallow: /nueva» de robots.txt — la
+            canonical ya apunta a la raíz. Ver docs/publicar-home-nueva.md. */}
         <meta name="robots" content="noindex" />
+        <link rel="canonical" href="https://www.theactinggarage.com/" />
       </Helmet>
 
       <HeaderNueva />
@@ -165,17 +186,7 @@ const HomeNueva: React.FC = () => {
         </h2>
 
         <div className="mt-12 border-t border-white/15">
-          {[
-            { slug: 'garage-pro', nombre: 'Garage Pro', desc: 'Formación profesional de interpretación · 3 años · 16 h/semana', grupo: 'Máx. 14' },
-            { slug: 'garage-hybrid-plus', nombre: 'Garage Hybrid Plus', desc: 'Teatro y cine para profesionalizarse · 3 años · 8 h/semana', grupo: 'Máx. 14' },
-            { slug: 'garage-hybrid', nombre: 'Garage Hybrid', desc: 'Teatro y cine combinados · 3 años · 4 h/semana', grupo: 'Máx. 12' },
-            { slug: 'garage-theatre', nombre: 'Garage Theatre', desc: 'Interpretación teatral desde cero · 3 años · 2 h/semana', grupo: 'Máx. 12' },
-            { slug: 'garage-cinema', nombre: 'Garage Cinema', desc: 'Interpretación a cámara desde cero · 3 años · 2 h/semana', grupo: 'Máx. 12' },
-            { slug: 'garage-new-generation', nombre: 'Garage New Generation', desc: 'Teatro y cine para adolescentes · 13 a 17 años', grupo: 'Máx. 12' },
-            { slug: 'garage-kids', nombre: 'Garage Kids', desc: 'Teatro para chicos · 9 a 12 años', grupo: 'Máx. 12' },
-            { slug: 'garage-mini-kids', nombre: 'Garage Mini Kids', desc: 'Juego teatral · 5 a 8 años', grupo: 'Máx. 12' },
-            { slug: 'garage-writing', nombre: 'Garage Writing', desc: 'Escritura para cine y teatro · online', grupo: '' },
-          ].map((c) => (
+          {FORMACIONES.map((c) => (
             <Link
               key={c.slug}
               to={`/cursos/${c.slug}`}
@@ -468,9 +479,97 @@ const HomeNueva: React.FC = () => {
         </div>
       </section>
 
-      <footer className="px-5 md:px-8 py-12 text-white/45 text-xs font-mdio flex flex-wrap gap-x-8 gap-y-3 justify-between">
-        <span>The Acting Garage · Carrer de Londres, 9 · Barcelona</span>
-        <span style={{ color: YELLOW }}>Convocatoria {CURSO} abierta</span>
+      {/* Pie: lo que alguien busca al final de la página cuando ya decidió escribir —
+          cursos, cómo llegar, cómo contactar— y los enlaces legales. El horario de
+          secretaría y los textos legales definitivos los pasa la escuela. */}
+      <footer className="px-5 md:px-8 pt-14 pb-10 text-white/60 font-mdio text-sm border-t border-white/10">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="text-tag-yellow text-[11px] uppercase tracking-[0.2em] font-bold mb-4">Cursos</p>
+            <ul className="space-y-2">
+              {FORMACIONES.map((c) => (
+                <li key={c.slug}>
+                  <Link to={`/cursos/${c.slug}`} className="hover:text-tag-yellow transition-colors">
+                    {c.nombre}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/cursos" className="text-white hover:text-tag-yellow transition-colors">
+                  Ver todos los cursos
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-tag-yellow text-[11px] uppercase tracking-[0.2em] font-bold mb-4">Dónde estamos</p>
+            <address className="not-italic space-y-2">
+              <span className="block text-white">Carrer de Londres, 9</span>
+              <span className="block">08029 Barcelona</span>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=The+Acting+Garage+Carrer+de+Londres+9+Barcelona"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block underline hover:text-tag-yellow transition-colors"
+              >
+                Cómo llegar en Google Maps
+              </a>
+            </address>
+          </div>
+
+          <div>
+            <p className="text-tag-yellow text-[11px] uppercase tracking-[0.2em] font-bold mb-4">Contacto</p>
+            <ul className="space-y-2">
+              <li>
+                <a href="tel:+34682560187" className="text-white hover:text-tag-yellow transition-colors">
+                  +34 682 56 01 87
+                </a>
+                <span className="text-white/40"> · móvil y WhatsApp</span>
+              </li>
+              <li>
+                <a href="tel:+34933398307" className="text-white hover:text-tag-yellow transition-colors">
+                  933 398 307
+                </a>
+                <span className="text-white/40"> · fijo</span>
+              </li>
+              <li>
+                <a href="mailto:hola@theactinggarage.com" className="hover:text-tag-yellow transition-colors">
+                  hola@theactinggarage.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/theactinggarage/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-tag-yellow transition-colors"
+                >
+                  Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-tag-yellow text-[11px] uppercase tracking-[0.2em] font-bold mb-4">Legal</p>
+            <ul className="space-y-2">
+              <li><Link to="/terminos" className="hover:text-tag-yellow transition-colors">Aviso legal</Link></li>
+              <li><Link to="/privacidad" className="hover:text-tag-yellow transition-colors">Política de privacidad</Link></li>
+              <li><Link to="/cookies" className="hover:text-tag-yellow transition-colors">Política de cookies</Link></li>
+              <li>
+                <button onClick={openConsentSettings} className="underline hover:text-tag-yellow transition-colors">
+                  Configurar cookies
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-6 border-t border-white/10 flex flex-wrap gap-x-8 gap-y-2 justify-between text-xs text-white/45">
+          <span>© {new Date().getFullYear()} The Acting Garage · Escuela de interpretación en Barcelona</span>
+          <span style={{ color: YELLOW }}>Convocatoria {CURSO} abierta</span>
+        </div>
       </footer>
     </div>
   );

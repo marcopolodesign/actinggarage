@@ -16,7 +16,9 @@
     <meta name="keywords" content="escuela de actuación, interpretación, cine, teatro, formación actores, TAG, acting garage, clases de teatro, clases de cine, cursos de interpretación" />
     <meta name="author" content="The Acting Garage" />
     <meta name="language" content="Spanish" />
-    <meta name="robots" content="index, follow" />
+    <!-- Sin meta robots acá: cada página pone la suya con <Helmet>. Un robots estático
+         convivía con el noindex de /nueva y quedaban dos contradictorios. Sin tag, el
+         valor por defecto de los buscadores ya es «index, follow». -->
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -45,8 +47,14 @@
       "description": "Escuela de interpretación para cine y teatro. Formaciones profesionales que desarrollan técnica, actitud y autenticidad actoral.",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Carrer de Londres, 9",
+        "addressLocality": "Barcelona",
+        "postalCode": "08029",
+        "addressRegion": "Cataluña",
         "addressCountry": "ES"
       },
+      "email": "hola@theactinggarage.com",
+      "telephone": "+34 682 56 01 87",
       "sameAs": [],
       "offers": {
         "@type": "AggregateOffer",
@@ -108,7 +116,7 @@
     
     <!-- LLM-Specific Meta Tags -->
     <meta name="ai:title" content="The Acting Garage - Escuela de Interpretación para Cine y Teatro" />
-    <meta name="ai:description" content="Escuela profesional de interpretación en Madrid. Ofrecemos formación integral en actuación para cine y teatro con cursos como GARAGE PRO, GARAGE THEATRE, GARAGE CINEMA, y más. Para todas las edades desde niños hasta adultos mayores." />
+    <meta name="ai:description" content="Escuela profesional de interpretación en Barcelona (Carrer de Londres, 9). Ofrecemos formación integral en actuación para cine y teatro con cursos como GARAGE PRO, GARAGE THEATRE, GARAGE CINEMA, y más. Para todas las edades desde niños hasta adultos mayores." />
     <meta name="ai:category" content="Education, Acting, Theatre, Cinema" />
     <meta name="ai:services" content="Clases de actuación, Formación en cine, Formación en teatro, Cursos de interpretación, Talleres de actuación" />
     
@@ -119,6 +127,36 @@
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     
+    <!-- Consent Mode v2 — TIENE que ir antes de cualquier tag de Google.
+         Todo arranca en «denied»; si la persona ya eligió antes (localStorage
+         «tag-consent», ver src/lib/consent.ts) se aplica acá mismo, antes del primer hit.
+         Con ad_storage denegado, Google no escribe cookies y manda pings sin identificar
+         (modo avanzado): así Google Ads puede seguir modelando conversiones.
+         Meta NO pasa por acá: su pixel ni se carga sin consentimiento (MetaPixel.tsx). -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
+      try {
+        var c = JSON.parse(localStorage.getItem('tag-consent') || 'null');
+        if (c && c.v === 1) {
+          var a = c.ads ? 'granted' : 'denied';
+          gtag('consent', 'update', {
+            analytics_storage: c.analytics ? 'granted' : 'denied',
+            ad_storage: a, ad_user_data: a, ad_personalization: a
+          });
+        }
+      } catch (e) {}
+    </script>
+
     <!-- Google tag (gtag.js) - Google Ads -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17688095812"></script>
     <script>

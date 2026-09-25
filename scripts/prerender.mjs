@@ -25,9 +25,16 @@
  * sostiene la atribución de las campañas. Por eso se reconstruye a partir del shell
  * limpio de Vite y sólo se le agregan los tags que Helmet marca con `data-rh`.
  *
- * Es prerender de <head>, no de contenido: resuelve el problema medido (title,
- * description y canonical por URL en el HTML servido). El <body> lo sigue pintando
- * React, que es lo que Google ya renderiza sin problema.
+ * Desde 2026-09-24 también guarda el CONTENIDO: el <div id="root"> sale con el
+ * HTML que React pintó para esa ruta. Antes el <body> servido era sólo el aviso de
+ * «habilita JavaScript», así que WhatsApp, los buscadores que no ejecutan JS y los
+ * asistentes de IA no veían ni un curso (lo marcó Andrés en su lista del 24/09).
+ * No es hidratación: main.tsx usa createRoot, que al montar reemplaza ese HTML por
+ * el mismo árbol. Para el visitante no cambia nada; para un bot, está todo.
+ *
+ * Del contenido capturado se sacan <script>, <noscript> e <iframe>, por la misma
+ * razón que arriba: nada de tracking horneado. Y se entra con las cookies ya
+ * rechazadas y el popup ya visto, para que ni el aviso ni el popup queden en el HTML.
  *
  * La lista de abajo es la misma que el sitemap: sólo rutas indexables. /privacidad
  * y /terminos quedan fuera a propósito — están marcadas noindex, así que no tiene
@@ -61,8 +68,13 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
 const PORT = 4183;
 
+// Ruta → pathname que debe tener su canonical. Casi siempre es la misma ruta; /nueva
+// apunta a la raíz porque es la home que la va a reemplazar.
+const CANONICAL_OF = { '/nueva': '/' };
+
 const ROUTES = [
   '/',
+  '/nueva',
   '/cursos',
   '/calendario',
   '/iniciacion',
@@ -124,6 +136,13 @@ await page.route('**/*', (route) => {
   return url.startsWith(`http://localhost:${PORT}`) ? route.continue() : route.abort();
 });
 
+// Cookies rechazadas y popup ya visto: ni el aviso ni el popup tienen que quedar
+// horneados en el HTML, y así el pixel de Meta ni se carga.
+await page.addInitScript(() => {
+  localStorage.setItem('tag-consent', JSON.stringify({ analytics: false, ads: false, ts: '1970-01-01T00:00:00.000Z', v: 1 }));
+  localStorage.setItem('tag_popup_seen', String(Date.now()));
+});
+
 const problems = [];
 let ok = 0;
 
@@ -139,7 +158,7 @@ for (const route of ROUTES) {
         const c = document.querySelector('link[rel=canonical][data-rh]');
         return !!c && new URL(c.href).pathname === r;
       },
-      route,
+      CANONICAL_OF[route] ?? route,
       { timeout: 15000 },
     )
     .then(() => true)
@@ -150,7 +169,16 @@ for (const route of ROUTES) {
     continue;
   }
 
-  const { title, tags } = await page.evaluate(() => ({
+  // Un respiro para que terminen de montar las secciones de abajo (fuentes, listas).
+  await page.waitForTimeout(500);
+
+  const { title, tags, body } = await page.evaluate(() => ({
+    body: (() => {
+      const root = document.getElementById('root')?.cloneNode(true);
+      if (!root) return '';
+      root.querySelectorAll('script, noscript, iframe').forEach((el) => el.remove());
+      return root.innerHTML;
+    })(),
     title: document.title,
     // Sólo lo que puso Helmet. Nada de lo que inyectaron el pixel, GTM o gtag.
     tags: [...document.querySelectorAll('head [data-rh]')]
@@ -161,7 +189,16 @@ for (const route of ROUTES) {
   const injected = tags.map((t) => '    ' + t).join('\n');
   const html = SHELL
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
-    .replace('</head>', `\n    <!-- prerender: tags de esta ruta, generados por scripts/prerender.mjs -->\n${injected}\n  </head>`);
+    .replace('</head>', `\n    <!-- prerender: tags de esta ruta, generados por scripts/prerender.mjs -->\n${injected}\n  </head>`)
+    .replace('<div id="root"></div>', () => `<div id="root">${body}</div>`);
+
+  if (body.length < 2000) problems.push(`${route}: el contenido capturado es sospechosamente corto (${body.length} caracteres)`);
+  if (/connect\.facebook\.net|googletagmanager|<script/i.test(body)) {
+    problems.push(`${route}: se coló un script o tracking dentro del contenido`);
+  }
+  if (/Aviso de cookies|Quieres saber más/.test(body)) {
+    problems.push(`${route}: el aviso de cookies o el popup quedaron horneados en el contenido`);
+  }
 
   // Red de seguridad: si algo del shell vuelve a traer un canonical propio, esto
   // lo caza antes de desplegar en vez de que aparezca meses después en Search Console.
@@ -175,7 +212,7 @@ for (const route of ROUTES) {
   await mkdir(dirname(out), { recursive: true });
   await writeFile(out, html);
   ok++;
-  console.log(`  ✓ ${route.padEnd(30)} ${tags.length} tags → ${out.replace(DIST, 'dist')}`);
+  console.log(`  ✓ ${route.padEnd(30)} ${tags.length} tags · ${Math.round(body.length / 1024)} KB de contenido → ${out.replace(DIST, 'dist')}`);
 }
 
 await browser.close();
