@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { buildWhatsAppUrl } from '../utils/utm';
+import ProximoTaller, { tallerVigente } from '../components/ProximoTaller';
 
 const WhatsAppIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -236,6 +237,13 @@ const LandingPro: React.FC = () => {
               />
             </div>
           </div>
+
+          {tallerVigente() && (
+            <div>
+              <SectionLabel label="Garage Workshops" />
+              <ProximoTaller />
+            </div>
+          )}
 
           <div>
             <SectionLabel label="Para egresados TAG" />

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import { useFormFlyout } from '../context/FormFlyoutContext';
+import ProximoTaller from '../components/ProximoTaller';
 
 const Cursos: React.FC = () => {
   const cursosTextRef = useRef<HTMLSpanElement>(null);
@@ -166,7 +167,8 @@ const Cursos: React.FC = () => {
       cargaHoraria: 'Intensiva',
       edades: 'Desde 17 años',
       modalidad: 'Taller intensivo',
-      objetivo: 'Entrenamiento especializado y networking profesional'
+      objetivo: 'Entrenamiento especializado y networking profesional',
+      categories: ['pro']
     }
   ];
 
@@ -515,6 +517,10 @@ const Cursos: React.FC = () => {
                     >
                       VER DETALLES
                     </Link>
+                  )}
+
+                  {course.title === 'Garage Workshops' && (
+                    <ProximoTaller className="mt-12 pt-10 border-t border-white/10" />
                   )}
                 </div>
               )}
