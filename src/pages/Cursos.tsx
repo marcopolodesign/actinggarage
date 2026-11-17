@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Testimonios from '../components/Testimonios';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import ProximoTaller from '../components/ProximoTaller';
+import CursosTrimestrales from '../components/CursosTrimestrales';
 
 const Cursos: React.FC = () => {
   const cursosTextRef = useRef<HTMLSpanElement>(null);
@@ -158,6 +159,17 @@ const Cursos: React.FC = () => {
       modalidad: 'Online vía Zoom',
       objetivo: 'Escribir una comedia teatral propia',
       categories: ['iniciacion', 'pro']
+    },
+    {
+      title: 'Garage Trimestrales',
+      description: 'Cursos de un trimestre, de enero a abril de 2027: Hybrid Nivel I y II (cámara y teatro), Garage On Camera en inglés y Dirección de escena.',
+      duracion: 'Un trimestre (enero – abril 2027)',
+      diasSemana: 'Según el curso',
+      cargaHoraria: '2 a 4 horas',
+      edades: 'Adultos',
+      modalidad: 'Presencial',
+      objetivo: 'Formación concentrada en un trimestre',
+      trimestrales: true
     },
     {
       title: 'Garage Workshops',
@@ -491,6 +503,9 @@ const Cursos: React.FC = () => {
                   <p className="text-white text-lg leading-relaxed mb-8">
                     {course.description}
                   </p>
+                  {course.trimestrales ? (
+                    <CursosTrimestrales />
+                  ) : (<>
                   <div className="space-y-2 text-white mb-6">
                     <p><strong>Duración total:</strong> {course.duracion}</p>
                     <p><strong>Días por semana:</strong> {course.diasSemana}</p>
@@ -518,6 +533,8 @@ const Cursos: React.FC = () => {
                       VER DETALLES
                     </Link>
                   )}
+
+                  </>)}
 
                   {course.title === 'Garage Workshops' && (
                     <ProximoTaller className="mt-12 pt-10 border-t border-white/10" />

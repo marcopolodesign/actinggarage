@@ -40,7 +40,11 @@ const COURSES = [
   'Garage New Generation Hybrid',
   'Garage Evolution',
   'Garage Classic',
-  'Garage Workshops'
+  'Garage Workshops',
+  'Garage Hybrid Nivel I',
+  'Garage Hybrid Nivel II',
+  'Garage On Camera',
+  'Garage Dirección de Escena'
 ];
 
 const isValidEmail = (email: string): boolean =>
@@ -96,6 +100,14 @@ const FormFlyout: React.FC = () => {
     if (gender) setFormData(prev => ({ ...prev, gender }));
     if (course) setFormData(prev => ({ ...prev, course }));
   }, []);
+
+  // openFlyout(curso) deja el curso en ?course= DESPUÉS del montaje: hay que releerlo al abrir,
+  // si no el select queda vacío con cualquier botón "Quiero más información".
+  useEffect(() => {
+    if (!isOpen) return;
+    const course = new URLSearchParams(window.location.search).get('course');
+    if (course) setFormData(prev => ({ ...prev, course }));
+  }, [isOpen]);
 
   // GSAP animations
   useEffect(() => {
