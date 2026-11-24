@@ -51,10 +51,10 @@ const GarageWritingCorner: React.FC = () => {
           />
           <div className="bg-tag-yellow px-3 py-3">
             <p className="font-druk text-black text-sm leading-tight uppercase">
-              Garage Writing: escribe tu comedia con Yago Alonso.
+              Garage Writing: encuentra tu propia voz teatral con Sergio Serrano.
             </p>
             <p className="font-druk text-black text-sm leading-tight uppercase mt-1">
-              Empieza el 16 de septiembre.
+              Empieza en enero de 2027.
             </p>
           </div>
         </Link>

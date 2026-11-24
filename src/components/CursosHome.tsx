@@ -128,7 +128,7 @@ const coursesDetailsData: CourseDetails[] = [
   },
   {
     title: 'Garage Writing',
-    description: 'Formación online de escritura dramática y guion cinematográfico. Empieza con Escribir Comedia, de la mano de Yago Alonso: de la premisa al escenario.',
+    description: 'Formación online de escritura dramática y guion cinematográfico. Nueva edición en enero de 2027: Encuentra tu propia voz teatral, con Sergio Serrano.',
     duracion: '12 sesiones',
     diasSemana: '1',
     cargaHoraria: '3 horas',

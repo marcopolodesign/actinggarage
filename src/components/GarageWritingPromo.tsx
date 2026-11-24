@@ -20,12 +20,12 @@ const GarageWritingPromo: React.FC = () => {
           </h3>
           <p className="font-garamond text-white/70 text-base md:text-lg leading-relaxed mb-2">
             La nueva formación online de TAG dedicada a la escritura dramática y el guion
-            cinematográfico. Doce sesiones en directo vía Zoom, con los mejores profesionales
+            cinematográfico. Doce sesiones en directo y online, con los mejores profesionales
             del oficio — sales con material propio, no con apuntes.
           </p>
           <p className="font-garamond text-white/50 text-sm md:text-base">
-            Empezamos con <strong className="text-white">Escribir Comedia</strong>, con Yago
-            Alonso · 16 sep – 2 dic
+            Nueva edición: <strong className="text-white">Encuentra tu propia voz teatral</strong>, con
+            Sergio Serrano · desde enero 2027, martes de 17 a 20 h
           </p>
         </div>
         <Link

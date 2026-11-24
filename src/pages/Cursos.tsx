@@ -6,6 +6,7 @@ import Testimonios from '../components/Testimonios';
 import { useFormFlyout } from '../context/FormFlyoutContext';
 import ProximoTaller from '../components/ProximoTaller';
 import CursosTrimestrales from '../components/CursosTrimestrales';
+import ProximoWriting from '../components/ProximoWriting';
 
 const Cursos: React.FC = () => {
   const cursosTextRef = useRef<HTMLSpanElement>(null);
@@ -151,14 +152,15 @@ const Cursos: React.FC = () => {
     {
       slug: 'garage-writing',
       title: 'Garage Writing',
-      description: 'Escribir comedia, de la premisa al escenario. 12 sesiones online con Yago Alonso para llevar una idea cómica hasta una pieza teatral: estructura, personajes, diálogos y mecanismos cómicos.',
+      description: 'La formación online de TAG en escritura dramática. Nueva edición en enero de 2027: «Encuentra tu propia voz teatral», 12 sesiones online con Sergio Serrano, los martes de 17 a 20 h.',
       duracion: '12 sesiones',
       diasSemana: '1',
       cargaHoraria: '3 horas',
       edades: 'Interés en escritura dramática',
-      modalidad: 'Online vía Zoom',
-      objetivo: 'Escribir una comedia teatral propia',
-      categories: ['iniciacion', 'pro']
+      modalidad: 'Online',
+      objetivo: 'Escribir una obra teatral propia',
+      categories: ['iniciacion', 'pro'],
+      writing: true
     },
     {
       title: 'Garage Trimestrales',
@@ -505,6 +507,8 @@ const Cursos: React.FC = () => {
                   </p>
                   {course.trimestrales ? (
                     <CursosTrimestrales />
+                  ) : course.writing ? (
+                    <ProximoWriting />
                   ) : (<>
                   <div className="space-y-2 text-white mb-6">
                     <p><strong>Duración total:</strong> {course.duracion}</p>
